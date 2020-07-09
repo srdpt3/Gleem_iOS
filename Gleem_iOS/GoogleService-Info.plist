@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>976156249660-shvmq1i1gqilgtl35119hnnkf6njpq8n.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.976156249660-shvmq1i1gqilgtl35119hnnkf6njpq8n</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA1xwpPlINgWBdu1iQf2tIS2FnkewXcvhg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>976156249660</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>gleem.dating</string>
+	<key>PROJECT_ID</key>
+	<string>gleem-dating</string>
+	<key>STORAGE_BUCKET</key>
+	<string>gleem-dating.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:976156249660:ios:38b64039e8fcef074abd39</string>
+	<key>DATABASE_URL</key>
+	<string>https://gleem-dating.firebaseio.com</string>
+</dict>
+</plist>

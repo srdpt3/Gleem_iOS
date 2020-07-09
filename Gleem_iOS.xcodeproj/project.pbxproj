@@ -1,0 +1,1022 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		11783E6C24B53BA500EEFE80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783E6B24B53BA500EEFE80 /* AppDelegate.swift */; };
+		11783E6E24B53BA500EEFE80 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783E6D24B53BA500EEFE80 /* SceneDelegate.swift */; };
+		11783E7124B53BA500EEFE80 /* Gleem_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11783E6F24B53BA500EEFE80 /* Gleem_iOS.xcdatamodeld */; };
+		11783E7324B53BA500EEFE80 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783E7224B53BA500EEFE80 /* ContentView.swift */; };
+		11783E7524B53BA900EEFE80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11783E7424B53BA900EEFE80 /* Assets.xcassets */; };
+		11783E7824B53BA900EEFE80 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11783E7724B53BA900EEFE80 /* Preview Assets.xcassets */; };
+		11783E7B24B53BA900EEFE80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11783E7924B53BA900EEFE80 /* LaunchScreen.storyboard */; };
+		11783E8624B53BA900EEFE80 /* Gleem_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783E8524B53BA900EEFE80 /* Gleem_iOSTests.swift */; };
+		11783E9124B53BA900EEFE80 /* Gleem_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783E9024B53BA900EEFE80 /* Gleem_iOSUITests.swift */; };
+		11783E9F24B53BF400EEFE80 /* observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783E9E24B53BF400EEFE80 /* observer.swift */; };
+		11783EAD24B53CEC00EEFE80 /* UserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EA124B53CEB00EEFE80 /* UserApi.swift */; };
+		11783EAE24B53CEC00EEFE80 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EA324B53CEB00EEFE80 /* UserViewModel.swift */; };
+		11783EAF24B53CEC00EEFE80 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EA424B53CEB00EEFE80 /* SessionStore.swift */; };
+		11783EB024B53CEC00EEFE80 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EA524B53CEB00EEFE80 /* StorageService.swift */; };
+		11783EB124B53CEC00EEFE80 /* UploadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EA624B53CEB00EEFE80 /* UploadViewModel.swift */; };
+		11783EB224B53CEC00EEFE80 /* AttributeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EA724B53CEB00EEFE80 /* AttributeViewModel.swift */; };
+		11783EB324B53CEC00EEFE80 /* VoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EA824B53CEB00EEFE80 /* VoteViewModel.swift */; };
+		11783EB424B53CEC00EEFE80 /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EA924B53CEB00EEFE80 /* ChartViewModel.swift */; };
+		11783EB524B53CEC00EEFE80 /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EAA24B53CEB00EEFE80 /* FavoriteViewModel.swift */; };
+		11783EB624B53CEC00EEFE80 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EAC24B53CEB00EEFE80 /* AuthService.swift */; };
+		11783EC724B53D1A00EEFE80 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EBA24B53D1900EEFE80 /* SafariView.swift */; };
+		11783EC824B53D1A00EEFE80 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EBB24B53D1900EEFE80 /* FavoriteView.swift */; };
+		11783EC924B53D1A00EEFE80 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EBC24B53D1900EEFE80 /* ChartView.swift */; };
+		11783ECA24B53D1A00EEFE80 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EBD24B53D1900EEFE80 /* CardView.swift */; };
+		11783ECB24B53D1A00EEFE80 /* AttrButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EBE24B53D1900EEFE80 /* AttrButtonView.swift */; };
+		11783ECC24B53D1A00EEFE80 /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EBF24B53D1900EEFE80 /* SwipeView.swift */; };
+		11783ECD24B53D1A00EEFE80 /* MyStaticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EC024B53D1900EEFE80 /* MyStaticView.swift */; };
+		11783ECE24B53D1A00EEFE80 /* SwipeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EC124B53D1900EEFE80 /* SwipeDetailsView.swift */; };
+		11783ECF24B53D1A00EEFE80 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EC224B53D1900EEFE80 /* BottomView.swift */; };
+		11783ED024B53D1A00EEFE80 /* UploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EC324B53D1900EEFE80 /* UploadView.swift */; };
+		11783ED124B53D1A00EEFE80 /* ExpandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EC424B53D1900EEFE80 /* ExpandView.swift */; };
+		11783ED224B53D1A00EEFE80 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EC524B53D1900EEFE80 /* SettingView.swift */; };
+		11783ED324B53D1A00EEFE80 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EC624B53D1900EEFE80 /* TopView.swift */; };
+		11783EE024B53DD900EEFE80 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783ED524B53DD800EEFE80 /* Constants.swift */; };
+		11783EE124B53DD900EEFE80 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783ED624B53DD800EEFE80 /* ImageLoader.swift */; };
+		11783EE224B53DD900EEFE80 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783ED724B53DD800EEFE80 /* SearchBarView.swift */; };
+		11783EE324B53DD900EEFE80 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783ED824B53DD800EEFE80 /* ImagePicker.swift */; };
+		11783EE424B53DD900EEFE80 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783ED924B53DD800EEFE80 /* SearchBar.swift */; };
+		11783EE524B53DD900EEFE80 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EDA24B53DD800EEFE80 /* Extensions.swift */; };
+		11783EE624B53DD900EEFE80 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EDB24B53DD900EEFE80 /* Loader.swift */; };
+		11783EE724B53DD900EEFE80 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EDC24B53DD900EEFE80 /* Utils.swift */; };
+		11783EE824B53DD900EEFE80 /* Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EDD24B53DD900EEFE80 /* Modifier.swift */; };
+		11783EE924B53DD900EEFE80 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EDE24B53DD900EEFE80 /* Keyboard.swift */; };
+		11783EEA24B53DD900EEFE80 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EDF24B53DD900EEFE80 /* LoadingView.swift */; };
+		11783EF124B53E5000EEFE80 /* FavoriteUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EEC24B53E5000EEFE80 /* FavoriteUser.swift */; };
+		11783EF224B53E5000EEFE80 /* datatype.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EED24B53E5000EEFE80 /* datatype.swift */; };
+		11783EF324B53E5000EEFE80 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EEE24B53E5000EEFE80 /* User.swift */; };
+		11783EF424B53E5000EEFE80 /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EEF24B53E5000EEFE80 /* Vote.swift */; };
+		11783EF524B53E5000EEFE80 /* MyVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EF024B53E5000EEFE80 /* MyVote.swift */; };
+		11783EF724B53F4700EEFE80 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11783EF624B53F4700EEFE80 /* GoogleService-Info.plist */; };
+		11783EFA24B57E2200EEFE80 /* ProfileList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EF924B57E2200EEFE80 /* ProfileList.swift */; };
+		11783EFC24B57FAE00EEFE80 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EFB24B57FAE00EEFE80 /* MenuView.swift */; };
+		11783EFE24B6293A00EEFE80 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EFD24B6293A00EEFE80 /* BlurView.swift */; };
+		11783F0024B662EA00EEFE80 /* CardListview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EFF24B662EA00EEFE80 /* CardListview.swift */; };
+		11783F0224B667DA00EEFE80 /* VoteCardDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783F0124B667DA00EEFE80 /* VoteCardDetail.swift */; };
+		11783F0424B6A30C00EEFE80 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783F0324B6A30C00EEFE80 /* LoginView.swift */; };
+		11783F0824B6A44500EEFE80 /* SuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783F0724B6A44500EEFE80 /* SuccessView.swift */; };
+		11783F0A24B6A4DD00EEFE80 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783F0924B6A4DD00EEFE80 /* LottieView.swift */; };
+		28E76019A755C8F2BF309D57 /* Pods_Gleem_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F27CDF74682B80047DF9F3 /* Pods_Gleem_iOSTests.framework */; };
+		CE95CEDC2A97CE0020A8EAEA /* Pods_Gleem_iOS_Gleem_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384F216AF9BC57E82C872F4E /* Pods_Gleem_iOS_Gleem_iOSUITests.framework */; };
+		E910A2D4916BB043FCCE1EDE /* Pods_Gleem_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A0B1D9AD08185C3F68EA576 /* Pods_Gleem_iOS.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		11783E8224B53BA900EEFE80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 11783E6024B53BA500EEFE80 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 11783E6724B53BA500EEFE80;
+			remoteInfo = Gleem_iOS;
+		};
+		11783E8D24B53BA900EEFE80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 11783E6024B53BA500EEFE80 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 11783E6724B53BA500EEFE80;
+			remoteInfo = Gleem_iOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0A0B1D9AD08185C3F68EA576 /* Pods_Gleem_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gleem_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		11783E6824B53BA500EEFE80 /* Gleem_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gleem_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		11783E6B24B53BA500EEFE80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		11783E6D24B53BA500EEFE80 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		11783E7024B53BA500EEFE80 /* Gleem_iOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Gleem_iOS.xcdatamodel; sourceTree = "<group>"; };
+		11783E7224B53BA500EEFE80 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		11783E7424B53BA900EEFE80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		11783E7724B53BA900EEFE80 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		11783E7A24B53BA900EEFE80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		11783E7C24B53BA900EEFE80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11783E8124B53BA900EEFE80 /* Gleem_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Gleem_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		11783E8524B53BA900EEFE80 /* Gleem_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gleem_iOSTests.swift; sourceTree = "<group>"; };
+		11783E8724B53BA900EEFE80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11783E8C24B53BA900EEFE80 /* Gleem_iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Gleem_iOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		11783E9024B53BA900EEFE80 /* Gleem_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gleem_iOSUITests.swift; sourceTree = "<group>"; };
+		11783E9224B53BA900EEFE80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11783E9E24B53BF400EEFE80 /* observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = observer.swift; sourceTree = "<group>"; };
+		11783EA124B53CEB00EEFE80 /* UserApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserApi.swift; sourceTree = "<group>"; };
+		11783EA324B53CEB00EEFE80 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		11783EA424B53CEB00EEFE80 /* SessionStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
+		11783EA524B53CEB00EEFE80 /* StorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		11783EA624B53CEB00EEFE80 /* UploadViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadViewModel.swift; sourceTree = "<group>"; };
+		11783EA724B53CEB00EEFE80 /* AttributeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeViewModel.swift; sourceTree = "<group>"; };
+		11783EA824B53CEB00EEFE80 /* VoteViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteViewModel.swift; sourceTree = "<group>"; };
+		11783EA924B53CEB00EEFE80 /* ChartViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
+		11783EAA24B53CEB00EEFE80 /* FavoriteViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
+		11783EAC24B53CEB00EEFE80 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		11783EBA24B53D1900EEFE80 /* SafariView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
+		11783EBB24B53D1900EEFE80 /* FavoriteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
+		11783EBC24B53D1900EEFE80 /* ChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		11783EBD24B53D1900EEFE80 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		11783EBE24B53D1900EEFE80 /* AttrButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttrButtonView.swift; sourceTree = "<group>"; };
+		11783EBF24B53D1900EEFE80 /* SwipeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeView.swift; sourceTree = "<group>"; };
+		11783EC024B53D1900EEFE80 /* MyStaticView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStaticView.swift; sourceTree = "<group>"; };
+		11783EC124B53D1900EEFE80 /* SwipeDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeDetailsView.swift; sourceTree = "<group>"; };
+		11783EC224B53D1900EEFE80 /* BottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
+		11783EC324B53D1900EEFE80 /* UploadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadView.swift; sourceTree = "<group>"; };
+		11783EC424B53D1900EEFE80 /* ExpandView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandView.swift; sourceTree = "<group>"; };
+		11783EC524B53D1900EEFE80 /* SettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		11783EC624B53D1900EEFE80 /* TopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
+		11783ED524B53DD800EEFE80 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		11783ED624B53DD800EEFE80 /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		11783ED724B53DD800EEFE80 /* SearchBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
+		11783ED824B53DD800EEFE80 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		11783ED924B53DD800EEFE80 /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		11783EDA24B53DD800EEFE80 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		11783EDB24B53DD900EEFE80 /* Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
+		11783EDC24B53DD900EEFE80 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		11783EDD24B53DD900EEFE80 /* Modifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Modifier.swift; sourceTree = "<group>"; };
+		11783EDE24B53DD900EEFE80 /* Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
+		11783EDF24B53DD900EEFE80 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		11783EEC24B53E5000EEFE80 /* FavoriteUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteUser.swift; sourceTree = "<group>"; };
+		11783EED24B53E5000EEFE80 /* datatype.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = datatype.swift; sourceTree = "<group>"; };
+		11783EEE24B53E5000EEFE80 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		11783EEF24B53E5000EEFE80 /* Vote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vote.swift; sourceTree = "<group>"; };
+		11783EF024B53E5000EEFE80 /* MyVote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVote.swift; sourceTree = "<group>"; };
+		11783EF624B53F4700EEFE80 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		11783EF924B57E2200EEFE80 /* ProfileList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileList.swift; sourceTree = "<group>"; };
+		11783EFB24B57FAE00EEFE80 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		11783EFD24B6293A00EEFE80 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
+		11783EFF24B662EA00EEFE80 /* CardListview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListview.swift; sourceTree = "<group>"; };
+		11783F0124B667DA00EEFE80 /* VoteCardDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteCardDetail.swift; sourceTree = "<group>"; };
+		11783F0324B6A30C00EEFE80 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		11783F0724B6A44500EEFE80 /* SuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessView.swift; sourceTree = "<group>"; };
+		11783F0924B6A4DD00EEFE80 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		384F216AF9BC57E82C872F4E /* Pods_Gleem_iOS_Gleem_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gleem_iOS_Gleem_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		65CCF6235610865614AA7773 /* Pods-Gleem_iOS-Gleem_iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gleem_iOS-Gleem_iOSUITests.debug.xcconfig"; path = "Target Support Files/Pods-Gleem_iOS-Gleem_iOSUITests/Pods-Gleem_iOS-Gleem_iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8384F3EAD0379C150E4654DB /* Pods-Gleem_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gleem_iOS.release.xcconfig"; path = "Target Support Files/Pods-Gleem_iOS/Pods-Gleem_iOS.release.xcconfig"; sourceTree = "<group>"; };
+		988E2D43CC2F16ADCBDC95D5 /* Pods-Gleem_iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gleem_iOSTests.release.xcconfig"; path = "Target Support Files/Pods-Gleem_iOSTests/Pods-Gleem_iOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		9FDF73EAA4ABFE54AE780B03 /* Pods-Gleem_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gleem_iOS.debug.xcconfig"; path = "Target Support Files/Pods-Gleem_iOS/Pods-Gleem_iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		A6667BBD839ED893A5E1CE4E /* Pods-Gleem_iOS-Gleem_iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gleem_iOS-Gleem_iOSUITests.release.xcconfig"; path = "Target Support Files/Pods-Gleem_iOS-Gleem_iOSUITests/Pods-Gleem_iOS-Gleem_iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
+		AB6873FBC7DCF3F3808F701E /* Pods-Gleem_iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gleem_iOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Gleem_iOSTests/Pods-Gleem_iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F2F27CDF74682B80047DF9F3 /* Pods_Gleem_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gleem_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		11783E6524B53BA500EEFE80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E910A2D4916BB043FCCE1EDE /* Pods_Gleem_iOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11783E7E24B53BA900EEFE80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28E76019A755C8F2BF309D57 /* Pods_Gleem_iOSTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11783E8924B53BA900EEFE80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE95CEDC2A97CE0020A8EAEA /* Pods_Gleem_iOS_Gleem_iOSUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		11783E5F24B53BA500EEFE80 = {
+			isa = PBXGroup;
+			children = (
+				11783E6A24B53BA500EEFE80 /* Gleem_iOS */,
+				11783E8424B53BA900EEFE80 /* Gleem_iOSTests */,
+				11783E8F24B53BA900EEFE80 /* Gleem_iOSUITests */,
+				11783E6924B53BA500EEFE80 /* Products */,
+				16F37E861AA445E94CE5E3D7 /* Pods */,
+				91EEE9D7E0C9178ED8ABCA3C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		11783E6924B53BA500EEFE80 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				11783E6824B53BA500EEFE80 /* Gleem_iOS.app */,
+				11783E8124B53BA900EEFE80 /* Gleem_iOSTests.xctest */,
+				11783E8C24B53BA900EEFE80 /* Gleem_iOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		11783E6A24B53BA500EEFE80 /* Gleem_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				11783E6B24B53BA500EEFE80 /* AppDelegate.swift */,
+				11783E6D24B53BA500EEFE80 /* SceneDelegate.swift */,
+				11783E7224B53BA500EEFE80 /* ContentView.swift */,
+				11783EF624B53F4700EEFE80 /* GoogleService-Info.plist */,
+				11783EEB24B53E5000EEFE80 /* Model */,
+				11783ED424B53DD800EEFE80 /* Helper */,
+				11783EB924B53D1900EEFE80 /* Views */,
+				11783EA024B53CEB00EEFE80 /* API */,
+				11783EAB24B53CEB00EEFE80 /* Service */,
+				11783EA224B53CEB00EEFE80 /* ViewModel */,
+				11783E7424B53BA900EEFE80 /* Assets.xcassets */,
+				11783E7924B53BA900EEFE80 /* LaunchScreen.storyboard */,
+				11783E7C24B53BA900EEFE80 /* Info.plist */,
+				11783E6F24B53BA500EEFE80 /* Gleem_iOS.xcdatamodeld */,
+				11783E7624B53BA900EEFE80 /* Preview Content */,
+			);
+			path = Gleem_iOS;
+			sourceTree = "<group>";
+		};
+		11783E7624B53BA900EEFE80 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				11783E7724B53BA900EEFE80 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		11783E8424B53BA900EEFE80 /* Gleem_iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				11783E8524B53BA900EEFE80 /* Gleem_iOSTests.swift */,
+				11783E8724B53BA900EEFE80 /* Info.plist */,
+			);
+			path = Gleem_iOSTests;
+			sourceTree = "<group>";
+		};
+		11783E8F24B53BA900EEFE80 /* Gleem_iOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				11783E9024B53BA900EEFE80 /* Gleem_iOSUITests.swift */,
+				11783E9224B53BA900EEFE80 /* Info.plist */,
+			);
+			path = Gleem_iOSUITests;
+			sourceTree = "<group>";
+		};
+		11783EA024B53CEB00EEFE80 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				11783EA124B53CEB00EEFE80 /* UserApi.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		11783EA224B53CEB00EEFE80 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				11783E9E24B53BF400EEFE80 /* observer.swift */,
+				11783EA324B53CEB00EEFE80 /* UserViewModel.swift */,
+				11783EA424B53CEB00EEFE80 /* SessionStore.swift */,
+				11783EA524B53CEB00EEFE80 /* StorageService.swift */,
+				11783EA624B53CEB00EEFE80 /* UploadViewModel.swift */,
+				11783EA724B53CEB00EEFE80 /* AttributeViewModel.swift */,
+				11783EA824B53CEB00EEFE80 /* VoteViewModel.swift */,
+				11783EA924B53CEB00EEFE80 /* ChartViewModel.swift */,
+				11783EAA24B53CEB00EEFE80 /* FavoriteViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		11783EAB24B53CEB00EEFE80 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				11783EAC24B53CEB00EEFE80 /* AuthService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		11783EB924B53D1900EEFE80 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				11783EF824B57DFC00EEFE80 /* CardViewMain */,
+				11783EBA24B53D1900EEFE80 /* SafariView.swift */,
+				11783EBB24B53D1900EEFE80 /* FavoriteView.swift */,
+				11783EBC24B53D1900EEFE80 /* ChartView.swift */,
+				11783EBE24B53D1900EEFE80 /* AttrButtonView.swift */,
+				11783EC024B53D1900EEFE80 /* MyStaticView.swift */,
+				11783EC324B53D1900EEFE80 /* UploadView.swift */,
+				11783EC424B53D1900EEFE80 /* ExpandView.swift */,
+				11783EC524B53D1900EEFE80 /* SettingView.swift */,
+				11783EF924B57E2200EEFE80 /* ProfileList.swift */,
+				11783EFB24B57FAE00EEFE80 /* MenuView.swift */,
+				11783F0324B6A30C00EEFE80 /* LoginView.swift */,
+				11783F0724B6A44500EEFE80 /* SuccessView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		11783ED424B53DD800EEFE80 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				11783ED524B53DD800EEFE80 /* Constants.swift */,
+				11783ED624B53DD800EEFE80 /* ImageLoader.swift */,
+				11783ED724B53DD800EEFE80 /* SearchBarView.swift */,
+				11783ED824B53DD800EEFE80 /* ImagePicker.swift */,
+				11783ED924B53DD800EEFE80 /* SearchBar.swift */,
+				11783EDA24B53DD800EEFE80 /* Extensions.swift */,
+				11783EDB24B53DD900EEFE80 /* Loader.swift */,
+				11783EDC24B53DD900EEFE80 /* Utils.swift */,
+				11783EDD24B53DD900EEFE80 /* Modifier.swift */,
+				11783EDE24B53DD900EEFE80 /* Keyboard.swift */,
+				11783EDF24B53DD900EEFE80 /* LoadingView.swift */,
+				11783EFD24B6293A00EEFE80 /* BlurView.swift */,
+				11783F0924B6A4DD00EEFE80 /* LottieView.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		11783EEB24B53E5000EEFE80 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				11783EEC24B53E5000EEFE80 /* FavoriteUser.swift */,
+				11783EED24B53E5000EEFE80 /* datatype.swift */,
+				11783EEE24B53E5000EEFE80 /* User.swift */,
+				11783EEF24B53E5000EEFE80 /* Vote.swift */,
+				11783EF024B53E5000EEFE80 /* MyVote.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		11783EF824B57DFC00EEFE80 /* CardViewMain */ = {
+			isa = PBXGroup;
+			children = (
+				11783EC624B53D1900EEFE80 /* TopView.swift */,
+				11783EBF24B53D1900EEFE80 /* SwipeView.swift */,
+				11783EC124B53D1900EEFE80 /* SwipeDetailsView.swift */,
+				11783EBD24B53D1900EEFE80 /* CardView.swift */,
+				11783EC224B53D1900EEFE80 /* BottomView.swift */,
+				11783EFF24B662EA00EEFE80 /* CardListview.swift */,
+				11783F0124B667DA00EEFE80 /* VoteCardDetail.swift */,
+			);
+			path = CardViewMain;
+			sourceTree = "<group>";
+		};
+		16F37E861AA445E94CE5E3D7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9FDF73EAA4ABFE54AE780B03 /* Pods-Gleem_iOS.debug.xcconfig */,
+				8384F3EAD0379C150E4654DB /* Pods-Gleem_iOS.release.xcconfig */,
+				65CCF6235610865614AA7773 /* Pods-Gleem_iOS-Gleem_iOSUITests.debug.xcconfig */,
+				A6667BBD839ED893A5E1CE4E /* Pods-Gleem_iOS-Gleem_iOSUITests.release.xcconfig */,
+				AB6873FBC7DCF3F3808F701E /* Pods-Gleem_iOSTests.debug.xcconfig */,
+				988E2D43CC2F16ADCBDC95D5 /* Pods-Gleem_iOSTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		91EEE9D7E0C9178ED8ABCA3C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0A0B1D9AD08185C3F68EA576 /* Pods_Gleem_iOS.framework */,
+				384F216AF9BC57E82C872F4E /* Pods_Gleem_iOS_Gleem_iOSUITests.framework */,
+				F2F27CDF74682B80047DF9F3 /* Pods_Gleem_iOSTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		11783E6724B53BA500EEFE80 /* Gleem_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 11783E9524B53BA900EEFE80 /* Build configuration list for PBXNativeTarget "Gleem_iOS" */;
+			buildPhases = (
+				980FBCBCF692A46D691ABE91 /* [CP] Check Pods Manifest.lock */,
+				11783E6424B53BA500EEFE80 /* Sources */,
+				11783E6524B53BA500EEFE80 /* Frameworks */,
+				11783E6624B53BA500EEFE80 /* Resources */,
+				4C1726A76D53226BC4AA1592 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Gleem_iOS;
+			productName = Gleem_iOS;
+			productReference = 11783E6824B53BA500EEFE80 /* Gleem_iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		11783E8024B53BA900EEFE80 /* Gleem_iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 11783E9824B53BA900EEFE80 /* Build configuration list for PBXNativeTarget "Gleem_iOSTests" */;
+			buildPhases = (
+				954D00C29606C843A5AF69B1 /* [CP] Check Pods Manifest.lock */,
+				11783E7D24B53BA900EEFE80 /* Sources */,
+				11783E7E24B53BA900EEFE80 /* Frameworks */,
+				11783E7F24B53BA900EEFE80 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				11783E8324B53BA900EEFE80 /* PBXTargetDependency */,
+			);
+			name = Gleem_iOSTests;
+			productName = Gleem_iOSTests;
+			productReference = 11783E8124B53BA900EEFE80 /* Gleem_iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		11783E8B24B53BA900EEFE80 /* Gleem_iOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 11783E9B24B53BA900EEFE80 /* Build configuration list for PBXNativeTarget "Gleem_iOSUITests" */;
+			buildPhases = (
+				952D5139FCB4FC62C2E50292 /* [CP] Check Pods Manifest.lock */,
+				11783E8824B53BA900EEFE80 /* Sources */,
+				11783E8924B53BA900EEFE80 /* Frameworks */,
+				11783E8A24B53BA900EEFE80 /* Resources */,
+				BBA1BFCA347349039340C4FE /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				11783E8E24B53BA900EEFE80 /* PBXTargetDependency */,
+			);
+			name = Gleem_iOSUITests;
+			productName = Gleem_iOSUITests;
+			productReference = 11783E8C24B53BA900EEFE80 /* Gleem_iOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		11783E6024B53BA500EEFE80 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = "Dustin yang";
+				TargetAttributes = {
+					11783E6724B53BA500EEFE80 = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					11783E8024B53BA900EEFE80 = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 11783E6724B53BA500EEFE80;
+					};
+					11783E8B24B53BA900EEFE80 = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 11783E6724B53BA500EEFE80;
+					};
+				};
+			};
+			buildConfigurationList = 11783E6324B53BA500EEFE80 /* Build configuration list for PBXProject "Gleem_iOS" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 11783E5F24B53BA500EEFE80;
+			productRefGroup = 11783E6924B53BA500EEFE80 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				11783E6724B53BA500EEFE80 /* Gleem_iOS */,
+				11783E8024B53BA900EEFE80 /* Gleem_iOSTests */,
+				11783E8B24B53BA900EEFE80 /* Gleem_iOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		11783E6624B53BA500EEFE80 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11783EF724B53F4700EEFE80 /* GoogleService-Info.plist in Resources */,
+				11783E7B24B53BA900EEFE80 /* LaunchScreen.storyboard in Resources */,
+				11783E7824B53BA900EEFE80 /* Preview Assets.xcassets in Resources */,
+				11783E7524B53BA900EEFE80 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11783E7F24B53BA900EEFE80 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11783E8A24B53BA900EEFE80 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4C1726A76D53226BC4AA1592 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Gleem_iOS/Pods-Gleem_iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Gleem_iOS/Pods-Gleem_iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Gleem_iOS/Pods-Gleem_iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		952D5139FCB4FC62C2E50292 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Gleem_iOS-Gleem_iOSUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		954D00C29606C843A5AF69B1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Gleem_iOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		980FBCBCF692A46D691ABE91 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Gleem_iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BBA1BFCA347349039340C4FE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Gleem_iOS-Gleem_iOSUITests/Pods-Gleem_iOS-Gleem_iOSUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Gleem_iOS-Gleem_iOSUITests/Pods-Gleem_iOS-Gleem_iOSUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Gleem_iOS-Gleem_iOSUITests/Pods-Gleem_iOS-Gleem_iOSUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		11783E6424B53BA500EEFE80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11783EF424B53E5000EEFE80 /* Vote.swift in Sources */,
+				11783E6C24B53BA500EEFE80 /* AppDelegate.swift in Sources */,
+				11783ED024B53D1A00EEFE80 /* UploadView.swift in Sources */,
+				11783EFA24B57E2200EEFE80 /* ProfileList.swift in Sources */,
+				11783EE124B53DD900EEFE80 /* ImageLoader.swift in Sources */,
+				11783EF224B53E5000EEFE80 /* datatype.swift in Sources */,
+				11783EC824B53D1A00EEFE80 /* FavoriteView.swift in Sources */,
+				11783E9F24B53BF400EEFE80 /* observer.swift in Sources */,
+				11783ECF24B53D1A00EEFE80 /* BottomView.swift in Sources */,
+				11783EE024B53DD900EEFE80 /* Constants.swift in Sources */,
+				11783ECC24B53D1A00EEFE80 /* SwipeView.swift in Sources */,
+				11783E7124B53BA500EEFE80 /* Gleem_iOS.xcdatamodeld in Sources */,
+				11783EB124B53CEC00EEFE80 /* UploadViewModel.swift in Sources */,
+				11783EFE24B6293A00EEFE80 /* BlurView.swift in Sources */,
+				11783EC924B53D1A00EEFE80 /* ChartView.swift in Sources */,
+				11783EEA24B53DD900EEFE80 /* LoadingView.swift in Sources */,
+				11783EF124B53E5000EEFE80 /* FavoriteUser.swift in Sources */,
+				11783EE724B53DD900EEFE80 /* Utils.swift in Sources */,
+				11783EB324B53CEC00EEFE80 /* VoteViewModel.swift in Sources */,
+				11783F0824B6A44500EEFE80 /* SuccessView.swift in Sources */,
+				11783ECE24B53D1A00EEFE80 /* SwipeDetailsView.swift in Sources */,
+				11783EE324B53DD900EEFE80 /* ImagePicker.swift in Sources */,
+				11783ECA24B53D1A00EEFE80 /* CardView.swift in Sources */,
+				11783EAD24B53CEC00EEFE80 /* UserApi.swift in Sources */,
+				11783EF324B53E5000EEFE80 /* User.swift in Sources */,
+				11783F0224B667DA00EEFE80 /* VoteCardDetail.swift in Sources */,
+				11783EFC24B57FAE00EEFE80 /* MenuView.swift in Sources */,
+				11783EB524B53CEC00EEFE80 /* FavoriteViewModel.swift in Sources */,
+				11783ED324B53D1A00EEFE80 /* TopView.swift in Sources */,
+				11783EB224B53CEC00EEFE80 /* AttributeViewModel.swift in Sources */,
+				11783EE624B53DD900EEFE80 /* Loader.swift in Sources */,
+				11783EE224B53DD900EEFE80 /* SearchBarView.swift in Sources */,
+				11783F0024B662EA00EEFE80 /* CardListview.swift in Sources */,
+				11783EE424B53DD900EEFE80 /* SearchBar.swift in Sources */,
+				11783E7324B53BA500EEFE80 /* ContentView.swift in Sources */,
+				11783EAE24B53CEC00EEFE80 /* UserViewModel.swift in Sources */,
+				11783ECB24B53D1A00EEFE80 /* AttrButtonView.swift in Sources */,
+				11783EAF24B53CEC00EEFE80 /* SessionStore.swift in Sources */,
+				11783EB024B53CEC00EEFE80 /* StorageService.swift in Sources */,
+				11783F0424B6A30C00EEFE80 /* LoginView.swift in Sources */,
+				11783EE924B53DD900EEFE80 /* Keyboard.swift in Sources */,
+				11783ED124B53D1A00EEFE80 /* ExpandView.swift in Sources */,
+				11783ED224B53D1A00EEFE80 /* SettingView.swift in Sources */,
+				11783EC724B53D1A00EEFE80 /* SafariView.swift in Sources */,
+				11783EE824B53DD900EEFE80 /* Modifier.swift in Sources */,
+				11783ECD24B53D1A00EEFE80 /* MyStaticView.swift in Sources */,
+				11783EB624B53CEC00EEFE80 /* AuthService.swift in Sources */,
+				11783F0A24B6A4DD00EEFE80 /* LottieView.swift in Sources */,
+				11783EE524B53DD900EEFE80 /* Extensions.swift in Sources */,
+				11783E6E24B53BA500EEFE80 /* SceneDelegate.swift in Sources */,
+				11783EB424B53CEC00EEFE80 /* ChartViewModel.swift in Sources */,
+				11783EF524B53E5000EEFE80 /* MyVote.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11783E7D24B53BA900EEFE80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11783E8624B53BA900EEFE80 /* Gleem_iOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11783E8824B53BA900EEFE80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11783E9124B53BA900EEFE80 /* Gleem_iOSUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		11783E8324B53BA900EEFE80 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 11783E6724B53BA500EEFE80 /* Gleem_iOS */;
+			targetProxy = 11783E8224B53BA900EEFE80 /* PBXContainerItemProxy */;
+		};
+		11783E8E24B53BA900EEFE80 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 11783E6724B53BA500EEFE80 /* Gleem_iOS */;
+			targetProxy = 11783E8D24B53BA900EEFE80 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		11783E7924B53BA900EEFE80 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				11783E7A24B53BA900EEFE80 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		11783E9324B53BA900EEFE80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		11783E9424B53BA900EEFE80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		11783E9624B53BA900EEFE80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9FDF73EAA4ABFE54AE780B03 /* Pods-Gleem_iOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Gleem_iOS/Preview Content\"";
+				DEVELOPMENT_TEAM = CSE9343A58;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Gleem_iOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = gleem.dating;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		11783E9724B53BA900EEFE80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8384F3EAD0379C150E4654DB /* Pods-Gleem_iOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Gleem_iOS/Preview Content\"";
+				DEVELOPMENT_TEAM = CSE9343A58;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Gleem_iOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = gleem.dating;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		11783E9924B53BA900EEFE80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB6873FBC7DCF3F3808F701E /* Pods-Gleem_iOSTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CSE9343A58;
+				INFOPLIST_FILE = Gleem_iOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "frontyard.Gleem-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Gleem_iOS.app/Gleem_iOS";
+			};
+			name = Debug;
+		};
+		11783E9A24B53BA900EEFE80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 988E2D43CC2F16ADCBDC95D5 /* Pods-Gleem_iOSTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CSE9343A58;
+				INFOPLIST_FILE = Gleem_iOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "frontyard.Gleem-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Gleem_iOS.app/Gleem_iOS";
+			};
+			name = Release;
+		};
+		11783E9C24B53BA900EEFE80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65CCF6235610865614AA7773 /* Pods-Gleem_iOS-Gleem_iOSUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CSE9343A58;
+				INFOPLIST_FILE = Gleem_iOSUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "frontyard.Gleem-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Gleem_iOS;
+			};
+			name = Debug;
+		};
+		11783E9D24B53BA900EEFE80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6667BBD839ED893A5E1CE4E /* Pods-Gleem_iOS-Gleem_iOSUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CSE9343A58;
+				INFOPLIST_FILE = Gleem_iOSUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "frontyard.Gleem-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Gleem_iOS;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		11783E6324B53BA500EEFE80 /* Build configuration list for PBXProject "Gleem_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11783E9324B53BA900EEFE80 /* Debug */,
+				11783E9424B53BA900EEFE80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		11783E9524B53BA900EEFE80 /* Build configuration list for PBXNativeTarget "Gleem_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11783E9624B53BA900EEFE80 /* Debug */,
+				11783E9724B53BA900EEFE80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		11783E9824B53BA900EEFE80 /* Build configuration list for PBXNativeTarget "Gleem_iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11783E9924B53BA900EEFE80 /* Debug */,
+				11783E9A24B53BA900EEFE80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		11783E9B24B53BA900EEFE80 /* Build configuration list for PBXNativeTarget "Gleem_iOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11783E9C24B53BA900EEFE80 /* Debug */,
+				11783E9D24B53BA900EEFE80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		11783E6F24B53BA500EEFE80 /* Gleem_iOS.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				11783E7024B53BA500EEFE80 /* Gleem_iOS.xcdatamodel */,
+			);
+			currentVersion = 11783E7024B53BA500EEFE80 /* Gleem_iOS.xcdatamodel */;
+			path = Gleem_iOS.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 11783E6024B53BA500EEFE80 /* Project object */;
+}

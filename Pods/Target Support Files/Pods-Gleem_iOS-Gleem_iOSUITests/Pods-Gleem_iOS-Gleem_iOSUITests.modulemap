@@ -1,0 +1,6 @@
+framework module Pods_Gleem_iOS_Gleem_iOSUITests {
+  umbrella header "Pods-Gleem_iOS-Gleem_iOSUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
