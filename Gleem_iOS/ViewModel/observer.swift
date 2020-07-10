@@ -12,11 +12,14 @@ import Firebase
 class observer : ObservableObject{
     
     @Published var users = [User]()
-    @Published var last = -1
+    @Published var totalCount = 0
+
+    @Published var last = 0
     @Published var isLoading = false
     @Published var error: NSError?
-    
-    var index = -1;
+    @Published var cardViews = [MainCardView]()
+
+    @Published var index = -1;
     
     
     init() {
@@ -24,6 +27,19 @@ class observer : ObservableObject{
             self.reload()
         }
     }
+    
+    func createCardView(){
+        self.cardViews.removeAll()
+           for index in 0..<2 {
+             cardViews.append(MainCardView(user: users[index]))
+           }
+//           return views
+        self.index = self.cardViews.count
+        
+        print("reload \( self.index )")
+        self.last = 0
+    }
+    
     
     func reload(){
         self.isLoading = true
@@ -49,14 +65,13 @@ class observer : ObservableObject{
                 
                 let profileImageUrl = i.get("profileImageUrl") as! String
                 self.users.append(User(id: id, email: email, profileImageUrl: profileImageUrl, username: username, age: age, sex: sex, swipe: 0, degree: 0))
-                
             }
             print("self.users.count \(self.users.count)")
             self.isLoading = false
-            self.index = self.users.count
-            self.last = -1
+            self.totalCount = self.users.count
+            self.createCardView()
         }
-        
+
     }
     
     

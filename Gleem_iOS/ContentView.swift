@@ -24,29 +24,29 @@ struct subMainView : View {
     
     
     var body: some View {
-        NavigationView{
+//        NavigationView{
             VStack(spacing: 0){
                 
                 
                 
                 if self.index == 0{
                     
-//                   CardListview()
+                   CardListview()
 
-                    CardView()
+//                    CardView()
 //                    TempView()
                     
                 }
                 else if self.index == 1{
                     
+                    MyStaticView()
+
                     
-                    
-                    FavoriteView()
                     
                 }
                 else if self.index == 2{
-                    
-                    MyStaticView()
+                    FavoriteView()
+
                 }
                 else{
                     
@@ -58,7 +58,7 @@ struct subMainView : View {
                 //                    .opacity(self.detail ? 0 : 1)
                 
             }
-        }
+//        }
     }
     
 }
@@ -117,11 +117,11 @@ struct CircleTab : View {
                     
                     if self.index != 1{
                         
-                        Image("Home").resizable().frame(width: 19, height: 19).foregroundColor(Color.black.opacity(0.2))
+                        Image("Statistics").resizable().frame(width: 19, height: 19).foregroundColor(Color.black.opacity(0.2))
                     }
                     else{
                         
-                        Image("Home")
+                        Image("Statistics")
                             .resizable()
                             .frame(width: 20, height: 20)
                             .foregroundColor(.white)

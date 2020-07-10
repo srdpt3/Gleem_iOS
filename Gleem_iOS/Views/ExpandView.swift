@@ -134,7 +134,7 @@ struct ExpandView: View {
                         
                         
                     }
-                    .clipShape(CustomShape(corner: .bottomLeft, radii: 30))
+//                    .clipShape(CustomShape(corner: .bottomLeft, radii: 30))
                     .background(Color.black.opacity(0.06)).edgesIgnoringSafeArea(.top)
                     
                 }
@@ -143,7 +143,7 @@ struct ExpandView: View {
                 
             }
                 // default frame...
-                .frame(height: 480)
+                .frame(height: 460)
             //                            .clipShape(CustomShape(corner: .bottomLeft, radii: 30))
             //                            .background(Color.black.opacity(0.5).edgesIgnoringSafeArea(.top)
             VStack(alignment: .leading,spacing: 15){
@@ -217,7 +217,7 @@ struct ExpandView: View {
                     VStack(spacing: 6){
                         if !self.voteData.isEmpty {
                             
-                            ChartView(data: self.$voteData, totalNum: CHART_Y_AXIS, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width - 10, height: (UIScreen.main.bounds.height) / 2.2 )
+                            ChartView(data: self.$voteData, totalNum: CHART_Y_AXIS, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width - 10, height: (UIScreen.main.bounds.height) / 1.9)
                             
                             
                         } else {
@@ -242,7 +242,7 @@ struct ExpandView: View {
                 //            .padding(.horizontal)
                 .background(Color.white)
                 .cornerRadius(20)
-                .offset(y: -30)
+                .offset(y: -20)
         })
             .edgesIgnoringSafeArea(.all)
             .background(Color.white.edgesIgnoringSafeArea(.all))

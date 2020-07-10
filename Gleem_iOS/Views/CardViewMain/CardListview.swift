@@ -10,231 +10,206 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct CardListview: View {
-    @EnvironmentObject var obs : observer
-
-    @State var active = false
-    @State var activeIndex = -1
-    @State var activeView = CGSize.zero
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    @State var isScrollable = false
-       var body: some View {
-        Text("")
-//        GeometryReader { bounds in
-//            ZStack {
-//                Color.black.opacity(Double(self.activeView.height/500))
-//                    .animation(.linear)
-//                    .edgesIgnoringSafeArea(.all)
-//
-//                ScrollView {
-//                    VStack(spacing: 30) {
-//                        Text("투표 카드 - 5장 투표완료 후 새로운 카드를 받게됩니다")
-//                            .font(.headline).bold()
-//                            .frame(maxWidth: .infinity, alignment: .leading)
-//                            .padding(.leading, 30)
-//                            .padding(.top, 30)
-//                            .blur(radius: self.active ? 20 : 0)
-//
-//                        ForEach(self.obs.users.indices, id: \.self) { index in
-////                            Text(String(self.obs.users[index].username))
-//                            GeometryReader { geometry in
-//                                VotingCardView(
-//                                    show: self.$obs.users[index].show,
-//                                    user: self.obs.users[index],
-//                                    active: self.$active,
-//                                    index: index,
-//                                    activeIndex: self.$activeIndex,
-//                                    activeView: self.$activeView,
-//                                    bounds: bounds,
-//                                    isScrollable: self.$isScrollable
-//                                )
-//                                    .offset(y: self.obs.users[index].show ? -geometry.frame(in: .global).minY : 0)
-//                                    .opacity(self.activeIndex != index && self.active ? 0 : 1)
-//                                    .scaleEffect(self.activeIndex != index && self.active ? 0.5 : 1)
-//                                    .offset(x: self.activeIndex != index && self.active ? bounds.size.width : 0)
-//                            }
-//                            .frame(height: self.horizontalSizeClass == .regular ? 80 : 280)
-//                            .frame(maxWidth: self.obs.users[index].show ? 712 : getCardWidth(bounds: bounds))
-//                            .zIndex(self.obs.users[index].show ? 1 : 0)
-//                        }
-//                    }
-//                    .frame(width: bounds.size.width)
-////                        .animation(.interactiveSpring())
-////                    .animation(.interpolatingSpring(stiffness: 0.2, damping: 0.2))
-//                    .animation(.spring(response: 0.5, dampingFraction: 1, blendDuration: 0))
-//
-////                    .animation(.interactiveSpring()(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
-//                }
-//                .statusBar(hidden: self.active ? true : false)
-//                .animation(.linear)
-//                .disabled(self.active && !self.isScrollable ? true : false)
-//            }
-//        }
-    }
-}
-
-func getCardWidth(bounds: GeometryProxy) -> CGFloat {
-    if bounds.size.width > 712 {
-        return 712
+    @EnvironmentObject  var obs : observer
+    @State var showAlert: Bool = false
+    @State var showGuide: Bool = false
+    @State var showInfo: Bool = false
+    @GestureState private var dragState = DragState.inactive
+    private var dragAreaThreshold: CGFloat = 65.0
+    @State private var lastCardIndex: Int = 1
+    @State private var cardRemovalTransition = AnyTransition.trailingBottom
+    @State var showVotingScreen = false
+    @State var isVoted = false
+    @State var show = false
+    
+    //
+    //    @State var cardViews: [MainCardView] = {
+    //        var views = [MainCardView]()
+    //        for index in 0..<2 {
+    //            views.append(MainCardView(user: obs.users[0]))
+    //        }
+    //        //      for index in 0..<2 {
+    //        //      }
+    //        return views
+    //    }()
+    
+    // MARK: TOP CARD
+    
+    private func isTopCard(cardView: MainCardView) -> Bool {
+        guard let index = self.obs.cardViews.firstIndex(where: { $0.id == cardView.id }) else {
+            return false
+        }
+        return index == 0
     }
     
-    return bounds.size.width - 60
-}
-
-func getCardCornerRadius(bounds: GeometryProxy) -> CGFloat {
-    if bounds.size.width < 712 && bounds.safeAreaInsets.top < 44 {
-        return 0
-    }
-    
-    return 30
-}
-
-
-
-struct VotingCardView: View {
-    @Binding var show: Bool
-    var user: User
-    @Binding var active: Bool
-    var index: Int
-    @Binding var activeIndex: Int
-    @Binding var activeView: CGSize
-    var bounds: GeometryProxy
-    @Binding var isScrollable: Bool
-    
-    var body: some View {
-        ZStack(alignment: .top) {
-            VStack(alignment: .leading, spacing: 30.0) {
-                Text("asdfasdfasdfasdfS.")
-                
-                Text("sfasdfasdf this casfasdfa")
-                    .font(.title).bold()
-                
-                Text("TThirdly, create a separate view, called ImageOverlay, which contains the desired text with appropriate styling. Wrap the text view in a ZStack to create a nice sticker impression with rounded corners, opacity and background color..")
-                
-                Text("aThirdly, create a separate view, called ImageOverlay, which contains the desired text with appropriate styling. Wrap the text view in a ZStack to create a nice sticker impression with rounded corners, opacity and background color.")
-            }
-            .animation(nil)
-            .padding(30)
-            .frame(maxWidth: show ? .infinity : screen.width - 60, maxHeight: show ? .infinity : 280, alignment: .top)
-            .offset(y: show ? 460 : 0)
-            .background(Color("background1"))
-            .clipShape(RoundedRectangle(cornerRadius: show ? getCardCornerRadius(bounds: bounds) : 30, style: .continuous))
-            .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
-            .opacity(show ? 1 : 0)
+    private func moveCards() {
+        self.obs.cardViews.removeFirst()
+        self.isVoted = false
+        print("lastCardIndex \(obs.index) asdfas \(self.obs.totalCount)")
+        
+        if(self.obs.index >  self.obs.users.count){
+            print("reload")
             
-            VStack {
-//                HStack(alignment: .top) {
-//                    VStack(alignment: .leading, spacing: 8.0) {
-//                        Text(user.username)
-//                            .font(.system(size: 24, weight: .bold))
-//                            .foregroundColor(.white)
-//                        Text(user.age)
-//                            .foregroundColor(Color.white.opacity(0.7))
-//                    }
-//                    Spacer()
-////                    ZStack {
-////                        Image(uiImage: course.logo)
-////                            .opacity(show ? 0 : 1)
-////
-////                        VStack {
-////                            Image(systemName: "xmark")
-////                                .font(.system(size: 16, weight: .medium))
-////                                .foregroundColor(.white)
-////                        }
-////                        .frame(width: 36, height: 36)
-////                        .background(Color.black)
-////                        .clipShape(Circle())
-////                        .opacity(show ? 1 : 0)
-////                        .offset(x: 2, y: -2)
-////                    }
-//                }
-//                Spacer()
-                WebImage(url: URL(string: user.profileImageUrl)!)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 300, alignment: .top)
-            }
-            .padding(show ? 30 : 20)
-            .padding(.top, show ? 30 : 0)
-            .frame(width: show ? screen.width : screen.width - 60, height: show ? 460 : 300)
-//            .frame(maxWidth: show ? .infinity : screen.width - 60, maxHeight: show ? 460 : 300)
-                .background(Color("background2"))
-            .clipShape(RoundedRectangle(cornerRadius: show ? getCardCornerRadius(bounds: bounds) : 30, style: .continuous))
-                .shadow(color: Color("background2").opacity(0.3), radius: 20, x: 0, y: 20)
-            .gesture(
-                show ?
-                DragGesture().onChanged { value in
-                    guard value.translation.height < 300 else { return }
-                    guard value.translation.height > 0 else { return }
-                    
-                    self.activeView = value.translation
-                }
-                .onEnded { value in
-                    if self.activeView.height > 50 {
-                        self.show = false
-                        self.active = false
-                        self.activeIndex = -1
-                        self.isScrollable = false
-                    }
-                    self.activeView = .zero
-                }
-                : nil
-            )
-            .onTapGesture {
-                self.show.toggle()
-                self.active.toggle()
-                if self.show {
-                    self.activeIndex = self.index
-                } else {
-                    self.activeIndex = -1
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-                    self.isScrollable = true
-                }
-            }
+            self.obs.reload()
+            self.obs.index = 2
+        }else{
             
-            if isScrollable {
-//                ExpandView(user: self.user, show: $show, isVoted: <#T##Binding<Bool>#>)
-////                ExpandView(user: self.obs.users[self.obs.last == -1 ? self.obs.users.count - 1 : self.obs.last - 1], show: self.$show, isVoted:self.$isVoted)
-////                                  //shrinking the view in background...
-////                                  .scaleEffect(self.show ? 1 : 0)
-////                                  .frame(width: self.show ? nil : 0, height: self.show ? nil : 0)
-////
-                
-                VoteCardDetail(user: self.user, show: $show, active: $active, activeIndex: $activeIndex, isScrollable: $isScrollable, bounds: bounds)
-                    .background(Color("background1"))
-                    .clipShape(RoundedRectangle(cornerRadius: show ? getCardCornerRadius(bounds: bounds) : 30, style: .continuous))
-                    .animation(nil)
-                    .transition(.identity)
+            let u = self.obs.users[self.obs.index % self.obs.users.count]
+            let newCardView = MainCardView(user: u)
+            self.obs.cardViews.append(newCardView)
+            self.obs.index += 1
+            self.obs.last += 1
+            
+            
+        }
+        
+        
+        
+    }
+    
+    
+    enum DragState {
+        case inactive
+        case pressing
+        case dragging(translation: CGSize)
+        
+        var translation: CGSize {
+            switch self {
+            case .inactive, .pressing:
+                return .zero
+            case .dragging(let translation):
+                return translation
             }
         }
-        .frame(height: show ? bounds.size.height + bounds.safeAreaInsets.top + bounds.safeAreaInsets.bottom : 280)
-        .scaleEffect(1 - self.activeView.height / 1000)
-        .rotation3DEffect(Angle(degrees: Double(self.activeView.height / 10)), axis: (x: 0, y: 10.0, z: 0))
-        .hueRotation(Angle(degrees: Double(self.activeView.height)))
-//        .animation(.interpolatingSpring(stiffness: 0.2, damping: 0.2))
-
-        .animation(.spring(response: 0.5, dampingFraction: 1, blendDuration: 0))
-        .gesture(
-            show ?
-            DragGesture().onChanged { value in
-                guard value.translation.height < 300 else { return }
-                guard value.translation.height > 50 else { return }
-                
-                self.activeView = value.translation
+        
+        var isDragging: Bool {
+            switch self {
+            case .dragging:
+                return true
+            case .pressing, .inactive:
+                return false
             }
-            .onEnded { value in
-                if self.activeView.height > 50 {
-                    self.show = false
-                    self.active = false
-                    self.activeIndex = -1
-                    self.isScrollable = false
+        }
+        
+        var isPressing: Bool {
+            switch self {
+            case .pressing, .dragging:
+                return true
+            case .inactive:
+                return false
+            }
+        }
+    }
+    var body: some View{
+        
+        VStack{
+            HeaderView(showGuideView: $showGuide, showInfoView: $showInfo)
+                .opacity(dragState.isDragging ? 0.0 : 1.0)
+                .animation(.default)
+            
+            Spacer()
+            ZStack{
+                ForEach(self.obs.cardViews) { cardView in
+                    cardView.zIndex(self.isTopCard(cardView: cardView) ? 1 : 0)
+                        .overlay(
+                            ZStack {
+                                // X-MARK SYMBOL
+                                //                              Image(systemName: "x.circle")
+                                //                                .modifier(SymbolModifier())
+                                //                                .opacity(self.dragState.translation.width < -self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
+                                //
+                                // HEART SYMBOL
+                                Image(systemName: "heart.circle")
+                                    .modifier(SymbolModifier())
+                                    .opacity(self.dragState.translation.width > self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
+                            }
+                    )
+                        .offset(x: self.isTopCard(cardView: cardView) ?  self.dragState.translation.width : 0, y: self.isTopCard(cardView: cardView) ?  self.dragState.translation.height : 0)
+                        .scaleEffect(self.dragState.isDragging && self.isTopCard(cardView: cardView) ? 0.85 : 1.0)
+                        .rotationEffect(Angle(degrees: self.isTopCard(cardView: cardView) ? Double(self.dragState.translation.width / 12) : 0))
+                        .animation(.interpolatingSpring(stiffness: 120, damping: 120))
+                        .gesture(LongPressGesture(minimumDuration: 0.01)
+                            .sequenced(before: DragGesture())
+                            .updating(self.$dragState, body: { (value, state, transaction) in
+                                switch value {
+                                case .first(true):
+                                    state = .pressing
+                                case .second(true, let drag):
+                                    state = .dragging(translation: drag?.translation ?? .zero)
+                                default:
+                                    break
+                                }
+                            })
+                            .onChanged({ (value) in
+                                guard case .second(true, let drag?) = value else {
+                                    return
+                                }
+                                
+                                if drag.translation.width < -self.dragAreaThreshold {
+                                    self.cardRemovalTransition = .leadingBottom
+                                }
+                                
+                                if drag.translation.width > self.dragAreaThreshold {
+                                    self.cardRemovalTransition = .trailingBottom
+                                }
+                            })
+                            .onEnded({ (value) in
+                                guard case .second(true, let drag?) = value else {
+                                    return
+                                }
+                                if drag.translation.width > self.dragAreaThreshold {
+                                    //                                if drag.translation.width < -self.dragAreaThreshold || drag.translation.width > self.dragAreaThreshold {
+                                    //                                playSound(sound: "sound-rise", type: "mp3")
+                                    //                                self.moveCards()
+                                    if(self.isVoted){
+                                        self.moveCards()
+                                    }
+                                }
+                            })
+                    )
                 }
-                self.activeView = .zero
-            }
-            : nil
-        )
-        .disabled(active && !isScrollable ? true : false)
-        .edgesIgnoringSafeArea(.all)
+            }.padding(.horizontal)
+            
+            Spacer()
+            FooterView(showBookingAlert: $showVotingScreen)
+                .opacity(dragState.isDragging ? 0.0 : 1.0)
+                .animation(.default)
+            Spacer()
+            
+        }.sheet(isPresented: $showVotingScreen) {
+            ExpandView(user: self.obs.users[self.obs.last], show: self.$showVotingScreen, isVoted:self.$isVoted)
+            //shrinking the view in background...
+            //                .scaleEffect(self.show ? 1 : 0)
+            //                .frame(width: self.show ? nil : 0, height: self.show ? nil : 0)
+        }
+            
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("테스트"),
+                message: Text("Wishing a lovely and most precious of the times together for the amazing couple."),
+                dismissButton: .default(Text("Happy Honeymoon!")))
+            
+            
+            
+            
+        }
+    }
+    
+    
+}
+
+
+
+extension AnyTransition {
+    static var trailingBottom: AnyTransition {
+        AnyTransition.asymmetric(
+            insertion: .identity,
+            removal: AnyTransition.move(edge: .trailing).combined(with: .move(edge: .bottom)))
+    }
+    
+    static var leadingBottom: AnyTransition {
+        AnyTransition.asymmetric(
+            insertion: .identity,
+            removal: AnyTransition.move(edge: .leading).combined(with: .move(edge: .bottom)))
     }
 }
