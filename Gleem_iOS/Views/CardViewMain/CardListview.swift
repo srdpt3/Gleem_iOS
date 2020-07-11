@@ -21,7 +21,8 @@ struct CardListview: View {
     @State var showVotingScreen = false
     @State var isVoted = false
     @State var show = false
-    
+    @State var showProfile : Bool = false
+    @State var viewState = CGSize.zero
     //
     //    @State var cardViews: [MainCardView] = {
     //        var views = [MainCardView]()
@@ -62,12 +63,7 @@ struct CardListview: View {
             
             
         }
-        
-        
-        
     }
-    
-    
     enum DragState {
         case inactive
         case pressing
@@ -101,98 +97,124 @@ struct CardListview: View {
         }
     }
     var body: some View{
-        
-        VStack{
-            HeaderView(showGuideView: $showGuide, showInfoView: $showInfo)
-                .opacity(dragState.isDragging ? 0.0 : 1.0)
-                .animation(.default)
-            
-            Spacer()
-            ZStack{
-                ForEach(self.obs.cardViews) { cardView in
-                    cardView.zIndex(self.isTopCard(cardView: cardView) ? 1 : 0)
-                        .overlay(
-                            ZStack {
-                                // X-MARK SYMBOL
-                                //                              Image(systemName: "x.circle")
-                                //                                .modifier(SymbolModifier())
-                                //                                .opacity(self.dragState.translation.width < -self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
-                                //
-                                // HEART SYMBOL
-                                Image(systemName: "heart.circle")
-                                    .modifier(SymbolModifier())
-                                    .opacity(self.dragState.translation.width > self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
-                            }
-                    )
-                        .offset(x: self.isTopCard(cardView: cardView) ?  self.dragState.translation.width : 0, y: self.isTopCard(cardView: cardView) ?  self.dragState.translation.height : 0)
-                        .scaleEffect(self.dragState.isDragging && self.isTopCard(cardView: cardView) ? 0.85 : 1.0)
-                        .rotationEffect(Angle(degrees: self.isTopCard(cardView: cardView) ? Double(self.dragState.translation.width / 12) : 0))
-                        .animation(.interpolatingSpring(stiffness: 120, damping: 120))
-                        .gesture(LongPressGesture(minimumDuration: 0.01)
-                            .sequenced(before: DragGesture())
-                            .updating(self.$dragState, body: { (value, state, transaction) in
-                                switch value {
-                                case .first(true):
-                                    state = .pressing
-                                case .second(true, let drag):
-                                    state = .dragging(translation: drag?.translation ?? .zero)
-                                default:
-                                    break
+        ZStack{
+            VStack{
+                
+//                Text(String(User.currentUser()!.username))
+                HeaderView(showProfile: self.$showProfile, showInfoView: self.$showInfo)
+                    .opacity(dragState.isDragging ? 0.0 : 1.0)
+                    .animation(.default)
+                
+                Spacer()
+                ZStack{
+                    ForEach(self.obs.cardViews) { cardView in
+                        cardView.zIndex(self.isTopCard(cardView: cardView) ? 1 : 0)
+                            .overlay(
+                                ZStack {
+                                    // X-MARK SYMBOL
+                                    //                              Image(systemName: "x.circle")
+                                    //                                .modifier(SymbolModifier())
+                                    //                                .opacity(self.dragState.translation.width < -self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
+                                    //
+                                    // HEART SYMBOL
+                                    Image(systemName: "heart.circle")
+                                        .modifier(SymbolModifier())
+                                        .opacity(self.dragState.translation.width > self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
                                 }
-                            })
-                            .onChanged({ (value) in
-                                guard case .second(true, let drag?) = value else {
-                                    return
-                                }
-                                
-                                if drag.translation.width < -self.dragAreaThreshold {
-                                    self.cardRemovalTransition = .leadingBottom
-                                }
-                                
-                                if drag.translation.width > self.dragAreaThreshold {
-                                    self.cardRemovalTransition = .trailingBottom
-                                }
-                            })
-                            .onEnded({ (value) in
-                                guard case .second(true, let drag?) = value else {
-                                    return
-                                }
-                                if drag.translation.width > self.dragAreaThreshold {
-                                    //                                if drag.translation.width < -self.dragAreaThreshold || drag.translation.width > self.dragAreaThreshold {
-                                    //                                playSound(sound: "sound-rise", type: "mp3")
-                                    //                                self.moveCards()
-                                    if(self.isVoted){
-                                        self.moveCards()
+                        )
+                            .offset(x: self.isTopCard(cardView: cardView) ?  self.dragState.translation.width : 0, y: self.isTopCard(cardView: cardView) ?  self.dragState.translation.height : 0)
+                            .scaleEffect(self.dragState.isDragging && self.isTopCard(cardView: cardView) ? 0.85 : 1.0)
+                            .rotationEffect(Angle(degrees: self.isTopCard(cardView: cardView) ? Double(self.dragState.translation.width / 12) : 0))
+                            .animation(.interpolatingSpring(stiffness: 120, damping: 120))
+                            .gesture(LongPressGesture(minimumDuration: 0.01)
+                                .sequenced(before: DragGesture())
+                                .updating(self.$dragState, body: { (value, state, transaction) in
+                                    switch value {
+                                    case .first(true):
+                                        state = .pressing
+                                    case .second(true, let drag):
+                                        state = .dragging(translation: drag?.translation ?? .zero)
+                                    default:
+                                        break
                                     }
-                                }
-                            })
-                    )
-                }
-            }.padding(.horizontal)
+                                })
+                                .onChanged({ (value) in
+                                    guard case .second(true, let drag?) = value else {
+                                        return
+                                    }
+                                    
+                                    if drag.translation.width < -self.dragAreaThreshold {
+                                        self.cardRemovalTransition = .leadingBottom
+                                    }
+                                    
+                                    if drag.translation.width > self.dragAreaThreshold {
+                                        self.cardRemovalTransition = .trailingBottom
+                                    }
+                                })
+                                .onEnded({ (value) in
+                                    guard case .second(true, let drag?) = value else {
+                                        return
+                                    }
+                                    if drag.translation.width > self.dragAreaThreshold {
+                                        //                                if drag.translation.width < -self.dragAreaThreshold || drag.translation.width > self.dragAreaThreshold {
+                                        //                                playSound(sound: "sound-rise", type: "mp3")
+                                        //                                self.moveCards()
+                                        if(self.isVoted){
+                                            self.moveCards()
+                                        }
+                                    }
+                                })
+                        )
+                    }
+                    
+                    
+                }.padding(.horizontal)
+                
+                Spacer()
+                FooterView(isVoted: $isVoted, showVotingScreen: $showVotingScreen)
+                    .opacity(dragState.isDragging ? 0.0 : 1.0)
+                    .animation(.easeInOut).opacity(self.obs.isLoading == true ? 0 : 1)
+                Spacer()
+                
+                
+            }
             
-            Spacer()
-            FooterView(showBookingAlert: $showVotingScreen)
-                .opacity(dragState.isDragging ? 0.0 : 1.0)
-                .animation(.default)
-            Spacer()
+            if self.showProfile{
+                    MenuView()
+                        .background(Color.black.opacity(0.65))
+                        .offset(y: self.showProfile ? 0 : screen.height)
+                        .offset(y: self.viewState.height)
+                        .animation(.spring(response: 1, dampingFraction: 0.7, blendDuration: 0))
+                        .onTapGesture {
+                            self.showProfile.toggle()
+                        }
+                    .gesture(
+                        DragGesture().onChanged { value in
+                            self.viewState = value.translation
+                        }
+                        .onEnded { value in
+                            if self.viewState.height > 50 {
+                                self.showProfile = false
+                            }
+                            self.viewState = .zero
+                        }
+                    ).edgesIgnoringSafeArea(.all)
+                
+            }
             
-        }.sheet(isPresented: $showVotingScreen) {
-            ExpandView(user: self.obs.users[self.obs.last], show: self.$showVotingScreen, isVoted:self.$isVoted)
-            //shrinking the view in background...
-            //                .scaleEffect(self.show ? 1 : 0)
-            //                .frame(width: self.show ? nil : 0, height: self.show ? nil : 0)
+            
         }
-            
-        .alert(isPresented: $showAlert) {
-            Alert(
-                title: Text("테스트"),
-                message: Text("Wishing a lovely and most precious of the times together for the amazing couple."),
-                dismissButton: .default(Text("Happy Honeymoon!")))
-            
-            
-            
-            
-        }
+        
+        //        .alert(isPresented: $showAlert) {
+        //            Alert(
+        //                title: Text("테스트"),
+        //                message: Text("Wishing a lovely and most precious of the times together for the amazing couple."),
+        //                dismissButton: .default(Text("Happy Honeymoon!")))
+        //
+        //
+        //
+        //
+        //        }
     }
     
     

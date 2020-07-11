@@ -11,7 +11,8 @@ struct UploadView: View {
     
     // intializing Four Image cards...
     @Environment(\.presentationMode) var presentationMode
-
+    @State var image: Image = Image("profilepic")
+    
     @State var images : [Data] = [Data()]
     @State var imagePicker = false
     @State var index = 0
@@ -25,12 +26,12 @@ struct UploadView: View {
     
     @ObservedObject var attributeViewModel = AttributeViewModel()
     @ObservedObject var uploadViewModel = UploadViewModel()
-
+    
     func clean() {
         self.buttonPressed = [false,false,false,false,false,false,false,false]
     }
     
-     func checkAttrSelected() -> Bool{
+    func checkAttrSelected() -> Bool{
         // Check any button is presssed
         self.buttonTitle.removeAll()
         var count = 0
@@ -39,7 +40,7 @@ struct UploadView: View {
                 count = count + 1
                 if(!attributeViewModel.buttonAttributes.isEmpty){
                     self.buttonTitle.append(attributeViewModel.buttonAttributes[index])
-
+                    
                 }
             }
         }
@@ -126,8 +127,26 @@ struct UploadView: View {
                         }.padding(.horizontal, 2)
                         
                         HStack(alignment: .center) {
-                            TextField("10자 내외 직접입력 ..", text: $customAttr)
-                                .textFieldStyle(CustomStyle()).disabled(entry.count > (characterLimit - 1))
+                            
+                            TextField("10자 내외 직접입력 ..".uppercased(), text: $entry)
+                                .keyboardType(.emailAddress)
+                                .font(.subheadline)
+                                //                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .padding(.leading)
+                                .frame(height: 44)
+                                .onTapGesture {
+                                    //                                                     self.isFocused = true
+                            }
+                            //                            frame(height: 136)
+                            //                            .frame(maxWidth: 712)
+                            //                            .background(BlurView(style: .systemMaterial))
+                            //                            .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+                            //                            .shadow(color: Color.black.opacity(0.15), radius: 20, x: 0, y: 20)
+                            //                            .padding(.horizontal)
+                            
+                            
+                            //                            TextField("10자 내외 직접입력 ..", text: $customAttr)
+                            //                                .textFieldStyle(CustomStyle()).disabled(entry.count > (characterLimit - 1))
                             
                         }.padding(.horizontal)
                     }.background(Color.clear)
@@ -147,7 +166,7 @@ struct UploadView: View {
                             .foregroundColor(.white)
                             .padding(.vertical, 10)
                             .padding(.horizontal, 45)
-                            .background(Color("Color2-1"))
+                            .background(Color("Color2"))
                             .clipShape(Capsule())
                     }
                     .padding(.top, 10)
@@ -174,14 +193,13 @@ struct UploadView: View {
             .navigationBarTitle("")
             .navigationBarHidden(true)
             .sheet(isPresented: self.$imagePicker) {
-                
-                ImagePicker(showPicker: self.$imagePicker, imageData: self.$images[self.index])
+                ImagePicker(showImagePicker: self.$imagePicker, pickedImage: self.$image, imageData: self.$images[self.index])
         }.padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top).onAppear{
             self.attributeViewModel.loadAttributes(sex: "male")
         } .alert(isPresented: self.$showAlert) {
             Alert(title: Text("Error"), message: Text("5개의 항목을 선택해주세요"),  dismissButton: .default(Text("OK"), action: {
-//                self.showLoader.toggle()
-//                self.showAlert.toggle()
+                //                self.showLoader.toggle()
+                //                self.showAlert.toggle()
                 
             }))
         }
@@ -191,15 +209,9 @@ struct UploadView: View {
     
     func uploadPicture(){
         uploadViewModel.uploadVote(buttonPressed: buttonPressed, buttonTitle: self.buttonTitle, imageData: self.images[0])
-        
-//
-//        StorageService.saveAvatar(myVuserId: UUID().uuidString, username: username, email: email, imageData: imageData, metadata: metadata, storageAvatarRef: storageAvatarUserId, onSuccess: onSuccess, onError: onError)
-//
-        
-       self.clean()
-        print("ok")
+        self.clean()
         self.presentationMode.wrappedValue.dismiss()
-
+        
     }
     
     func hide_keyboard()

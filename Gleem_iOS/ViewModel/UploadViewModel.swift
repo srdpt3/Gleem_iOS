@@ -41,7 +41,7 @@ class UploadViewModel: ObservableObject {
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpg"
         
-        StorageService.saveVotePicture(myVote: myVote , userId: UUID().uuidString, imageData: imageData, metadata: metadata, storageAvatarRef: storageAvatarUserId)
+        StorageService.saveVotePicture(myVote: myVote , userId: User.currentUser()!.id, imageData: imageData, metadata: metadata, storageAvatarRef: storageAvatarUserId)
         
         
     }

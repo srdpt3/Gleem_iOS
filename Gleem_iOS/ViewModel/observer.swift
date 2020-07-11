@@ -13,13 +13,14 @@ class observer : ObservableObject{
     
     @Published var users = [User]()
     @Published var totalCount = 0
-
-    @Published var last = 0
+    
+    @Published var last = -1
     @Published var isLoading = false
     @Published var error: NSError?
     @Published var cardViews = [MainCardView]()
-
+    
     @Published var index = -1;
+    @Published var isLoggedIn = false
     
     
     init() {
@@ -28,16 +29,62 @@ class observer : ObservableObject{
         }
     }
     
+    var userSession: User?
+    var handle: AuthStateDidChangeListenerHandle?
+    
+    func listenAuthenticationState() {
+        handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
+            if let user = user {
+                print("listenAuthenticationState \(user.email)")
+                let firestoreUserId = Ref.FIRESTORE_DOCUMENT_USERID(userId: user.uid)
+                firestoreUserId.getDocument { (document, error) in
+                    if let dict = document?.data() {
+                        guard let decoderUser = try? User.init(fromDictionary: dict) else {return}
+                        self.userSession = decoderUser
+                    }
+                }
+                self.isLoggedIn = true
+            } else {
+                print("isLoogedIn is false")
+                self.isLoggedIn = false
+                self.userSession = nil
+                
+            }
+        })
+    }
+    
+    
+    func logout() {
+        do {
+            try Auth.auth().signOut()
+            resetDefaults()
+        } catch  {
+            print("Logout Failed")
+        }
+    }
+    
+    // stop listening for auth changes
+    func unbind() {
+        if let handle = handle {
+            Auth.auth().removeStateDidChangeListener(handle)
+        }
+    }
+    
+    deinit {
+        unbind()
+    }
+    
     func createCardView(){
         self.cardViews.removeAll()
-           for index in 0..<2 {
-             cardViews.append(MainCardView(user: users[index]))
-           }
-//           return views
+        //        var views = [MainCardView]()
+        for index in 0..<2 {
+            cardViews.append(MainCardView(user: users[index]))
+        }
+        //           return views
         self.index = self.cardViews.count
         
         print("reload \( self.index )")
-        self.last = 0
+        
     }
     
     
@@ -69,9 +116,10 @@ class observer : ObservableObject{
             print("self.users.count \(self.users.count)")
             self.isLoading = false
             self.totalCount = self.users.count
+            self.last = -1
             self.createCardView()
         }
-
+        
     }
     
     

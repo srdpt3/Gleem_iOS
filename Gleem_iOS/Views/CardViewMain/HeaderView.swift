@@ -9,60 +9,109 @@
 import SwiftUI
 
 struct HeaderView: View {
-  // MARK: - PROPERTIES
-  @Binding var showGuideView: Bool
-  @Binding var showInfoView: Bool
-  let haptics = UINotificationFeedbackGenerator()
-  
-  var body: some View {
-    HStack {
-      Button(action: {
-        // ACTION
-//        playSound(sound: "sound-click", type: "mp3")
-        self.haptics.notificationOccurred(.success)
-        self.showInfoView.toggle()
-      }) {
-        Image(systemName: "info.circle")
-          .font(.system(size: 24, weight: .regular))
-      }
-      .accentColor(Color.primary)
-      .sheet(isPresented: $showInfoView) {
-        InfoView()
-      }
-      
-      Spacer()
-      
-      Image("gleem_resized")
-        .resizable()
-        .scaledToFit()
-        .frame(height: 50)
-      
-      Spacer()
-      
-      Button(action: {
-        // ACTION
-//        playSound(sound: "sound-click", type: "mp3")
-        self.haptics.notificationOccurred(.success)
-        self.showGuideView.toggle()
-      }) {
-        Image(systemName: "questionmark.circle")
-          .font(.system(size: 24, weight: .regular))
-      }
-      .accentColor(Color.primary)
-//      .sheet(isPresented: $showGuideView) {
-//        GuideView()
-//      }
+    // MARK: - PROPERTIES
+    @Binding var showProfile : Bool
+    @Binding var showInfoView : Bool
+    //    @State var showProfile = false
+    @State var viewState = CGSize.zero
+    //    let haptics = UINotificationFeedbackGenerator()
+    @Environment(\.presentationMode) var presentationMode
+    
+    var body: some View {
+        HStack {
+            Button(action: {
+                // ACTION
+                //        playSound(sound: "sound-click", type: "mp3")
+                //                self.haptics.notificationOccurred(.success)
+                self.showInfoView.toggle()
+                print(self.showInfoView)
+            }) {
+                Image(systemName: "info.circle")
+                    .font(.system(size: 24, weight: .regular))
+            } .onTapGesture {
+                self.showInfoView = true
+            }
+            .sheet(isPresented: self.$showInfoView, content: {
+                InfoView()
+            })
+                .accentColor(Color.primary)
+            //          .sheet(isPresented: $showInfoView) {
+            //
+            //                        InfoView()
+            //                    }
+            
+            Spacer()
+            
+            Image("gleem_resized")
+                .resizable()
+                .scaledToFit()
+                .frame(height: 50)
+            
+            Spacer()
+            
+            Button(action: {
+                // ACTION
+                //        playSound(sound: "sound-click", type: "mp3")
+                //                self.haptics.notificationOccurred(.success)
+                self.showProfile.toggle()
+            }) {
+                Image(systemName: "flag")
+                    
+                    .font(.system(size: 24, weight: .regular))
+            }
+            .accentColor(Color.primary)
+            //            .sheet(isPresented: $showGuideView) {
+            //                //        GuideView()
+            //                MenuView()
+            //            }
+            //
+            //
+            
+            
+            
+            Button(action: {
+                // ACTION
+                //        playSound(sound: "sound-click", type: "mp3")
+                //                self.haptics.notificationOccurred(.success)
+                self.showProfile.toggle()
+            }) {
+                Image("menu").resizable().frame(width: 20, height: 20)
+                    .font(.system(size: 24, weight: .regular))
+            }.buttonStyle(PlainButtonStyle())
+            
+            
+            //
+            //                MenuView()
+            //                    .background(Color.black.opacity(0.001))
+            //                    .offset(y: self.showProfile ? 0 : screen.height)
+            //                    .offset(y: self.viewState.height)
+            //                    .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
+            //                    .onTapGesture {
+            //                        self.showProfile.toggle()
+            //                }
+            //                .gesture(
+            //                    DragGesture().onChanged { value in
+            //                        self.viewState = value.translation
+            //                    }
+            //                    .onEnded { value in
+            //                        if self.viewState.height > 50 {
+            //                            self.showProfile = false
+            //                        }
+            //                        self.viewState = .zero
+            //                    }
+            //                )
+            
+        }
+        .padding()
     }
-    .padding()
-  }
 }
 
-struct HeaderView_Previews: PreviewProvider {
-  @State static var showGuide: Bool = false
-  @State static var showInfo: Bool = false
-  
-  static var previews: some View {
-    HeaderView(showGuideView: $showGuide, showInfoView: $showInfo)
-      .previewLayout(.fixed(width: 375, height: 80))
-  }
-}
+//struct HeaderView_Previews: PreviewProvider {
+//    @State static var showGuide: Bool = false
+//    @State static var showInfo: Bool = false
+//
+//    static var previews: some View {
+//        HeaderView(showGuideView: $showGuide, showInfoView: $showInfo)
+//            .previewLayout(.fixed(width: 375, height: 80))
+//    }
+//}

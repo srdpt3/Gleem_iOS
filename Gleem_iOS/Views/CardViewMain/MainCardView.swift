@@ -27,7 +27,7 @@ struct MainCardView: View, Identifiable {
         VStack(alignment: .center, spacing: 12) {
             Text(user.username.uppercased())
             .foregroundColor(Color.white)
-            .font(.largeTitle)
+                .font(.title)
             .fontWeight(.bold)
             .shadow(radius: 1)
             .padding(.horizontal, 18)

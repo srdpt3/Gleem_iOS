@@ -86,7 +86,7 @@ struct ExpandView: View {
                 
                 // Type 2 Parollax....
                 
-                if reader.frame(in: .global).minY > -480 {
+                if reader.frame(in: .global).minY > -460 {
                     ZStack(alignment: .topTrailing) {
                         AnimatedImage(url: URL(string: self.user.profileImageUrl))
                             .resizable()
@@ -94,7 +94,7 @@ struct ExpandView: View {
                             // moving View Up....
                             .offset(y: -reader.frame(in: .global).minY)
                             // going to add parallax effect....
-                            .frame(width: UIScreen.main.bounds.width, height:  reader.frame(in: .global).minY > 0 ? reader.frame(in: .global).minY + 480 : 480)
+                            .frame(width: UIScreen.main.bounds.width, height:  reader.frame(in: .global).minY > 0 ? reader.frame(in: .global).minY + 460 : 460)
                         
                         
                         Button(action: {
@@ -216,10 +216,10 @@ struct ExpandView: View {
                 }else{
                     VStack(spacing: 6){
                         if !self.voteData.isEmpty {
+                            Spacer()
+                            ChartView(data: self.$voteData, totalNum: CHART_Y_AXIS, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width - 10, height: (UIScreen.main.bounds.height) / 2.2)
                             
-                            ChartView(data: self.$voteData, totalNum: CHART_Y_AXIS, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width - 10, height: (UIScreen.main.bounds.height) / 1.9)
-                            
-                            
+                            Spacer()
                         } else {
                             LoadingView(isLoading: self.chartViewModel.isLoading, error: self.chartViewModel.error) {
                                 self.loadChartData()
@@ -230,7 +230,7 @@ struct ExpandView: View {
                         
                     }           //                Spacer()
                         .cornerRadius(20)
-                        .offset(y: -35)
+                        .offset(y: -50)
                     
                     
                     
@@ -242,7 +242,7 @@ struct ExpandView: View {
                 //            .padding(.horizontal)
                 .background(Color.white)
                 .cornerRadius(20)
-                .offset(y: -20)
+                .offset(y: -80)
         })
             .edgesIgnoringSafeArea(.all)
             .background(Color.white.edgesIgnoringSafeArea(.all))

@@ -15,7 +15,7 @@ struct SettingsView: View {
     @State private var result: Result<MFMailComposeResult, Error>? = nil
     @State private var isShowingMailView = false
     @State  var showLoginView = false
-    @EnvironmentObject var session: SessionStore
+//    @EnvironmentObject var session: SessionStore
     @State var isSettingsOpen: Bool = true
 
     var body: some View {

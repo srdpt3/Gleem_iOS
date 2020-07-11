@@ -23,3 +23,11 @@ struct SigninButtonModifier: ViewModifier {
     }
 }
 
+
+struct SigninButtonModifier2: ViewModifier {
+    func body(content: Content) -> some View {
+        content.background(Color("Color2"))
+        .clipShape(Capsule())
+        
+    }
+}

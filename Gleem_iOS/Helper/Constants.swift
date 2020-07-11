@@ -20,18 +20,23 @@ let COLOR_LIGHT_GRAY = Color(red: 0, green: 0, blue: 0, opacity: 0.15)
 
 
 
+
+
+
 // Sign in and Sign up pages
 let TEXT_NEED_AN_ACCOUNT = "Don't have an account?"
 let TEXT_SIGN_UP = "Sign up"
 let TEXT_SIGN_IN = "Sign in"
-let TEXT_EMAIL = "Email"
-let TEXT_USERNAME = "Username"
-let TEXT_PASSWORD = "Password"
+let TEXT_EMAIL = "이메일"
+let TEXT_USERNAME = "ID"
+let TEXT_PASSWORD = "비밀번호"
+let TEXT_PASSWORD_REENTER = "비밀번호 다시입력"
+
 let TEXT_SIGNIN_HEADLINE = "Photo Sharing"
 let TEXT_SIGNIN_SUBHEADLINE = "The essiest way to share photos with family and friends"
 let TEXT_SIGNUP_NOTE = "An account will allow you to save and access photo information across devices. You can delete your account at any time and your information will not be shared."
 let TEXT_SIGNUP_PASSWORD_REQUIRED = "At least 8 characters required"
-
+let TERM_AGREEMENT = "I Read And Agree The Terms And Conditions"
 
 let IMAGE_LOGO = "logo"
 let IMAGE_USER_PLACEHOLDER = "user-placeholder"
@@ -46,6 +51,18 @@ public let CHART_Y_AXIS = 100
 
 //Chart
 public let SERIES_TITLE = "매력지수(%)"
+
+
+//Menu
+public let PROFILE_COMPLETE = "70% 완료"
+public let ACCOUNT = "계정"
+public let BILLING = "결제"
+public let LOGIN = "로그인"
+public let LOGOUT = "로그아웃"
+
+
+// Upload voting picture
+public let PHOTOUPLOAD = "평가받고 싶은 사진 올리기"
 
 
 class Ref {
@@ -134,6 +151,13 @@ class Ref {
     static var FIRESTORE_COLLECTION_VOTE = FIRESTORE_ROOT.collection("vote")
     static func FIRESTORE_COLLECTION_VOTE_USERID(userId: String) -> DocumentReference {
         return FIRESTORE_COLLECTION_VOTE.document(userId)
+    }
+    
+    
+    
+    static var FIRESTORE_COLLECTION_ACTIVE_VOTE = FIRESTORE_ROOT.collection("active_vote")
+    static func FIRESTORE_COLLECTION_ACTIVE_VOTE_USERID(userId: String) -> DocumentReference {
+        return FIRESTORE_COLLECTION_ACTIVE_VOTE.document(userId)
     }
     
     static var FIRESTORE_COLLECTION_MYVOTE = FIRESTORE_ROOT.collection("myvote")

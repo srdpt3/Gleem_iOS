@@ -30,16 +30,23 @@ class StorageService {
                     
                     
                     //                    vote["imageLocation"] = url
+//                    let user =  User(id: userId, email: "test@gmail.com", profileImageUrl:  metaImageUrl, username: "test", age: "30", sex:"male",    swipe:0, degree: 0)
                     
-                    Ref.FIRESTORE_COLLECTION_VOTE_USERID(userId:userId).setData(dict) { (error) in
+                    
+                    guard let userDict = try? User.currentUser().toDictionary() else {return}
+
+                    
+                    let finalDict = dict.merging(userDict) { (_, new) in new }
+
+                    Ref.FIRESTORE_COLLECTION_ACTIVE_VOTE_USERID(userId:userId).setData(finalDict) { (error) in
                         if error != nil {
                             print(error!.localizedDescription)
                             return
                             
                         }
                     }
-                    let user =  User(id: userId, email: "test@gmail.com", profileImageUrl:  metaImageUrl, username: "test", age: "30", sex:"maile",    swipe:0, degree: 0)
-                    guard let userDict = try? user.toDictionary() else {return}
+                  
+//                    guard let userDict = try? user.toDictionary() else {return}
                     
                     
                     Ref.FIRESTORE_DOCUMENT_USERID(userId:userId).setData(userDict) { (error) in
@@ -80,24 +87,26 @@ class StorageService {
                     }
                     
                     let firestoreUserId = Ref.FIRESTORE_DOCUMENT_USERID(userId: userId)
-                    //                        let userInfor = ["username": self.username, "email": self.email, "profileImageUrl": metaImageUrl]
+//                    let userInfor = ["username": username, "email": email, "profileImageUrl": metaImageUrl]
                     //                    let user = User.init(uid: userId, email: email, profileImageUrl: metaImageUrl, username: username, bio: "", keywords: username.splitStringToArray())
-                    ////                    let user = User.init(uid: userId, email: email, profileImageUrl: metaImageUrl, username: username, bio: "")
+                    //                    let user = User.init(uid: userId, email: email, profileImageUrl: metaImageUrl, username: username, bio: "")
+                    
+                    let user = User.init(id: userId, email: email, profileImageUrl: metaImageUrl, username: username, age: "30", sex: "male", swipe: 0, degree: 0)
+                    
+                    guard let dict = try? user.toDictionary() else {return}
+                    saveUserLocally(mUserDictionary: dict as NSDictionary)
+                    
                     //
-                    //                    guard let dict = try? user.toDictionary() else {return}
-                    //                    saveUserLocally(mUserDictionary: dict as NSDictionary)
-                    //
-                    //                    //
-                    //                    //                        guard let decoderUser = try? User.init(fromDictionary: dict) else {return}
-                    //                    //                        print(decoderUser.username)
-                    //
-                    //                    firestoreUserId.setData(dict) { (error) in
-                    //                        if error != nil {
-                    //                            onError(error!.localizedDescription)
-                    //                            return
-                    //                        }
-                    //                        onSuccess(user)
-                    //                    }
+                    //                        guard let decoderUser = try? User.init(fromDictionary: dict) else {return}
+                    //                        print(decoderUser.username)
+                    
+                    firestoreUserId.setData(dict) { (error) in
+                        if error != nil {
+                            onError(error!.localizedDescription)
+                            return
+                        }
+                        onSuccess(user)
+                    }
                 }
             }
             

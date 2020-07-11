@@ -47,25 +47,40 @@ class ChartViewModel: ObservableObject {
     
     func loadChartData(userId: String, onSuccess: @escaping(_ data: Vote) -> Void) {
         
-        Ref.FIRESTORE_COLLECTION_VOTE_USERID(userId: userId).addSnapshotListener { (querySnapshot, error) in
+        Ref.FIRESTORE_COLLECTION_ACTIVE_VOTE_USERID(userId: userId).addSnapshotListener { (querySnapshot, error) in
             guard let document = querySnapshot else {
                 print("No documents")
                 return
             }
             
             var data : Vote?
-//            for document in documents {
+          
+            if(document.documentID == userId && document.data() != nil){
+                let _dictionary = document.data()!
+                let attr1 = _dictionary["attr1"] as! Int
+                let attr2 = _dictionary["attr2"] as! Int
+                let attr3 = _dictionary["attr3"] as! Int
+                let attr4 = _dictionary["attr4"] as! Int
+                let attr5 = _dictionary["attr5"] as! Int
+                let attrNames = _dictionary["attrNames"] as! [String]
+                let numVote = _dictionary["numVote"] as! Int
                 
-                if(document.documentID == userId){
-                    let dict = document.data()
-                    guard let decoderPost = try? Vote.init(fromDictionary: dict) else {return}
-                    data = decoderPost
-                    print(decoderPost)
-                    self.isLoading = false
-                    
-                }
+                let createdDate = _dictionary["createdDate"] as! Double
+                let lastModifiedDate = _dictionary["lastModifiedDate"] as! Double
+                data = Vote(attr1: attr1, attr2: attr2, attr3: attr3, attr4: attr4, attr5: attr5, attrNames: attrNames, numVote: numVote, createdDate: createdDate, lastModifiedDate: lastModifiedDate)
                 
-//            }
+                
+                
+                //                    guard let decoderPost = try? Vote.init(fromDictionary: dict) else {return}
+//                data = decoderPost
+                print(data)
+                self.isLoading = false
+                
+            }else{
+                data = Vote(attr1: 0, attr2: 0, attr3: 0, attr4: 0, attr5: 0, attrNames: [], numVote: 0, createdDate: 0, lastModifiedDate: 0)
+            }
+            
+            //            }
             onSuccess(data!)
             
             

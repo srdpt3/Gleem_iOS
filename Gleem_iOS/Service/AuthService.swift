@@ -18,7 +18,6 @@ class AuthService {
                    if error != nil {
                         print(error!.localizedDescription)
                         onError(error!.localizedDescription)
-                        print("Afdasdfasdf")
                         return
                     }
                    guard let userId = authData?.user.uid else { return }

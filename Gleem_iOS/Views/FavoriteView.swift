@@ -25,60 +25,75 @@ struct FavoriteHome : View {
     
     
     var body: some View{
-          NavigationView {
-        VStack(spacing: 10){
-                   
-                   
-                   GeometryReader{geo in
-                       VStack{
-                           
-                           HStack{
-                               Text("나의 Gleem").fontWeight(.heavy).font(.headline)
-                                   .foregroundColor(Color("Color2"))
-                               Spacer()
-                               
-                           }
-                           .padding(.horizontal)
-                           
-                           ScrollView(.horizontal, showsIndicators: false) {
-                               HStack(spacing: 10) {
-                                   ForEach(self.favoriteViewModel.favoriteUsers) { user in
-                                       GeometryReader { geometry in
-                                           SectionView2(user: user)
-                                               .rotation3DEffect(Angle(degrees:
-                                                   Double(geometry.frame(in: .global).minX - 60) / -getAngleMultiplier(bounds: geo)
-                                               ), axis: (x: 0, y: 50, z: 0))
-                                       }
-                                       .frame(width: geo.size.height / 4.5 , height: geo.size.height / 4.5)
-                                   }
-                               }.padding()
-                               
-                               //                    .padding(.bottom, 30)
-                           }.background(Color.black.opacity(0.06))
-                           VStack(spacing: 10){
-                               if !self.favoriteViewModel.favoriteUsers.isEmpty {
-                                   MainSubViewFavorite(title: "Favorite Votes", users: self.favoriteViewModel.favoriteUsers)
-                                       .frame( height: geo.size.height / 1.5 )
-                               } else {
-                                   Spacer()
-                                   
-                                   LoadingView(isLoading: self.favoriteViewModel.isLoading, error: self.favoriteViewModel.error) {
-                                       self.favoriteViewModel.loadFavoriteUsers()
-                                   }
-                                   Spacer()
-                                   
-                               }
-                           }
-                       }
-                   }
-
-               }
-               .navigationBarHidden(true)
-               .navigationBarTitle("")
+        NavigationView {
+            VStack(spacing: 10){
+                
+                
+                GeometryReader{geo in
+                    VStack{
+                        
+                        HStack{
+                            Text("나의 Gleem").fontWeight(.heavy).font(.headline)
+                                .foregroundColor(Color("Color2"))
+                            Spacer()
+                            
+                        }
+                        .padding(.horizontal)
+                        if !self.favoriteViewModel.favoriteUsers.isEmpty {
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(spacing: 10) {
+                                    ForEach(self.favoriteViewModel.favoriteUsers) { user in
+                                        GeometryReader { geometry in
+                                            SectionView2(user: user)
+                                                .rotation3DEffect(Angle(degrees:
+                                                    Double(geometry.frame(in: .global).minX - 60) / -getAngleMultiplier(bounds: geo)
+                                                ), axis: (x: 0, y: 50, z: 0))
+                                        }
+                                        .frame(width: geo.size.height / 4.5 , height: geo.size.height / 4.5)
+                                    }
+                                }.padding()
+                                
+                                //                    .padding(.bottom, 30)
+                            }.background(Color.black.opacity(0.06))
+                        } else {
+                            Spacer()
+                            
+                            LoadingView(isLoading: self.favoriteViewModel.isLoading, error: self.favoriteViewModel.error) {
+                                self.favoriteViewModel.loadFavoriteUsers()
+                            }
+                            Spacer()
+                            
+                        }
+                        
+                        
+                        
+                        
+                        
+                        
+                        VStack(spacing: 10){
+                            if !self.favoriteViewModel.favoriteUsers.isEmpty {
+                                MainSubViewFavorite(title: "Favorite Votes", users: self.favoriteViewModel.favoriteUsers)
+                                    .frame( height: geo.size.height / 1.5 )
+                            } else {
+                                Spacer()
+                                
+                                LoadingView(isLoading: self.favoriteViewModel.isLoading, error: self.favoriteViewModel.error) {
+                                    self.favoriteViewModel.loadFavoriteUsers()
+                                }
+                                Spacer()
+                                
+                            }
+                        }
+                    }
+                }
+                
+            }
+            .navigationBarHidden(true)
+            .navigationBarTitle("")
             
         }
-       
-     
+        
+        
         
     }
 }
@@ -233,12 +248,7 @@ struct FavoriteCard: View {
             ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)) {
                 AnimatedImage(url: URL(string:self.user.profileImageUrl))
                     .resizable().frame(width: (UIScreen.main.bounds.width - 35) / 3, height: (UIScreen.main.bounds.height ) / 5.2).cornerRadius(15)
-                HStack {
-                    
-                    Text(user.username).font(.footnote).lineLimit(1)
-                }
-                
-                
+   
                 
                 Button(action: {
                     
@@ -255,7 +265,7 @@ struct FavoriteCard: View {
             
             
         } .padding(.all, 8)
-.frame(width: (UIScreen.main.bounds.width - 35) / 3, height: (UIScreen.main.bounds.height ) / 5.2)
+            .frame(width: (UIScreen.main.bounds.width - 35) / 3, height: (UIScreen.main.bounds.height ) / 5.2)
             .background(Color("Color-2"))
             .cornerRadius(15)
             .shadow(color: Color.black.opacity(0.1), radius: 5, x: 8, y: 8)
@@ -284,7 +294,7 @@ struct SectionView2: View {
         }
         .padding(.horizontal, 20)
         .frame(width: width, height: height)
-        .background(Color("Color2"))
+        .background(Color.white)
         .cornerRadius(30)
         .shadow(color: Color("Color2").opacity(0.3), radius: 20, x: 0, y: 20)
     }

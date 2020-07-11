@@ -33,17 +33,21 @@ struct MyStaticView: View {
     
     @ObservedObject var chartViewModel = ChartViewModel()
     func loadChartData(){
-        self.chartViewModel.loadChartData(userId: "63gIkD569ywBbqfuqEx4") { (vote) in
+        self.chartViewModel.loadChartData(userId: User.currentUser()!.id) { (vote) in
             
             self.voteData.removeAll()
             self.voteNum.removeAll()
             
+            if(vote.numVote == 0){
+                self.voteData = [10,10,10,10,10]
+            }else{
+                self.voteData.append((Double(vote.attr1) / Double(vote.numVote) * 100).roundToDecimal(0))
+                self.voteData.append((Double(vote.attr2) / Double(vote.numVote) * 100).roundToDecimal(0))
+                self.voteData.append((Double(vote.attr3) / Double(vote.numVote) * 100).roundToDecimal(0))
+                self.voteData.append((Double(vote.attr4) / Double(vote.numVote) * 100).roundToDecimal(0))
+                self.voteData.append((Double(vote.attr5) / Double(vote.numVote) * 100).roundToDecimal(0))
+            }
             
-            self.voteData.append((Double(vote.attr1) / Double(vote.numVote) * 100).roundToDecimal(0))
-            self.voteData.append((Double(vote.attr2) / Double(vote.numVote) * 100).roundToDecimal(0))
-            self.voteData.append((Double(vote.attr3) / Double(vote.numVote) * 100).roundToDecimal(0))
-            self.voteData.append((Double(vote.attr4) / Double(vote.numVote) * 100).roundToDecimal(0))
-            self.voteData.append((Double(vote.attr5) / Double(vote.numVote) * 100).roundToDecimal(0))
             
             
             self.voteNum.append(vote.attr1)

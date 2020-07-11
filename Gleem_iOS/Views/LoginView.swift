@@ -1,226 +1,261 @@
 //
 //  LoginView.swift
-//  Gleem_iOS
+//  FrontYard
 //
-//  Created by Dustin yang on 7/8/20.
+//  Created by Dustin yang on 6/14/20.
 //  Copyright © 2020 Dustin yang. All rights reserved.
 //
 
 import SwiftUI
 
-import Firebase
-
 struct LoginView: View {
-    @State var email = ""
-    @State var password = ""
-    @State var isFocused = false
-    @State var showAlert = false
-    @State var alertMessage = "Something went wrong."
-    @State var isLoading = false
-    @State var isSuccessful = false
-    @EnvironmentObject var user: UserStore
+    @Environment(\.presentationMode) var presentationMode
     
-    func login() {
-        self.hideKeyboard()
-        self.isFocused = false
-        self.isLoading = true
+    @ObservedObject var signinViewModel = SigninViewModel()
+    @State var showSignupView : Bool = false
+    let universalSize = UIScreen.main.bounds
+    @State var isAnimated = false
+    func signIn() {
         
-        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
-            self.isLoading = false
+        signinViewModel.signin(email: signinViewModel.email, password: signinViewModel.password, completed: { (user) in
+            print("login: \(user.email)")
+            self.hide_keyboard()
+            self.clean()
+        }) { (errorMessage) in
+            print("Error: \(errorMessage)")
+            self.signinViewModel.showAlert = true
+            self.signinViewModel.errorString = errorMessage
             
-            if error != nil {
-                self.alertMessage = error?.localizedDescription ?? ""
-                self.showAlert = true
-            } else {
-                self.isSuccessful = true
-                self.user.isLogged = true
-                UserDefaults.standard.set(true, forKey: "isLogged")
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    self.email = ""
-                    self.password = ""
-                    self.isSuccessful = false
-                    self.user.showLogin = false
-                }
-            }
+            
         }
+        
     }
     
-    func hideKeyboard() {
+    func clean() {
+        //        self.showLoginView.toggle()
+        self.presentationMode.wrappedValue.dismiss()
+        self.showSignupView.toggle()
+        self.signinViewModel.email = ""
+        self.signinViewModel.password = ""
+        
+    }
+    //    func getSinWave(interval:CGFloat, amplitude: CGFloat = 100 ,baseline:CGFloat = UIScreen.main.bounds.height/2) -> Path {
+    //        Path{path in
+    //            path.move(to: CGPoint(x: 0, y: baseline
+    //            ))
+    //            path.addCurve(
+    //                to: CGPoint(x: 1*interval,y: baseline),
+    //                control1: CGPoint(x: interval * (0.35),y: amplitude + baseline),
+    //                control2: CGPoint(x: interval * (0.65),y: -amplitude + baseline)
+    //            )
+    //            path.addCurve(
+    //                to: CGPoint(x: 2*interval,y: baseline),
+    //                control1: CGPoint(x: interval * (1.35),y: amplitude + baseline),
+    //                control2: CGPoint(x: interval * (1.65),y: -amplitude + baseline)
+    //            )
+    //            path.addLine(to: CGPoint(x: 2*interval, y: universalSize.height))
+    //            path.addLine(to: CGPoint(x: 0, y: universalSize.height))
+    //
+    //
+    //        }
+    //
+    //    }
+    var body: some View {
+        NavigationView {
+            
+            ZStack {
+//
+//                NavigationLink(destination: SignUpView(showSignupView: self.$showSignupView), isActive: self.$showSignupView) {
+//                                                 Text("")
+//                                     }
+//
+                
+                
+                ScrollView(.vertical, showsIndicators: false){
+                    
+                
+                    
+                    VStack {
+                        HStack{
+                            Spacer()
+                            Image("shape")
+                        }
+                        
+                        VStack{
+                            Image("Gleem 3D Icon Type Black Transparent_resized").resizable().scaledToFit().frame(width: 200, height: 150)
+                            Image("name").padding(.top,10)
+                            
+                        }.offset(y: -122)
+                            .padding(.bottom,-132)
+                        
+                        //                        EmailTextField(email: $signinViewModel.email)
+                        //                        PasswordTextField(password: $signinViewModel.password)
+                        //
+                        VStack(spacing: 20){
+                            CustomTF(value: $signinViewModel.email, isemail: true)
+                            
+                            CustomTF(value: $signinViewModel.password, isemail: false)
+                            
+                            HStack{
+                                
+                                Spacer()
+                                
+                                Button(action: {
+                                    
+                                }) {
+                                    
+                                    Text("Forget Password ?").foregroundColor(Color.black.opacity(0.1))
+                                }
+                            }
+                            
+                            
+                            
+                            
+                            SigninButton(action: signIn, label: TEXT_SIGN_IN).alert(isPresented: $signinViewModel.showAlert) {
+                                Alert(title: Text("Error"), message: Text(self.signinViewModel.errorString), dismissButton: .default(Text("OK"), action: {
+                                    
+                                }))
+                                
+                            }
+                            
+                            Text("Or Login Using Social Media").fontWeight(.bold)
+                            
+                            SocialMedia()
+                            
+                        }.padding()
+                            .background(Color.white)
+                            .cornerRadius(5)
+                            .padding()
+                        
+                        
+                        
+                        
+                        
+                        Button(action: {
+                            self.showSignupView.toggle()
+                            self.signinViewModel.show.toggle()
+                        }){
+                            HStack {
+                                Text(TEXT_NEED_AN_ACCOUNT).font(.footnote).foregroundColor(.gray)
+                                Text(TEXT_SIGN_UP).foregroundColor(Color("Color2"))
+                            }
+                        }
+                        
+                        Spacer()
+                        //                        Spacer()
+                        
+                    }
+                 
+                    
+                    
+                    
+                }
+                //                .edgesIgnoringSafeArea(.all).padding()
+                
+                
+                //                                getSinWave(interval: universalSize.width, amplitude: 130, baseline: -50 + universalSize.height/1.7)
+                //                                    .foregroundColor(Color.init(red: 0.3, green: 0.6, blue: 1).opacity(0.4))
+                //                                    .offset(x: isAnimated ? -1*universalSize.width : 0)
+                //                                    .animation(
+                //                                        Animation.linear(duration: 2)
+                //                                            .repeatForever(autoreverses: false)
+                //                                )
+                //                                getSinWave(interval: universalSize.width*1.2, amplitude: 130, baseline: 50 + universalSize.height/1.7)
+                //                                    .foregroundColor(Color.init(red: 0.3, green: 0.6, blue: 1).opacity(0.4))
+                //                                    .offset(x: isAnimated ? -1*(universalSize.width*1.2) : 0)
+                //                                    .animation(
+                //                                        Animation.linear(duration: 5)
+                //                                            .repeatForever(autoreverses: false)
+                //                                )
+                //                                Spacer()
+                
+            }.onAppear(){
+                self.isAnimated = true
+                
+            }.KeyboardResponsive()
+                .navigationBarTitle("")
+                .navigationBarHidden(true)
+                .edgesIgnoringSafeArea(.all)
+                .background(Color("Color-2").edgesIgnoringSafeArea(.all))
+        }.accentColor(Color.black)
+                .sheet(isPresented: self.$signinViewModel.show) {
+        
+                            SignUpView(showSignupView: self.$signinViewModel.show)
+                        }
+        
+        
+    }
+    func hide_keyboard()
+    {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
+}
+
+//struct LoginView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        LoginView()
+//    }
+//}
+
+
+struct SocialMedia : View {
     
-    var body: some View {
-        ZStack {
-            Color.black.edgesIgnoringSafeArea(.all)
+    var body : some View{
+        
+        HStack(spacing: 40){
             
-            ZStack(alignment: .top) {
+            Button(action: {
                 
-                Color("background2")
-                    .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-                    .edgesIgnoringSafeArea(.bottom)
+            }) {
                 
-                CoverView()
-                
-                VStack {
-                    HStack {
-                        Image(systemName: "person.crop.circle.fill")
-                            .foregroundColor(Color(#colorLiteral(red: 0.6549019608, green: 0.7137254902, blue: 0.862745098, alpha: 1)))
-                            .frame(width: 44, height: 44)
-                            .background(Color("background1"))
-                            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                            .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 5)
-                            .padding(.leading)
-                        
-                        TextField("Your Email".uppercased(), text: $email)
-                            .keyboardType(.emailAddress)
-                            .font(.subheadline)
-        //                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding(.leading)
-                            .frame(height: 44)
-                            .onTapGesture {
-                                self.isFocused = true
-                        }
-                    }
-                    
-                    Divider().padding(.leading, 80)
-                    
-                    HStack {
-                        Image(systemName: "lock.fill")
-                            .foregroundColor(Color(#colorLiteral(red: 0.6549019608, green: 0.7137254902, blue: 0.862745098, alpha: 1)))
-                            .frame(width: 44, height: 44)
-                            .background(Color("background1"))
-                            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                            .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 5)
-                            .padding(.leading)
-                        
-                        SecureField("Password".uppercased(), text: $password)
-                            .keyboardType(.default)
-                            .font(.subheadline)
-                            //                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding(.leading)
-                            .frame(height: 44)
-                            .onTapGesture {
-                                self.isFocused = true
-                        }
-                    }
-                }
-                .frame(height: 136)
-                .frame(maxWidth: 712)
-                .background(BlurView(style: .systemMaterial))
-                .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-                .shadow(color: Color.black.opacity(0.15), radius: 20, x: 0, y: 20)
-                .padding(.horizontal)
-                .offset(y: 460)
-                
-                HStack {
-                    Text("Forgot password?")
-                        .font(.subheadline)
-                    
-                    Spacer()
-                    
-                    Button(action: {
-                        self.login()
-                    }) {
-                        Text("Log in").foregroundColor(.black)
-                    }
-                    .padding(12)
-                    .padding(.horizontal, 30)
-                    .background(Color(#colorLiteral(red: 0, green: 0.7529411765, blue: 1, alpha: 1)))
-                    .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                    .shadow(color: Color(#colorLiteral(red: 0, green: 0.7529411765, blue: 1, alpha: 1)).opacity(0.3), radius: 20, x: 0, y: 20)
-                    .alert(isPresented: $showAlert) {
-                        Alert(title: Text("Error"), message: Text(self.alertMessage), dismissButton: .default(Text("OK")))
-                    }
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-                .padding()
-                
-            }
-            .offset(y: isFocused ? -300 : 0)
-            .animation(isFocused ? .easeInOut : nil)
-            .onTapGesture {
-                self.isFocused = false
-                self.hideKeyboard()
+                Image("fb").renderingMode(.original)
             }
             
-            if isLoading {
-                LoadingView2()
-            }
-            
-            if isSuccessful {
-                SuccessView()
+            Button(action: {
+                
+            }) {
+                
+                Image("twitter").renderingMode(.original)
             }
         }
     }
 }
 
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
-//        .previewDevice("iPad Air 2")
-    }
-}
-
-struct CoverView: View {
-    @State var show = false
-    @State var viewState = CGSize.zero
-    @State var isDragging = false
+struct CustomTF : View {
     
-    var body: some View {
-        VStack {
-            GeometryReader { geometry in
-              Text("")
+    @Binding var value : String
+    var isemail = false
+    var reenter = false
+    var username = false
+    
+    var body : some View{
+        
+        VStack(spacing: 8){
+            
+            HStack{
+                Text(self.isemail ? TEXT_EMAIL : self.username ? TEXT_USERNAME : (self.reenter ? TEXT_PASSWORD_REENTER : TEXT_PASSWORD)).foregroundColor(Color.black.opacity(0.1))
+                Spacer()
             }
-            .frame(maxWidth: 375, maxHeight: 100)
-            .padding(.horizontal, 16)
-            .offset(x: viewState.width/15, y: viewState.height/15)
-            
-           
-            
-            Spacer()
-        }
-        .multilineTextAlignment(.center)
-        .padding(.top, 100)
-        .frame(height: 477)
-        .frame(maxWidth: .infinity)
-        .background(
-            ZStack {
-                Image(uiImage: #imageLiteral(resourceName: "Blob"))
-                    .offset(x: -150, y: -200)
-                    .rotationEffect(Angle(degrees: show ? 360+90 : 90))
-                    .blendMode(.plusDarker)
-                    .animation(Animation.linear(duration: 120).repeatForever(autoreverses: false))
-//                    .animation(nil)
-                    .onAppear { self.show = true }
+ 
+            HStack{
+                if self.isemail || self.username {
+                    TextField("", text: self.$value)
+                }
+                else{
+                    
+                    SecureField("", text: self.$value)
+                }
                 
-                Image(uiImage: #imageLiteral(resourceName: "Blob"))
-                    .offset(x: -200, y: -250)
-                    .rotationEffect(Angle(degrees: show ? 360 : 0), anchor: .leading)
-                    .blendMode(.overlay)
-                    .animation(Animation.linear(duration: 120).repeatForever(autoreverses: false))
-//                    .animation(nil)
+                
+                Button(action: {
+                    
+                }) {
+                    
+                    Image(systemName: self.isemail ? "envelope.fill" :  (self.username ? "person.fill" :  "eye.slash.fill")).foregroundColor(Color("Color2"))
+                }
             }
-        )
-//            .background(
-//                Image(uiImage: #imageLiteral(resourceName: "gleem_resized"))
-//                    .offset(x: viewState.width/25, y: viewState.height/25)
-//                , alignment: .bottom
-//        )
-            .background(Color(#colorLiteral(red: 0.4117647059, green: 0.4705882353, blue: 0.9725490196, alpha: 1)))
-            .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-            .scaleEffect(isDragging ? 0.9 : 1)
-            .animation(.timingCurve(0.2, 0.8, 0.2, 1, duration: 0.8))
-            .rotation3DEffect(Angle(degrees: 5), axis: (x: viewState.width, y: viewState.height, z: 0))
-            .gesture(
-                DragGesture().onChanged { value in
-                    self.viewState = value.translation
-                    self.isDragging = true
-                }
-                .onEnded { value in
-                    self.viewState = .zero
-                    self.isDragging = false
-                }
-        )
+            
+            Divider()
+        }
     }
 }

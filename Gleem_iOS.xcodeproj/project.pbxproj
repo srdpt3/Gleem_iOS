@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1153A78724B966AE00CE3574 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153A78524B966AD00CE3574 /* SignupViewModel.swift */; };
+		1153A78824B966AE00CE3574 /* SigninViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153A78624B966AE00CE3574 /* SigninViewModel.swift */; };
+		1153A78F24B9679200CE3574 /* UsernameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153A78924B9679100CE3574 /* UsernameTextField.swift */; };
+		1153A79024B9679200CE3574 /* SigninButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153A78A24B9679100CE3574 /* SigninButton.swift */; };
+		1153A79124B9679200CE3574 /* EmailTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153A78B24B9679100CE3574 /* EmailTextField.swift */; };
+		1153A79224B9679200CE3574 /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153A78C24B9679100CE3574 /* PasswordTextField.swift */; };
+		1153A79324B9679200CE3574 /* SignupButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153A78D24B9679200CE3574 /* SignupButton.swift */; };
+		1153A79424B9679200CE3574 /* SignupText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153A78E24B9679200CE3574 /* SignupText.swift */; };
+		1153A79724B967FF00CE3574 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153A79524B967FE00CE3574 /* SignUpView.swift */; };
+		1153A79824B967FF00CE3574 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153A79624B967FE00CE3574 /* LoginView.swift */; };
+		1153A79A24B97F6400CE3574 /* InitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153A79924B97F6400CE3574 /* InitialView.swift */; };
+		1153A7A924BA023F00CE3574 /* CustomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153A7A824BA023F00CE3574 /* CustomController.swift */; };
 		11783E6C24B53BA500EEFE80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783E6B24B53BA500EEFE80 /* AppDelegate.swift */; };
 		11783E6E24B53BA500EEFE80 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783E6D24B53BA500EEFE80 /* SceneDelegate.swift */; };
 		11783E7124B53BA500EEFE80 /* Gleem_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11783E6F24B53BA500EEFE80 /* Gleem_iOS.xcdatamodeld */; };
@@ -19,7 +31,6 @@
 		11783E9F24B53BF400EEFE80 /* observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783E9E24B53BF400EEFE80 /* observer.swift */; };
 		11783EAD24B53CEC00EEFE80 /* UserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EA124B53CEB00EEFE80 /* UserApi.swift */; };
 		11783EAE24B53CEC00EEFE80 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EA324B53CEB00EEFE80 /* UserViewModel.swift */; };
-		11783EAF24B53CEC00EEFE80 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EA424B53CEB00EEFE80 /* SessionStore.swift */; };
 		11783EB024B53CEC00EEFE80 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EA524B53CEB00EEFE80 /* StorageService.swift */; };
 		11783EB124B53CEC00EEFE80 /* UploadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EA624B53CEB00EEFE80 /* UploadViewModel.swift */; };
 		11783EB224B53CEC00EEFE80 /* AttributeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EA724B53CEB00EEFE80 /* AttributeViewModel.swift */; };
@@ -55,7 +66,6 @@
 		11783EFC24B57FAE00EEFE80 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EFB24B57FAE00EEFE80 /* MenuView.swift */; };
 		11783EFE24B6293A00EEFE80 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EFD24B6293A00EEFE80 /* BlurView.swift */; };
 		11783F0024B662EA00EEFE80 /* CardListview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EFF24B662EA00EEFE80 /* CardListview.swift */; };
-		11783F0424B6A30C00EEFE80 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783F0324B6A30C00EEFE80 /* LoginView.swift */; };
 		11783F0824B6A44500EEFE80 /* SuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783F0724B6A44500EEFE80 /* SuccessView.swift */; };
 		11783F0A24B6A4DD00EEFE80 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783F0924B6A4DD00EEFE80 /* LottieView.swift */; };
 		11FA744424B7EA13008009A1 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FA744324B7EA13008009A1 /* HeaderView.swift */; };
@@ -92,6 +102,18 @@
 
 /* Begin PBXFileReference section */
 		0A0B1D9AD08185C3F68EA576 /* Pods_Gleem_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gleem_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1153A78524B966AD00CE3574 /* SignupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
+		1153A78624B966AE00CE3574 /* SigninViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigninViewModel.swift; sourceTree = "<group>"; };
+		1153A78924B9679100CE3574 /* UsernameTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsernameTextField.swift; sourceTree = "<group>"; };
+		1153A78A24B9679100CE3574 /* SigninButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigninButton.swift; sourceTree = "<group>"; };
+		1153A78B24B9679100CE3574 /* EmailTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailTextField.swift; sourceTree = "<group>"; };
+		1153A78C24B9679100CE3574 /* PasswordTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
+		1153A78D24B9679200CE3574 /* SignupButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupButton.swift; sourceTree = "<group>"; };
+		1153A78E24B9679200CE3574 /* SignupText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupText.swift; sourceTree = "<group>"; };
+		1153A79524B967FE00CE3574 /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		1153A79624B967FE00CE3574 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		1153A79924B97F6400CE3574 /* InitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialView.swift; sourceTree = "<group>"; };
+		1153A7A824BA023F00CE3574 /* CustomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomController.swift; sourceTree = "<group>"; };
 		11783E6824B53BA500EEFE80 /* Gleem_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gleem_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11783E6B24B53BA500EEFE80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11783E6D24B53BA500EEFE80 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,7 +132,6 @@
 		11783E9E24B53BF400EEFE80 /* observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = observer.swift; sourceTree = "<group>"; };
 		11783EA124B53CEB00EEFE80 /* UserApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserApi.swift; sourceTree = "<group>"; };
 		11783EA324B53CEB00EEFE80 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
-		11783EA424B53CEB00EEFE80 /* SessionStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
 		11783EA524B53CEB00EEFE80 /* StorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		11783EA624B53CEB00EEFE80 /* UploadViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadViewModel.swift; sourceTree = "<group>"; };
 		11783EA724B53CEB00EEFE80 /* AttributeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeViewModel.swift; sourceTree = "<group>"; };
@@ -146,7 +167,6 @@
 		11783EFB24B57FAE00EEFE80 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		11783EFD24B6293A00EEFE80 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		11783EFF24B662EA00EEFE80 /* CardListview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListview.swift; sourceTree = "<group>"; };
-		11783F0324B6A30C00EEFE80 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		11783F0724B6A44500EEFE80 /* SuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessView.swift; sourceTree = "<group>"; };
 		11783F0924B6A4DD00EEFE80 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		11FA744324B7EA13008009A1 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
@@ -282,7 +302,8 @@
 			children = (
 				11783E9E24B53BF400EEFE80 /* observer.swift */,
 				11783EA324B53CEB00EEFE80 /* UserViewModel.swift */,
-				11783EA424B53CEB00EEFE80 /* SessionStore.swift */,
+				1153A78624B966AE00CE3574 /* SigninViewModel.swift */,
+				1153A78524B966AD00CE3574 /* SignupViewModel.swift */,
 				11783EA524B53CEB00EEFE80 /* StorageService.swift */,
 				11783EA624B53CEB00EEFE80 /* UploadViewModel.swift */,
 				11783EA724B53CEB00EEFE80 /* AttributeViewModel.swift */,
@@ -311,12 +332,14 @@
 				11783EBE24B53D1900EEFE80 /* AttrButtonView.swift */,
 				11783EC024B53D1900EEFE80 /* MyStaticView.swift */,
 				11783EC324B53D1900EEFE80 /* UploadView.swift */,
+				1153A79624B967FE00CE3574 /* LoginView.swift */,
+				1153A79524B967FE00CE3574 /* SignUpView.swift */,
 				11783EC424B53D1900EEFE80 /* ExpandView.swift */,
 				11783EC524B53D1900EEFE80 /* SettingView.swift */,
 				11783EF924B57E2200EEFE80 /* ProfileList.swift */,
 				11783EFB24B57FAE00EEFE80 /* MenuView.swift */,
-				11783F0324B6A30C00EEFE80 /* LoginView.swift */,
 				11783F0724B6A44500EEFE80 /* SuccessView.swift */,
+				1153A79924B97F6400CE3574 /* InitialView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -335,6 +358,7 @@
 				11783EDF24B53DD900EEFE80 /* LoadingView.swift */,
 				11783EFD24B6293A00EEFE80 /* BlurView.swift */,
 				11783F0924B6A4DD00EEFE80 /* LottieView.swift */,
+				1153A7A824BA023F00CE3574 /* CustomController.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -366,6 +390,12 @@
 		11FA744B24B7FACB008009A1 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				1153A78B24B9679100CE3574 /* EmailTextField.swift */,
+				1153A78C24B9679100CE3574 /* PasswordTextField.swift */,
+				1153A78A24B9679100CE3574 /* SigninButton.swift */,
+				1153A78D24B9679200CE3574 /* SignupButton.swift */,
+				1153A78E24B9679200CE3574 /* SignupText.swift */,
+				1153A78924B9679100CE3574 /* UsernameTextField.swift */,
 				11FA744C24B7FACB008009A1 /* GuideComponent.swift */,
 				11FA744D24B7FACB008009A1 /* HeaderComponent.swift */,
 			);
@@ -655,8 +685,11 @@
 				11783EC824B53D1A00EEFE80 /* FavoriteView.swift in Sources */,
 				11FA744424B7EA13008009A1 /* HeaderView.swift in Sources */,
 				11783E9F24B53BF400EEFE80 /* observer.swift in Sources */,
+				1153A79A24B97F6400CE3574 /* InitialView.swift in Sources */,
+				1153A7A924BA023F00CE3574 /* CustomController.swift in Sources */,
 				11783EE024B53DD900EEFE80 /* Constants.swift in Sources */,
 				11783E7124B53BA500EEFE80 /* Gleem_iOS.xcdatamodeld in Sources */,
+				1153A78724B966AE00CE3574 /* SignupViewModel.swift in Sources */,
 				11783EB124B53CEC00EEFE80 /* UploadViewModel.swift in Sources */,
 				11783EFE24B6293A00EEFE80 /* BlurView.swift in Sources */,
 				11783EC924B53D1A00EEFE80 /* ChartView.swift in Sources */,
@@ -666,6 +699,7 @@
 				11783EB324B53CEC00EEFE80 /* VoteViewModel.swift in Sources */,
 				11783F0824B6A44500EEFE80 /* SuccessView.swift in Sources */,
 				11FA745824B7FB55008009A1 /* MainCardView.swift in Sources */,
+				1153A79224B9679200CE3574 /* PasswordTextField.swift in Sources */,
 				11783EE324B53DD900EEFE80 /* ImagePicker.swift in Sources */,
 				11FA744924B7EA42008009A1 /* InfoView.swift in Sources */,
 				11783EAD24B53CEC00EEFE80 /* UserApi.swift in Sources */,
@@ -675,23 +709,28 @@
 				11783EFC24B57FAE00EEFE80 /* MenuView.swift in Sources */,
 				11783EB524B53CEC00EEFE80 /* FavoriteViewModel.swift in Sources */,
 				11783EB224B53CEC00EEFE80 /* AttributeViewModel.swift in Sources */,
+				1153A78F24B9679200CE3574 /* UsernameTextField.swift in Sources */,
 				11783EE624B53DD900EEFE80 /* Loader.swift in Sources */,
+				1153A79424B9679200CE3574 /* SignupText.swift in Sources */,
 				11783EE224B53DD900EEFE80 /* SearchBarView.swift in Sources */,
+				1153A79124B9679200CE3574 /* EmailTextField.swift in Sources */,
 				11783F0024B662EA00EEFE80 /* CardListview.swift in Sources */,
 				11783EE424B53DD900EEFE80 /* SearchBar.swift in Sources */,
 				11FA744E24B7FACC008009A1 /* GuideComponent.swift in Sources */,
 				11783E7324B53BA500EEFE80 /* ContentView.swift in Sources */,
 				11783EAE24B53CEC00EEFE80 /* UserViewModel.swift in Sources */,
 				11783ECB24B53D1A00EEFE80 /* AttrButtonView.swift in Sources */,
-				11783EAF24B53CEC00EEFE80 /* SessionStore.swift in Sources */,
 				11783EB024B53CEC00EEFE80 /* StorageService.swift in Sources */,
+				1153A78824B966AE00CE3574 /* SigninViewModel.swift in Sources */,
 				11FA745424B7FAF5008009A1 /* TitleModifier.swift in Sources */,
-				11783F0424B6A30C00EEFE80 /* LoginView.swift in Sources */,
 				11783EE924B53DD900EEFE80 /* Keyboard.swift in Sources */,
 				11783ED124B53D1A00EEFE80 /* ExpandView.swift in Sources */,
+				1153A79324B9679200CE3574 /* SignupButton.swift in Sources */,
+				1153A79024B9679200CE3574 /* SigninButton.swift in Sources */,
 				11783ED224B53D1A00EEFE80 /* SettingView.swift in Sources */,
 				11783EC724B53D1A00EEFE80 /* SafariView.swift in Sources */,
 				11783EE824B53DD900EEFE80 /* Modifier.swift in Sources */,
+				1153A79724B967FF00CE3574 /* SignUpView.swift in Sources */,
 				11FA744F24B7FACC008009A1 /* HeaderComponent.swift in Sources */,
 				11783ECD24B53D1A00EEFE80 /* MyStaticView.swift in Sources */,
 				11783EB624B53CEC00EEFE80 /* AuthService.swift in Sources */,
@@ -701,6 +740,7 @@
 				11783EE524B53DD900EEFE80 /* Extensions.swift in Sources */,
 				11783E6E24B53BA500EEFE80 /* SceneDelegate.swift in Sources */,
 				11783EB424B53CEC00EEFE80 /* ChartViewModel.swift in Sources */,
+				1153A79824B967FF00CE3574 /* LoginView.swift in Sources */,
 				11783EF524B53E5000EEFE80 /* MyVote.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
