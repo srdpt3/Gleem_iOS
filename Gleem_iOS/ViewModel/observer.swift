@@ -23,17 +23,18 @@ class observer : ObservableObject{
     @Published var isLoggedIn = false
     
     
-    init() {
-        DispatchQueue.main.async {
-            self.reload()
-        }
-    }
-    
+//    init() {
+//                       self.reload()
+//
+//
+//    }
+//
     var handle: AuthStateDidChangeListenerHandle?
     
     func listenAuthenticationState() {
         handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
             if let user = user {
+                self.reload()
                 print("listenAuthenticationState \(user.email)")
                 //                let firestoreUserId = Ref.FIRESTORE_DOCUMENT_USERID(userId: user.uid)
                 //                firestoreUserId.getDocument { (document, error) in
@@ -42,10 +43,14 @@ class observer : ObservableObject{
                 //                        self.userSession = decoderUser
                 //                    }
                 //                }
+                
+                
+                
                 self.isLoggedIn = true
             } else {
                 print("isLoogedIn is false")
                 self.isLoggedIn = false
+                //                self.userSession = nil
                 
             }
         })
@@ -56,6 +61,7 @@ class observer : ObservableObject{
         do {
             try Auth.auth().signOut()
             resetDefaults()
+//            unbind()
         } catch  {
             print("Logout Failed")
         }
@@ -93,8 +99,9 @@ class observer : ObservableObject{
     
     func reload(){
         self.isLoading = true
-        self.users.removeAll()
         Ref.FIRESTORE_COLLECTION_ACTIVE_VOTE.getDocuments { (snap, err) in
+            self.users.removeAll()
+            
             if err != nil{
                 print((err?.localizedDescription)!)
                 self.error = (err?.localizedDescription as! NSError)

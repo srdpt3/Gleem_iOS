@@ -137,11 +137,11 @@ struct MainSubViewFavorite: View{
                                 FavoriteCard(user: i)
                                 
                             }
-                            
+                            Spacer()
                             
                             
                         }
-                    }
+                    }.padding(.horizontal, 5)
                     
                 }
             }
@@ -157,29 +157,29 @@ struct MainSubViewFavorite: View{
 //    let title: String
 //    let users: [ActiveVote]
 //    @State var show : Bool  = false
-//    
+//
 //    @State var showExpandView : Bool = false
 //    @State var isVoted : Bool  = true
 //    //    var user : User?
 //    @State var selectedUser : User?
-//    
+//
 //    var body : some View{
-//        
+//
 //        VStack(alignment: .leading) {
 //            HStack{
-//                
+//
 //                Text("나에게 끌림").fontWeight(.heavy).font(.headline)
 //                    .foregroundColor(Color("Color2"))
 //                //                Spacer()
-//                
-//                
+//
+//
 //            }.padding(.leading, 12)
-//            
+//
 //            ScrollView(.horizontal, showsIndicators: false) {
 //                HStack(spacing: 12) {
 //                    HStack(spacing : 12){
 //                        ForEach(self.users) { i in
-//                            
+//
 //                            FavoriteCard2(user: i).onTapGesture {
 //                                self.show.toggle()
 //                            }.blur(radius: 5)
@@ -187,19 +187,19 @@ struct MainSubViewFavorite: View{
 //                                .padding(.trailing, i.id == self.users.last!.id ? 12 : 0)
 //                        }
 //                    }
-//                    
-//                    
-//                    
+//
+//
+//
 //                }
 //            }
-//            
+//
 //        }
-//        
-//        
-//        
+//
+//
+//
 //    }
-//    
-//    
+//
+//
 //}
 //
 

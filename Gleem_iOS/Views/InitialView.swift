@@ -16,6 +16,7 @@ struct InitialView: View {
     @EnvironmentObject var obs : observer
 
     func listen() {
+//        self.obs.reload()
         obs.listenAuthenticationState()
     }
     
