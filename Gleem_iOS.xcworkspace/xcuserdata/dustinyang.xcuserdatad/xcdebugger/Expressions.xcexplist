@@ -14,18 +14,34 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in ChartViewModel.loadChartData(userId:onSuccess:):(null)">
-         <PersistentStrings>
-            <PersistentString
-               value = "document.data()">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "closure #1 in MyStaticView.loadChartData():MyStaticView.swift">
          <PersistentStrings>
             <PersistentString
                value = "(Double(vote.attr1) / Double(vote.numVote) * 100)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in FooterView.body.getter:FooterView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.obs.last">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #3 in closure #1 in FooterView.body.getter:FooterView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.obs.last">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in ChartViewModel.loadChartData(userId:onSuccess:):(null)">
+         <PersistentStrings>
+            <PersistentString
+               value = "document.data()">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

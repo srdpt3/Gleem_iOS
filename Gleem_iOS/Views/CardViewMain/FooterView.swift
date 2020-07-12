@@ -27,7 +27,6 @@ struct FooterView: View {
                 self.showVotingScreen.toggle()
             }) {
                 Text("매력지수 평가하기")
-                    
                     .font(.system(.subheadline, design: .rounded))
                     .fontWeight(.heavy)
                     .padding(.horizontal, 20)
@@ -36,7 +35,7 @@ struct FooterView: View {
                     .background(
                         Capsule().stroke(Color("Color2"), lineWidth: 2)
                 )
-            }                    .animation(.linear)
+            } .animation(.linear)
 
             .sheet(isPresented: self.$showVotingScreen) {
                 ExpandView(user: self.obs.users[self.obs.last], show: self.$showVotingScreen, isVoted:self.$isVoted)

@@ -1,15 +1,15 @@
 //
-//  Vote.swift
-//  Gleem_Dating
+//  ActiveVote.swift
+//  Gleem_iOS
 //
-//  Created by Dustin yang on 7/2/20.
+//  Created by Dustin yang on 7/11/20.
 //  Copyright © 2020 Dustin yang. All rights reserved.
 //
 
 import SwiftUI
 
 import Foundation
-struct Vote: Encodable, Decodable {
+struct ActiveVote:  Encodable, Decodable ,Identifiable{ 
     var attr1 : Int
     var attr2: Int
     var attr3: Int
@@ -19,13 +19,18 @@ struct Vote: Encodable, Decodable {
     var numVote: Int
     var createdDate: Double
     var lastModifiedDate: Double
-
-
+    var id : String
+    var email: String
+    var profileImageUrl: String
+    var username: String
+    var age: String
+    var sex: String
     
     
-    
-    init(attr1: Int, attr2: Int, attr3: Int, attr4: Int, attr5: Int,attrNames: [String], numVote: Int, createdDate: Double, lastModifiedDate: Double) {
+    init(attr1: Int, attr2: Int, attr3: Int, attr4: Int, attr5: Int,attrNames: [String], numVote: Int, createdDate: Double, lastModifiedDate: Double,id: String, email: String, profileImageUrl: String, username: String,
+         age: String, sex:String ) {
         self.attr1 = attr1
+        
         self.attr2 = attr2
         self.attr3 = attr3
         self.attr4 = attr4
@@ -36,7 +41,12 @@ struct Vote: Encodable, Decodable {
         self.numVote = numVote
         self.createdDate = createdDate
         self.lastModifiedDate = lastModifiedDate
-
+        self.id = id
+        self.email = email
+        self.profileImageUrl = profileImageUrl
+        self.username = username
+        self.age = age
+        self.sex = sex
         
     }
     init(_dictionary: NSDictionary) {
@@ -47,10 +57,14 @@ struct Vote: Encodable, Decodable {
         attr5 = _dictionary["attr5"] as! Int
         attrNames = _dictionary["attrNames"] as! [String]
         numVote = _dictionary["numVote"] as! Int
-
         createdDate = _dictionary["createdDate"] as! Double
         lastModifiedDate = _dictionary["lastModifiedDate"] as! Double
-
-
+        id = _dictionary["id"] as! String
+        email = _dictionary["email"] as! String
+        profileImageUrl = _dictionary["profileImageUrl"] as! String
+        username = _dictionary["username"] as! String
+        age = _dictionary["age"] as! String
+        sex = _dictionary["sex"] as! String
+        
     }
 }

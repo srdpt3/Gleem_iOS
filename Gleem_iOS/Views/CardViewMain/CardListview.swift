@@ -48,7 +48,7 @@ struct CardListview: View {
         self.isVoted = false
         print("lastCardIndex \(obs.index) asdfas \(self.obs.totalCount)")
         
-        if(self.obs.index >  self.obs.users.count){
+        if(self.obs.index ==  self.obs.users.count){
             print("reload")
             
             self.obs.reload()

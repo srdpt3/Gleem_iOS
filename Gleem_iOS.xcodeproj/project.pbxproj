@@ -19,6 +19,7 @@
 		1153A79824B967FF00CE3574 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153A79624B967FE00CE3574 /* LoginView.swift */; };
 		1153A79A24B97F6400CE3574 /* InitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153A79924B97F6400CE3574 /* InitialView.swift */; };
 		1153A7A924BA023F00CE3574 /* CustomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153A7A824BA023F00CE3574 /* CustomController.swift */; };
+		1153A7AF24BA9BD800CE3574 /* ActiveVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153A7AE24BA9BD800CE3574 /* ActiveVote.swift */; };
 		11783E6C24B53BA500EEFE80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783E6B24B53BA500EEFE80 /* AppDelegate.swift */; };
 		11783E6E24B53BA500EEFE80 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783E6D24B53BA500EEFE80 /* SceneDelegate.swift */; };
 		11783E7124B53BA500EEFE80 /* Gleem_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11783E6F24B53BA500EEFE80 /* Gleem_iOS.xcdatamodeld */; };
@@ -114,6 +115,7 @@
 		1153A79624B967FE00CE3574 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		1153A79924B97F6400CE3574 /* InitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialView.swift; sourceTree = "<group>"; };
 		1153A7A824BA023F00CE3574 /* CustomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomController.swift; sourceTree = "<group>"; };
+		1153A7AE24BA9BD800CE3574 /* ActiveVote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveVote.swift; sourceTree = "<group>"; };
 		11783E6824B53BA500EEFE80 /* Gleem_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gleem_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11783E6B24B53BA500EEFE80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11783E6D24B53BA500EEFE80 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 				11783EEC24B53E5000EEFE80 /* FavoriteUser.swift */,
 				11783EEE24B53E5000EEFE80 /* User.swift */,
 				11783EEF24B53E5000EEFE80 /* Vote.swift */,
+				1153A7AE24BA9BD800CE3574 /* ActiveVote.swift */,
 				11783EF024B53E5000EEFE80 /* MyVote.swift */,
 			);
 			path = Model;
@@ -726,6 +729,7 @@
 				11783EE924B53DD900EEFE80 /* Keyboard.swift in Sources */,
 				11783ED124B53D1A00EEFE80 /* ExpandView.swift in Sources */,
 				1153A79324B9679200CE3574 /* SignupButton.swift in Sources */,
+				1153A7AF24BA9BD800CE3574 /* ActiveVote.swift in Sources */,
 				1153A79024B9679200CE3574 /* SigninButton.swift in Sources */,
 				11783ED224B53D1A00EEFE80 /* SettingView.swift in Sources */,
 				11783EC724B53D1A00EEFE80 /* SafariView.swift in Sources */,

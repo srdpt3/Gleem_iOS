@@ -11,10 +11,10 @@ import Firebase
 
 class observer : ObservableObject{
     
-    @Published var users = [User]()
+    @Published var users = [ActiveVote]()
     @Published var totalCount = 0
     
-    @Published var last = -1
+    @Published var last = 0
     @Published var isLoading = false
     @Published var error: NSError?
     @Published var cardViews = [MainCardView]()
@@ -29,25 +29,23 @@ class observer : ObservableObject{
         }
     }
     
-    var userSession: User?
     var handle: AuthStateDidChangeListenerHandle?
     
     func listenAuthenticationState() {
         handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
             if let user = user {
                 print("listenAuthenticationState \(user.email)")
-                let firestoreUserId = Ref.FIRESTORE_DOCUMENT_USERID(userId: user.uid)
-                firestoreUserId.getDocument { (document, error) in
-                    if let dict = document?.data() {
-                        guard let decoderUser = try? User.init(fromDictionary: dict) else {return}
-                        self.userSession = decoderUser
-                    }
-                }
+                //                let firestoreUserId = Ref.FIRESTORE_DOCUMENT_USERID(userId: user.uid)
+                //                firestoreUserId.getDocument { (document, error) in
+                //                    if let dict = document?.data() {
+                //                        guard let decoderUser = try? User.init(fromDictionary: dict) else {return}
+                //                        self.userSession = decoderUser
+                //                    }
+                //                }
                 self.isLoggedIn = true
             } else {
                 print("isLoogedIn is false")
                 self.isLoggedIn = false
-                self.userSession = nil
                 
             }
         })
@@ -76,84 +74,110 @@ class observer : ObservableObject{
     
     func createCardView(){
         self.cardViews.removeAll()
-        //        var views = [MainCardView]()
-        for index in 0..<2 {
+        var indexRange = 0
+        
+        if(self.totalCount <= 2 && self.totalCount > 0){
+            indexRange = self.totalCount
+        }else if self.totalCount > 2 {
+            indexRange = 2
+        }
+        
+        for index in 0..<indexRange {
             cardViews.append(MainCardView(user: users[index]))
         }
-        //           return views
         self.index = self.cardViews.count
         
         print("reload \( self.index )")
-        
     }
     
     
     func reload(){
         self.isLoading = true
         self.users.removeAll()
-        
-        let db = Firestore.firestore()
-        db.collection("users").getDocuments { (snap, err) in
-            
+        Ref.FIRESTORE_COLLECTION_ACTIVE_VOTE.getDocuments { (snap, err) in
             if err != nil{
-                
                 print((err?.localizedDescription)!)
                 self.error = (err?.localizedDescription as! NSError)
-                
                 return
             }
             
             for i in snap!.documents{
-                let id = i.documentID
-                let email = i.get("email") as! String
-                let username = i.get("username") as! String
-                let age = i.get("age") as! String
-                let sex = i.get("sex") as! String
                 
-                let profileImageUrl = i.get("profileImageUrl") as! String
-                self.users.append(User(id: id, email: email, profileImageUrl: profileImageUrl, username: username, age: age, sex: sex, swipe: 0, degree: 0))
+                let id = i.documentID
+                if(id != User.currentUser()!.id){
+                    
+                    let dict = i.data()
+                    
+                    guard let decoderPost = try? ActiveVote.init(fromDictionary: dict) else {return}
+                    
+                    self.users.append(decoderPost)
+                    
+                    
+                    //
+                    //                    let email = i.get("email") as! String
+                    //                    let username = i.get("username") as! String
+                    //                    let age = i.get("age") as! String
+                    //                    let sex = i.get("sex") as! String
+                    //                    let profileImageUrl = i.get("profileImageUrl") as! String
+                    //
+                    //
+                    //                    let attr1 = _dictionary["attr1"] as! Int
+                    //                    let attr2 = _dictionary["attr2"] as! Int
+                    //                    let attr3 = _dictionary["attr3"] as! Int
+                    //                    let attr4 = _dictionary["attr4"] as! Int
+                    //                    let attr5 = _dictionary["attr5"] as! Int
+                    //                    let attrNames = _dictionary["attrNames"] as! [String]
+                    //                    let numVote = _dictionary["numVote"] as! Int
+                    //
+                    //                    let createdDate = _dictionary["createdDate"] as! Double
+                    //                    let lastModifiedDate = _dictionary["lastModifiedDate"] as! Double
+                    //
+                    //
+                    //
+                    //                    self.users.append(ActiveVote(attr1: attr1, attr2: <#T##Int#>, attr3: <#T##Int#>, attr4: <#T##Int#>, attr5: <#T##Int#>, attrNames: <#T##[String]#>, numVote: <#T##Int#>, createdDate: <#T##Double#>, lastModifiedDate: <#T##Double#>, id: <#T##String#>, email: <#T##String#>, profileImageUrl: <#T##String#>, username: <#T##String#>, age: <#T##String#>, sex: <#T##String#>))
+                    //
+                    //
+                    //
+                    //
+                }
+                
             }
             print("self.users.count \(self.users.count)")
             self.isLoading = false
             self.totalCount = self.users.count
-            self.last = -1
+            self.last = 0
             self.createCardView()
         }
         
-    }
-    
-    
-    func update(id : User,value : CGFloat,degree : CGFloat){
+        //
+        //        let db = Firestore.firestore()
+        //        db.collection("users").getDocuments { (snap, err) in
+        //
+        //            if err != nil{
+        //
+        //                print((err?.localizedDescription)!)
+        //                self.error = (err?.localizedDescription as! NSError)
+        //
+        //                return
+        //            }
+        //
+        //            for i in snap!.documents{
+        //                let id = i.documentID
+        //                let email = i.get("email") as! String
+        //                let username = i.get("username") as! String
+        //                let age = i.get("age") as! String
+        //                let sex = i.get("sex") as! String
+        //
+        //                let profileImageUrl = i.get("profileImageUrl") as! String
+        //                self.users.append(User(id: id, email: email, profileImageUrl: profileImageUrl, username: username, age: age, sex: sex, swipe: 0, degree: 0))
+        //            }
+        //            print("self.users.count \(self.users.count)")
+        //            self.isLoading = false
+        //            self.totalCount = self.users.count
+        //            self.last = -1
+        //            self.createCardView()
+        //        }
         
-        for i in 0..<self.users.count{
-            
-            if self.users[i].id == id.id{
-                
-                self.users[i].swipe = value
-                self.users[i].degree = degree
-                self.last = i
-                self.index = self.index - 1
-                break
-            }
-            
-            
-        }
-        //        self.users.remove(at: self.last )
-        
-        print(self.index)
-        if(self.index  ==  0 && self.last != -1){
-            print("emptu")
-            self.users.removeAll()
-            self.reload()
-        }
-    }
-    func update2(id : User,value : CGFloat,degree : CGFloat){
-        
-        for i in 0..<self.users.count{
-            if self.users[i].id == id.id{
-                self.users[i].swipe = value
-            }
-        }
     }
     
     

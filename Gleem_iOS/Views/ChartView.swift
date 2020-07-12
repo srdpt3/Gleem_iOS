@@ -107,7 +107,13 @@ struct ChartView: UIViewRepresentable {
             .yAxisMax(Float(totalNum))
             .yAxisVisible(true)
         
-//        uiView.aa_onlyRefreshTheChartDataWithChartModelSeries([["data": [data[0],data[1],data[2],data[3],data[4]] as AnyObject]])
+        uiView.aa_onlyRefreshTheChartDataWithChartModelSeries([
+            AASeriesElement().name(SERIES_TITLE)
+                .data([data[0],data[1],data[2],data[3],data[4]]),
+            
+        ])
+        //        uiView.aa_onlyRefreshTheChartDataWithChartModelSeries([["data": [data[0],data[1],data[2],data[3],data[4]] as AnyObject]])
+
     }
     
     func makeUIView(context: Context) -> AAChartView {

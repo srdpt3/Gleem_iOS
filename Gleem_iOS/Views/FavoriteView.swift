@@ -107,12 +107,11 @@ func getAngleMultiplier(bounds: GeometryProxy) -> Double {
 
 struct MainSubViewFavorite: View{
     let title: String
-    let users: [User]
+    let users: [ActiveVote]
     @State var show : Bool  = false
     @State var showExpandView : Bool = false
     @State var isVoted : Bool  = true
     //    var user : User?
-    @State var selectedUser : User?
     
     var body : some View{
         
@@ -153,62 +152,61 @@ struct MainSubViewFavorite: View{
         
     }
 }
-
-struct MainSubViewFavorite2: View{
-    let title: String
-    let users: [User]
-    @State var show : Bool  = false
-    
-    @State var showExpandView : Bool = false
-    @State var isVoted : Bool  = true
-    //    var user : User?
-    @State var selectedUser : User?
-    
-    var body : some View{
-        
-        VStack(alignment: .leading) {
-            HStack{
-                
-                Text("나에게 끌림").fontWeight(.heavy).font(.headline)
-                    .foregroundColor(Color("Color2"))
-                //                Spacer()
-                
-                
-            }.padding(.leading, 12)
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 12) {
-                    HStack(spacing : 12){
-                        ForEach(self.users) { i in
-                            
-                            FavoriteCard2(user: i).onTapGesture {
-                                self.show.toggle()
-                                self.selectedUser = i
-                            }.blur(radius: 5)
-                                .padding(.leading, i.id == self.users.first!.id ? 12 : 0)
-                                .padding(.trailing, i.id == self.users.last!.id ? 12 : 0)
-                        }
-                    }
-                    
-                    
-                    
-                }
-            }
-            
-        }
-        
-        
-        
-    }
-    
-    
-}
-
+//
+//struct MainSubViewFavorite2: View{
+//    let title: String
+//    let users: [ActiveVote]
+//    @State var show : Bool  = false
+//    
+//    @State var showExpandView : Bool = false
+//    @State var isVoted : Bool  = true
+//    //    var user : User?
+//    @State var selectedUser : User?
+//    
+//    var body : some View{
+//        
+//        VStack(alignment: .leading) {
+//            HStack{
+//                
+//                Text("나에게 끌림").fontWeight(.heavy).font(.headline)
+//                    .foregroundColor(Color("Color2"))
+//                //                Spacer()
+//                
+//                
+//            }.padding(.leading, 12)
+//            
+//            ScrollView(.horizontal, showsIndicators: false) {
+//                HStack(spacing: 12) {
+//                    HStack(spacing : 12){
+//                        ForEach(self.users) { i in
+//                            
+//                            FavoriteCard2(user: i).onTapGesture {
+//                                self.show.toggle()
+//                            }.blur(radius: 5)
+//                                .padding(.leading, i.id == self.users.first!.id ? 12 : 0)
+//                                .padding(.trailing, i.id == self.users.last!.id ? 12 : 0)
+//                        }
+//                    }
+//                    
+//                    
+//                    
+//                }
+//            }
+//            
+//        }
+//        
+//        
+//        
+//    }
+//    
+//    
+//}
+//
 
 
 
 struct FavoriteCard2: View {
-    let user: User
+    let user: ActiveVote
     
     var body: some View {
         VStack {
@@ -239,7 +237,7 @@ struct FavoriteCard2: View {
 
 
 struct FavoriteCard: View {
-    let user: User
+    let user: ActiveVote
     //    @Namespace var namespace
     
     var body: some View {
@@ -279,7 +277,7 @@ struct FavoriteCard: View {
 
 
 struct SectionView2: View {
-    var user: User
+    var user: ActiveVote
     var width: CGFloat = 160
     var height: CGFloat = 160
     

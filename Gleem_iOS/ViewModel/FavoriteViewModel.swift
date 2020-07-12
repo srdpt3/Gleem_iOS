@@ -12,13 +12,13 @@ class FavoriteViewModel: ObservableObject {
     @Published var isSucess = false
     @Published var liked : Bool = false
 
-    @Published var favoriteUsers : [User] = []
+    @Published var favoriteUsers : [ActiveVote] = []
     @Published var error: NSError?
     @Published var isLoading = false
     
     var splitted: [[User]] = []
     
-    func addToMyList(user: User) {
+    func addToMyList(user: ActiveVote) {
         
         guard let dict = try? user.toDictionary() else {return}
         
@@ -87,7 +87,7 @@ class FavoriteViewModel: ObservableObject {
          
             for document in snapshot!.documents {
                 let dict = document.data()
-                guard let decoderPost = try? User.init(fromDictionary: dict) else {return}
+                guard let decoderPost = try? ActiveVote.init(fromDictionary: dict) else {return}
                 
                 self.favoriteUsers.append(decoderPost)
             }

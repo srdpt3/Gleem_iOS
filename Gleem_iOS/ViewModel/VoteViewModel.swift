@@ -22,7 +22,7 @@ class VoteViewModel: ObservableObject {
         
         //batch writing. vote multiple entries
         let batch = Ref.FIRESTORE_ROOT.batch()
-        let voteRef = Ref.FIRESTORE_COLLECTION_VOTE.document(id)
+        let voteRef = Ref.FIRESTORE_COLLECTION_ACTIVE_VOTE.document(id)
         
         for (index, button) in buttonPressed.enumerated() {
             if (button){
@@ -33,11 +33,11 @@ class VoteViewModel: ObservableObject {
             }
         }
         batch.updateData([VOTE_NUMBER : FieldValue.increment(Int64(1))], forDocument: voteRef)
-        
+
         //        let myVote = Vote(attr1: 0, attr2 : 0 , attr3 : 1 , attr4: 2, attr5: 0,attrNames:buttonTitle)
         //        guard let dict = try? myVote.toDictionary() else {return}
         let myVoteRef = Ref.FIRESTORE_COLLECTION_MYVOTE_USERID(userId: id)
-        
+
         let myVote = MyVote(userId: id, myVotes: updatedValueDict, attrNames: buttonTitle)
         guard let dict = try? myVote.toDictionary() else {return}
         batch.setData(dict, forDocument: myVoteRef)

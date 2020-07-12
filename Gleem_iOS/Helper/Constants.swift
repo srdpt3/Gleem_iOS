@@ -162,7 +162,7 @@ class Ref {
     
     static var FIRESTORE_COLLECTION_MYVOTE = FIRESTORE_ROOT.collection("myvote")
     static func FIRESTORE_COLLECTION_MYVOTE_USERID(userId: String) -> DocumentReference {
-        return FIRESTORE_COLLECTION_MYVOTE.document("dustin").collection("voted").document(userId)
+        return FIRESTORE_COLLECTION_MYVOTE.document(User.currentUser()!.id).collection("voted").document(userId)
     }
     
     

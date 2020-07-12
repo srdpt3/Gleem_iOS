@@ -11,7 +11,7 @@ import SDWebImageSwiftUI
 
 struct ExpandView: View {
     
-    var user : User
+    var user : ActiveVote
     @Binding var show : Bool
     @Binding var isVoted: Bool
     //    @State var voted: Bool = false
@@ -19,7 +19,7 @@ struct ExpandView: View {
     //    @State var voteData = [Int.random(in: 0 ..< 100),Int.random(in: 0 ..< 100),Int.random(in: 0 ..< 100),Int.random(in: 0 ..< 100),Int.random(in: 0 ..< 100)]
     
     @State var buttonPressed = [false,false,false,false,false]
-    let  buttonTitle = ["개같이 생김","잘생김","섹시함","스마트함","머리스타일 잘어울림"]
+    //    let  buttonTitle = ["개같이 생김","잘생김","섹시함","스마트함","머리스타일 잘어울림"]
     var selectedButton = [String]()
     
     @ObservedObject private var voteViewModel = VoteViewModel()
@@ -31,7 +31,7 @@ struct ExpandView: View {
     
     func persist() {
         //                                     self.topRatedState.loadMovies(with: .topRated)
-        self.voteViewModel.persist(id: user.id, buttonPressed: self.buttonPressed, buttonTitle:self.buttonTitle)
+      self.voteViewModel.persist(id: user.id, buttonPressed: self.buttonPressed, buttonTitle:self.user.attrNames)
         self.loadChartData()
     }
     
@@ -40,13 +40,15 @@ struct ExpandView: View {
             
             self.voteData.removeAll()
             
-            
-            self.voteData.append((Double(vote.attr1) / Double(vote.numVote) * 100).roundToDecimal(0))
-            self.voteData.append((Double(vote.attr2) / Double(vote.numVote) * 100).roundToDecimal(0))
-            self.voteData.append((Double(vote.attr3) / Double(vote.numVote) * 100).roundToDecimal(0))
-            self.voteData.append((Double(vote.attr4) / Double(vote.numVote) * 100).roundToDecimal(0))
-            self.voteData.append((Double(vote.attr5) / Double(vote.numVote) * 100).roundToDecimal(0))
-            //            self.totalNum = vote.numVote
+            if(vote.numVote == 0){
+                self.voteData = [10,10,10,10,10]
+            }else{
+                self.voteData.append((Double(vote.attr1) / Double(vote.numVote) * 100).roundToDecimal(0))
+                self.voteData.append((Double(vote.attr2) / Double(vote.numVote) * 100).roundToDecimal(0))
+                self.voteData.append((Double(vote.attr3) / Double(vote.numVote) * 100).roundToDecimal(0))
+                self.voteData.append((Double(vote.attr4) / Double(vote.numVote) * 100).roundToDecimal(0))
+                self.voteData.append((Double(vote.attr5) / Double(vote.numVote) * 100).roundToDecimal(0))
+            }
             
             print(self.voteData)
             
@@ -118,8 +120,6 @@ struct ExpandView: View {
                             Button(action:self.addToMyList) {
                                 
                                 Image(self.favoriteViewModel.liked == true ? "heartred" : "heartwhite").resizable().frame(width: 50, height: 50).aspectRatio(contentMode: .fit)
-                                //                        .renderingMode(.original)
-                                //                        .padding()
                                 
                                 
                             }.buttonStyle(PlainButtonStyle())
@@ -134,8 +134,8 @@ struct ExpandView: View {
                         
                         
                     }
-//                    .clipShape(CustomShape(corner: .bottomLeft, radii: 30))
-                    .background(Color.black.opacity(0.06)).edgesIgnoringSafeArea(.top)
+                        //                    .clipShape(CustomShape(corner: .bottomLeft, radii: 30))
+                        .background(Color.black.opacity(0.06)).edgesIgnoringSafeArea(.top)
                     
                 }
                 
@@ -170,17 +170,17 @@ struct ExpandView: View {
                     
                     VStack(spacing: 6){
                         HStack(spacing : 6){
-                            AttrButtonView(isPressed: self.$buttonPressed[0],  title:buttonTitle[0])
+                            AttrButtonView(isPressed: self.$buttonPressed[0],  title:user.attrNames[0])
                             //                        Spacer()
-                            AttrButtonView(isPressed: self.$buttonPressed[1], title:buttonTitle[1])
-                            AttrButtonView(isPressed: self.$buttonPressed[2], title:buttonTitle[2])
+                            AttrButtonView(isPressed: self.$buttonPressed[1], title:user.attrNames[1])
+                            AttrButtonView(isPressed: self.$buttonPressed[2], title:user.attrNames[2])
                             
                             
                         }.padding(.horizontal, 5)
                         HStack(spacing : 6){
-                            AttrButtonView(isPressed: self.$buttonPressed[3], title:buttonTitle[3])
+                            AttrButtonView(isPressed: self.$buttonPressed[3], title:user.attrNames[3])
                             //                        Spacer()
-                            AttrButtonView(isPressed: self.$buttonPressed[4], title:buttonTitle[4])
+                            AttrButtonView(isPressed: self.$buttonPressed[4], title:user.attrNames[4])
                             Spacer()
                             
                         }.padding(.horizontal, 20)
@@ -203,10 +203,6 @@ struct ExpandView: View {
                                 .background(
                                     Capsule().stroke( Color("Color5"), lineWidth: 2)
                             )
-                            //                                                            .animation(
-                            //                                                              Animation.easeInOut(duration: 1)
-                            //                                                                  .delay(1)
-                            //                                                          )
                         }   // Disabling button by verifying all images...
                             .opacity(self.checkAttrSelected() ? 1 : 0.35)
                             .disabled(self.checkAttrSelected() ? false : true).padding(.top, 10)
@@ -217,7 +213,7 @@ struct ExpandView: View {
                     VStack(spacing: 6){
                         if !self.voteData.isEmpty {
                             Spacer()
-                            ChartView(data: self.$voteData, totalNum: CHART_Y_AXIS, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width - 10, height: (UIScreen.main.bounds.height) / 2.2)
+                            ChartView(data: self.$voteData, totalNum: CHART_Y_AXIS, categories: self.user.attrNames).frame(width: UIScreen.main.bounds.width - 10, height: (UIScreen.main.bounds.height) / 2.2)
                             
                             Spacer()
                         } else {
@@ -239,10 +235,9 @@ struct ExpandView: View {
                 
             }
             .padding(.top, 35)
-                //            .padding(.horizontal)
-                .background(Color.white)
-                .cornerRadius(20)
-                .offset(y: -80)
+            .background(Color.white)
+            .cornerRadius(20)
+            .offset(y: -80)
         })
             .edgesIgnoringSafeArea(.all)
             .background(Color.white.edgesIgnoringSafeArea(.all))

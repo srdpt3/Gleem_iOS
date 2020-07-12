@@ -14,7 +14,7 @@ struct MainCardView: View, Identifiable {
   // MARK: - PROPERTIES
   
   let id = UUID()
-  var user: User
+  var user: ActiveVote
   
   var body: some View {
 //    Image(honeymoon.image)
