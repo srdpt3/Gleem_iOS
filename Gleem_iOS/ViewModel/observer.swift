@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Firebase
+import FirebaseAuth
 
 class observer : ObservableObject{
     
@@ -21,14 +22,15 @@ class observer : ObservableObject{
     
     @Published var index = -1;
     @Published var isLoggedIn = false
+    @Published var shoTabBar = true
+
     
-    
-//    init() {
-//                       self.reload()
-//
-//
-//    }
-//
+    //    init() {
+    //                       self.reload()
+    //
+    //
+    //    }
+    //
     var handle: AuthStateDidChangeListenerHandle?
     
     func listenAuthenticationState() {
@@ -36,14 +38,15 @@ class observer : ObservableObject{
             if let user = user {
                 self.reload()
                 print("listenAuthenticationState \(user.email)")
-                //                let firestoreUserId = Ref.FIRESTORE_DOCUMENT_USERID(userId: user.uid)
-                //                firestoreUserId.getDocument { (document, error) in
-                //                    if let dict = document?.data() {
-                //                        guard let decoderUser = try? User.init(fromDictionary: dict) else {return}
-                //                        self.userSession = decoderUser
-                //                    }
-                //                }
-                
+//                let firestoreUserId = Ref.FIRESTORE_DOCUMENT_USERID(userId: user.uid)
+//                firestoreUserId.getDocument { (document, error) in
+//                    if let dict = document?.data() {
+////                        guard let decoderUser = try? User.init(fromDictionary: dict) else {return}
+//                        guard let decoderUser = try? User.init(_dictionary: dict as NSDictionary) else {return}
+//                        saveUserLocally(mUserDictionary: dict as NSDictionary)
+//                    }
+//                }
+//
                 
                 
                 self.isLoggedIn = true
@@ -58,10 +61,14 @@ class observer : ObservableObject{
     
     
     func logout() {
+
         do {
+            cardViews.removeAll()
+            users.removeAll()
             try Auth.auth().signOut()
             resetDefaults()
-//            unbind()
+
+            //            unbind()
         } catch  {
             print("Logout Failed")
         }
@@ -111,7 +118,7 @@ class observer : ObservableObject{
             for i in snap!.documents{
                 
                 let id = i.documentID
-                if(id != User.currentUser()!.id){
+                if(id != Auth.auth().currentUser?.uid){
                     
                     let dict = i.data()
                     

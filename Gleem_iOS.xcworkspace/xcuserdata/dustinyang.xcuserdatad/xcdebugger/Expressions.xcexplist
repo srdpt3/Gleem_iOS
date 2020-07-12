@@ -14,10 +14,16 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in MyStaticView.loadChartData():MyStaticView.swift">
+         contextName = "closure #1 in FavoriteViewModel.loadFavoriteUsers():FavoriteViewModel.swift">
          <PersistentStrings>
             <PersistentString
-               value = "(Double(vote.attr1) / Double(vote.numVote) * 100)">
+               value = "dict">
+            </PersistentString>
+            <PersistentString
+               value = " ActiveVote.init(fromDictionary: dict)">
+            </PersistentString>
+            <PersistentString
+               value = "snapshot!.documents">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -26,6 +32,14 @@
          <PersistentStrings>
             <PersistentString
                value = "self.obs.last">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in MyStaticView.loadChartData():MyStaticView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "(Double(vote.attr1) / Double(vote.numVote) * 100)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

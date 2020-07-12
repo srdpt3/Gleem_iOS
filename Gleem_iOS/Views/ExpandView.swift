@@ -90,14 +90,14 @@ struct ExpandView: View {
                 
                 if reader.frame(in: .global).minY > -460 {
                     ZStack(alignment: .topTrailing) {
-                        AnimatedImage(url: URL(string: self.user.profileImageUrl))
+                        AnimatedImage(url: URL(string: self.user.imageLocation))
                             .resizable()
-                            .aspectRatio(contentMode: .fit)
+//                            .aspectRatio(contentMode: .fit)
                             // moving View Up....
                             .offset(y: -reader.frame(in: .global).minY)
                             // going to add parallax effect....
                             .frame(width: UIScreen.main.bounds.width, height:  reader.frame(in: .global).minY > 0 ? reader.frame(in: .global).minY + 460 : 460)
-                        
+                            .scaledToFit()
                         
                         Button(action: {
                             

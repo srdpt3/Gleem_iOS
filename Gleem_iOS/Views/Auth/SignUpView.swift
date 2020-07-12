@@ -20,7 +20,8 @@ struct SignUpView: View {
     //    @Binding var showSignInView : Bool
     @State var showLoader : Bool = false
     @State var agree = false
-    
+    @State var selected = 0
+
     func signUp() {
         self.showLoader.toggle()
         
@@ -71,13 +72,23 @@ struct SignUpView: View {
             //            }.offset(y: -122)
             //                .padding(.bottom,-132)
             VStack(spacing: 20){
-                
-                
-                signupViewModel.image.resizable().aspectRatio(contentMode: .fill).frame(width: 80, height: 80)
-                    .clipShape(Circle()).padding(.bottom, 10).padding(.top, 10)
-                    .onTapGesture {
-                        print("Tapped")
-                        self.signupViewModel.showImagePicker = true
+                HStack{
+                    signupViewModel.image.resizable().aspectRatio(contentMode: .fill).frame(width: 80, height: 80)
+                        .clipShape(Circle()).padding(.bottom, 10).padding(.top, 10)
+                        .onTapGesture {
+                            print("Tapped")
+                            self.signupViewModel.showImagePicker = true
+                    }
+                    Topbar(selected: self.$selected).padding(.top)
+
+//                    VStack{
+//                        //                        Spacer()
+//                        //                        Text("성별").foregroundColor(Color.black.opacity(0.1))
+//                        Spacer()
+//                        
+//                    }
+//                    
+                    
                 }
                 
                 
@@ -187,3 +198,49 @@ struct SignUpView: View {
 
 
 
+struct Topbar : View {
+    
+    @Binding var selected : Int
+    
+    var body : some View{
+        
+        HStack{
+            
+            Button(action: {
+                
+                self.selected = 0
+                
+            }) {
+                
+                Image("male")
+                    .resizable()
+                    .frame(width: 20, height: 20)
+                    .padding(.vertical,6)
+                    .padding(.horizontal,15)
+                    .background(self.selected == 0 ? Color.white : Color.clear)
+                    .clipShape(Capsule())
+            }
+            .foregroundColor(self.selected == 0 ?  Color("Color1"): .gray)
+            
+            Button(action: {
+                
+                self.selected = 1
+                
+            }) {
+                
+                Image("female")
+                .resizable()
+                .frame(width: 25, height: 20)
+                .padding(.vertical,6)
+                .padding(.horizontal,15)
+                .background(self.selected == 1 ? Color.white : Color.clear)
+                .clipShape(Capsule())
+            }
+            .foregroundColor(self.selected == 1 ? Color("myvote") : .gray)
+            
+            }.padding(8)
+            .background(Color("Color-2"))
+            .clipShape(Capsule())
+            .animation(.default)
+    }
+}

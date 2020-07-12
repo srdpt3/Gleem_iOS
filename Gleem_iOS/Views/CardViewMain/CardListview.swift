@@ -35,7 +35,6 @@ struct CardListview: View {
     //    }()
     
     // MARK: TOP CARD
-    
     private func isTopCard(cardView: MainCardView) -> Bool {
         guard let index = self.obs.cardViews.firstIndex(where: { $0.id == cardView.id }) else {
             return false
@@ -100,105 +99,122 @@ struct CardListview: View {
         ZStack{
             VStack{
                 
-//                Text(String(User.currentUser()!.username))
+                //                Text(String(User.currentUser()!.username))
                 HeaderView(showProfile: self.$showProfile, showInfoView: self.$showInfo)
                     .opacity(dragState.isDragging ? 0.0 : 1.0)
                     .animation(.default)
                 
                 Spacer()
                 ZStack{
-                    ForEach(self.obs.cardViews) { cardView in
-                        cardView.zIndex(self.isTopCard(cardView: cardView) ? 1 : 0)
-                            .overlay(
-                                ZStack {
-                                    // X-MARK SYMBOL
-                                    //                              Image(systemName: "x.circle")
-                                    //                                .modifier(SymbolModifier())
-                                    //                                .opacity(self.dragState.translation.width < -self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
-                                    //
-                                    // HEART SYMBOL
-                                    Image(systemName: "heart.circle")
-                                        .modifier(SymbolModifier())
-                                        .opacity(self.dragState.translation.width > self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
-                                }
-                        )
-                            .offset(x: self.isTopCard(cardView: cardView) ?  self.dragState.translation.width : 0, y: self.isTopCard(cardView: cardView) ?  self.dragState.translation.height : 0)
-                            .scaleEffect(self.dragState.isDragging && self.isTopCard(cardView: cardView) ? 0.85 : 1.0)
-                            .rotationEffect(Angle(degrees: self.isTopCard(cardView: cardView) ? Double(self.dragState.translation.width / 12) : 0))
-                            .animation(.interpolatingSpring(stiffness: 120, damping: 120))
-                            .gesture(LongPressGesture(minimumDuration: 0.01)
-                                .sequenced(before: DragGesture())
-                                .updating(self.$dragState, body: { (value, state, transaction) in
-                                    switch value {
-                                    case .first(true):
-                                        state = .pressing
-                                    case .second(true, let drag):
-                                        state = .dragging(translation: drag?.translation ?? .zero)
-                                    default:
-                                        break
+                    
+                    
+                    if(!self.obs.users.isEmpty){
+                        ForEach(self.obs.cardViews) { cardView in
+                            cardView.zIndex(self.isTopCard(cardView: cardView) ? 1 : 0)
+                                .overlay(
+                                    ZStack {
+                                        // X-MARK SYMBOL
+                                        //                              Image(systemName: "x.circle")
+                                        //                                .modifier(SymbolModifier())
+                                        //                                .opacity(self.dragState.translation.width < -self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
+                                        //
+                                        // HEART SYMBOL
+                                        Image(systemName: "heart.circle")
+                                            .modifier(SymbolModifier())
+                                            .opacity(self.dragState.translation.width > self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
                                     }
-                                })
-                                .onChanged({ (value) in
-                                    guard case .second(true, let drag?) = value else {
-                                        return
-                                    }
-                                    
-                                    if drag.translation.width < -self.dragAreaThreshold {
-                                        self.cardRemovalTransition = .leadingBottom
-                                    }
-                                    
-                                    if drag.translation.width > self.dragAreaThreshold {
-                                        self.cardRemovalTransition = .trailingBottom
-                                    }
-                                })
-                                .onEnded({ (value) in
-                                    guard case .second(true, let drag?) = value else {
-                                        return
-                                    }
-                                    if drag.translation.width > self.dragAreaThreshold {
-                                        //                                if drag.translation.width < -self.dragAreaThreshold || drag.translation.width > self.dragAreaThreshold {
-                                        //                                playSound(sound: "sound-rise", type: "mp3")
-                                        //                                self.moveCards()
-                                        if(self.isVoted){
-                                            self.moveCards()
+                            )
+                                .offset(x: self.isTopCard(cardView: cardView) ?  self.dragState.translation.width : 0, y: self.isTopCard(cardView: cardView) ?  self.dragState.translation.height : 0)
+                                .scaleEffect(self.dragState.isDragging && self.isTopCard(cardView: cardView) ? 0.85 : 1.0)
+                                .rotationEffect(Angle(degrees: self.isTopCard(cardView: cardView) ? Double(self.dragState.translation.width / 12) : 0))
+                                .animation(.interpolatingSpring(stiffness: 120, damping: 120))
+                                .gesture(LongPressGesture(minimumDuration: 0.01)
+                                    .sequenced(before: DragGesture())
+                                    .updating(self.$dragState, body: { (value, state, transaction) in
+                                        switch value {
+                                        case .first(true):
+                                            state = .pressing
+                                        case .second(true, let drag):
+                                            state = .dragging(translation: drag?.translation ?? .zero)
+                                        default:
+                                            break
                                         }
-                                    }
-                                })
-                        )
+                                    })
+                                    .onChanged({ (value) in
+                                        guard case .second(true, let drag?) = value else {
+                                            return
+                                        }
+                                        
+                                        if drag.translation.width < -self.dragAreaThreshold {
+                                            self.cardRemovalTransition = .leadingBottom
+                                        }
+                                        
+                                        if drag.translation.width > self.dragAreaThreshold {
+                                            self.cardRemovalTransition = .trailingBottom
+                                        }
+                                    })
+                                    .onEnded({ (value) in
+                                        guard case .second(true, let drag?) = value else {
+                                            return
+                                        }
+                                        if drag.translation.width > self.dragAreaThreshold {
+                                            //                                if drag.translation.width < -self.dragAreaThreshold || drag.translation.width > self.dragAreaThreshold {
+                                            //                                playSound(sound: "sound-rise", type: "mp3")
+                                            //                                self.moveCards()
+                                            if(self.isVoted){
+                                                self.moveCards()
+                                            }
+                                        }
+                                    })
+                            )
+                        }
+                    }else{
+                        LoadingView(isLoading: self.obs.isLoading, error: self.obs.error) {
+                            self.obs.reload()
+                        }
                     }
+                    
+                    
+                    
+                    
+                    
+                    
                     
                     
                 }.padding(.horizontal)
                 
                 Spacer()
-                FooterView(isVoted: $isVoted, showVotingScreen: $showVotingScreen)
-                    .opacity(dragState.isDragging ? 0.0 : 1.0)
-                    .animation(.easeInOut).opacity(self.obs.isLoading == true ? 0 : 1)
+                if(!self.obs.users.isEmpty){
+                    FooterView(isVoted: $isVoted, showVotingScreen: $showVotingScreen)
+                        .opacity(dragState.isDragging ? 0.0 : 1.0)
+                        .animation(.easeInOut).opacity(self.obs.isLoading == true ? 0 : 1)
+                }
+                
                 Spacer()
                 
                 
-            }
+                }.navigationBarHidden(true).navigationBarTitle("")
             
             if self.showProfile{
-                    MenuView()
-                        .background(Color.black.opacity(0.65))
-                        .offset(y: self.showProfile ? 0 : screen.height)
-                        .offset(y: self.viewState.height)
-                        .animation(.spring(response: 1, dampingFraction: 0.7, blendDuration: 0))
-                        .onTapGesture {
-                            self.showProfile.toggle()
+                MenuView()
+                    .background(Color.black.opacity(0.65))
+                    .offset(y: self.showProfile ? 0 : screen.height)
+                    .offset(y: self.viewState.height)
+                    .animation(.spring(response: 1, dampingFraction: 0.7, blendDuration: 0))
+                    .onTapGesture {
+                        self.showProfile.toggle()
+                }
+                .gesture(
+                    DragGesture().onChanged { value in
+                        self.viewState = value.translation
+                    }
+                    .onEnded { value in
+                        if self.viewState.height > 50 {
+                            self.showProfile = false
                         }
-                    .gesture(
-                        DragGesture().onChanged { value in
-                            self.viewState = value.translation
-                        }
-                        .onEnded { value in
-                            if self.viewState.height > 50 {
-                                self.showProfile = false
-                            }
-                            self.viewState = .zero
-                        }
-                    ).edgesIgnoringSafeArea(.all)
+                        self.viewState = .zero
+                    }
+                ).edgesIgnoringSafeArea(.all)
                 
             }
             

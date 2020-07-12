@@ -22,7 +22,7 @@ struct subMainView : View {
     @EnvironmentObject var obs : observer
     @State var index = 0
     var body: some View {
-//        NavigationView{
+        NavigationView{
             VStack(spacing: 0){
 
                 if self.index == 0{
@@ -35,15 +35,19 @@ struct subMainView : View {
                     FavoriteView().animation(.spring())
                 }
                 else{
-                    Color.black
+//                    Color.black
+                    MessagesView()
                 }
 //                Spacer()
-                CircleTab(index: self.$index)
-                    .background(Color.white.edgesIgnoringSafeArea(.bottom))
-                    .opacity(self.obs.isLoading == true ? 0 : 1)
+                if(self.obs.shoTabBar){
+                    CircleTab(index: self.$index)
+                                   .background(Color.white.edgesIgnoringSafeArea(.bottom))
+                                   .opacity(self.obs.isLoading == true ? 0 : 1)
+                }
+           
                 
             }
-//        }
+       }
     }
     
 }

@@ -21,13 +21,13 @@ struct ActiveVote:  Encodable, Decodable ,Identifiable{
     var lastModifiedDate: Double
     var id : String
     var email: String
-    var profileImageUrl: String
+    var imageLocation: String
     var username: String
     var age: String
     var sex: String
     
     
-    init(attr1: Int, attr2: Int, attr3: Int, attr4: Int, attr5: Int,attrNames: [String], numVote: Int, createdDate: Double, lastModifiedDate: Double,id: String, email: String, profileImageUrl: String, username: String,
+    init(attr1: Int, attr2: Int, attr3: Int, attr4: Int, attr5: Int,attrNames: [String], numVote: Int, createdDate: Double, lastModifiedDate: Double,id: String, email: String, imageLocation: String, username: String,
          age: String, sex:String ) {
         self.attr1 = attr1
         
@@ -43,7 +43,7 @@ struct ActiveVote:  Encodable, Decodable ,Identifiable{
         self.lastModifiedDate = lastModifiedDate
         self.id = id
         self.email = email
-        self.profileImageUrl = profileImageUrl
+        self.imageLocation = imageLocation
         self.username = username
         self.age = age
         self.sex = sex
@@ -61,7 +61,7 @@ struct ActiveVote:  Encodable, Decodable ,Identifiable{
         lastModifiedDate = _dictionary["lastModifiedDate"] as! Double
         id = _dictionary["id"] as! String
         email = _dictionary["email"] as! String
-        profileImageUrl = _dictionary["profileImageUrl"] as! String
+        imageLocation = _dictionary["imageLocation"] as! String
         username = _dictionary["username"] as! String
         age = _dictionary["age"] as! String
         sex = _dictionary["sex"] as! String

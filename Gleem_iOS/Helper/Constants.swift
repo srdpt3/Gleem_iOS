@@ -42,6 +42,16 @@ let IMAGE_LOGO = "logo"
 let IMAGE_USER_PLACEHOLDER = "user-placeholder"
 let IMAGE_PHOTO = "plus.circle"
 
+
+
+
+
+// FOOTER VIEW
+public let BUTTONNAME  = "매력지수 평가하기"
+public let BUTTONNAME_AFTER_VOTE  = "카드 다시보기"
+
+
+
 //FLAG
 public let BLOCKUSER = "신고해주셔서 감사합니다"
 //Vote
@@ -64,6 +74,9 @@ public let LOGOUT = "로그아웃"
 // Upload voting picture
 public let PHOTOUPLOAD = "평가받고 싶은 사진 올리기"
 
+
+//CHAT
+public let SEND_LIKE_MESSAGE = "안녕하세요" + User.currentUser()!.username + "님께서 관심을 표현하였습니다."
 
 class Ref {
     // Storage
@@ -110,6 +123,29 @@ class Ref {
     static func FIRESTORE_COLLECTION_INBOX_MESSAGES(userId: String) -> CollectionReference {
         return FIRESTORE_COLLECTION_INBOX_MESSAGES.document(userId).collection("inboxMessages")
     }
+    
+//    // Storage - Posts
+//      static var STORAGE_CHAT = storage.reference(forURL: kFILEREFERENCE).child("chat")
+//      
+//      static func STORAGE_CHAT_ID(chatId: String) -> StorageReference {
+//          return STORAGE_CHAT.child(chatId)
+//      }
+//      
+//      
+//      
+//      static func FIRESTORE_COLLECTION_CHATROOM(senderId: String, recipientId: String) -> CollectionReference {
+//          return  FirebaseReference(.chat).document(senderId).collection("chatRoom").document(recipientId).collection("chatItems")
+//      }
+//      
+//      
+//      static func FIRESTORE_COLLECTION_INBOX_MESSAGES_DOCUMENT_USERID(senderId: String, recipientId: String) -> DocumentReference {
+//          return FirebaseReference(.messages).document(senderId).collection("inboxMessages").document(recipientId)
+//          
+//          
+//      }
+      
+    
+    
     
     
     static func FIRESTORE_COLLECTION_INBOX_MESSAGES_DOCUMENT_USERID(senderId: String, recipientId: String) -> DocumentReference {
@@ -182,7 +218,7 @@ class Ref {
     
     static var FIRESTORE_COLLECTION_LIKED = FIRESTORE_ROOT.collection("liked")
     static func FIRESTORE_COLLECTION_LIKED_USERID(userId: String) -> DocumentReference {
-        return FIRESTORE_COLLECTION_LIKED.document(User.currentUser()!.id).collection("liked").document(userId)
+        return FIRESTORE_COLLECTION_LIKED.document(Auth.auth().currentUser!.uid).collection("liked").document(userId)
 
 
     }

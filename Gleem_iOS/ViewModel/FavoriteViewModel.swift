@@ -12,7 +12,7 @@ class FavoriteViewModel: ObservableObject {
     @Published var isSucess = false
     @Published var liked : Bool = false
 
-    @Published var favoriteUsers : [ActiveVote] = []
+    @Published var favoriteUsers = [ActiveVote]()
     @Published var error: NSError?
     @Published var isLoading = false
     
@@ -86,6 +86,7 @@ class FavoriteViewModel: ObservableObject {
             }
          
             for document in snapshot!.documents {
+            
                 let dict = document.data()
                 guard let decoderPost = try? ActiveVote.init(fromDictionary: dict) else {return}
                 

@@ -18,7 +18,7 @@ struct MainCardView: View, Identifiable {
   
   var body: some View {
 //    Image(honeymoon.image)
-     AnimatedImage(url: URL(string:self.user.profileImageUrl))
+    AnimatedImage(url: URL(string:self.user.imageLocation))
         .resizable().frame(height: 550)
       .cornerRadius(24)
 //      .scaledToFit()
