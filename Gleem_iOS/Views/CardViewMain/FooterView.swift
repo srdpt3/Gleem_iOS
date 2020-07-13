@@ -24,16 +24,20 @@ struct FooterView: View {
                 // ACTION
                 //        playSound(sound: "sound-click", type: "mp3")
                 //                self.haptics.notificationOccurred(.success)
-                self.showVotingScreen.toggle()
+                
+                
+                withAnimation{
+                    self.showVotingScreen.toggle()
+                }
             }) {
                 Text(self.isVoted ? BUTTONNAME_AFTER_VOTE : BUTTONNAME )
                     .font(.system(.subheadline, design: .rounded))
                     .fontWeight(.heavy)
                     .padding(.horizontal, 20)
                     .padding(.vertical, 12)
-                    .accentColor(Color("Color2"))
+                    .accentColor(APP_THEME_COLOR)
                     .background(
-                        Capsule().stroke(Color("Color2"), lineWidth: 2)
+                        Capsule().stroke(APP_THEME_COLOR, lineWidth: 2)
                 )
             } .animation(.linear)
                 

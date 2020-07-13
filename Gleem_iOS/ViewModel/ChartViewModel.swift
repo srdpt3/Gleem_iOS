@@ -73,7 +73,6 @@ class ChartViewModel: ObservableObject {
                 
                 //                    guard let decoderPost = try? Vote.init(fromDictionary: dict) else {return}
 //                data = decoderPost
-                print(data)
                 self.isLoading = false
                 
             }else{

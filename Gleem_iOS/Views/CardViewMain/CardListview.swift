@@ -175,12 +175,6 @@ struct CardListview: View {
                     }
                     
                     
-                    
-                    
-                    
-                    
-                    
-                    
                 }.padding(.horizontal)
                 
                 Spacer()
@@ -193,7 +187,7 @@ struct CardListview: View {
                 Spacer()
                 
                 
-                }.navigationBarHidden(true).navigationBarTitle("")
+            }.navigationBarHidden(true).navigationBarTitle("")
             
             if self.showProfile{
                 MenuView()

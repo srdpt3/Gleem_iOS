@@ -23,19 +23,19 @@ struct SettingsView: View {
         ZStack {
             
             Form {
-                Section(header: Text("피드백").foregroundColor(Color("Color2")).font(.subheadline).bold()) {
+                Section(header: Text("피드백").foregroundColor(APP_THEME_COLOR).font(.subheadline).bold()) {
                     SectionButton(image: "star.circle.fill", label: "앱평가하기", isShowingMailView: $isShowingMailView)
                     
                     SectionButton(image: "envelope.circle.fill", label: "건의사항 보내기", isShowingMailView: $isShowingMailView)
                 }
                 
-                Section(header: Text("어플리케이션 소개 ").foregroundColor(Color("Color2")).font(.subheadline).bold()) {
+                Section(header: Text("어플리케이션 소개 ").foregroundColor(APP_THEME_COLOR).font(.subheadline).bold()) {
                     Text("2000억짜리앱").font(.caption)
                     Text("실시간 내 매력투표, 데이터 기반 AI매칭,").font(.caption)
                     
                 }
                 
-                Section(header: Text("크레딧").foregroundColor(Color("Color2")).font(.subheadline).bold()) {
+                Section(header: Text("크레딧").foregroundColor(APP_THEME_COLOR).font(.subheadline).bold()) {
                     VStack(alignment: .leading, spacing: 10){
                         Text("........").font(.footnote)
                     }
@@ -70,7 +70,7 @@ struct SettingsView: View {
                 //
                 //                         }
                 
-                Section(header: Text("개발자").foregroundColor(Color("Color2")).font(.subheadline).bold()) {
+                Section(header: Text("개발자").foregroundColor(APP_THEME_COLOR).font(.subheadline).bold()) {
                     VStack(alignment: .leading, spacing: 10){
                         
                         Button("FrontYard") {UIApplication.shared.open(URL(string: "www.frontyard.io")!)}

@@ -166,7 +166,7 @@ struct UploadView: View {
                             .foregroundColor(.white)
                             .padding(.vertical, 10)
                             .padding(.horizontal, 45)
-                            .background(Color("Color2"))
+                            .background(APP_THEME_COLOR)
                             .clipShape(Capsule())
                     }
                     .padding(.top, 10)

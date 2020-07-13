@@ -42,7 +42,7 @@ struct NeumorphicButtonStyle: ButtonStyle {
 //                        .shadow(color: .clear, radius: configuration.isPressed ? 8: 15, x: configuration.isPressed ? 5: 15, y: configuration.isPressed ? 5: 15)
 //                        .blendMode(.overlay)
                     RoundedRectangle(cornerRadius: 10, style: .continuous)
-                        .fill(self.isPressed ? Color("Color2") : bgColor)
+                        .fill(self.isPressed ? APP_THEME_COLOR : bgColor)
                 }
         )
              .scaleEffect(self.isPressed ? 0.9: 1)

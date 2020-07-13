@@ -36,7 +36,7 @@ struct FavoriteHome : View {
                         
                         HStack{
                             Text("나의 Gleem").fontWeight(.heavy).font(.headline)
-                                .foregroundColor(Color("Color2"))
+                                .foregroundColor(APP_THEME_COLOR)
                             Spacer()
                             
                         }
@@ -140,7 +140,7 @@ struct MainSubViewFavorite: View{
             
             HStack{
                 Text("나의 Gleem").fontWeight(.heavy).font(.headline)
-                    .foregroundColor(Color("Color2"))
+                    .foregroundColor(APP_THEME_COLOR)
                 Spacer()
                 
             }

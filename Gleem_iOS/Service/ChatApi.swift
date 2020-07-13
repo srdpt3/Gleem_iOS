@@ -81,6 +81,10 @@ class ChatApi {
                     
                 case .modified:
                     print("type: modified")
+//                    let dict = documentChange.document.data()
+//                              guard let decoderChat = try? Chat.init(fromDictionary: dict) else {return}
+//                              newChatMessage(decoderChat)
+//                              chatArray.append(decoderChat)
                 case .removed:
                     print("type: removed")
                 }

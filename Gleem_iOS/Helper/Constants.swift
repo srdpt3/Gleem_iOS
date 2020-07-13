@@ -13,14 +13,11 @@ import FirebaseStorage
 
 
 let screen = UIScreen.main.bounds
-
+let APP_LOGO = "gleem_resized"
 
 
 let COLOR_LIGHT_GRAY = Color(red: 0, green: 0, blue: 0, opacity: 0.15)
-
-
-
-
+let APP_THEME_COLOR = Color("Color2")
 
 
 // Sign in and Sign up pages
@@ -32,16 +29,17 @@ let TEXT_USERNAME = "ID"
 let TEXT_PASSWORD = "비밀번호"
 let TEXT_PASSWORD_REENTER = "비밀번호 다시입력"
 
-let TEXT_SIGNIN_HEADLINE = "Photo Sharing"
 let TEXT_SIGNIN_SUBHEADLINE = "The essiest way to share photos with family and friends"
 let TEXT_SIGNUP_NOTE = "An account will allow you to save and access photo information across devices. You can delete your account at any time and your information will not be shared."
 let TEXT_SIGNUP_PASSWORD_REQUIRED = "At least 8 characters required"
 let TERM_AGREEMENT = "I Read And Agree The Terms And Conditions"
+let TERM_AGREEMENT2 = "약관에 동의합니다"
+
+
 
 let IMAGE_LOGO = "logo"
 let IMAGE_USER_PLACEHOLDER = "user-placeholder"
 let IMAGE_PHOTO = "plus.circle"
-
 
 
 
@@ -77,6 +75,9 @@ public let PHOTOUPLOAD = "평가받고 싶은 사진 올리기"
 
 //CHAT
 public let SEND_LIKE_MESSAGE = "안녕하세요" + User.currentUser()!.username + "님께서 관심을 표현하였습니다."
+public let MESSAGEVIEW_TITLE = "채팅"
+
+
 
 class Ref {
     // Storage

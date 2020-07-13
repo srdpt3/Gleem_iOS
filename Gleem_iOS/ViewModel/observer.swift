@@ -22,9 +22,8 @@ class observer : ObservableObject{
     
     @Published var index = -1;
     @Published var isLoggedIn = false
-    @Published var shoTabBar = true
-
     
+
     //    init() {
     //                       self.reload()
     //
@@ -38,15 +37,15 @@ class observer : ObservableObject{
             if let user = user {
                 self.reload()
                 print("listenAuthenticationState \(user.email)")
-//                let firestoreUserId = Ref.FIRESTORE_DOCUMENT_USERID(userId: user.uid)
-//                firestoreUserId.getDocument { (document, error) in
-//                    if let dict = document?.data() {
-////                        guard let decoderUser = try? User.init(fromDictionary: dict) else {return}
-//                        guard let decoderUser = try? User.init(_dictionary: dict as NSDictionary) else {return}
-//                        saveUserLocally(mUserDictionary: dict as NSDictionary)
-//                    }
-//                }
-//
+                //                let firestoreUserId = Ref.FIRESTORE_DOCUMENT_USERID(userId: user.uid)
+                //                firestoreUserId.getDocument { (document, error) in
+                //                    if let dict = document?.data() {
+                ////                        guard let decoderUser = try? User.init(fromDictionary: dict) else {return}
+                //                        guard let decoderUser = try? User.init(_dictionary: dict as NSDictionary) else {return}
+                //                        saveUserLocally(mUserDictionary: dict as NSDictionary)
+                //                    }
+                //                }
+                //
                 
                 
                 self.isLoggedIn = true
@@ -61,12 +60,16 @@ class observer : ObservableObject{
     
     
     func logout() {
-
+        
         do {
             cardViews.removeAll()
             users.removeAll()
+         
             try Auth.auth().signOut()
+            
+            
             resetDefaults()
+            URLCache.shared.removeAllCachedResponses()
 
             //            unbind()
         } catch  {
@@ -162,89 +165,11 @@ class observer : ObservableObject{
             self.last = 0
             self.createCardView()
         }
-        
-        //
-        //        let db = Firestore.firestore()
-        //        db.collection("users").getDocuments { (snap, err) in
-        //
-        //            if err != nil{
-        //
-        //                print((err?.localizedDescription)!)
-        //                self.error = (err?.localizedDescription as! NSError)
-        //
-        //                return
-        //            }
-        //
-        //            for i in snap!.documents{
-        //                let id = i.documentID
-        //                let email = i.get("email") as! String
-        //                let username = i.get("username") as! String
-        //                let age = i.get("age") as! String
-        //                let sex = i.get("sex") as! String
-        //
-        //                let profileImageUrl = i.get("profileImageUrl") as! String
-        //                self.users.append(User(id: id, email: email, profileImageUrl: profileImageUrl, username: username, age: age, sex: sex, swipe: 0, degree: 0))
-        //            }
-        //            print("self.users.count \(self.users.count)")
-        //            self.isLoading = false
-        //            self.totalCount = self.users.count
-        //            self.last = -1
-        //            self.createCardView()
-        //        }
-        
+
     }
     
     
-    //    func updateDB(id : User,status : String){
-    //
-    //        let db = Firestore.firestore()
-    //
-    //        db.collection("users").document(id.u).updateData(["status":status]) { (err) in
-    //
-    //            if err != nil{
-    //
-    //                print(err!.localizedDescription)
-    //                return
-    //            }
-    //
-    //            print("success")
-    //
-    ////            for i in 0..<self.users.count{
-    ////
-    ////                if self.users[i].id == id.id{
-    ////                    self.users[i].swipe = 500
-    ////                    //                    if status == "liked"{
-    ////                    //                        print("liked")
-    ////                    //
-    ////                    //                        self.users[i].swipe = 500
-    ////                    //                    }
-    ////                    //                    else if status == "reject"{
-    ////                    //
-    ////                    //                        self.users[i].swipe = -500
-    ////                    //                    }
-    ////                    //                    else{
-    ////                    //                        print("ㅁㄴㅇㄹㅁㄴㅇ")
-    ////                    //
-    ////                    //                        self.users[i].swipe = 0
-    ////                    //                    }
-    ////                }
-    ////            }
-    //
-    //            if status == "voted"{
-    //
-    //                db.collection("voted").document(id.id).setData(["name":id.name,"age":id.age,"image":id.image]) { (err) in
-    //
-    //                    if err != nil{
-    //
-    //                        print((err?.localizedDescription)!)
-    //                        return
-    //                    }
-    //                }
-    //            }
-    //
-    //
-    //        }
-    //    }
+   
     
 }
 

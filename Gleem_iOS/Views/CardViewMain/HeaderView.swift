@@ -42,7 +42,7 @@ struct HeaderView: View {
             
             Spacer()
             
-            Image("gleem_resized")
+            Image(APP_LOGO)
                 .resizable()
                 .scaledToFit()
                 .frame(height: 50)
@@ -105,13 +105,3 @@ struct HeaderView: View {
         .padding()
     }
 }
-
-//struct HeaderView_Previews: PreviewProvider {
-//    @State static var showGuide: Bool = false
-//    @State static var showInfo: Bool = false
-//
-//    static var previews: some View {
-//        HeaderView(showGuideView: $showGuide, showInfoView: $showInfo)
-//            .previewLayout(.fixed(width: 375, height: 80))
-//    }
-//}

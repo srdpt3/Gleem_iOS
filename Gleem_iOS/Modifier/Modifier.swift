@@ -18,7 +18,7 @@ struct TextFieldModifier: ViewModifier {
 
 struct SigninButtonModifier: ViewModifier {
     func body(content: Content) -> some View {
-        content.padding().background(LinearGradient(gradient: .init(colors: [Color("Color2"),Color("Color1-2")]), startPoint: .leading, endPoint: .trailing)).cornerRadius(5).shadow(radius: 10, x: 0, y: 10).padding()
+        content.padding().background(LinearGradient(gradient: .init(colors: [APP_THEME_COLOR,Color("Color1-2")]), startPoint: .leading, endPoint: .trailing)).cornerRadius(5).shadow(radius: 10, x: 0, y: 10).padding()
         
     }
 }
@@ -26,7 +26,7 @@ struct SigninButtonModifier: ViewModifier {
 
 struct SigninButtonModifier2: ViewModifier {
     func body(content: Content) -> some View {
-        content.background(Color("Color2"))
+        content.background(APP_THEME_COLOR)
         .clipShape(Capsule())
         
     }

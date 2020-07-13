@@ -10,6 +10,6 @@ struct TitleModifier: ViewModifier {
   func body(content: Content) -> some View {
     content
       .font(.largeTitle)
-      .foregroundColor(Color("Color2"))
+      .foregroundColor(APP_THEME_COLOR)
   }
 }

@@ -43,7 +43,7 @@ struct CustomScrollView<Content>: View where Content: View {
         }
         .frame(height: geometry.size.height, alignment: (reversed ? .bottom : .top))
         .offset(y: contentOffset + scrollOffset)
-        .animation(.easeInOut)
+//        .animation(.default)
         .background(Color.white)
         .gesture(DragGesture()
             .onChanged { self.onDragChanged($0) }

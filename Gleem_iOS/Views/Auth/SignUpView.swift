@@ -125,7 +125,7 @@ struct SignUpView: View {
                         
                     }
                     
-                    Text(TERM_AGREEMENT).font(.caption)
+                    Text(TERM_AGREEMENT2).font(.caption)
                         .foregroundColor(Color.black.opacity(0.1))
                     
                     Spacer()
@@ -172,7 +172,8 @@ struct SignUpView: View {
                 .sheet(isPresented: $signupViewModel.showImagePicker) {
                     //                ImagePicker(showPicker: self.$signupViewModel.showImagePicker,  imageData: self.$signupViewModel.imageData)
                     ImagePicker(showImagePicker: self.$signupViewModel.showImagePicker, pickedImage: self.$signupViewModel.image, imageData: self.$signupViewModel.imageData)
-            }.KeyboardResponsive()
+            }
+//                .KeyboardResponsive()
                 .navigationBarTitle("")
                 .navigationBarHidden(true)
                 .edgesIgnoringSafeArea(.all)
@@ -186,11 +187,7 @@ struct SignUpView: View {
             }
             
         }
-        
-        
-        
-        
-        
+  
     }
     
     

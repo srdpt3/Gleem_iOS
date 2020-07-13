@@ -12,7 +12,7 @@ struct ButtonModifier: ViewModifier {
       .font(.headline)
       .padding()
       .frame(minWidth: 0, maxWidth: .infinity)
-      .background(Capsule().fill(Color("Color2")))
+      .background(Capsule().fill(APP_THEME_COLOR))
       .foregroundColor(Color.white)
   }
 }

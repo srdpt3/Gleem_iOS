@@ -32,19 +32,23 @@ class ChatViewModel: ObservableObject {
        self.chatArray = []
        self.isLoading = true
        
-       Api.Chat.getChatMessages(withUser: recipientId, onSuccess: { (chatMessages) in
-           if self.chatArray.isEmpty {
-               self.chatArray = chatMessages
-           }
-       }, onError: { (errorMessage) in
-           
-       }, newChatMessage: { (chat) in
-           if !self.chatArray.isEmpty {
-               self.chatArray.append(chat)
-           }
-       }) { (listener) in
-           self.listener = listener
-       }
+    Api.Chat.getChatMessages(withUser: recipientId, onSuccess: { (chatMessages) in
+//self.chatArray.removeAll()
+        if self.chatArray.isEmpty {
+            self.chatArray = chatMessages
+        }
+    }, onError: { (errorMessage) in
+        
+    }, newChatMessage: { (chat) in
+        if !self.chatArray.isEmpty {
+            self.chatArray.append(chat)
+        }
+    }) { (listener) in
+        self.listener = listener
+
+
+        
+    }
        
 
    }

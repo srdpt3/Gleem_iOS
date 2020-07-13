@@ -39,11 +39,10 @@ struct subMainView : View {
                     MessagesView()
                 }
 //                Spacer()
-                if(self.obs.shoTabBar){
                     CircleTab(index: self.$index)
                                    .background(Color.white.edgesIgnoringSafeArea(.bottom))
                                    .opacity(self.obs.isLoading == true ? 0 : 1)
-                }
+            
            
                 
             }
@@ -76,7 +75,7 @@ struct CircleTab : View {
                             .frame(width: 15, height: 15)
                             .foregroundColor(.white)
                             .padding()
-                            .background(Color("Color2"))
+                            .background(APP_THEME_COLOR)
                             .clipShape(Circle())
                             .offset(y: -15)
                             .padding(.bottom, -20)
@@ -108,7 +107,7 @@ struct CircleTab : View {
                             .frame(width: 15 , height: 15)
                             .foregroundColor(.white)
                             .padding()
-                            .background(Color("Color2"))
+                            .background(APP_THEME_COLOR)
                             .clipShape(Circle())
                             .offset(y: -15)
                             .padding(.bottom, -20)
@@ -140,7 +139,7 @@ struct CircleTab : View {
                             .frame(width: 15, height: 15)
                             .foregroundColor(.white)
                             .padding()
-                            .background(Color("Color2"))
+                            .background(APP_THEME_COLOR)
                             .clipShape(Circle())
                             .offset(y: -15)
                             .padding(.bottom, -20)
@@ -171,7 +170,7 @@ struct CircleTab : View {
                             .frame(width: 15, height: 15)
                             .foregroundColor(.white)
                             .padding()
-                            .background(Color("Color2"))
+                            .background(APP_THEME_COLOR)
                             .clipShape(Circle())
                             .offset(y: -15)
                             .padding(.bottom, -20)

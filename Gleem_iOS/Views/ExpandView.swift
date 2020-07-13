@@ -25,7 +25,9 @@ struct ExpandView: View {
     @ObservedObject private var voteViewModel = VoteViewModel()
     @ObservedObject private var chartViewModel = ChartViewModel()
     @ObservedObject  private var favoriteViewModel = FavoriteViewModel()
-    
+    @State private var pulsate: Bool = false
+    @Environment(\.presentationMode) var presentationMode
+
     //    @State var buttonSelected: Bool = false
     
     
@@ -98,23 +100,23 @@ struct ExpandView: View {
                             // going to add parallax effect....
                             .frame(width: UIScreen.main.bounds.width, height:  reader.frame(in: .global).minY > 0 ? reader.frame(in: .global).minY + 460 : 460)
                             .scaledToFit()
-                        
-                        Button(action: {
-                            
-                            withAnimation{
-                                self.show.toggle()
-                            }
-                            
-                        }) {
-                            
-                            Image(systemName: "xmark")
-                                .foregroundColor(.white)
-                                .padding()
-                                .background(Color.black.opacity(0.08))
-                                .clipShape(Circle())
-                        }
-                        .padding(.trailing).padding(.top, 50)
-                        
+//                        
+//                        Button(action: {
+//                            
+//                            withAnimation{
+//                                self.show.toggle()
+//                            }
+//                            
+//                        }) {
+//                            
+//                            Image(systemName: "xmark")
+//                                .foregroundColor(.white)
+//                                .padding()
+//                                .background(Color.black.opacity(0.08))
+//                                .clipShape(Circle())
+//                        }
+//                        .padding(.trailing).padding(.top, 50)
+//                        
                         if(self.isVoted){
                             
                             Button(action:self.addToMyList) {
@@ -136,7 +138,31 @@ struct ExpandView: View {
                     }
                         //                    .clipShape(CustomShape(corner: .bottomLeft, radii: 30))
                         .background(Color.black.opacity(0.06)).edgesIgnoringSafeArea(.top)
-                    
+                        .overlay(
+                            HStack {
+                                Spacer()
+                                VStack {
+                                    Button(action: {
+                                        // ACTION
+                                        self.presentationMode.wrappedValue.dismiss()
+                                    }, label: {
+                                        Image(systemName: "chevron.down.circle.fill")
+                                            .font(.title)
+                                            .foregroundColor(Color.white)
+                                            .shadow(radius: 4)
+                                            .opacity(self.pulsate ? 1 : 0.6)
+                                            .scaleEffect(self.pulsate ? 1.2 : 0.8, anchor: .center)
+                                            .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
+                                    })
+                                        .padding(.trailing, 20)
+                                        .padding(.top, 24)
+                                    Spacer()
+                                }
+                            }
+                    )
+                        .onAppear() {
+                            self.pulsate.toggle()
+                    }
                 }
                 
                 
@@ -146,98 +172,114 @@ struct ExpandView: View {
                 .frame(height: 460)
             //                            .clipShape(CustomShape(corner: .bottomLeft, radii: 30))
             //                            .background(Color.black.opacity(0.5).edgesIgnoringSafeArea(.top)
-            VStack(alignment: .leading,spacing: 15){
+             Group {
                 
-                
-                if(!self.isVoted){
-                    
-                    
-                    HStack(spacing: 15){
-                        Spacer()
-                        Text("인기 상승")
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundColor(Color("Color2"))
-                        
-                        
-                        ForEach(1...5,id: \ .self){_ in
-                            
-                            Image(systemName: "star.fill")
-                                .foregroundColor(.yellow)
-                        }
-                        Spacer()
-                        
-                    }.padding(.bottom, 20)
-                    
-                    VStack(spacing: 6){
-                        HStack(spacing : 6){
-                            AttrButtonView(isPressed: self.$buttonPressed[0],  title:user.attrNames[0])
-                            //                        Spacer()
-                            AttrButtonView(isPressed: self.$buttonPressed[1], title:user.attrNames[1])
-                            AttrButtonView(isPressed: self.$buttonPressed[2], title:user.attrNames[2])
-                            
-                            
-                        }.padding(.horizontal, 5)
-                        HStack(spacing : 6){
-                            AttrButtonView(isPressed: self.$buttonPressed[3], title:user.attrNames[3])
-                            //                        Spacer()
-                            AttrButtonView(isPressed: self.$buttonPressed[4], title:user.attrNames[4])
-                            Spacer()
-                            
-                        }.padding(.horizontal, 20)
-                        
-                        
-                        Button(action:  {
-                            self.persist()
-                            withAnimation{
-                                //                                    self.voted.toggle()
-                                self.isVoted.toggle()
+                VStack(alignment: .leading,spacing: 15){
+                             
+                             
+                             if(!self.isVoted){
+                                 
                                 
-                            }
-                            
-                        }) {
-                            Text("첫인상반영하고 결과보기".uppercased())
-                                .font(.system(.subheadline, design: .rounded))
-                                .fontWeight(.heavy)
-                                .padding(.horizontal, 50)
-                                .padding(.vertical, 10).foregroundColor( Color("Color5"))
-                                .background(
-                                    Capsule().stroke( Color("Color5"), lineWidth: 2)
-                            )
-                        }   // Disabling button by verifying all images...
-                            .opacity(self.checkAttrSelected() ? 1 : 0.35)
-                            .disabled(self.checkAttrSelected() ? false : true).padding(.top, 10)
-                        Spacer()
-                    } 
-                    
-                }else{
-                    VStack(spacing: 6){
-                        if !self.voteData.isEmpty {
-                            Spacer()
-                            ChartView(data: self.$voteData, totalNum: CHART_Y_AXIS, categories: self.user.attrNames).frame(width: UIScreen.main.bounds.width - 10, height: (UIScreen.main.bounds.height) / 2.2)
-                            
-                            Spacer()
-                        } else {
-                            LoadingView(isLoading: self.chartViewModel.isLoading, error: self.chartViewModel.error) {
-                                self.loadChartData()
-                            }
-                        }
-                    }  .onAppear{
-                        self.loadChartData()
-                        
-                    }           //                Spacer()
-                        .cornerRadius(20)
-                        .offset(y: -50)
-                    
-                    
-                    
-                }
-                
+                                VStack(alignment: .center, spacing: 0) {
+                                    HStack(spacing: 15){
+                                        Spacer()
+                                        Text("인기 상승")
+                                            .font(.system(size: 20, weight: .bold))
+                                            .foregroundColor(APP_THEME_COLOR)
+                                        
+                                        
+                                        ForEach(1...5,id: \ .self){_ in
+                                            
+                                            Image(systemName: "star.fill")
+                                                .foregroundColor(.yellow)
+                                        }
+                                        Spacer()
+                                        
+                                    }.padding(.bottom, 20)
+                                    
+                                    // Info
+                                    RatingDetailView()
+                                }
+                                
+                                
+                                 
+                           
+                                 
+                                 VStack(spacing: 6){
+                                     HStack(spacing : 6){
+                                         AttrButtonView(isPressed: self.$buttonPressed[0],  title:user.attrNames[0])
+                                         //                        Spacer()
+                                         AttrButtonView(isPressed: self.$buttonPressed[1], title:user.attrNames[1])
+                                         AttrButtonView(isPressed: self.$buttonPressed[2], title:user.attrNames[2])
+                                         
+                                         
+                                     }.padding(.horizontal, 5)
+                                     HStack(spacing : 6){
+                                         AttrButtonView(isPressed: self.$buttonPressed[3], title:user.attrNames[3])
+                                         //                        Spacer()
+                                         AttrButtonView(isPressed: self.$buttonPressed[4], title:user.attrNames[4])
+                                         Spacer()
+                                         
+                                     }.padding(.horizontal, 20)
+                                     
+                                     
+                                     Button(action:  {
+                                         self.persist()
+                                         withAnimation{
+                                             //                                    self.voted.toggle()
+                                             self.isVoted.toggle()
+                                             
+                                         }
+                                         
+                                     }) {
+                                         Text("첫인상반영하고 결과보기".uppercased())
+                                             .font(.system(.subheadline, design: .rounded))
+                                             .fontWeight(.heavy)
+                                             .padding(.horizontal, 50)
+                                             .padding(.vertical, 10).foregroundColor( Color("Color5"))
+                                             .background(
+                                                 Capsule().stroke( Color("Color5"), lineWidth: 2)
+                                         )
+                                     }   // Disabling button by verifying all images...
+                                         .opacity(self.checkAttrSelected() ? 1 : 0.35)
+                                         .disabled(self.checkAttrSelected() ? false : true).padding(.top, 10)
+                                     Spacer()
+                                 }
+                                 
+                             }else{
+                                 VStack(spacing: 6){
+                                     if !self.voteData.isEmpty {
+                                         Spacer()
+                                         ChartView(data: self.$voteData, totalNum: CHART_Y_AXIS, categories: self.user.attrNames).frame(width: UIScreen.main.bounds.width - 10, height: (UIScreen.main.bounds.height) / 2.2)
+                                         
+                                         Spacer()
+                                     } else {
+                                         LoadingView(isLoading: self.chartViewModel.isLoading, error: self.chartViewModel.error) {
+                                             self.loadChartData()
+                                         }
+                                     }
+                                 }  .onAppear{
+                                     self.loadChartData()
+                                     
+                                 }           //                Spacer()
+                                     .cornerRadius(20)
+                                     .offset(y: -50)
+                                 
+                                 
+                                 
+                             }
+                             
+                             
+                         }
+                         .padding(.top, 35)
+                         .background(Color.white)
+                         .cornerRadius(20)
+                         .offset(y: -80)
                 
             }
-            .padding(.top, 35)
-            .background(Color.white)
-            .cornerRadius(20)
-            .offset(y: -80)
+            
+            
+         
         })
             .edgesIgnoringSafeArea(.all)
             .background(Color.white.edgesIgnoringSafeArea(.all))
