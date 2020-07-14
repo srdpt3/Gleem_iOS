@@ -59,7 +59,7 @@ struct MessageSubView: View {
                             }
                             Spacer()
                             VStack(spacing: 5) {
-                                Text(timeAgoSinceDate(Date(timeIntervalSince1970: inboxMessage.date), currentDate: Date(), numericDates: true)).bold().padding(.leading, 15)
+                                Text(timeAgoSinceDate(Date(timeIntervalSince1970: inboxMessage.date), currentDate: Date(), numericDates: true)).font(.caption).padding(.leading, 15)
                                 
                                 //                                 Text("2").padding(8).background(Color.blue).foregroundColor(Color.white).clipShape(Circle())
                             }

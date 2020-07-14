@@ -11,7 +11,7 @@ let screen2 = UIScreen.main
 
 struct ContentView: View {
     
-
+    
     var body: some View {
         subMainView()
     }
@@ -24,9 +24,9 @@ struct subMainView : View {
     var body: some View {
         NavigationView{
             VStack(spacing: 0){
-
+                
                 if self.index == 0{
-                   CardListview().animation(.spring())
+                    CardListview().animation(.spring())
                 }
                 else if self.index == 1{
                     MyStaticView().animation(.spring())
@@ -34,19 +34,24 @@ struct subMainView : View {
                 else if self.index == 2{
                     FavoriteView().animation(.spring())
                 }
-                else{
-//                    Color.black
+                else if self.index == 2{
+                    //                    Color.black
                     MessagesView()
                 }
-//                Spacer()
-                    CircleTab(index: self.$index)
-                                   .background(Color.white.edgesIgnoringSafeArea(.bottom))
-                                   .opacity(self.obs.isLoading == true ? 0 : 1)
-            
-           
+                    
+                else{
+                    //                    Color.black
+                    MessagesView()
+                }
+                //                Spacer()
+                CircleTab(index: self.$index)
+                    .background(Color.white.edgesIgnoringSafeArea(.bottom))
+                    .opacity(self.obs.isLoading == true ? 0 : 1)
+                
+                
                 
             }
-       }
+        }
     }
     
 }
@@ -79,14 +84,14 @@ struct CircleTab : View {
                             .clipShape(Circle())
                             .offset(y: -15)
                             .padding(.bottom, -20)
-                        Text("카드").foregroundColor(Color.black.opacity(0.7)).font(.caption).foregroundColor(.gray)
+                        Text(index1).font(.custom(FONT, size: CGFloat(TABBAR_FONT_SIZE))).foregroundColor(Color.black.opacity(0.7)).font(.caption).foregroundColor(.gray)
                     }
                 }
                 
                 
             }
             
-            Spacer(minLength: 15)
+            Spacer(minLength: 10)
             
             Button(action: {
                 
@@ -112,12 +117,12 @@ struct CircleTab : View {
                             .offset(y: -15)
                             .padding(.bottom, -20)
                         
-                        Text("내평가").foregroundColor(Color.black.opacity(0.7)).font(.caption).foregroundColor(.gray)
+                        Text(index2).font(.custom(FONT, size: CGFloat(TABBAR_FONT_SIZE))).foregroundColor(Color.black.opacity(0.7)).font(.caption).foregroundColor(.gray)
                     }
                 }
             }
             
-            Spacer(minLength: 15)
+            Spacer(minLength: 10)
             
             
             Button(action: {
@@ -144,12 +149,12 @@ struct CircleTab : View {
                             .offset(y: -15)
                             .padding(.bottom, -20)
                         
-                        Text("호감").foregroundColor(Color.black.opacity(0.7)).font(.caption).foregroundColor(.gray)
+                        Text(index3).font(.custom(FONT, size: CGFloat(TABBAR_FONT_SIZE))).foregroundColor(Color.black.opacity(0.7)).font(.caption).foregroundColor(.gray)
                     }
                 }
             }
             
-            Spacer(minLength: 15)
+            Spacer(minLength: 10)
             
             Button(action: {
                 
@@ -175,7 +180,7 @@ struct CircleTab : View {
                             .offset(y: -15)
                             .padding(.bottom, -20)
                         
-                        Text("체팅").foregroundColor(Color.black.opacity(0.7))
+                        Text(index4).font(.custom(FONT, size: CGFloat(TABBAR_FONT_SIZE))).foregroundColor(Color.black.opacity(0.7))
                     }
                 }
             }
@@ -185,8 +190,8 @@ struct CircleTab : View {
         }.padding(.vertical,-10)
             .padding(.horizontal, 25)
             .animation(.spring())
-
-//            .animation(.spring(response: 0.8, dampingFraction: 1, blendDuration: 1))
+        
+        //            .animation(.spring(response: 0.8, dampingFraction: 1, blendDuration: 1))
         
     }
 }

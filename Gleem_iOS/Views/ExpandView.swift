@@ -184,7 +184,9 @@ struct ExpandView: View {
                                     HStack(spacing: 15){
                                         Spacer()
                                         Text("인기 상승")
-                                            .font(.system(size: 20, weight: .bold))
+//                                            .font(.system(size: 20, weight: .bold))
+                                            .font(.custom(FONT_BOLD, size: CGFloat(BUTTON_TITLE_FONT_SIZE)))
+
                                             .foregroundColor(APP_THEME_COLOR)
                                         
                                         
@@ -232,8 +234,10 @@ struct ExpandView: View {
                                          }
                                          
                                      }) {
-                                         Text("첫인상반영하고 결과보기".uppercased())
-                                             .font(.system(.subheadline, design: .rounded))
+                                         Text(VOTE_SUBMIT_BUTTON.uppercased())
+//                                             .font(.system(.subheadline, design: .rounded))
+                                            .font(.custom(FONT, size: CGFloat(BUTTON_TITLE_FONT_SIZE)))
+
                                              .fontWeight(.heavy)
                                              .padding(.horizontal, 50)
                                              .padding(.vertical, 10).foregroundColor( Color("Color5"))

@@ -29,12 +29,15 @@ class FavoriteViewModel: ObservableObject {
                 
                 guard let dict2 = try? User.currentUser().toDictionary() else {return}
                 
-                Ref.FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID(userId: user.id).setData(dict2) { (error) in
-                    if error == nil {
-                        print("persist sucessfully to my someone_liekd")
-                        self.isSucess = true
-                        self.liked = true
-                    }
+                
+                
+                
+                if User.currentUser()!.id != user.id {
+                    let activityId = Ref.FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID(userId: user.id).collection("liked").document().documentID
+                    let activityObject = Activity(activityId: activityId, type: "like", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: User.currentUser()!.profileImageUrl, message: "", date: Date().timeIntervalSince1970)
+                    guard let activityDict = try? activityObject.toDictionary() else { return }
+                    BELL = "bell.fill"
+                   Ref.FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID(userId: user.id).collection("liked").document(activityId).setData(activityDict)
                 }
             }
         }

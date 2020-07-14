@@ -9,7 +9,7 @@
 import SwiftUI
 import SDWebImageSwiftUI
 struct MenuView: View {
-
+    
     var body: some View {
         VStack {
             Spacer()
@@ -22,9 +22,9 @@ struct MenuView: View {
                     Text(PROFILE_COMPLETE)
                         .font(.subheadline)
                     Spacer()
-
+                    
                 }
-
+                
                 Color.white
                     .frame(width: 71, height: 6)
                     .cornerRadius(3)
@@ -36,9 +36,11 @@ struct MenuView: View {
                     .background(Color.black.opacity(0.1))
                     .cornerRadius(12)
                 
-                MenuRow(title: ACCOUNT, icon: "gear" , index : 0)
-                MenuRow(title: BILLING, icon: "creditcard" , index : 1)
-                MenuRow(title:  User.currentUser() != nil ? LOGOUT : LOGIN, icon: "person.crop.circle" , index : 2)
+                
+                MenuRow(title: PROFILE, icon: "person" , index : 0)
+                MenuRow(title: ACCOUNT, icon: "gear" , index : 1)
+                MenuRow(title: BILLING, icon: "creditcard" , index : 2)
+                MenuRow(title:  User.currentUser() != nil ? LOGOUT : LOGIN, icon: "person.crop.circle" , index : 3)
             }
             .frame(maxWidth: .infinity)
             .frame(height: 280)
@@ -56,7 +58,7 @@ struct MenuView: View {
                 
             )
         }     .background(Color.black.opacity(0.001))
-        .padding(.bottom, 30)
+            .padding(.bottom, 30)
     }
 }
 
@@ -68,15 +70,31 @@ struct MenuView: View {
 
 struct MenuRow: View {
     @EnvironmentObject var obs: observer
-
+    
     var title: String
     var icon: String
     var index : Int  = 0
     @State var show : Bool = false
+    @State var profile_show : Bool = false
+    @State var account_show : Bool = false
+    @State var payment_show : Bool = false
+    //    @State var show : Bool = false
+    
     var body: some View {
         Button(action: {
-            if self.index == 2 {
-                self.obs.logout()            }
+            
+            if self.index == 0 {
+                
+                withAnimation{
+                    self.profile_show.toggle()
+                }
+            }
+            
+            
+            if self.index == 3 {
+                self.obs.logout()
+                
+            }
         }){
             HStack(spacing: 16) {
                 Image(systemName: icon).renderingMode(.original)
@@ -91,18 +109,16 @@ struct MenuRow: View {
             }
         }.buttonStyle(PlainButtonStyle())
             
-//            .sheet(isPresented: self.$show) {
-//                                  LoginView()
-//                                    .transition(.move(edge: .bottom))
-//                                    .animation(.default)
-//        }
-//
-                          
-                          
-             
-
+            .sheet(isPresented: self.$profile_show) {
+                ProfileView(profile_show: self.$profile_show).animation(.spring())
+        }
         
-       
+        
+        
+        
+        
+        
+        
     }
     
     

@@ -23,7 +23,7 @@ class observer : ObservableObject{
     @Published var index = -1;
     @Published var isLoggedIn = false
     
-
+    
     //    init() {
     //                       self.reload()
     //
@@ -64,7 +64,7 @@ class observer : ObservableObject{
         do {
             cardViews.removeAll()
             users.removeAll()
-         
+            
             try Auth.auth().signOut()
             
             

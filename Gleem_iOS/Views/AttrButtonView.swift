@@ -48,5 +48,6 @@ struct NeumorphicButtonStyle: ButtonStyle {
              .scaleEffect(self.isPressed ? 0.9: 1)
             .foregroundColor(self.isPressed ? Color.white : Color.black)
             .animation(.spring())
+        .font(.custom(FONT, size: 18))
     }
 }

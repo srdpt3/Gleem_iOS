@@ -20,6 +20,28 @@ let COLOR_LIGHT_GRAY = Color(red: 0, green: 0, blue: 0, opacity: 0.15)
 let APP_THEME_COLOR = Color("Color2")
 
 
+
+// Tabbar
+public let index1 = "카드"
+public let index2 = "내 이미지"
+public let index3 = "호감"
+public let index4 = "채팅"
+public let TABBAR_FONT_SIZE = 10
+
+
+public var BELL = "bell"
+public var FONT = "JSDongkang-Regular"
+public var FONT_BOLD = "JSDongkang-Bold"
+public let BUTTON_TITLE_FONT_SIZE = 18
+
+//public var FONT = "CookieRun Regular"
+
+public let VOTE_NUMBER = "numVote"
+public let CHART_Y_AXIS = 100
+
+
+
+
 // Sign in and Sign up pages
 let TEXT_NEED_AN_ACCOUNT = "Don't have an account?"
 let TEXT_SIGN_UP = "Sign up"
@@ -42,19 +64,17 @@ let IMAGE_USER_PLACEHOLDER = "user-placeholder"
 let IMAGE_PHOTO = "plus.circle"
 
 
-
-
 // FOOTER VIEW
-public let BUTTONNAME  = "매력지수 평가하기"
+public let BUTTONNAME  = "첫인상 투표하기"
 public let BUTTONNAME_AFTER_VOTE  = "카드 다시보기"
-
 
 
 //FLAG
 public let BLOCKUSER = "신고해주셔서 감사합니다"
 //Vote
-public let VOTE_NUMBER = "numVote"
-public let CHART_Y_AXIS = 100
+
+//Expanded View
+public let VOTE_SUBMIT_BUTTON = "첫인상반영하고 결과보기"
 
 
 //Chart
@@ -64,6 +84,7 @@ public let SERIES_TITLE = "매력지수(%)"
 //Menu
 public let PROFILE_COMPLETE = "70% 완료"
 public let ACCOUNT = "계정"
+public let PROFILE = "프로필"
 public let BILLING = "결제"
 public let LOGIN = "로그인"
 public let LOGOUT = "로그아웃"
@@ -72,18 +93,22 @@ public let LOGOUT = "로그아웃"
 // Upload voting picture
 public let PHOTOUPLOAD = "평가받고 싶은 사진 올리기"
 
-
 //CHAT
 public let SEND_LIKE_MESSAGE = "안녕하세요" + User.currentUser()!.username + "님께서 관심을 표현하였습니다."
 public let MESSAGEVIEW_TITLE = "채팅"
 
 
 
+//Notification
+public let ACTIVITY = "알림"
+public let LIKED_MESSAGE = "님이 끌림을 주셧습니다"
+
+public let MATCHED_MESSAGE = "님과 서로 연결이 되었습니다.채팅창에서 인사해보세요 ^^"
+
+
 class Ref {
     // Storage
     static var STORAGE_ROOT = Storage.storage().reference(forURL: "gs://gleem-dating.appspot.com")
-    
-
     
     // Storage - Posts
     static var STORAGE_POSTS = STORAGE_ROOT.child("posts")
@@ -125,26 +150,26 @@ class Ref {
         return FIRESTORE_COLLECTION_INBOX_MESSAGES.document(userId).collection("inboxMessages")
     }
     
-//    // Storage - Posts
-//      static var STORAGE_CHAT = storage.reference(forURL: kFILEREFERENCE).child("chat")
-//      
-//      static func STORAGE_CHAT_ID(chatId: String) -> StorageReference {
-//          return STORAGE_CHAT.child(chatId)
-//      }
-//      
-//      
-//      
-//      static func FIRESTORE_COLLECTION_CHATROOM(senderId: String, recipientId: String) -> CollectionReference {
-//          return  FirebaseReference(.chat).document(senderId).collection("chatRoom").document(recipientId).collection("chatItems")
-//      }
-//      
-//      
-//      static func FIRESTORE_COLLECTION_INBOX_MESSAGES_DOCUMENT_USERID(senderId: String, recipientId: String) -> DocumentReference {
-//          return FirebaseReference(.messages).document(senderId).collection("inboxMessages").document(recipientId)
-//          
-//          
-//      }
-      
+    //    // Storage - Posts
+    //      static var STORAGE_CHAT = storage.reference(forURL: kFILEREFERENCE).child("chat")
+    //
+    //      static func STORAGE_CHAT_ID(chatId: String) -> StorageReference {
+    //          return STORAGE_CHAT.child(chatId)
+    //      }
+    //
+    //
+    //
+    //      static func FIRESTORE_COLLECTION_CHATROOM(senderId: String, recipientId: String) -> CollectionReference {
+    //          return  FirebaseReference(.chat).document(senderId).collection("chatRoom").document(recipientId).collection("chatItems")
+    //      }
+    //
+    //
+    //      static func FIRESTORE_COLLECTION_INBOX_MESSAGES_DOCUMENT_USERID(senderId: String, recipientId: String) -> DocumentReference {
+    //          return FirebaseReference(.messages).document(senderId).collection("inboxMessages").document(recipientId)
+    //
+    //
+    //      }
+    
     
     
     
@@ -214,20 +239,23 @@ class Ref {
     
     static var FIRESTORE_COLLECTION_SOMEOME_LIKED = FIRESTORE_ROOT.collection("someone_liked")
     static func FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID(userId: String) -> DocumentReference {
-        return FIRESTORE_COLLECTION_SOMEOME_LIKED.document(userId).collection("liked").document(User.currentUser()!.id)
+        return FIRESTORE_COLLECTION_SOMEOME_LIKED.document(userId)
     }
     
     static var FIRESTORE_COLLECTION_LIKED = FIRESTORE_ROOT.collection("liked")
     static func FIRESTORE_COLLECTION_LIKED_USERID(userId: String) -> DocumentReference {
         return FIRESTORE_COLLECTION_LIKED.document(Auth.auth().currentUser!.uid).collection("liked").document(userId)
-
-
+        
+        
     }
     
     
-  static func FIRESTORE_GET_LIKED_USERID_COLLECTION(userId: String) -> CollectionReference {
-     return FIRESTORE_COLLECTION_LIKED.document(userId).collection("liked")
-  }
+    static func FIRESTORE_GET_LIKED_USERID_COLLECTION(userId: String) -> CollectionReference {
+        return FIRESTORE_COLLECTION_LIKED.document(userId).collection("liked")
+    }
+    
+    static var FIRESTORE_COLLECTION_ACTIVITY = FIRESTORE_ROOT.collection("activity")
+
     
     //    static func FIRESTORE_GET_VOTE() -> DocumentReference {
     //       return FIRESTORE_COLLECTION_VOTE.document(userId)

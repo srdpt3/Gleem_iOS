@@ -195,21 +195,21 @@ struct TextMessageRow: View {
                 //                    Text(chat.textMessage).padding(10).foregroundColor(.black).background(Color(red: 237/255, green: 237/255, blue: 237/255)).cornerRadius(10).font(.callout)
                 //                    Spacer()
                 Spacer()
-                Text(chat.textMessage).lineLimit(3)
+                Text(chat.textMessage).multilineTextAlignment(.leading).lineLimit(3)
                     .padding()
                     .background(APP_THEME_COLOR)
                     
                     //                                 .background(Color(red: 237/255, green: 237/255, blue: 237/255))
                     .clipShape(msgTail(mymsg: false))
-                    .foregroundColor(.white).padding(.trailing, 15)
+                    .foregroundColor(.white).padding(.trailing, 15)     .font(.system(size: 15))
                 
                 
                 //                }.padding(.leading, 15).padding(.trailing, 50)
             } else {
-                Text(chat.textMessage).multilineTextAlignment(.center).lineLimit(3)
+                Text(chat.textMessage).multilineTextAlignment(.leading).lineLimit(3)
                     .padding()
                     .background(Color(red: 237/255, green: 237/255, blue: 237/255))
-                    .clipShape(msgTail(mymsg: true)).padding(.leading, 15)
+                    .clipShape(msgTail(mymsg: true)).padding(.leading, 15)     .font(.system(size: 15))
                 //                    .foregroundColor(.white)
                 Spacer()
                 //
@@ -222,7 +222,7 @@ struct TextMessageRow: View {
             //                .padding(.trailing, 15)
         }
         .padding(chat.isCurrentUser ? .leading : .trailing, 55)
-        .padding(.vertical,10)
+        .padding(.vertical,5)
     }
 }
 
