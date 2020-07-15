@@ -12,5 +12,7 @@ class Api {
     static var User = UserApi()
     static var Chat = ChatApi()
     static var Activity = ActivityApi()
+    static var Flag = FlagApi()
+
 
 }

@@ -14,8 +14,8 @@
             filePath = "Gleem_iOS/ViewModel/FavoriteViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "loadFavoriteUsers()"
             landmarkType = "7">
          </BreakpointContent>
@@ -78,8 +78,8 @@
             filePath = "Gleem_iOS/ViewModel/FavoriteViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "loadFavoriteUsers()"
             landmarkType = "7">
          </BreakpointContent>
@@ -96,8 +96,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "38"
             endingLineNumber = "38"
-            landmarkName = "loadActivities(onSuccess:newActivity:deleteActivity:listener:)"
-            landmarkType = "7">
+            landmarkName = "ActivityApi"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -112,6 +112,22 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "93"
             endingLineNumber = "93"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "221D6AC1-E85C-4793-920C-E2A4C56502C5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Gleem_iOS/Views/CardListview.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "224"
+            endingLineNumber = "224"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>

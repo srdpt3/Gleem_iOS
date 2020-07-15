@@ -16,7 +16,7 @@ struct AttrButtonView: View {
         Button(title, action: {
             self.isPressed.toggle()
 //            self.buttonSelected.toggle()
-        }).buttonStyle(NeumorphicButtonStyle(bgColor: Color("Color-3"), isPressed:  $isPressed))
+        }).buttonStyle(NeumorphicButtonStyle(bgColor: Color("Color-2"), isPressed:  $isPressed))
     }
 }
 

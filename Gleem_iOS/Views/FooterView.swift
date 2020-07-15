@@ -24,7 +24,7 @@ struct FooterView: View {
             Button(action: {
                 // ACTION
                 //        playSound(sound: "sound-click", type: "mp3")
-                //                self.haptics.notificationOccurred(.success)
+                self.haptics.notificationOccurred(.success)
                 
                 
                 withAnimation{

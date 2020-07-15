@@ -26,7 +26,7 @@ public let index1 = "카드"
 public let index2 = "내 이미지"
 public let index3 = "호감"
 public let index4 = "채팅"
-public let TABBAR_FONT_SIZE = 10
+public let TABBAR_FONT_SIZE = 13
 
 
 public var BELL = "bell"
@@ -71,11 +71,16 @@ public let BUTTONNAME_AFTER_VOTE  = "카드 다시보기"
 
 //FLAG
 public let BLOCKUSER = "신고해주셔서 감사합니다"
+public let BLOCK_BUTTON = " 신고하기"
+public let CACEL_BLOCK_BUTTON = "취소"
+public let FLAGPICTURE_TITLE = "사진을 신고합니다"
+public var data = ["혐오성 음란한사진","개인정보 노출","욕설이 담긴 사진", "선정적인 사진"]
+
 //Vote
 
 //Expanded View
 public let VOTE_SUBMIT_BUTTON = "첫인상반영하고 결과보기"
-
+public let RATING_TEXT = "이미지 호감도"
 
 //Chart
 public let SERIES_TITLE = "매력지수(%)"
@@ -102,8 +107,12 @@ public let MESSAGEVIEW_TITLE = "채팅"
 //Notification
 public let ACTIVITY = "알림"
 public let LIKED_MESSAGE = "님이 끌림을 주셧습니다"
-
 public let MATCHED_MESSAGE = "님과 서로 연결이 되었습니다.채팅창에서 인사해보세요 ^^"
+
+//Chat View
+public let TYPE_MESSAGE = "메세지를 입력해주세요"
+
+
 
 
 class Ref {
@@ -257,6 +266,11 @@ class Ref {
     static var FIRESTORE_COLLECTION_ACTIVITY = FIRESTORE_ROOT.collection("activity")
 
     
+    static var FIRESTORE_COLLECTION_FLAG = FIRESTORE_ROOT.collection("flag")
+     static func FIRESTORE_COLLECTION_FLAG_USERID(userId: String) -> DocumentReference {
+         return FIRESTORE_COLLECTION_FLAG.document(userId)
+     }
+ 
     //    static func FIRESTORE_GET_VOTE() -> DocumentReference {
     //       return FIRESTORE_COLLECTION_VOTE.document(userId)
     //    }

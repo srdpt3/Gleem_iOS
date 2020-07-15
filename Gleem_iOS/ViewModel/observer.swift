@@ -32,6 +32,12 @@ class observer : ObservableObject{
     //
     var handle: AuthStateDidChangeListenerHandle?
     
+    
+    
+    func getCurrentCard() -> MainCardView {
+        return self.cardViews.first!
+    }
+    
     func listenAuthenticationState() {
         handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
             if let user = user {
@@ -57,7 +63,26 @@ class observer : ObservableObject{
             }
         })
     }
-    
+     func moveCards() {
+        self.cardViews.removeFirst()
+        print("lastCardIndex \(index) asdfas \(self.totalCount)")
+        
+        if(self.index ==  self.users.count){
+            print("reload")
+                   
+            self.reload()
+            self.index = 2
+        }else{
+            
+            let u = self.users[self.index % self.users.count]
+            let newCardView = MainCardView(user: u)
+            self.cardViews.append(newCardView)
+            self.index += 1
+            self.last += 1
+            
+            
+        }
+    }
     
     func logout() {
         

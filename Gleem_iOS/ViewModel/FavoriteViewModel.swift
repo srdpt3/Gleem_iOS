@@ -27,16 +27,13 @@ class FavoriteViewModel: ObservableObject {
                 print("persist sucessfully to my favorite list")
                 
                 
-                guard let dict2 = try? User.currentUser().toDictionary() else {return}
-                
-                
-                
+//                guard let dict2 = try? User.currentUser().toDictionary() else {return}
                 
                 if User.currentUser()!.id != user.id {
                     let activityId = Ref.FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID(userId: user.id).collection("liked").document().documentID
                     let activityObject = Activity(activityId: activityId, type: "like", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: User.currentUser()!.profileImageUrl, message: "", date: Date().timeIntervalSince1970)
                     guard let activityDict = try? activityObject.toDictionary() else { return }
-                    BELL = "bell.fill"
+//                   
                    Ref.FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID(userId: user.id).collection("liked").document(activityId).setData(activityDict)
                 }
             }

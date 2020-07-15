@@ -89,6 +89,9 @@
 		11B5ED2324BE086D0055700B /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5ED2224BE086D0055700B /* FooterView.swift */; };
 		11B5ED2524BE087F0055700B /* CardListview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5ED2424BE087F0055700B /* CardListview.swift */; };
 		11B5ED2724BE08A90055700B /* MainCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5ED2624BE08A90055700B /* MainCardView.swift */; };
+		11B5ED2A24BE20F20055700B /* FlagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5ED2924BE20F20055700B /* FlagView.swift */; };
+		11B5ED2E24BEAC170055700B /* Flag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5ED2D24BEAC170055700B /* Flag.swift */; };
+		11B5ED3024BEAE2E0055700B /* FlagApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5ED2F24BEAE2E0055700B /* FlagApi.swift */; };
 		11FA744E24B7FACC008009A1 /* GuideComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FA744C24B7FACB008009A1 /* GuideComponent.swift */; };
 		11FA744F24B7FACC008009A1 /* HeaderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FA744D24B7FACB008009A1 /* HeaderComponent.swift */; };
 		11FA745424B7FAF5008009A1 /* TitleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FA745124B7FAF4008009A1 /* TitleModifier.swift */; };
@@ -207,6 +210,9 @@
 		11B5ED2424BE087F0055700B /* CardListview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CardListview.swift; path = Gleem_iOS/Views/CardListview.swift; sourceTree = SOURCE_ROOT; };
 		11B5ED2624BE08A90055700B /* MainCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainCardView.swift; path = Gleem_iOS/Views/MainCardView.swift; sourceTree = SOURCE_ROOT; };
 		11B5ED2824BE0C650055700B /* JSDongkang-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "JSDongkang-Bold.ttf"; path = "../../../../../Downloads/JSDongkang-Bold.ttf"; sourceTree = "<group>"; };
+		11B5ED2924BE20F20055700B /* FlagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagView.swift; sourceTree = "<group>"; };
+		11B5ED2D24BEAC170055700B /* Flag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flag.swift; sourceTree = "<group>"; };
+		11B5ED2F24BEAE2E0055700B /* FlagApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagApi.swift; sourceTree = "<group>"; };
 		11FA744C24B7FACB008009A1 /* GuideComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideComponent.swift; sourceTree = "<group>"; };
 		11FA744D24B7FACB008009A1 /* HeaderComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderComponent.swift; sourceTree = "<group>"; };
 		11FA745124B7FAF4008009A1 /* TitleModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleModifier.swift; sourceTree = "<group>"; };
@@ -350,6 +356,7 @@
 				11B5ECF024BB8A320055700B /* Api.swift */,
 				11B5ECF224BB8A6F0055700B /* ChatApi.swift */,
 				11B5ED0624BD17EC0055700B /* ActivityApi.swift */,
+				11B5ED2F24BEAE2E0055700B /* FlagApi.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -375,6 +382,7 @@
 				11B5ED0024BC210E0055700B /* RatingDetailView.swift */,
 				11B5ED0224BCC3690055700B /* ProfileView.swift */,
 				11B5ED0A24BD35C50055700B /* NotificationView.swift */,
+				11B5ED2924BE20F20055700B /* FlagView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -407,6 +415,7 @@
 				11B5ECE224BB7D920055700B /* Chat.swift */,
 				11B5ECE424BB7DA50055700B /* InboxMessage.swift */,
 				11B5ED0424BD02E70055700B /* Notification.swift */,
+				11B5ED2D24BEAC170055700B /* Flag.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -750,6 +759,7 @@
 				11783E6C24B53BA500EEFE80 /* AppDelegate.swift in Sources */,
 				11783ED024B53D1A00EEFE80 /* UploadView.swift in Sources */,
 				11B5ECF524BB99C90055700B /* MessagesView.swift in Sources */,
+				11B5ED2E24BEAC170055700B /* Flag.swift in Sources */,
 				11783EFA24B57E2200EEFE80 /* ProfileList.swift in Sources */,
 				11783EC824B53D1A00EEFE80 /* FavoriteView.swift in Sources */,
 				11B5ECF324BB8A6F0055700B /* ChatApi.swift in Sources */,
@@ -792,6 +802,7 @@
 				11B5ED2724BE08A90055700B /* MainCardView.swift in Sources */,
 				11783ECB24B53D1A00EEFE80 /* AttrButtonView.swift in Sources */,
 				11B5ED0924BD180A0055700B /* ActivityViewModel.swift in Sources */,
+				11B5ED2A24BE20F20055700B /* FlagView.swift in Sources */,
 				11B5ED2124BE08560055700B /* InfoView.swift in Sources */,
 				11783EB024B53CEC00EEFE80 /* StorageService.swift in Sources */,
 				1153A78824B966AE00CE3574 /* SigninViewModel.swift in Sources */,
@@ -810,6 +821,7 @@
 				11783ED224B53D1A00EEFE80 /* SettingView.swift in Sources */,
 				11783EC724B53D1A00EEFE80 /* SafariView.swift in Sources */,
 				11B5ECE324BB7D920055700B /* Chat.swift in Sources */,
+				11B5ED3024BEAE2E0055700B /* FlagApi.swift in Sources */,
 				11783EE824B53DD900EEFE80 /* Modifier.swift in Sources */,
 				11B5ECF924BB9A150055700B /* ChatView.swift in Sources */,
 				1153A79724B967FF00CE3574 /* SignUpView.swift in Sources */,

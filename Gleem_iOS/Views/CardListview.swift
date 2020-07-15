@@ -19,10 +19,14 @@ struct CardListview: View {
     @State private var cardRemovalTransition = AnyTransition.trailingBottom
     @State var showVotingScreen = false
     @State var isVoted = false
-    @State var show = false
+    //    @State var show = false
     @State var showProfile : Bool = false
     @State var viewState = CGSize.zero
-    //
+    @State private var pulsate: Bool = false
+    
+    
+    @State var selectedFlag = ""
+    @State var showFlag = false
     //    @State var cardViews: [MainCardView] = {
     //        var views = [MainCardView]()
     //        for index in 0..<2 {
@@ -41,27 +45,7 @@ struct CardListview: View {
         return index == 0
     }
     
-    private func moveCards() {
-        self.obs.cardViews.removeFirst()
-        self.isVoted = false
-        print("lastCardIndex \(obs.index) asdfas \(self.obs.totalCount)")
-        
-        if(self.obs.index ==  self.obs.users.count){
-            print("reload")
-            
-            self.obs.reload()
-            self.obs.index = 2
-        }else{
-            
-            let u = self.obs.users[self.obs.index % self.obs.users.count]
-            let newCardView = MainCardView(user: u)
-            self.obs.cardViews.append(newCardView)
-            self.obs.index += 1
-            self.obs.last += 1
-            
-            
-        }
-    }
+  
     enum DragState {
         case inactive
         case pressing
@@ -161,18 +145,56 @@ struct CardListview: View {
                                             //                                playSound(sound: "sound-rise", type: "mp3")
                                             //                                self.moveCards()
                                             if(self.isVoted){
-                                                self.moveCards()
+                                                self.obs.moveCards()
+                                                self.isVoted = false
+
+                                                
                                             }
                                         }
                                     })
                             )
                         }
+                        .overlay(
+                            HStack {
+                                Spacer()
+                                VStack {
+                                    Button(action: {
+                                        // ACTION
+                                        //                                            self.presentationMode.wrappedValue.dismiss()
+                                        self.showFlag.toggle()
+                                        print(self.selectedFlag)
+                                        
+                                    }, label: {
+                                        Image(systemName: "flag.circle.fill")
+                                            .font(.title)
+                                            .foregroundColor(Color.white)
+                                            .shadow(radius: 4)
+                                            .opacity(self.pulsate ? 1 : 0.6)
+                                            .scaleEffect(self.pulsate ? 1.2 : 0.8, anchor: .center)
+                                            .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
+                                    })
+                                        .padding(.trailing, 20)
+                                        .padding(.top, 24)
+                                    
+                                    Spacer()
+                                }
+                            }
+                        )
                     }else{
                         LoadingView(isLoading: self.obs.isLoading, error: self.obs.error) {
                             self.obs.reload()
                         }
                     }
                     
+                    //                    ZStack{
+                    //
+                    //                        Spacer()
+                    //
+                    //                        RadioButtons(selected: self.$selectedFlag,show: self.$showFlag)
+                    //                            .offset(y: self.showFlag ? (UIApplication.shared.windows.last?.safeAreaInsets.bottom)! + 15 : UIScreen.main.bounds.height)
+                    //
+                    //                        }.edgesIgnoringSafeArea(.all).zIndex(1)
+                    //                    .background(Color(UIColor.label.withAlphaComponent(self.showFlag ? 0.2 : 0))
                     
                 }.padding(.horizontal)
                 
@@ -186,8 +208,29 @@ struct CardListview: View {
                 Spacer()
                 
                 
-            }.navigationBarHidden(true).navigationBarTitle("")
+            }.navigationBarHidden(true).navigationBarTitle("").onAppear{
+                self.pulsate.toggle()
+            }
             
+            
+            
+            VStack{
+                
+                Spacer()
+                
+                RadioButtons(selected: self.$selectedFlag,show: self.$showFlag).offset(y: self.showFlag ? (UIApplication.shared.windows.last?.safeAreaInsets.bottom)! + 15 : UIScreen.main.bounds.height)
+//                    .onDisappear{
+////                           if(self.selectedFlag != ""){
+//                               print("reload \(self.selectedFlag)")
+//
+////                           }
+//
+//                       }
+                .onTapGesture {
+                         self.showFlag.toggle()
+                }
+            }.background(Color(UIColor.label.withAlphaComponent(self.showFlag ? 0.2 : 0)).edgesIgnoringSafeArea(.all))
+   
             if self.showProfile{
                 MenuView()
                     .background(Color.black.opacity(0.65))
@@ -210,6 +253,17 @@ struct CardListview: View {
                 ).edgesIgnoringSafeArea(.all)
                 
             }
+            
+     
+            
+            //
+            //            if self.showFlag {
+            //                 RadioButtons(selected: self.$selectedFlag,show: self.$showFlag)                .background(Color(UIColor.label.withAlphaComponent(self.showFlag ? 0.2 : 0)))
+            //
+            ////  .background(self.showFlag ? Color.white : Color.black.opacity(0.65))
+            ////               offset(y: self.showFlag ? (UIApplication.shared.windows.last?.safeAreaInsets.bottom)! + 15 : UIScreen.main.bounds.height)
+            ////                .edgesIgnoringSafeArea(.all)
+            //            }
             
             
         }
@@ -244,3 +298,4 @@ extension AnyTransition {
             removal: AnyTransition.move(edge: .leading).combined(with: .move(edge: .bottom)))
     }
 }
+

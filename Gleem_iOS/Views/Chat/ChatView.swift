@@ -89,7 +89,7 @@ struct ChatView: View {
                 }
                 
                 HStack{
-                    Text("").padding()
+                  
                     HStack(spacing : 8){
                         
                         //                    Button(action: {
@@ -100,7 +100,7 @@ struct ChatView: View {
                         //
                         //                    }.foregroundColor(.gray)
                         
-                        TextField("Type Something", text: self.$chatViewModel.composedMessage)
+                        TextField(TYPE_MESSAGE, text: self.$chatViewModel.composedMessage)
                         
                         Button(action: self.showPicker) {
                             
@@ -115,7 +115,7 @@ struct ChatView: View {
                         //                    }.foregroundColor(.gray)
                         
                     }.padding()
-                        .background(Color("background2"))
+                        .background(Color("Color-2"))
                         .clipShape(Capsule())
                     
                     Button(action: self.sendTextMessage) {
@@ -130,7 +130,7 @@ struct ChatView: View {
                         
                     }.foregroundColor(.gray)
                     
-                }.padding(.horizontal, 15)
+                }.padding(.horizontal, 10)
                     .background(Color.white)
                 //                        .edgesIgnoringSafeArea(.bottom).padding(.top, -10)
                 

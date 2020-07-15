@@ -15,7 +15,7 @@ struct HeaderView: View {
     
     //    @State var showProfile = false
     @State var viewState = CGSize.zero
-    //    let haptics = UINotificationFeedbackGenerator()
+    let haptics = UINotificationFeedbackGenerator()
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
@@ -23,7 +23,7 @@ struct HeaderView: View {
             Button(action: {
                 // ACTION
                 //        playSound(sound: "sound-click", type: "mp3")
-                //                self.haptics.notificationOccurred(.success)
+                self.haptics.notificationOccurred(.success)
                 self.showInfoView.toggle()
                 print(self.showInfoView)
             }) {
@@ -53,21 +53,19 @@ struct HeaderView: View {
             Button(action: {
                 // ACTION
                 //        playSound(sound: "sound-click", type: "mp3")
-                //                self.haptics.notificationOccurred(.success)
+                
+                self.haptics.notificationOccurred(.success)
                 self.showNotification.toggle()
             }) {
                 Image(systemName:  BELL)
                     
                     .font(.system(size: 24, weight: .regular))
             }
-            .accentColor(Color.primary)
+            .accentColor(Color("bell"))
                         .sheet(isPresented: $showNotification) {
                             //        GuideView()
                             NotificationView()
                         }
-            
-            
-            
             
             
             Button(action: {
@@ -79,28 +77,7 @@ struct HeaderView: View {
                 Image("menu").resizable().frame(width: 20, height: 20)
                     .font(.system(size: 24, weight: .regular))
             }.buttonStyle(PlainButtonStyle())
-            
-            
-            //
-            //                MenuView()
-            //                    .background(Color.black.opacity(0.001))
-            //                    .offset(y: self.showProfile ? 0 : screen.height)
-            //                    .offset(y: self.viewState.height)
-            //                    .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
-            //                    .onTapGesture {
-            //                        self.showProfile.toggle()
-            //                }
-            //                .gesture(
-            //                    DragGesture().onChanged { value in
-            //                        self.viewState = value.translation
-            //                    }
-            //                    .onEnded { value in
-            //                        if self.viewState.height > 50 {
-            //                            self.showProfile = false
-            //                        }
-            //                        self.viewState = .zero
-            //                    }
-            //                )
+ 
             
         }
         .padding()

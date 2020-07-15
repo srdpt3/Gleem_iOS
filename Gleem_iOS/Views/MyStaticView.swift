@@ -48,8 +48,6 @@ struct MyStaticView: View {
                 self.voteData.append((Double(vote.attr5) / Double(vote.numVote) * 100).roundToDecimal(0))
             }
             
-            
-            
             self.voteNum.append(vote.attr1)
             self.voteNum.append(vote.attr2)
             self.voteNum.append(vote.attr3)

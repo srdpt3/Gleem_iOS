@@ -18,20 +18,20 @@ struct User: Encodable, Decodable ,Identifiable{
     var username: String
     var age: String
     var sex: String
-    var swipe : CGFloat
-    var degree : CGFloat
+    var createdDate : Double
+    var point_avail : Int
     
     
-    init(id: String, email: String, profileImageUrl: String, username: String, age: String, sex:String,    swipe:CGFloat, degree: CGFloat) {
+    init(id: String, email: String, profileImageUrl: String, username: String, age: String, sex:String, createdDate : Double, point_avail: Int) {
         self.id = id
         self.email = email
         self.profileImageUrl = profileImageUrl
         self.username = username
         self.age = age
         self.sex = sex
-        self.swipe = swipe
-        self.degree = degree
-
+        self.createdDate = createdDate
+        self.point_avail = point_avail
+        
     }
     init(_dictionary: NSDictionary) {
         id = _dictionary["id"] as! String
@@ -40,10 +40,10 @@ struct User: Encodable, Decodable ,Identifiable{
         username = _dictionary["username"] as! String
         age = _dictionary["age"] as! String
         sex = _dictionary["sex"] as! String
-        swipe = _dictionary["swipe"] as! CGFloat
-        degree = _dictionary["degree"] as! CGFloat
-
-
+        createdDate = _dictionary["createdDate"] as! Double
+        point_avail = _dictionary["point_avail"] as! Int
+        
+        
     }
     
     
@@ -57,9 +57,9 @@ struct User: Encodable, Decodable ,Identifiable{
             }
         }
         
-//
-//        return User(id: "63gIkD569ywBbqfuqEx4", email: "test@gmail.com", profileImageUrl: "https://www.thesprucepets.com/thmb/mERLXPcXz4U9G702HlsORXJqZrU=/4231x2380/smart/filters:no_upscale()/adorable-white-pomeranian-puppy-spitz-921029690-5c8be25d46e0fb000172effe.jpg", username: "test", age: "29", sex: "male", swipe: 0, degree: 0)
-              return nil
+        //
+        //        return User(id: "63gIkD569ywBbqfuqEx4", email: "test@gmail.com", profileImageUrl: "https://www.thesprucepets.com/thmb/mERLXPcXz4U9G702HlsORXJqZrU=/4231x2380/smart/filters:no_upscale()/adorable-white-pomeranian-puppy-spitz-921029690-5c8be25d46e0fb000172effe.jpg", username: "test", age: "29", sex: "male", swipe: 0, degree: 0)
+        return nil
     }
     
     

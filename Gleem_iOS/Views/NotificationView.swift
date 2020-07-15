@@ -84,7 +84,7 @@ struct NotificationView: View {
             }.onAppear(){
                 
             }
-            .navigationBarTitle(Text(ACTIVITY).font(Font.custom(FONT, size: 20))
+            .navigationBarTitle(Text(ACTIVITY).font(Font.custom(FONT, size: 20)).foregroundColor(Color("Color2"))
 , displayMode: .inline).onAppear {
                   self.activityViewModel.loadActivities()
              }
