@@ -19,62 +19,84 @@ struct FavoriteView: View {
 
 struct FavoriteHome : View {
     @ObservedObject private var favoriteViewModel = FavoriteViewModel()
-    @ObservedObject var chatViewModel = ChatViewModel()
+    @ObservedObject private var activityViewModel = ActivityViewModel()
+    @ObservedObject private var chatViewModel = ChatViewModel()
     
     init() {
         self.favoriteViewModel.loadFavoriteUsers()
+        self.activityViewModel.loadActivities()
     }
     
     
     var body: some View{
-  
-            VStack(spacing: 10){
-                
-                
-                GeometryReader{geo in
-                    VStack{
+        
+        VStack(spacing: 10){
+            
+            
+            GeometryReader{geo in
+                VStack{
+                    
+                    HStack{
+                        Text(SOMEONE_LIKED).fontWeight(.heavy).font(Font.custom(FONT, size: 15))
+                            .foregroundColor(APP_THEME_COLOR)
+                        Spacer()
                         
-                        HStack{
-                            Text("나의 Gleem").fontWeight(.heavy).font(.headline)
-                                .foregroundColor(APP_THEME_COLOR)
-                            Spacer()
-                            
-                        }
-                        .padding(.horizontal)
-                        if !self.favoriteViewModel.favoriteUsers.isEmpty {
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack(spacing: 10) {
-                                    ForEach(self.favoriteViewModel.favoriteUsers) { user in
-                                        GeometryReader { geometry in
-//                                            NavigationLink(destination: ChatView(recipientId: user.id, recipientAvatarUrl: user.imageLocation, recipientUsername: user.username)){
-                                                
-                                                SectionView2(user: user)
-                                                    .rotation3DEffect(Angle(degrees:
-                                                        Double(geometry.frame(in: .global).minX - 60) / -getAngleMultiplier(bounds: geo)
-                                                    ), axis: (x: 0, y: 50, z: 0))
-                                                    .onTapGesture {
-                                                        print(user.username)
-                                                        self.chatViewModel.composedMessage = SEND_LIKE_MESSAGE
-                                                        self.chatViewModel.sendTextMessage(recipientId: user.id, recipientAvatarUrl: user.imageLocation, recipientUsername: user.username, completed: {
-                                                            self.chatViewModel.composedMessage = ""
-                                                        }) { (error) in
-                                                            print(error)
-                                                        }
-                                                        
-                                                        
+                    }
+                    .padding(.horizontal)
+                    if !self.favoriteViewModel.favoriteUsers.isEmpty {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 10) {
+                                //                                    ForEach(self.activityViewModel.activityArray) { user in
+                                ForEach(self.activityViewModel.activityArray, id: \.activityId) { user in
+                                    GeometryReader { geometry in
+                                        //                                            NavigationLink(destination: ChatView(recipientId: user.id, recipientAvatarUrl: user.imageLocation, recipientUsername: user.username)){
+                                        
+                                        SectionView2(user: user)
+                                            .rotation3DEffect(Angle(degrees:
+                                                Double(geometry.frame(in: .global).minX - 60) / -getAngleMultiplier(bounds: geo)
+                                            ), axis: (x: 0, y: 50, z: 0))
+                                            .onTapGesture {
+                                                print(user.username)
+                                                self.chatViewModel.composedMessage = SEND_LIKE_MESSAGE
+                                                self.chatViewModel.sendTextMessage(recipientId: user.userId, recipientAvatarUrl: user.userAvatar, recipientUsername: user.username, completed: {
+                                                    self.chatViewModel.composedMessage = ""
+                                                }) { (error) in
+                                                    print(error)
                                                 }
                                                 
-//                                            } .buttonStyle(PlainButtonStyle())
-                                            
-                                            
-                                            
+                                                
                                         }
-                                        .frame(width: geo.size.height / 4.5 , height: geo.size.height / 4.5)
+                                        
+                                        //                                            } .buttonStyle(PlainButtonStyle())
+                                        
+                                        
+                                        
                                     }
-                                }.padding()
-                                
-                                //                    .padding(.bottom, 30)
-                            }.background(Color.black.opacity(0.06))
+                                    .frame(width: geo.size.height / 4.5 , height: geo.size.height / 4.5)
+                                }
+                            }.padding()
+                            
+                            //                    .padding(.bottom, 30)
+                        }.background(Color.black.opacity(0.06))
+                    } else {
+                        Spacer()
+                        
+                        LoadingView(isLoading: self.favoriteViewModel.isLoading, error: self.favoriteViewModel.error) {
+                            self.favoriteViewModel.loadFavoriteUsers()
+                        }
+                        Spacer()
+                        
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    VStack(spacing: 10){
+                        if !self.favoriteViewModel.favoriteUsers.isEmpty {
+                            MainSubViewFavorite(title: "Favorite Votes", users: self.favoriteViewModel.favoriteUsers)
+                                .frame( height: geo.size.height / 1.5 )
                         } else {
                             Spacer()
                             
@@ -84,34 +106,15 @@ struct FavoriteHome : View {
                             Spacer()
                             
                         }
-                        
-                        
-                        
-                        
-                        
-                        
-                        VStack(spacing: 10){
-                            if !self.favoriteViewModel.favoriteUsers.isEmpty {
-                                MainSubViewFavorite(title: "Favorite Votes", users: self.favoriteViewModel.favoriteUsers)
-                                    .frame( height: geo.size.height / 1.5 )
-                            } else {
-                                Spacer()
-                                
-                                LoadingView(isLoading: self.favoriteViewModel.isLoading, error: self.favoriteViewModel.error) {
-                                    self.favoriteViewModel.loadFavoriteUsers()
-                                }
-                                Spacer()
-                                
-                            }
-                        }
                     }
                 }
-                
             }
-            .navigationBarHidden(true)
-            .navigationBarTitle("")
             
-       
+        }
+        .navigationBarHidden(true)
+        .navigationBarTitle("")
+        
+        
         
         
         
@@ -139,8 +142,7 @@ struct MainSubViewFavorite: View{
         ScrollView(.vertical, showsIndicators: false) {
             
             HStack{
-                Text("나의 Gleem").fontWeight(.heavy).font(.headline)
-                    .foregroundColor(APP_THEME_COLOR)
+                Text(I_LIKED).fontWeight(.heavy).font(Font.custom(FONT, size: 15)) .foregroundColor(APP_THEME_COLOR)
                 Spacer()
                 
             }
@@ -266,7 +268,7 @@ struct FavoriteCard: View {
             ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)) {
                 AnimatedImage(url: URL(string:self.user.imageLocation))
                     .resizable().frame(width: (UIScreen.main.bounds.width - 35) / 3, height: (UIScreen.main.bounds.height ) / 5.2).cornerRadius(15)
-   
+                
                 
                 Button(action: {
                     
@@ -297,14 +299,14 @@ struct FavoriteCard: View {
 
 
 struct SectionView2: View {
-    var user: ActiveVote
+    var user: Activity
     var width: CGFloat = 160
     var height: CGFloat = 160
     
     var body: some View {
         VStack {
             
-            AnimatedImage(url: URL(string:self.user.imageLocation))
+            AnimatedImage(url: URL(string:self.user.userAvatar))
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 160)

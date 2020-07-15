@@ -62,22 +62,26 @@ struct HeaderView: View {
                     .font(.system(size: 24, weight: .regular))
             }
             .accentColor(Color("bell"))
-                        .sheet(isPresented: $showNotification) {
-                            //        GuideView()
-                            NotificationView()
-                        }
+            .sheet(isPresented: $showNotification) {
+                //        GuideView()
+                NotificationView()
+            }
             
             
             Button(action: {
                 // ACTION
                 //        playSound(sound: "sound-click", type: "mp3")
-                //                self.haptics.notificationOccurred(.success)
-                self.showProfile.toggle()
+                self.haptics.notificationOccurred(.success)
+                withAnimation{
+                    
+                    self.showProfile.toggle()
+                    
+                }
             }) {
                 Image("menu").resizable().frame(width: 20, height: 20)
                     .font(.system(size: 24, weight: .regular))
             }.buttonStyle(PlainButtonStyle())
- 
+            
             
         }
         .padding()

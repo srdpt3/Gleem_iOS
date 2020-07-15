@@ -73,7 +73,7 @@ struct ExpandView: View {
     
     func checkAttrSelected() -> Bool{
         // Check any button is presssed
-        for (index, button) in buttonPressed.enumerated() {
+        for (_, button) in buttonPressed.enumerated() {
             if (button){
                 return true;
             }
@@ -89,7 +89,6 @@ struct ExpandView: View {
             GeometryReader{reader in
                 
                 // Type 2 Parollax....
-                
                 if reader.frame(in: .global).minY > -460 {
                     ZStack(alignment: .topTrailing) {
                         AnimatedImage(url: URL(string: self.user.imageLocation))
@@ -120,7 +119,6 @@ struct ExpandView: View {
                         if(self.isVoted){
                             
                             Button(action:self.addToMyList) {
-                                
                                 Image(self.favoriteViewModel.liked == true ? "heartred" : "heartwhite").resizable().frame(width: 50, height: 50).aspectRatio(contentMode: .fit)
                                 
                                 
@@ -136,29 +134,28 @@ struct ExpandView: View {
                         
                         
                     }
-                        //                    .clipShape(CustomShape(corner: .bottomLeft, radii: 30))
-                        .background(Color.black.opacity(0.06)).edgesIgnoringSafeArea(.top)
-                        .overlay(
-                            HStack {
+                    .background(Color.black.opacity(0.06)).edgesIgnoringSafeArea(.top)
+                    .overlay(
+                        HStack {
+                            Spacer()
+                            VStack {
+                                Button(action: {
+                                    // ACTION
+                                    self.presentationMode.wrappedValue.dismiss()
+                                }, label: {
+                                    Image(systemName: "chevron.down.circle.fill")
+                                        .font(.title)
+                                        .foregroundColor(Color.white)
+                                        .shadow(radius: 4)
+                                        .opacity(self.pulsate ? 1 : 0.6)
+                                        .scaleEffect(self.pulsate ? 1.2 : 0.8, anchor: .center)
+                                        .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
+                                })
+                                    .padding(.trailing, 20)
+                                    .padding(.top, 24)
                                 Spacer()
-                                VStack {
-                                    Button(action: {
-                                        // ACTION
-                                        self.presentationMode.wrappedValue.dismiss()
-                                    }, label: {
-                                        Image(systemName: "chevron.down.circle.fill")
-                                            .font(.title)
-                                            .foregroundColor(Color.white)
-                                            .shadow(radius: 4)
-                                            .opacity(self.pulsate ? 1 : 0.6)
-                                            .scaleEffect(self.pulsate ? 1.2 : 0.8, anchor: .center)
-                                            .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
-                                    })
-                                        .padding(.trailing, 20)
-                                        .padding(.top, 24)
-                                    Spacer()
-                                }
                             }
+                        }
                     )
                         .onAppear() {
                             self.pulsate.toggle()
@@ -203,14 +200,9 @@ struct ExpandView: View {
                             RatingDetailView()
                         }
                         
-                        
-                        
-                        
-                        
                         VStack(spacing: 6){
                             HStack(spacing : 6){
                                 AttrButtonView(isPressed: self.$buttonPressed[0],  title:user.attrNames[0])
-                                //                        Spacer()
                                 AttrButtonView(isPressed: self.$buttonPressed[1], title:user.attrNames[1])
                                 AttrButtonView(isPressed: self.$buttonPressed[2], title:user.attrNames[2])
                                 
@@ -218,7 +210,6 @@ struct ExpandView: View {
                             }.padding(.horizontal, 5)
                             HStack(spacing : 6){
                                 AttrButtonView(isPressed: self.$buttonPressed[3], title:user.attrNames[3])
-                                //                        Spacer()
                                 AttrButtonView(isPressed: self.$buttonPressed[4], title:user.attrNames[4])
                                 Spacer()
                                 
@@ -228,7 +219,6 @@ struct ExpandView: View {
                             Button(action:  {
                                 self.persist()
                                 withAnimation{
-                                    //                                    self.voted.toggle()
                                     self.isVoted.toggle()
                                     
                                 }
@@ -254,7 +244,12 @@ struct ExpandView: View {
                         VStack(spacing: 6){
                             if !self.voteData.isEmpty {
                                 Spacer()
-                                ChartView(data: self.$voteData, totalNum: CHART_Y_AXIS, categories: self.user.attrNames).frame(width: UIScreen.main.bounds.width - 10, height: (UIScreen.main.bounds.height) / 2.2)
+                                VStack(spacing: 10){
+                                    
+                                    Text(self.user.username + USER_RESULT.uppercased()).font(.custom(FONT, size: CGFloat(BUTTON_TITLE_FONT_SIZE))).padding().foregroundColor(Color("Color2"))
+                                    ChartView(data: self.$voteData, totalNum: CHART_Y_AXIS, categories: self.user.attrNames).frame(width: UIScreen.main.bounds.width, height: (UIScreen.main.bounds.height) / 2.4)
+                                }
+                                
                                 
                                 Spacer()
                             } else {
@@ -264,10 +259,9 @@ struct ExpandView: View {
                             }
                         }  .onAppear{
                             self.loadChartData()
-                            
-                        }           //                Spacer()
-                            .cornerRadius(20)
-                            .offset(y: -50)
+                        }
+                        .cornerRadius(20)
+                        .offset(y: -50)
                         
                         
                         

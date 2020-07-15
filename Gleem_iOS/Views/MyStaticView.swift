@@ -71,15 +71,13 @@ struct MyStaticView: View {
                         VStack(alignment: .leading, spacing: 15) {
                             Spacer()
                             
-                            HStack{
+                            HStack(alignment: .top){
                                 
                                 AnimatedImage(url: URL(string: User.currentUser()!.profileImageUrl)!).resizable().frame(width: 70, height: 70).cornerRadius(35).padding(.trailing, 10).onTapGesture {
                                     self.showUploadView.toggle()
                                 }
                                 
-                                Text("2020/07/02 4:14AM 에 참여하였습니다.")
-                                    .font(.system(size: 12))
-                                    .fontWeight(.bold)
+                                Text("2020/07/02 4:14AM 에 참여하였습니다.").font(Font.custom(FONT, size: 13)).multilineTextAlignment(.leading).lineLimit(2)
                                     .foregroundColor(.gray)
                                 Spacer()
                                 
@@ -93,12 +91,14 @@ struct MyStaticView: View {
                         //
                         
                         HStack(spacing: 5){
-                            HStack{
+                            ZStack{
+                                VStack{
+                                    Image("Gleem_3D").resizable().frame(width: 60, height: 60)
+                                    Text("실시간").font(Font.custom(FONT, size: 15)).foregroundColor(APP_THEME_COLOR).multilineTextAlignment(.leading).lineLimit(2)
+                                    Text("이미지").font(Font.custom(FONT, size: 15)).foregroundColor(APP_THEME_COLOR).multilineTextAlignment(.leading).lineLimit(2)
+
+                                }
                                 
-                                Text("테스트")
-                                    .font(.system(size: 18))
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.black)
                                 
                                 
                             }
@@ -134,9 +134,9 @@ struct MyStaticView: View {
                                     ////                                        }
                                     //                                    }
                                     Spacer()
-                                    Text(self.buttonTitle[index])
-                                        .font(.caption)
-                                        .foregroundColor(.black).lineLimit(2)
+                                    Text(self.buttonTitle[index]).fontWeight(.heavy).font(Font.custom(FONT, size: 12)).foregroundColor(APP_THEME_COLOR).multilineTextAlignment(.leading).lineLimit(2)
+//                                        .font(.caption)
+//                                        .foregroundColor(.black).lineLimit(2)
                                 }
                             }
                         }.padding(.horizontal,5)
@@ -144,11 +144,7 @@ struct MyStaticView: View {
                         
                         
                         HStack{
-                            Text("나의 그래프")
-                                .font(.system(size: 18))
-                                .fontWeight(.bold)
-                                .foregroundColor(.black)
-                            
+                            Text(MY_STAT_RADAR).fontWeight(.heavy).font(Font.custom(FONT, size: 15)).foregroundColor(APP_THEME_COLOR)
                             Spacer(minLength: 0)
                         }
                         .padding()

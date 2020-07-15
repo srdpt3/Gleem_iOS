@@ -62,7 +62,7 @@ class StorageService {
             storageAvatarRef.downloadURL { (url, error) in
                 if let metaImageUrl = url?.absoluteString {
                     
-                    guard let dict = try? myVote.toDictionary() else {return}
+//                    guard let dict = try? myVote.toDictionary() else {return}
                     
                     let user = User.currentUser()
                     //                    let user =  User(id: userId, email: "test@gmail.com", profileImageUrl:  metaImageUrl, username: "test", age: "30", sex:"male",    swipe:0, degree: 0)

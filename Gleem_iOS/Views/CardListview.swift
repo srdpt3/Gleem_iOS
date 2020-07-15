@@ -219,18 +219,11 @@ struct CardListview: View {
                 Spacer()
                 
                 RadioButtons(selected: self.$selectedFlag,show: self.$showFlag).offset(y: self.showFlag ? (UIApplication.shared.windows.last?.safeAreaInsets.bottom)! + 15 : UIScreen.main.bounds.height)
-//                    .onDisappear{
-////                           if(self.selectedFlag != ""){
-//                               print("reload \(self.selectedFlag)")
-//
-////                           }
-//
-//                       }
-                .onTapGesture {
-                         self.showFlag.toggle()
+                    .onTapGesture {
+                        self.showFlag.toggle()
                 }
             }.background(Color(UIColor.label.withAlphaComponent(self.showFlag ? 0.2 : 0)).edgesIgnoringSafeArea(.all))
-   
+            
             if self.showProfile{
                 MenuView()
                     .background(Color.black.opacity(0.65))
@@ -253,18 +246,7 @@ struct CardListview: View {
                 ).edgesIgnoringSafeArea(.all)
                 
             }
-            
-     
-            
-            //
-            //            if self.showFlag {
-            //                 RadioButtons(selected: self.$selectedFlag,show: self.$showFlag)                .background(Color(UIColor.label.withAlphaComponent(self.showFlag ? 0.2 : 0)))
-            //
-            ////  .background(self.showFlag ? Color.white : Color.black.opacity(0.65))
-            ////               offset(y: self.showFlag ? (UIApplication.shared.windows.last?.safeAreaInsets.bottom)! + 15 : UIScreen.main.bounds.height)
-            ////                .edgesIgnoringSafeArea(.all)
-            //            }
-            
+   
             
         }
         

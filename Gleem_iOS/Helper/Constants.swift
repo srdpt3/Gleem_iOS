@@ -81,6 +81,7 @@ public var data = ["혐오성 음란한사진","개인정보 노출","욕설이 
 //Expanded View
 public let VOTE_SUBMIT_BUTTON = "첫인상반영하고 결과보기"
 public let RATING_TEXT = "이미지 호감도"
+public let USER_RESULT = " 님의 실시간 이미지투표 결과"
 
 //Chart
 public let SERIES_TITLE = "매력지수(%)"
@@ -112,6 +113,14 @@ public let MATCHED_MESSAGE = "님과 서로 연결이 되었습니다.채팅창�
 //Chat View
 public let TYPE_MESSAGE = "메세지를 입력해주세요"
 
+//Favorite
+public let SOMEONE_LIKED = "내게 끌림을 준 카드"
+public let I_LIKED = "내가 호감있는 카드"
+
+
+//Stat
+public let MY_STAT_RADAR = "나의 이미지 그래프"
+//public let I_LIKED = "내가 호감있는 카드"
 
 
 
