@@ -119,7 +119,8 @@ public let I_LIKED = "내가 호감있는 카드"
 
 
 //Stat
-public let MY_STAT_RADAR = "나의 이미지 그래프"
+public let MY_STAT_RADAR = "나의 이미지 그래프(%)"
+public let NEW_UPLOAD = "(새로운 투표 사진 업로드는 왼쪽 사진을 눌러해주세요)"
 //public let I_LIKED = "내가 호감있는 카드"
 
 

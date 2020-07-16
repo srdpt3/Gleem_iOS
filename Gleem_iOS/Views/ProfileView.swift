@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct ProfileView: View {
     @Binding var profile_show : Bool
@@ -29,7 +30,7 @@ struct Profile : View {
         
         ZStack{
             
-            Image("sample").resizable().scaledToFit().edgesIgnoringSafeArea(.all)
+            AnimatedImage(url: URL(string: User.currentUser()!.profileImageUrl)!).resizable().frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/1.5, alignment: .center).edgesIgnoringSafeArea(.all).scaledToFit()
             
             VStack{
                 
@@ -63,8 +64,8 @@ struct Profile : View {
                             
                             VStack(alignment: .leading, spacing: 10) {
                                 
-                                Text("Bella,").font(.title)
-                                Text("25")
+                                Text(User.currentUser()!.username).font(Font.custom(FONT, size: 30)).foregroundColor(APP_THEME_COLOR)
+                                Text(User.currentUser()!.age).font(Font.custom(FONT, size: 20)).foregroundColor(APP_THEME_COLOR)
                             }
                             
                             Spacer()
@@ -73,19 +74,24 @@ struct Profile : View {
                                 
                                 Image("map").resizable().frame(width: 15, height: 20)
                                 
-                                Text("8 Miles")
+                                Text("서울")
                                 
                             }.padding(8)
-                            .background(Color.black.opacity(0.1))
-                            .cornerRadius(10)
+                                .background(Color.black.opacity(0.1))
+                                .cornerRadius(10)
                         }.padding(.top,35)
                         
-                        Text("Hi! My name is Bella. I live in New Orleans. I love traveling and adventure. I like sharing my thoughts and adore people who except me the way I am. I see the world in different a way and I m always positive.").padding(.top)
+                        VStack(alignment: .center, spacing: 10){
+                            Text("현재 쓸수 있는 포인트: " + String(User.currentUser()!.point_avail)).font(.subheadline).font(Font.custom(FONT, size: 15))
+                            Text("투표에 참여한 사진 갯수: " + String(User.currentUser()!.point_avail)).font(Font.custom(FONT, size: 15))
+                            Text("매칭된 횟수: " + String(User.currentUser()!.point_avail)).font(Font.custom(FONT, size: 15))
+                        }.padding(.top)
+                        
                         
                     }.padding()
-                    .background(Blurview())
-                    .clipShape(BottomShape())
-                    .cornerRadius(25)
+                        .background(Blurview())
+                        .clipShape(BottomShape())
+                        .cornerRadius(25)
                     
                     ZStack{
                         
@@ -93,7 +99,7 @@ struct Profile : View {
                             
                         }) {
                             
-                            Image("play").renderingMode(.original).resizable()
+                            Image(User.currentUser()!.sex ==  "male" ? "male" : "female").renderingMode(.original).resizable()
                             .frame(width: 20, height: 20)
                             .padding(20)
                             .background(Color.white)
@@ -104,33 +110,33 @@ struct Profile : View {
                         
                     }.offset(y: -35)
                     
-                    HStack{
-                        
-                        Button(action: {
-                            
-                        }) {
-                            
-                            Image("heart").renderingMode(.original).resizable()
-                                .frame(width: 25, height: 20)
-                                .padding()
-                                .background(Color.white)
-                                .clipShape(Circle())
-                        }
-                        
-                        Spacer()
-                        
-                        Button(action: {
-                            
-                        }) {
-                            
-                            Image("smile").renderingMode(.original).resizable()
-                                .frame(width: 25, height: 25)
-                                .padding()
-                                .background(Color.white)
-                                .clipShape(Circle())
-                        }
-                        }.offset(y: -25)
-                        .padding(.horizontal,35)
+//                    HStack{
+//
+////                        Button(action: {
+////
+////                        }) {
+////
+////                            Image("heart").renderingMode(.original).resizable()
+////                                .frame(width: 25, height: 20)
+////                                .padding()
+////                                .background(Color.white)
+////                                .clipShape(Circle())
+////                        }
+//
+//                        Spacer()
+//
+//                        Button(action: {
+//
+//                        }) {
+//
+//                            Image(User.currentUser()!.sex ==  "male" ? "male" : "female").renderingMode(.original).resizable()
+//                                .frame(width: 25, height: 25)
+//                                .padding()
+//                                .background(Color.white)
+//                                .clipShape(Circle())
+//                        }
+//                        }.offset(y: -25)
+//                        .padding(.horizontal,35)
                 }
                 
             }.padding()

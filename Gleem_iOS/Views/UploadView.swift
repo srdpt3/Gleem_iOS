@@ -56,11 +56,7 @@ struct UploadView: View {
                 
                 HStack{
                     Spacer(minLength: 0)
-                    Text("사진 올리기")
-                        .font(.title)
-                        .foregroundColor(.black)
-                        .fontWeight(.bold)
-                    
+                    Text(PHOTOUPLOAD).font(Font.custom(FONT, size: 30)).foregroundColor(APP_THEME_COLOR).multilineTextAlignment(.leading).lineLimit(2)
                     Spacer(minLength: 0)
                 }
                 .padding(.top, 25)

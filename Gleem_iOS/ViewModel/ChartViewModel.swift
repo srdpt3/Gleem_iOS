@@ -67,7 +67,9 @@ class ChartViewModel: ObservableObject {
                 
                 let createdDate = _dictionary["createdDate"] as! Double
                 let lastModifiedDate = _dictionary["lastModifiedDate"] as! Double
-                data = Vote(attr1: attr1, attr2: attr2, attr3: attr3, attr4: attr4, attr5: attr5, attrNames: attrNames, numVote: numVote, createdDate: createdDate, lastModifiedDate: lastModifiedDate)
+                let imageLocation = _dictionary["imageLocation"] as! String
+
+                data = Vote(attr1: attr1, attr2: attr2, attr3: attr3, attr4: attr4, attr5: attr5, attrNames: attrNames, numVote: numVote, createdDate: createdDate, lastModifiedDate: lastModifiedDate, imageLocation: imageLocation)
                 
                 
                 
@@ -76,7 +78,7 @@ class ChartViewModel: ObservableObject {
                 self.isLoading = false
                 
             }else{
-                data = Vote(attr1: 0, attr2: 0, attr3: 0, attr4: 0, attr5: 0, attrNames: [], numVote: 0, createdDate: 0, lastModifiedDate: 0)
+                data = Vote(attr1: 0, attr2: 0, attr3: 0, attr4: 0, attr5: 0, attrNames: [], numVote: 0, createdDate: 0, lastModifiedDate: 0, imageLocation : User.currentUser()!.profileImageUrl)
             }
             
             //            }

@@ -25,7 +25,7 @@ class UploadViewModel: ObservableObject {
 //            }
 //        }
         let date: Double = Date().timeIntervalSince1970
-        let myVote = Vote(attr1: 0, attr2 : 0 , attr3 : 0 , attr4: 0, attr5: 0,attrNames:buttonTitle, numVote: 0, createdDate: date, lastModifiedDate: date)
+        let myVote = Vote(attr1: 0, attr2 : 0 , attr3 : 0 , attr4: 0, attr5: 0,attrNames:buttonTitle, numVote: 0, createdDate: date, lastModifiedDate: date, imageLocation: "")
         
         //        let myVote = Vote(attr1: 0, attr2 : 0 , attr3 : 1 , attr4: 0, attr5: 0,attrNames:buttonTitle, numVote: 0, )
         

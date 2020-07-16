@@ -19,7 +19,6 @@ struct ExpandView: View {
     //    @State var voteData = [Int.random(in: 0 ..< 100),Int.random(in: 0 ..< 100),Int.random(in: 0 ..< 100),Int.random(in: 0 ..< 100),Int.random(in: 0 ..< 100)]
     
     @State var buttonPressed = [false,false,false,false,false]
-    //    let  buttonTitle = ["개같이 생김","잘생김","섹시함","스마트함","머리스타일 잘어울림"]
     var selectedButton = [String]()
     
     @ObservedObject private var voteViewModel = VoteViewModel()
@@ -146,9 +145,9 @@ struct ExpandView: View {
                                     Image(systemName: "chevron.down.circle.fill")
                                         .font(.title)
                                         .foregroundColor(Color.white)
-                                        .shadow(radius: 4)
+                                        .shadow(radius: 8)
                                         .opacity(self.pulsate ? 1 : 0.6)
-                                        .scaleEffect(self.pulsate ? 1.2 : 0.8, anchor: .center)
+                                        .scaleEffect(self.pulsate ? 1.4 : 1, anchor: .center)
                                         .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
                                 })
                                     .padding(.trailing, 20)

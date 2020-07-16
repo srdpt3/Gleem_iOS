@@ -61,6 +61,7 @@ class ChatViewModel: ObservableObject {
               showAlert = true
               errorString = "Please fill in all fields"
           }
+        return
     }
     
     func sendPhotoMessage(recipientId: String, recipientAvatarUrl: String, recipientUsername: String, completed: @escaping() -> Void,  onError: @escaping(_ errorMessage: String) -> Void) {

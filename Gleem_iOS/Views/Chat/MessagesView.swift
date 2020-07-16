@@ -27,11 +27,8 @@ struct HomeView : View {
     var body : some View{
         
         ZStack{
-            
             APP_THEME_COLOR.edgesIgnoringSafeArea(.top)
-            
             VStack{
-                
                 topView()
             }
         }
@@ -40,9 +37,7 @@ struct HomeView : View {
 
 struct MessageSubView: View {
     @ObservedObject var messageViewModel = MessageViewModel()
-    
     var body: some View{
-        
         List {
             if !messageViewModel.inboxMessages.isEmpty {
                 ForEach(messageViewModel.inboxMessages, id: \.id) { inboxMessage in
@@ -60,7 +55,6 @@ struct MessageSubView: View {
                             Spacer()
                             VStack(spacing: 5) {
                                 Text(timeAgoSinceDate(Date(timeIntervalSince1970: inboxMessage.date), currentDate: Date(), numericDates: true)).font(.caption).padding(.leading, 15)
-                                
                                 //                                 Text("2").padding(8).background(Color.blue).foregroundColor(Color.white).clipShape(Circle())
                             }
                             

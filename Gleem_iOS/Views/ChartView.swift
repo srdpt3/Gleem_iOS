@@ -82,30 +82,30 @@ struct ChartView: UIViewRepresentable {
     //        AAGradientColor.eveningDelight,
     //    ]
     func updateUIView(_ uiView: AAChartView, context:  UIViewRepresentableContext<Self>) {
-        let aaChartModel = AAChartModel()
-            .chartType(areaType)
-            .legendEnabled(false)
-            .dataLabelsEnabled(true)
-            //            .xAxisVisible(true)
-            //            .animationType(animationType)
-            .colorsTheme([AAGradientColor.coastalBreeze])
-            .title(SERIES_TITLE)
-            .markerRadius(2)
-            .polar(true)
-            .yAxisGridLineWidth(2)
-            .xAxisGridLineWidth(2)
-            .categories(categories).dataLabelsFontSize(15)
-            .marginRight(50)
-            .marginLeft(50).marginBottom(50)
-            
-            //            .titleFontWeight(AAChartFontWeightType)
-            .series([
-                AASeriesElement().name(SERIES_TITLE)
-                    .data([data[0],data[1],data[2],data[3],data[4]]),
-                
-            ])
-            .yAxisMax(Float(totalNum))
-            .yAxisVisible(true)
+//        let aaChartModel = AAChartModel()
+//            .chartType(areaType)
+//            .legendEnabled(false)
+//            .dataLabelsEnabled(true)
+//            //            .xAxisVisible(true)
+//            //            .animationType(animationType)
+//            .colorsTheme([AAGradientColor.coastalBreeze])
+//            .title(SERIES_TITLE)
+//            .markerRadius(2)
+//            .polar(true)
+//            .yAxisGridLineWidth(2)
+//            .xAxisGridLineWidth(2)
+//            .categories(categories).dataLabelsFontSize(15)
+//            .marginRight(10)
+//            .marginLeft(10)
+//
+//            //            .titleFontWeight(AAChartFontWeightType)
+//            .series([
+//                AASeriesElement().name(SERIES_TITLE)
+//                    .data([data[0],data[1],data[2],data[3],data[4]]),
+//
+//            ])
+//            .yAxisMax(Float(totalNum))
+//            .yAxisVisible(true)
         
         uiView.aa_onlyRefreshTheChartDataWithChartModelSeries([
             AASeriesElement().name(SERIES_TITLE)
@@ -113,27 +113,28 @@ struct ChartView: UIViewRepresentable {
             
         ])
         //        uiView.aa_onlyRefreshTheChartDataWithChartModelSeries([["data": [data[0],data[1],data[2],data[3],data[4]] as AnyObject]])
-
+        
     }
     
     func makeUIView(context: Context) -> AAChartView {
         
         let aaChartModel = AAChartModel()
             .chartType(areaType)
+        .title("")
             .legendEnabled(false)
             .dataLabelsEnabled(true)
             //            .xAxisVisible(true)
             //            .animationType(animationType)
             .colorsTheme([hexColor])
-            .title(SERIES_TITLE)
+//            .title(SERIES_TITLE)
             .markerRadius(2)
             .polar(true)
             .yAxisGridLineWidth(2)
             .xAxisGridLineWidth(2)
             .categories(categories).dataLabelsFontSize(15)
-            .marginRight(20)
-            .marginLeft(20)
-//            .marginBottom(50)
+//            .marginRight(5)
+//            .marginLeft(5)
+            .marginBottom(50)
             .backgroundColor(Color.black.opacity(0.06))
             //            .titleFontWeight(AAChartFontWeightType)
             .series([
@@ -148,8 +149,3 @@ struct ChartView: UIViewRepresentable {
     }
 }
 
-//struct ChartView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ChartView()
-//    }
-//}

@@ -63,25 +63,34 @@ class observer : ObservableObject{
             }
         })
     }
-     func moveCards() {
+    func moveCards() {
         self.cardViews.removeFirst()
         print("lastCardIndex \(index) asdfas \(self.totalCount)")
         
-        if(self.index ==  self.users.count){
-            print("reload")
-                   
-            self.reload()
-            self.index = 2
-        }else{
-            
-            let u = self.users[self.index % self.users.count]
-            let newCardView = MainCardView(user: u)
-            self.cardViews.append(newCardView)
+        
+        if(self.users.count == 2 &&  index == 2){
             self.index += 1
             self.last += 1
+
+        }else{
             
-            
+            if(self.index > self.users.count ){
+                print("reload")
+                
+                self.reload()
+                self.index = 2
+            }else{
+                
+                let u = self.users[self.index % self.users.count]
+                let newCardView = MainCardView(user: u)
+                self.cardViews.append(newCardView)
+                self.index += 1
+                self.last += 1
+                
+                
+            }
         }
+        
     }
     
     func logout() {

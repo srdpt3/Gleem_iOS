@@ -19,8 +19,8 @@ struct MenuView: View {
                     Spacer()
                     Text(String(User.currentUser()!.username))
                     Text("-")
-                    Text(PROFILE_COMPLETE)
-                        .font(.subheadline)
+                    Text(PROFILE_COMPLETE).font(Font.custom(FONT, size: 20))
+                                    
                     Spacer()
                     
                 }
@@ -37,10 +37,10 @@ struct MenuView: View {
                     .cornerRadius(12)
                 
                 
-                MenuRow(title: PROFILE, icon: "person" , index : 0)
-                MenuRow(title: ACCOUNT, icon: "gear" , index : 1)
-                MenuRow(title: BILLING, icon: "creditcard" , index : 2)
-                MenuRow(title:  User.currentUser() != nil ? LOGOUT : LOGIN, icon: "person.crop.circle" , index : 3)
+//                MenuRow(title: PROFILE, icon: "person" , index : 0)
+                MenuRow(title: ACCOUNT, icon: "gear" , index : 0)
+                MenuRow(title: BILLING, icon: "creditcard" , index : 1)
+                MenuRow(title:  User.currentUser() != nil ? LOGOUT : LOGIN, icon: "person.crop.circle" , index : 2)
             }
             .frame(maxWidth: .infinity)
             .frame(height: 280)
@@ -91,7 +91,7 @@ struct MenuRow: View {
             }
             
             
-            if self.index == 3 {
+            if self.index == 2 {
                 self.obs.logout()
                 
             }
@@ -103,8 +103,7 @@ struct MenuRow: View {
                     .frame(width: 32, height: 32)
                     .foregroundColor(Color(#colorLiteral(red: 0.662745098, green: 0.7333333333, blue: 0.831372549, alpha: 1)))
                 
-                Text(title)
-                    .font(.system(size: 20, weight: .bold, design: .default))
+                Text(title).font(Font.custom(FONT, size: 20))
                     .frame(width: 120, alignment: .leading)
             }
         }.buttonStyle(PlainButtonStyle())

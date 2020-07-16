@@ -19,12 +19,10 @@ struct Vote: Encodable, Decodable {
     var numVote: Int
     var createdDate: Double
     var lastModifiedDate: Double
+    var imageLocation: String
 
-
     
-    
-    
-    init(attr1: Int, attr2: Int, attr3: Int, attr4: Int, attr5: Int,attrNames: [String], numVote: Int, createdDate: Double, lastModifiedDate: Double) {
+    init(attr1: Int, attr2: Int, attr3: Int, attr4: Int, attr5: Int,attrNames: [String], numVote: Int, createdDate: Double, lastModifiedDate: Double, imageLocation: String) {
         self.attr1 = attr1
         self.attr2 = attr2
         self.attr3 = attr3
@@ -36,6 +34,7 @@ struct Vote: Encodable, Decodable {
         self.numVote = numVote
         self.createdDate = createdDate
         self.lastModifiedDate = lastModifiedDate
+        self.imageLocation = imageLocation
 
         
     }
@@ -50,6 +49,7 @@ struct Vote: Encodable, Decodable {
 
         createdDate = _dictionary["createdDate"] as! Double
         lastModifiedDate = _dictionary["lastModifiedDate"] as! Double
+        imageLocation = _dictionary["imageLocation"] as! String
 
 
     }

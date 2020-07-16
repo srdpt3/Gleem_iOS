@@ -8,6 +8,7 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import AlertX
 
 struct FavoriteView: View {
     
@@ -18,15 +19,36 @@ struct FavoriteView: View {
 
 
 struct FavoriteHome : View {
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject private var favoriteViewModel = FavoriteViewModel()
     @ObservedObject private var activityViewModel = ActivityViewModel()
     @ObservedObject private var chatViewModel = ChatViewModel()
+    @State var showAlertX : Bool = false
+    @State var sendMessage : Bool = false
+    
     
     init() {
         self.favoriteViewModel.loadFavoriteUsers()
         self.activityViewModel.loadActivities()
     }
     
+    func sendMessage(user: Activity){
+
+        
+        if(self.sendMessage){
+            self.presentationMode.wrappedValue.dismiss()
+            self.chatViewModel.composedMessage = SEND_LIKE_MESSAGE
+            self.chatViewModel.sendTextMessage(recipientId: user.userId, recipientAvatarUrl: user.userAvatar, recipientUsername: user.username, completed: {
+                self.chatViewModel.composedMessage = ""
+                self.sendMessage = false
+//                self.presentationMode.wrappedValue.dismiss()
+
+            }) { (error) in
+                print(error)
+            }
+            
+        }
+    }
     
     var body: some View{
         
@@ -37,7 +59,7 @@ struct FavoriteHome : View {
                 VStack{
                     
                     HStack{
-                        Text(SOMEONE_LIKED).fontWeight(.heavy).font(Font.custom(FONT, size: 15))
+                        Text(SOMEONE_LIKED).fontWeight(.heavy).font(Font.custom(FONT, size: 20))
                             .foregroundColor(APP_THEME_COLOR)
                         Spacer()
                         
@@ -56,18 +78,39 @@ struct FavoriteHome : View {
                                                 Double(geometry.frame(in: .global).minX - 60) / -getAngleMultiplier(bounds: geo)
                                             ), axis: (x: 0, y: 50, z: 0))
                                             .onTapGesture {
-                                                print(user.username)
-                                                self.chatViewModel.composedMessage = SEND_LIKE_MESSAGE
-                                                self.chatViewModel.sendTextMessage(recipientId: user.userId, recipientAvatarUrl: user.userAvatar, recipientUsername: user.username, completed: {
-                                                    self.chatViewModel.composedMessage = ""
-                                                }) { (error) in
-                                                    print(error)
-                                                }
+                                                
+                                                self.showAlertX.toggle()
+                                                
+                               
+                                                //                                                                  AlertX(title: Text("AlertX Title"),
+                                                //                                                                         message: Text("An optional message indicating some action goes here..."),
+                                                //                                                                         primaryButton: .cancel(),
+                                                //                                                                         secondaryButton: .default(Text("Done"), action: {
+                                                //                                                                          // Some action
+                                                //                                                                         }),
+                                                //                                                                         theme: .graphite(withTransparency: true, roundedCorners: true),
+                                                //                                                                         animation: .classicEffect())
+                                                //
                                                 
                                                 
-                                        }
+                                                
+                                        }.alertX(isPresented: self.$showAlertX, content: {
+                                            
+                                            AlertX(title: Text("상대방이랑 채팅하기").font(Font.custom(FONT, size: 20))
+                                                .foregroundColor(APP_THEME_COLOR),
+                                                   message: Text("채팅하기에 1포인트가 소모됩니다. \n현재 가진 포인트: " + String(User.currentUser()!.point_avail)),
+                                                   primaryButton: .cancel(),
+                                                   secondaryButton: .default(Text("확인"), action: {
+                                                    self.sendMessage.toggle()
+//                                                    self.sendMessage(user: user)
+//                                                    self.presentationMode.wrappedValue.dismiss()
+                                                   }
+                                                    
+                                                ),
+                                                   theme: .light(withTransparency: true, roundedCorners: true),
+                                                   animation: .classicEffect())
+                                        })
                                         
-                                        //                                            } .buttonStyle(PlainButtonStyle())
                                         
                                         
                                         
@@ -142,7 +185,7 @@ struct MainSubViewFavorite: View{
         ScrollView(.vertical, showsIndicators: false) {
             
             HStack{
-                Text(I_LIKED).fontWeight(.heavy).font(Font.custom(FONT, size: 15)) .foregroundColor(APP_THEME_COLOR)
+                Text(I_LIKED).fontWeight(.heavy).font(Font.custom(FONT, size: 20)) .foregroundColor(APP_THEME_COLOR)
                 Spacer()
                 
             }
