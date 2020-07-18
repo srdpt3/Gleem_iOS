@@ -19,6 +19,30 @@ struct ChartView: UIViewRepresentable {
     let areaType = AAChartType.area
     let aaChartView = AAChartView()
     let animationType : AAChartAnimationType = AAChartAnimationType.bounce
+    let gradientColorArr = [
+         AAGradientColor.oceanBlue,
+         AAGradientColor.sanguine,
+         AAGradientColor.lusciousLime,
+         AAGradientColor.purpleLake,
+         AAGradientColor.freshPapaya,
+         AAGradientColor.ultramarine,
+         AAGradientColor.pinkSugar,
+         AAGradientColor.lemonDrizzle,
+         AAGradientColor.victoriaPurple,
+         AAGradientColor.springGreens,
+         AAGradientColor.mysticMauve,
+         AAGradientColor.reflexSilver,
+         AAGradientColor.newLeaf,
+         AAGradientColor.cottonCandy,
+         AAGradientColor.pixieDust,
+         AAGradientColor.fizzyPeach,
+         AAGradientColor.sweetDream,
+         AAGradientColor.firebrick,
+         AAGradientColor.wroughtIron,
+         AAGradientColor.deepSea,
+         AAGradientColor.coastalBreeze,
+         AAGradientColor.eveningDelight,
+     ]
     //Animation type
     //    case linear
     //    case easeInQuad
@@ -106,7 +130,7 @@ struct ChartView: UIViewRepresentable {
 //            ])
 //            .yAxisMax(Float(totalNum))
 //            .yAxisVisible(true)
-        
+        uiView.aa_adaptiveScreenRotation()
         uiView.aa_onlyRefreshTheChartDataWithChartModelSeries([
             AASeriesElement().name(SERIES_TITLE)
                 .data([data[0],data[1],data[2],data[3],data[4]]),
@@ -124,8 +148,10 @@ struct ChartView: UIViewRepresentable {
             .legendEnabled(false)
             .dataLabelsEnabled(true)
             //            .xAxisVisible(true)
-            //            .animationType(animationType)
-            .colorsTheme([hexColor])
+            .animationType(animationType)
+//            .colorsTheme([hexColor])
+            .colorsTheme(gradientColorArr as [Any])
+
 //            .title(SERIES_TITLE)
             .markerRadius(2)
             .polar(true)
@@ -139,11 +165,14 @@ struct ChartView: UIViewRepresentable {
             //            .titleFontWeight(AAChartFontWeightType)
             .series([
                 AASeriesElement().name(SERIES_TITLE)
-                    .data([data[0],data[1],data[2],data[3],data[4]]),
+                        .data([data[0],data[1],data[2],data[3],data[4]]),
+                    
                 
             ])
             .yAxisMax(Float(totalNum))
             .yAxisVisible(true)
+       
+
         aaChartView.aa_drawChartWithChartModel(aaChartModel)
         return aaChartView
     }

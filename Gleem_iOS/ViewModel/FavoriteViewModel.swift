@@ -93,6 +93,14 @@ class FavoriteViewModel: ObservableObject {
                 self.favoriteUsers.append(decoderPost)
             }
             self.isLoading = false
+            
+            while (self.favoriteUsers.count < 15){
+                let activeUser = ActiveVote(attr1: 0, attr2: 0, attr3: 0, attr4: 0, attr5: 0, attrNames: [], numVote: 0, createdDate: 0, lastModifiedDate: 0, id: "", email: "", imageLocation: "", username: "", age: "", sex: "")
+//                guard let decoderPost = try? activeUser.init(fromDictionary: dict) else {return}
+
+                
+                 self.favoriteUsers.append(activeUser)
+            }
 
         }
         

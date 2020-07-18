@@ -20,7 +20,7 @@ class ActivityViewModel: ObservableObject {
     
     func loadActivities() {
         isLoading = true
-        listener = Ref.FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID(userId: User.currentUser()!.id).collection("liked").order(by: "date", descending: false).addSnapshotListener({ (querySnapshot, error) in
+        listener = Ref.FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID(userId: User.currentUser()!.id).collection("liked").order(by: "date", descending: true).addSnapshotListener({ (querySnapshot, error) in
             guard let snapshot = querySnapshot else {
                 return
             }

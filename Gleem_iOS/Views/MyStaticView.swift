@@ -22,6 +22,9 @@ struct MyStaticView: View {
     @State var votePiclocation : String = ""
     //    @State var voteData = [Int.random(in: 0 ..< 100),Int.random(in: 0 ..< 100),Int.random(in: 0 ..< 100),Int.random(in: 0 ..< 100),Int.random(in: 0 ..< 100)]
     @State var selected = 0
+    @State private var rotation = 0
+    @State private var celsius: Double = 0
+
     var colors = [[Color("Color"),Color("Color1")],
                   [Color("Color1"),Color("Color3")],
                   [Color("Color3"),Color("Color4")],
@@ -45,7 +48,7 @@ struct MyStaticView: View {
                 self.voteData.removeAll()
                 self.voteNum.removeAll()
                 if(vote.numVote == 0){
-                    self.voteData = [100,100,100,100,100]
+                    self.voteData = [0,0,0,0,0]
                 }else{
                     self.voteData.append((Double(vote.attr1) / Double(vote.numVote) * 100).roundToDecimal(0))
                     self.voteData.append((Double(vote.attr2) / Double(vote.numVote) * 100).roundToDecimal(0))
@@ -117,11 +120,18 @@ struct MyStaticView: View {
                         HStack(spacing: 5){
                             ZStack{
                                 VStack{
-                                    Spacer(minLength: 0)
-                                    Image("Gleem_3D").resizable().frame(width: 60, height: 60)
-                                    Text("실시간").font(Font.custom(FONT, size: 15)).foregroundColor(APP_THEME_COLOR).multilineTextAlignment(.leading).lineLimit(2)
-                                    Text("이미지").font(Font.custom(FONT, size: 15)).foregroundColor(APP_THEME_COLOR).multilineTextAlignment(.leading).lineLimit(2)
                                     
+                                    ZStack{
+//                                        LoadingView2(filename: "heart")
+                                        LottieView(filename: "heart")
+                                              .frame(width: 80, height: 100)
+                                    }
+
+//                                    Spacer(minLength: 0)
+//                                    Image("Gleem_3D").resizable().frame(width: 60, height: 60)
+//                                    Text("실시간").font(Font.custom(FONT, size: 15)).foregroundColor(APP_THEME_COLOR).multilineTextAlignment(.leading).lineLimit(2)
+//                                    Text("이미지").font(Font.custom(FONT, size: 15)).foregroundColor(APP_THEME_COLOR).multilineTextAlignment(.leading).lineLimit(2)
+//
                                 }
                                 
                                 
@@ -169,15 +179,26 @@ struct MyStaticView: View {
                         
                         
                         HStack{
+//                                       Slider(value: $celsius, in: -100...100, step: 0.1)
+
+
                             Text(MY_STAT_RADAR).fontWeight(.heavy).font(Font.custom(FONT, size: 20)).foregroundColor(APP_THEME_COLOR)
                             Spacer(minLength: 0)
                         }
                         .padding()
                         VStack{
+
                             if !self.voteData.isEmpty {
-                                ChartView(data: self.$voteData, totalNum: self.totalNum, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/2.2)  .padding(.top, -20).background(Color.clear).padding(.bottom, 30)
-                                
-                                
+                                ZStack{
+
+                                    //                                    LottieView(filename: "fireworks")
+                                    ChartView(data: self.$voteData, totalNum: self.totalNum, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height/2.4)  .padding(.top, -20).background(Color.clear).padding(.bottom, 30)
+                                        .rotationEffect(.degrees(Double(celsius)))
+                                 
+                                    
+                                    LottieView(filename: "radar-motion").frame(width: 300  , height: 300).padding(.bottom, 30)
+
+                                }
                                 
                                 
                             }

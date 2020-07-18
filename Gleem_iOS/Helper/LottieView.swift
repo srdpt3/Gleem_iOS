@@ -16,10 +16,12 @@ struct LottieView: UIViewRepresentable {
     func makeUIView(context: UIViewRepresentableContext<LottieView>) -> UIView {
         let view = UIView(frame: .zero)
         
+        print("asdfasdfa")
         let animationView = AnimationView()
         let animation = Animation.named(filename)
         animationView.animation = animation
-        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .repeat(30.0)
+        animationView.contentMode = .scaleAspectFill
         animationView.play()
         
         animationView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,10 +43,12 @@ struct LottieView: UIViewRepresentable {
 
 
 struct LoadingView2: View {
+    var filename: String
+
     var body: some View {
         VStack {
-            LottieView(filename: "loading")
-                .frame(width: 200, height: 200)
+            LottieView(filename: filename)
+                .frame(width: 300, height: 300)
         }
     }
 }

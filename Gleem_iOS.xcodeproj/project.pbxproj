@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11143D2524C234DD0082E48F /* fireworks.json in Resources */ = {isa = PBXBuildFile; fileRef = 11143D2424C234DC0082E48F /* fireworks.json */; };
+		11143D2824C242330082E48F /* heart.json in Resources */ = {isa = PBXBuildFile; fileRef = 11143D2624C242320082E48F /* heart.json */; };
+		11143D2924C242330082E48F /* heart2.json in Resources */ = {isa = PBXBuildFile; fileRef = 11143D2724C242320082E48F /* heart2.json */; };
+		11143D3124C25DB10082E48F /* explosion.json in Resources */ = {isa = PBXBuildFile; fileRef = 11143D3024C25DB10082E48F /* explosion.json */; };
+		11143D3324C25ED60082E48F /* radar.json in Resources */ = {isa = PBXBuildFile; fileRef = 11143D3224C25ED50082E48F /* radar.json */; };
+		11143D3524C268940082E48F /* radar-motion.json in Resources */ = {isa = PBXBuildFile; fileRef = 11143D3424C268920082E48F /* radar-motion.json */; };
 		1153A78724B966AE00CE3574 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153A78524B966AD00CE3574 /* SignupViewModel.swift */; };
 		1153A78824B966AE00CE3574 /* SigninViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153A78624B966AE00CE3574 /* SigninViewModel.swift */; };
 		1153A78F24B9679200CE3574 /* UsernameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153A78924B9679100CE3574 /* UsernameTextField.swift */; };
@@ -121,6 +127,12 @@
 
 /* Begin PBXFileReference section */
 		0A0B1D9AD08185C3F68EA576 /* Pods_Gleem_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gleem_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		11143D2424C234DC0082E48F /* fireworks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fireworks.json; sourceTree = "<group>"; };
+		11143D2624C242320082E48F /* heart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heart.json; sourceTree = "<group>"; };
+		11143D2724C242320082E48F /* heart2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heart2.json; sourceTree = "<group>"; };
+		11143D3024C25DB10082E48F /* explosion.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = explosion.json; sourceTree = "<group>"; };
+		11143D3224C25ED50082E48F /* radar.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = radar.json; sourceTree = "<group>"; };
+		11143D3424C268920082E48F /* radar-motion.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "radar-motion.json"; sourceTree = "<group>"; };
 		1153A78524B966AD00CE3574 /* SignupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		1153A78624B966AE00CE3574 /* SigninViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigninViewModel.swift; sourceTree = "<group>"; };
 		1153A78924B9679100CE3574 /* UsernameTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsernameTextField.swift; sourceTree = "<group>"; };
@@ -390,6 +402,12 @@
 		11783ED424B53DD800EEFE80 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				11143D3424C268920082E48F /* radar-motion.json */,
+				11143D3224C25ED50082E48F /* radar.json */,
+				11143D3024C25DB10082E48F /* explosion.json */,
+				11143D2424C234DC0082E48F /* fireworks.json */,
+				11143D2724C242320082E48F /* heart2.json */,
+				11143D2624C242320082E48F /* heart.json */,
 				11783ED524B53DD800EEFE80 /* Constants.swift */,
 				11783ED724B53DD800EEFE80 /* SearchBarView.swift */,
 				11783ED824B53DD800EEFE80 /* ImagePicker.swift */,
@@ -625,9 +643,15 @@
 				11783EF724B53F4700EEFE80 /* GoogleService-Info.plist in Resources */,
 				11B5ED0D24BDF9A10055700B /* CookieRun Regular.ttf in Resources */,
 				11783E7B24B53BA900EEFE80 /* LaunchScreen.storyboard in Resources */,
+				11143D3324C25ED60082E48F /* radar.json in Resources */,
 				11B5ED1124BDFB6D0055700B /* JSDongkang-Regular.ttf in Resources */,
+				11143D2824C242330082E48F /* heart.json in Resources */,
+				11143D3524C268940082E48F /* radar-motion.json in Resources */,
+				11143D2924C242330082E48F /* heart2.json in Resources */,
 				11783E7824B53BA900EEFE80 /* Preview Assets.xcassets in Resources */,
 				11783E7524B53BA900EEFE80 /* Assets.xcassets in Resources */,
+				11143D2524C234DD0082E48F /* fireworks.json in Resources */,
+				11143D3124C25DB10082E48F /* explosion.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

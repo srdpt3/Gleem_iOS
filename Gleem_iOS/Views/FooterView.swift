@@ -26,7 +26,7 @@ struct FooterView: View {
                 //        playSound(sound: "sound-click", type: "mp3")
                 self.haptics.notificationOccurred(.success)
                 
-                
+//                self.fireworkController.addFirework(sparks: 10)
                 withAnimation{
                     self.showVotingScreen.toggle()
                 }

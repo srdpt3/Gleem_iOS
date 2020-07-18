@@ -26,7 +26,7 @@ struct ExpandView: View {
     @ObservedObject  private var favoriteViewModel = FavoriteViewModel()
     @State private var pulsate: Bool = false
     @Environment(\.presentationMode) var presentationMode
-    
+
     //    @State var buttonSelected: Bool = false
     
     
@@ -134,28 +134,7 @@ struct ExpandView: View {
                         
                     }
                     .background(Color.black.opacity(0.06)).edgesIgnoringSafeArea(.top)
-                    .overlay(
-                        HStack {
-                            Spacer()
-                            VStack {
-                                Button(action: {
-                                    // ACTION
-                                    self.presentationMode.wrappedValue.dismiss()
-                                }, label: {
-                                    Image(systemName: "chevron.down.circle.fill")
-                                        .font(.title)
-                                        .foregroundColor(Color.white)
-                                        .shadow(radius: 8)
-                                        .opacity(self.pulsate ? 1 : 0.6)
-                                        .scaleEffect(self.pulsate ? 1.4 : 1, anchor: .center)
-                                        .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
-                                })
-                                    .padding(.trailing, 20)
-                                    .padding(.top, 24)
-                                Spacer()
-                            }
-                        }
-                    )
+  
                         .onAppear() {
                             self.pulsate.toggle()
                     }
@@ -194,6 +173,28 @@ struct ExpandView: View {
                                 Spacer()
                                 
                             }.padding(.bottom, 20)
+                                            .overlay(
+                                                  HStack {
+                                                      Spacer()
+                                                      VStack {
+                                                          Button(action: {
+                                                              // ACTION
+                                                              self.presentationMode.wrappedValue.dismiss()
+                                                          }, label: {
+                                                              Image(systemName: "xmark.circle.fill")
+                                                                  .font(.title)
+                                                                  .foregroundColor(Color.white)
+                                                                  .shadow(radius: 8)
+                                                                  .opacity( 1 )
+                                                                  .scaleEffect( 1.4, anchor: .center)
+                                                                  .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
+                                                          })
+                                                              .padding(.trailing, 20)
+                            //                                  .padding(.top, 10)
+                                                          Spacer()
+                                                      }
+                                                  }
+                                              )
                             
                             // Info
                             RatingDetailView()
@@ -246,8 +247,34 @@ struct ExpandView: View {
                                 VStack(spacing: 10){
                                     
                                     Text(self.user.username + USER_RESULT.uppercased()).font(.custom(FONT, size: CGFloat(BUTTON_TITLE_FONT_SIZE))).padding().foregroundColor(Color("Color2"))
+                                    
+                                    
+//                                    self.fireworkController.addFireworks(around: ChartView as UIView)
+
                                     ChartView(data: self.$voteData, totalNum: CHART_Y_AXIS, categories: self.user.attrNames).frame(width: UIScreen.main.bounds.width, height: (UIScreen.main.bounds.height) / 2.4)
-                                }
+                                       
+                                }                                .overlay(
+                                                      HStack {
+                                                          Spacer()
+                                                          VStack {
+                                                              Button(action: {
+                                                                  // ACTION
+                                                                  self.presentationMode.wrappedValue.dismiss()
+                                                              }, label: {
+                                                                  Image(systemName: "xmark.circle.fill")
+                                                                      .font(.title)
+                                                                      .foregroundColor(Color.white)
+                                                                      .shadow(radius: 8)
+                                                                      .opacity( 1 )
+                                                                      .scaleEffect( 1.4, anchor: .center)
+                                                                      .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
+                                                              })
+                                                                  .padding(.trailing, 20)
+                                //                                  .padding(.top, 10)
+                                                              Spacer()
+                                                          }
+                                                      }
+                                                  )
                                 
                                 
                                 Spacer()
@@ -272,6 +299,7 @@ struct ExpandView: View {
                 .background(Color.white)
                 .cornerRadius(20)
                 .offset(y: -80)
+
                 
             }
             
