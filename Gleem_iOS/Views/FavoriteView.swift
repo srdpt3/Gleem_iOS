@@ -26,7 +26,7 @@ struct FavoriteHome : View {
     @State var showAlertX : Bool = false
     @State var sendMessage : Bool = false
     @State private var showingModal: Bool = false
-    @State private var animatingSymbol: Bool = false
+    @State private var showMessageView: Bool = false
     @State private var animatingModal: Bool = false
     @State  private var selectedUser: Activity?
     
@@ -34,25 +34,7 @@ struct FavoriteHome : View {
         self.favoriteViewModel.loadFavoriteUsers()
         self.activityViewModel.loadActivities()
     }
-    
-    //    func sendMessage(){
-    //
-    //        let user = selectedUser!
-    //        if(self.sendMessage){
-    //            self.presentationMode.wrappedValue.dismiss()
-    //            self.chatViewModel.composedMessage = SEND_LIKE_MESSAGE
-    //            self.chatViewModel.sendTextMessage(recipientId: user.userId, recipientAvatarUrl: user.userAvatar, recipientUsername: user.username, completed: {
-    //                self.chatViewModel.composedMessage = ""
-    //                self.sendMessage = false
-    //                //                self.presentationMode.wrappedValue.dismiss()
-    //
-    //            }) { (error) in
-    //                print(error)
-    //            }
-    //
-    //        }
-    //    }
-    
+
     var body: some View{
         
         VStack(spacing: 10){
@@ -121,20 +103,28 @@ struct FavoriteHome : View {
                             
                         }
                     }
-                    
-                    
+
                     
                     
                 }  .blur(radius: self.$showingModal.wrappedValue ? 5 : 0, opaque: false)
                 // MARK: - POPUP
+                
+                
+                if(self.showMessageView){
+                    
+                    MessagesView()
+                }
+                
+                
                 if self.showingModal {
                     ZStack {
+                        
                         Color("ColorTransparentBlack").edgesIgnoringSafeArea(.all)
                         
                         // MODAL
                         VStack(spacing: 0) {
                             // TITLE
-                            Text("상대방이랑 채팅하기")
+                            Text( self.selectedUser!.username + " 에게 말걸기")
                                 .font(Font.custom(FONT, size: 20))
                                 .fontWeight(.heavy)
                                 .padding()
@@ -145,11 +135,30 @@ struct FavoriteHome : View {
                             Spacer()
                             
                             // MESSAGE
+                            
                             VStack(spacing: 16) {
-                                Image("Gleem 3D Icon Type Black Transparent_resized")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(maxHeight: 72)
+                                HStack{
+                                    AnimatedImage(url: URL(string:User.currentUser()!.profileImageUrl))
+                                        .resizable().frame(width: 70, height: 70).cornerRadius(15)
+                                        .cornerRadius(35)
+                                        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 8, y: 8)
+                                        .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+                                    
+                                    Image("heart-2")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(maxHeight: 30)
+                                    
+                                    
+                                    AnimatedImage(url: URL(string:self.selectedUser!.userAvatar))
+                                        .resizable().frame(width: 70, height: 70).cornerRadius(15)
+                                        .cornerRadius(35)
+                                        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 8, y: 8)
+                                        .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+                                    
+                                    
+                                }
+                                
                                 //
                                 Text("상대방에게 채팅요청시 1포인트가 소모됩니다. \n현재 가진 포인트: " + String(User.currentUser()!.point_avail))
                                     .font(Font.custom(FONT, size: 15))
@@ -163,38 +172,39 @@ struct FavoriteHome : View {
                                     Button(action: {
                                         self.showingModal = false
                                         self.animatingModal = false
+//                                         self.presentationMode.wrappedValue.dismiss()
                                         
                                     }) {
                                         Text("취소".uppercased())
                                             .font(Font.custom(FONT, size: 15))
                                             .fontWeight(.semibold)
                                             .accentColor(Color.gray)
-                                            .padding(.horizontal, 10)
-                                            .padding(.vertical, 8)
-                                            .frame(minWidth: 120)
+                                            .padding(.horizontal, 55)
+                                            .padding(.vertical, 15)
+                                            .frame(minWidth: 100)
                                             .background(
                                                 Capsule()
                                                     .strokeBorder(lineWidth: 1.75)
                                                     .foregroundColor(Color.gray)
                                         )
-                                    }.padding().padding(.leading, 12)
+                                    }
                                     Button(action: {
+                                        
                                         self.showingModal = false
                                         self.animatingModal = false
-                                        let user = self.selectedUser!
-                                        
-                                        self.presentationMode.wrappedValue.dismiss()
+                                        self.showMessageView.toggle()
+
+//                                        self.presentationMode.wrappedValue.dismiss()
                                         self.chatViewModel.composedMessage = SEND_LIKE_MESSAGE
-                                        self.chatViewModel.sendTextMessage(recipientId: user.userId, recipientAvatarUrl: user.userAvatar, recipientUsername: user.username, completed: {
+                                        self.chatViewModel.sendTextMessage(recipientId: self.selectedUser!.userId, recipientAvatarUrl: self.selectedUser!.userAvatar, recipientUsername: self.selectedUser!.username, completed: {
                                             self.chatViewModel.composedMessage = ""
                                             self.sendMessage = false
-                                            //                self.presentationMode.wrappedValue.dismiss()
                                             
                                         }) { (error) in
                                             print(error)
                                         }
-                                        
-                                        
+//
+//
                                         
                                         
                                     }) {
@@ -202,20 +212,21 @@ struct FavoriteHome : View {
                                             .font(Font.custom(FONT, size: 15))
                                             .fontWeight(.semibold)
                                             .accentColor(Color("Color2"))
-                                            .padding(.horizontal, 10)
-                                            .padding(.vertical, 8)
-                                            .frame(minWidth: 120)
+                                          .padding(.horizontal, 55)
+                                                                       .padding(.vertical, 15)
+                                            .frame(minWidth: 100)
                                             .background(
                                                 Capsule()
                                                     .strokeBorder(lineWidth: 1.75)
                                                     .foregroundColor(Color("Color2"))
                                         )
-                                    }.padding().padding(.trailing, 12)
-                                    
+                                    }
+
                                 }
                             }
                             
                             Spacer()
+
                         }
                         .frame(minWidth: 260, idealWidth: 260, maxWidth: 300, minHeight: 240, idealHeight: 260, maxHeight: 300, alignment: .center)
                         .background(Color.white)
@@ -228,15 +239,20 @@ struct FavoriteHome : View {
                             self.animatingModal = true
                         })
                     }
+                    
+                
+                 
                 }
             }
+       
+
+
             
         }
         .navigationBarHidden(true)
-        .navigationBarTitle("")
+        .navigationBarTitle("").environment(\.horizontalSizeClass, .compact)
         
-        
-        
+
         
         
     }
@@ -276,19 +292,16 @@ struct MainSubViewFavorite: View{
                     HStack(spacing: 8){
                         ForEach(self.users.chunked(3)[index]){i in
                             
-                            NavigationLink(destination: ExpandView(user: i, show: self.$show, isVoted: self.$isVoted)) {
+                            
+                            if(i.imageLocation != ""){
+                                NavigationLink(destination:   ExpandView(user: i, show: self.$show, isVoted: self.$isVoted)) {
+                                    FavoriteCard(user: i)
+                                    //                                Text(String(index))
+                                }
+                            }else{
                                 FavoriteCard(user: i)
-                                //                                Text(String(index))
                             }
-                            
-                            //                            Text(String(index))
-                            //                            if(index <= 1){
-                            //                                Spacer()
-                            //
-                            //                            }
-                            
-                            
-                            
+
                             
                         }
                         
@@ -320,7 +333,7 @@ struct FavoriteCard: View {
                 
                 if(self.user.imageLocation != ""){
                     AnimatedImage(url: URL(string:self.user.imageLocation))
-                        .resizable().frame(width: (UIScreen.main.bounds.width  ) / 3.1, height: (UIScreen.main.bounds.height ) / 5.2).cornerRadius(15)
+                        .resizable().frame(width: (UIScreen.main.bounds.width  ) / 3.1, height: (UIScreen.main.bounds.height ) / 5.5).cornerRadius(15)
                         .background(Color("Color-2"))
                         .cornerRadius(15)
                         .shadow(color: Color.black.opacity(0.1), radius: 5, x: 8, y: 8)

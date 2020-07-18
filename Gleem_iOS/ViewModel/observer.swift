@@ -158,38 +158,9 @@ class observer : ObservableObject{
                 if(id != Auth.auth().currentUser?.uid){
                     
                     let dict = i.data()
-                    
                     guard let decoderPost = try? ActiveVote.init(fromDictionary: dict) else {return}
-                    
                     self.users.append(decoderPost)
-                    
-                    
-                    //
-                    //                    let email = i.get("email") as! String
-                    //                    let username = i.get("username") as! String
-                    //                    let age = i.get("age") as! String
-                    //                    let sex = i.get("sex") as! String
-                    //                    let profileImageUrl = i.get("profileImageUrl") as! String
-                    //
-                    //
-                    //                    let attr1 = _dictionary["attr1"] as! Int
-                    //                    let attr2 = _dictionary["attr2"] as! Int
-                    //                    let attr3 = _dictionary["attr3"] as! Int
-                    //                    let attr4 = _dictionary["attr4"] as! Int
-                    //                    let attr5 = _dictionary["attr5"] as! Int
-                    //                    let attrNames = _dictionary["attrNames"] as! [String]
-                    //                    let numVote = _dictionary["numVote"] as! Int
-                    //
-                    //                    let createdDate = _dictionary["createdDate"] as! Double
-                    //                    let lastModifiedDate = _dictionary["lastModifiedDate"] as! Double
-                    //
-                    //
-                    //
-                    //                    self.users.append(ActiveVote(attr1: attr1, attr2: <#T##Int#>, attr3: <#T##Int#>, attr4: <#T##Int#>, attr5: <#T##Int#>, attrNames: <#T##[String]#>, numVote: <#T##Int#>, createdDate: <#T##Double#>, lastModifiedDate: <#T##Double#>, id: <#T##String#>, email: <#T##String#>, profileImageUrl: <#T##String#>, username: <#T##String#>, age: <#T##String#>, sex: <#T##String#>))
-                    //
-                    //
-                    //
-                    //
+     
                 }
                 
             }
