@@ -137,7 +137,7 @@ struct LoginView: View {
                         }){
                             HStack {
                                 Text(TEXT_NEED_AN_ACCOUNT).font(.footnote).foregroundColor(.gray)
-                                Text(TEXT_SIGN_UP).foregroundColor(Color("Color2"))
+                                Text(TEXT_SIGN_UP).foregroundColor(APP_THEME_COLOR)
                             }
                         }
                         
@@ -251,7 +251,7 @@ struct CustomTF : View {
                     
                 }) {
                     
-                    Image(systemName: self.isemail ? "envelope.fill" :  (self.username ? "person.fill" :  "eye.slash.fill")).foregroundColor(Color("Color2"))
+                    Image(systemName: self.isemail ? "envelope.fill" :  (self.username ? "person.fill" :  "eye.slash.fill")).foregroundColor(APP_THEME_COLOR)
                 }
             }
             

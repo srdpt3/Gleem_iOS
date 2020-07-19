@@ -25,7 +25,7 @@ struct RatingDetailView: View {
             }
             HStack(alignment: .center, spacing: 2) {
               Image(systemName: "flame")
-              Text("성별 : 여자")
+                Text("성별 :" + (User.currentUser()?.sex == "male" ? "남자" : "여자" ))
             }
           }
           .font(.footnote)

@@ -19,7 +19,7 @@ class SignupViewModel: ObservableObject {
      var password: String = ""
      var repassword: String = ""
 
-     var image: Image = Image("avatar")
+     var image: Image = Image("profilepic")
      var imageData: Data = Data()
      var errorString = ""
      @Published var showImagePicker: Bool = false

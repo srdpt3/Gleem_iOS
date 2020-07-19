@@ -108,10 +108,15 @@ public let MESSAGEVIEW_TITLE = "채팅"
 //Notification
 public let ACTIVITY = "알림"
 public let LIKED_MESSAGE = "님이 끌림을 주셧습니다"
-public let MATCHED_MESSAGE = "님과 서로 연결이 되었습니다.채팅창에서 인사해보세요 ^^"
+public let MATCHED_MESSAGE = "님과 서로 연결이 되었습니다. \n채팅창에서 인사해보세요 ^^"
 
 //Chat View
 public let TYPE_MESSAGE = "메세지를 입력해주세요"
+public let LEAVE_ROOM =  "채팅방 나가기"
+public let END_CHAT =  "이랑 대화를 종료합니다"
+public let CONFIRM =  "확인"
+public let CANCEL =  "취소"
+
 
 //Favorite
 public let SOMEONE_LIKED = "내게 끌림을 준 카드"
@@ -121,6 +126,7 @@ public let I_LIKED = "내가 호감있는 카드"
 //Stat
 public let MY_STAT_RADAR = "나의 이미지 그래프(%)"
 public let NEW_UPLOAD = "(새로운 투표 사진 업로드는 왼쪽 사진을 눌러해주세요)"
+public let NO_DATA = "현재 투표받은 데이터가 없습니다"
 //public let I_LIKED = "내가 호감있는 카드"
 
 
@@ -169,33 +175,13 @@ class Ref {
         return FIRESTORE_COLLECTION_INBOX_MESSAGES.document(userId).collection("inboxMessages")
     }
     
-    //    // Storage - Posts
-    //      static var STORAGE_CHAT = storage.reference(forURL: kFILEREFERENCE).child("chat")
-    //
-    //      static func STORAGE_CHAT_ID(chatId: String) -> StorageReference {
-    //          return STORAGE_CHAT.child(chatId)
-    //      }
-    //
-    //
-    //
-    //      static func FIRESTORE_COLLECTION_CHATROOM(senderId: String, recipientId: String) -> CollectionReference {
-    //          return  FirebaseReference(.chat).document(senderId).collection("chatRoom").document(recipientId).collection("chatItems")
-    //      }
-    //
-    //
-    //      static func FIRESTORE_COLLECTION_INBOX_MESSAGES_DOCUMENT_USERID(senderId: String, recipientId: String) -> DocumentReference {
-    //          return FirebaseReference(.messages).document(senderId).collection("inboxMessages").document(recipientId)
-    //
-    //
-    //      }
-    
-    
-    
-    
-    
     static func FIRESTORE_COLLECTION_INBOX_MESSAGES_DOCUMENT_USERID(senderId: String, recipientId: String) -> DocumentReference {
         return FIRESTORE_COLLECTION_INBOX_MESSAGES.document(senderId).collection("inboxMessages").document(recipientId)
     }
+    
+    
+    
+    
     
     static var FIRESTORE_COLLECTION_FOLLOWING = FIRESTORE_ROOT.collection("following")
     static func FIRESTORE_COLLECTION_FOLLOWING_USERID(userId: String) -> DocumentReference {
@@ -261,11 +247,16 @@ class Ref {
         return FIRESTORE_COLLECTION_SOMEOME_LIKED.document(userId)
     }
     
+    
+    static var FIRESTORE_COLLECTION_ACTIVITY = FIRESTORE_ROOT.collection("activity")
+    static func FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: String) -> DocumentReference {
+        return FIRESTORE_COLLECTION_ACTIVITY.document(userId)
+    }
+    
+    
     static var FIRESTORE_COLLECTION_LIKED = FIRESTORE_ROOT.collection("liked")
     static func FIRESTORE_COLLECTION_LIKED_USERID(userId: String) -> DocumentReference {
         return FIRESTORE_COLLECTION_LIKED.document(Auth.auth().currentUser!.uid).collection("liked").document(userId)
-        
-        
     }
     
     
@@ -273,14 +264,21 @@ class Ref {
         return FIRESTORE_COLLECTION_LIKED.document(userId).collection("liked")
     }
     
-    static var FIRESTORE_COLLECTION_ACTIVITY = FIRESTORE_ROOT.collection("activity")
-
+    
     
     static var FIRESTORE_COLLECTION_FLAG = FIRESTORE_ROOT.collection("flag")
-     static func FIRESTORE_COLLECTION_FLAG_USERID(userId: String) -> DocumentReference {
-         return FIRESTORE_COLLECTION_FLAG.document(userId)
-     }
- 
+    static func FIRESTORE_COLLECTION_FLAG_USERID(userId: String) -> DocumentReference {
+        return FIRESTORE_COLLECTION_FLAG.document(userId)
+    }
+    
+    
+    
+    static var FIRESTORE_COLLECTION_MATCH = FIRESTORE_ROOT.collection("matched")
+    static func FIRESTORE_COLLECTION_MATCH_USERID(userId: String, userId2: String) -> DocumentReference {
+        return FIRESTORE_COLLECTION_MATCH.document(userId).collection("matched").document(userId2)
+        
+    }
+    
     //    static func FIRESTORE_GET_VOTE() -> DocumentReference {
     //       return FIRESTORE_COLLECTION_VOTE.document(userId)
     //    }

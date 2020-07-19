@@ -14,9 +14,44 @@ class VoteViewModel: ObservableObject {
     @Published var error: NSError?
     @Published var voted : Bool = false
     @Published var liked : Bool = false
-
+    @Published var totalVoted : Int = 0
+    @Published var totalVoted : Int = 0
+    @Published var votedCards  : [String] = [String]()
+    
     @Published var isLoading = false
     var updatedValueDict = ["attr1":0 , "attr2":0, "attr3":0, "attr4":0, "attr5":0]
+    
+    
+    func getNumVoted() {
+
+        //batch writing. vote multiple entries
+        Ref.FIRESTORE_COLLECTION_MYVOTE.document(User.currentUser()!.id).collection("voted").getDocuments { (snap,error) in
+            self.totalVoted = 0
+            if error != nil {
+                print((error?.localizedDescription)!)
+
+            }
+
+            self.totalVoted = snap!.documents.count
+            
+            for i in snap!.documents{
+
+                let id = i.documentID
+                if(id != Auth.auth().currentUser?.uid){
+
+                    print(id)
+
+                }
+
+            }
+        }
+
+
+
+
+
+    }
+    
     
     func persist(id: String , buttonPressed : [Bool], buttonTitle : [String]) {
         
@@ -38,7 +73,7 @@ class VoteViewModel: ObservableObject {
         //        guard let dict = try? myVote.toDictionary() else {return}
         let myVoteRef = Ref.FIRESTORE_COLLECTION_MYVOTE_USERID(userId: id)
 
-        let myVote = MyVote(userId: id, myVotes: updatedValueDict, attrNames: buttonTitle)
+        let myVote = MyVote(userId: id, myVotes: updatedValueDict, attrNames: buttonTitle, voteDate: Date().timeIntervalSince1970)
         guard let dict = try? myVote.toDictionary() else {return}
         batch.setData(dict, forDocument: myVoteRef)
         

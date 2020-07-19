@@ -13,6 +13,7 @@ class Api {
     static var Chat = ChatApi()
     static var Activity = ActivityApi()
     static var Flag = FlagApi()
+    static var Match = MatchingApi()
 
 
 }

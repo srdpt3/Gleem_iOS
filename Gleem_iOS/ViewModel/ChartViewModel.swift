@@ -71,44 +71,18 @@ class ChartViewModel: ObservableObject {
 
                 data = Vote(attr1: attr1, attr2: attr2, attr3: attr3, attr4: attr4, attr5: attr5, attrNames: attrNames, numVote: numVote, createdDate: createdDate, lastModifiedDate: lastModifiedDate, imageLocation: imageLocation)
                 
-                
-                
-                //                    guard let decoderPost = try? Vote.init(fromDictionary: dict) else {return}
-//                data = decoderPost
+ 
                 self.isLoading = false
                 
             }else{
                 data = Vote(attr1: 0, attr2: 0, attr3: 0, attr4: 0, attr5: 0, attrNames: [], numVote: 0, createdDate: 0, lastModifiedDate: 0, imageLocation : User.currentUser()!.profileImageUrl)
             }
             
-            //            }
             onSuccess(data!)
             
             
         }
-        //
-        //            Ref.FIRESTORE_COLLECTION_VOTE.getDocuments { (snapshot, error) in
-        //
-        //                guard let snap = snapshot else {
-        //                    print("Error fetching data")
-        //                    self.error = error as! NSError
-        //                    return
-        //                }
-        //                var data : Vote?
-        //                for document in snap.documents {
-        //
-        //                    if(document.documentID == userId){
-        //                        let dict = document.data()
-        //                        guard let decoderPost = try? Vote.init(fromDictionary: dict) else {return}
-        //                        data = decoderPost
-        //                        print(decoderPost)
-        //                        self.isLoading = false
-        //
-        //                    }
-        //
-        //                }
-        //                onSuccess(data!)
-        //            }
+
     }
     
     

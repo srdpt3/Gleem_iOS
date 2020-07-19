@@ -130,6 +130,11 @@ struct UploadView: View {
                                 //                    .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .padding(.leading)
                                 .frame(height: 44)
+                                .background(
+                                    Capsule()
+                                        .strokeBorder(lineWidth: 1.75)
+                                        .foregroundColor(APP_THEME_COLOR)
+                            )
                                 .onTapGesture {
                                     //                                                     self.isFocused = true
                             }

@@ -9,7 +9,6 @@ import SwiftUI
 //import URLImage
 import SDWebImageSwiftUI
 struct MessagesView: View {
-    
     @ObservedObject var messageViewModel = MessageViewModel()
     
     
@@ -37,6 +36,10 @@ struct HomeView : View {
 
 struct MessageSubView: View {
     @ObservedObject var messageViewModel = MessageViewModel()
+    
+    init(){
+         self.messageViewModel.loadInboxMessages()
+    }
     var body: some View{
         List {
             if !messageViewModel.inboxMessages.isEmpty {
@@ -72,11 +75,16 @@ struct MessageSubView: View {
                     self.messageViewModel.listener.remove()
                 }
         }
-        //            .onAppear() {
-        //                if self.messageViewModel.listener != nil {
-        //                    self.messageViewModel.loadInboxMessages()
-        //                }
-        //        }
+//        .onReceive(messageViewModel.$inboxMessages, perform: { _ in
+//            self.messageViewModel.loadInboxMessages()
+//               })
+        
+    
+//                    .onAppear() {
+////                        if self.messageViewModel.listener != nil {
+//                            self.messageViewModel.loadInboxMessages()
+////                        }
+//                }
     }
     
 }

@@ -64,8 +64,8 @@ struct Profile : View {
                             
                             VStack(alignment: .leading, spacing: 10) {
                                 
-                                Text(User.currentUser()!.username).font(Font.custom(FONT, size: 30)).foregroundColor(APP_THEME_COLOR)
-                                Text(User.currentUser()!.age).font(Font.custom(FONT, size: 20)).foregroundColor(APP_THEME_COLOR)
+                                Text(User.currentUser()!.username).font(Font.custom(FONT, size: 30))
+                                Text(User.currentUser()!.age).font(Font.custom(FONT, size: 20))
                             }
                             
                             Spacer()

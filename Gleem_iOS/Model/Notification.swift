@@ -22,7 +22,7 @@ struct Activity: Encodable, Decodable {
     var typeDescription: String {
         var output = ""
         switch type {
-        case "matched":
+        case "match":
             output = MATCHED_MESSAGE
         case "info":
             output = message

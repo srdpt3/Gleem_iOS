@@ -208,7 +208,8 @@ struct CardListview: View {
                 Spacer()
                 
                 
-            }.navigationBarHidden(true).navigationBarTitle("").onAppear{
+            }.navigationBarHidden(true).navigationBarTitle("")
+                .onAppear{
                 self.pulsate.toggle()
             }
             

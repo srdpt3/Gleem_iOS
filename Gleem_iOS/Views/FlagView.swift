@@ -48,7 +48,7 @@ struct RadioButtons : View {
                         
                         ZStack{
                             
-                            Circle().fill(self.selected == i ? Color("Color2") : Color.black.opacity(0.2)).frame(width: 18, height: 18)
+                            Circle().fill(self.selected == i ? APP_THEME_COLOR : Color.black.opacity(0.2)).frame(width: 18, height: 18)
                             
                             if self.selected == i{
                                 

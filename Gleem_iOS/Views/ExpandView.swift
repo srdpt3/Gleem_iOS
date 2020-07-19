@@ -26,6 +26,7 @@ struct ExpandView: View {
     @ObservedObject  private var favoriteViewModel = FavoriteViewModel()
     @State private var pulsate: Bool = false
     @Environment(\.presentationMode) var presentationMode
+    let haptics = UINotificationFeedbackGenerator()
 
     //    @State var buttonSelected: Bool = false
     
@@ -98,45 +99,12 @@ struct ExpandView: View {
                             // going to add parallax effect....
                             .frame(width: UIScreen.main.bounds.width, height:  reader.frame(in: .global).minY > 0 ? reader.frame(in: .global).minY + 460 : 460)
                             .scaledToFit()
-                        //
-                        //                        Button(action: {
-                        //
-                        //                            withAnimation{
-                        //                                self.show.toggle()
-                        //                            }
-                        //
-                        //                        }) {
-                        //
-                        //                            Image(systemName: "xmark")
-                        //                                .foregroundColor(.white)
-                        //                                .padding()
-                        //                                .background(Color.black.opacity(0.08))
-                        //                                .clipShape(Circle())
-                        //                        }
-                        //                        .padding(.trailing).padding(.top, 50)
-                        //
-                        if(self.isVoted){
-                            
-                            Button(action:self.addToMyList) {
-                                Image(self.favoriteViewModel.liked == true ? "heartred" : "heartwhite").resizable().frame(width: 50, height: 50).aspectRatio(contentMode: .fit)
-                                
-                                
-                            }.buttonStyle(PlainButtonStyle())
-                                .background(Color.clear).foregroundColor(.black)
-                                .padding(.trailing).offset(y: (UIScreen.main.bounds.height )/2.7)
-                                .animation( Animation.easeInOut(duration: 1) .delay(1))
-                            
-                            
-                            
-                        }
-                        
-                        
-                        
+
                     }
                     .background(Color.black.opacity(0.06)).edgesIgnoringSafeArea(.top)
-  
-                        .onAppear() {
-                            self.pulsate.toggle()
+                        
+                    .onAppear() {
+                        self.pulsate.toggle()
                     }
                 }
                 
@@ -150,14 +118,10 @@ struct ExpandView: View {
             Group {
                 
                 VStack(alignment: .leading,spacing: 15){
-                    
-                    
                     if(!self.isVoted){
-                        
-                        
                         VStack(alignment: .center, spacing: 0) {
-                            HStack(spacing: 15){
-                                Spacer()
+                            HStack(spacing: 10){
+                                
                                 Text(RATING_TEXT)
                                     //                                            .font(.system(size: 20, weight: .bold))
                                     .font(.custom(FONT, size: CGFloat(BUTTON_TITLE_FONT_SIZE)))
@@ -171,32 +135,7 @@ struct ExpandView: View {
                                         .foregroundColor(.yellow)
                                 }
                                 Spacer()
-                                
-                            }.padding(.bottom, 20)
-                                            .overlay(
-                                                  HStack {
-                                                      Spacer()
-                                                      VStack {
-                                                          Button(action: {
-                                                              // ACTION
-                                                              self.presentationMode.wrappedValue.dismiss()
-                                                          }, label: {
-                                                              Image(systemName: "xmark.circle.fill")
-                                                                  .font(.title)
-                                                                  .foregroundColor(Color.white)
-                                                                  .shadow(radius: 8)
-                                                                  .opacity( 1 )
-                                                                  .scaleEffect( 1.4, anchor: .center)
-                                                                  .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
-                                                          })
-                                                              .padding(.trailing, 20)
-                            //                                  .padding(.top, 10)
-                                                          Spacer()
-                                                      }
-                                                  }
-                                              )
-                            
-                            // Info
+                            }.padding(.bottom, 20).padding(.leading, 20)
                             RatingDetailView()
                         }
                         
@@ -230,9 +169,9 @@ struct ExpandView: View {
                                     
                                     .fontWeight(.heavy)
                                     .padding(.horizontal, 50)
-                                    .padding(.vertical, 10).foregroundColor( Color("Color5"))
+                                    .padding(.vertical, 15).foregroundColor( Color("Color5"))
                                     .background(
-                                        Capsule().stroke( Color("Color5"), lineWidth: 2)
+                                        Capsule().stroke( APP_THEME_COLOR, lineWidth: 2)
                                 )
                             }   // Disabling button by verifying all images...
                                 .opacity(self.checkAttrSelected() ? 1 : 0.35)
@@ -241,43 +180,17 @@ struct ExpandView: View {
                         }
                         
                     }else{
-                        VStack(spacing: 6){
+                        VStack(alignment: .center, spacing: 0) {
                             if !self.voteData.isEmpty {
-                                Spacer()
-                                VStack(spacing: 10){
-                                    
-                                    Text(self.user.username + USER_RESULT.uppercased()).font(.custom(FONT, size: CGFloat(BUTTON_TITLE_FONT_SIZE))).padding().foregroundColor(Color("Color2"))
-                                    
-                                    
-//                                    self.fireworkController.addFireworks(around: ChartView as UIView)
-
-                                    ChartView(data: self.$voteData, totalNum: CHART_Y_AXIS, categories: self.user.attrNames).frame(width: UIScreen.main.bounds.width, height: (UIScreen.main.bounds.height) / 2.4)
-                                       
-                                }                                .overlay(
-                                                      HStack {
-                                                          Spacer()
-                                                          VStack {
-                                                              Button(action: {
-                                                                  // ACTION
-                                                                  self.presentationMode.wrappedValue.dismiss()
-                                                              }, label: {
-                                                                  Image(systemName: "xmark.circle.fill")
-                                                                      .font(.title)
-                                                                      .foregroundColor(Color.white)
-                                                                      .shadow(radius: 8)
-                                                                      .opacity( 1 )
-                                                                      .scaleEffect( 1.4, anchor: .center)
-                                                                      .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
-                                                              })
-                                                                  .padding(.trailing, 20)
-                                //                                  .padding(.top, 10)
-                                                              Spacer()
-                                                          }
-                                                      }
-                                                  )
                                 
+                                ZStack{
+                                    Text(self.user.username + USER_RESULT.uppercased()).font(.custom(FONT, size: CGFloat(15))).padding().foregroundColor(APP_THEME_COLOR).offset(y: 20)
+                                    
+                                }.zIndex(1)
                                 
-                                Spacer()
+                                ChartView(data: self.$voteData, totalNum: CHART_Y_AXIS, categories: self.user.attrNames)
+                                    .frame(height: (UIScreen.main.bounds.height) / 2.5)
+                                
                             } else {
                                 LoadingView(isLoading: self.chartViewModel.isLoading, error: self.chartViewModel.error) {
                                     self.loadChartData()
@@ -287,41 +200,77 @@ struct ExpandView: View {
                             self.loadChartData()
                         }
                         .cornerRadius(20)
-                        .offset(y: -50)
-                        
-                        
+                        .offset(y: -60)
                         
                     }
-                    
-                    
-                }
-                .padding(.top, 35)
-                .background(Color.white)
-                .cornerRadius(20)
-                .offset(y: -80)
+                }    .overlay(
+                    HStack {
+                        Spacer()
+                        VStack {
+                            HStack{
+                                if(self.isVoted){
+                                    
+                                    Button(action:self.addToMyList) {
+                                        Image(self.favoriteViewModel.liked == true ? "heartred" : "heartwhite").resizable().frame(width: 20, height: 20).aspectRatio(contentMode: .fit)
+                                            .foregroundColor(Color.white)
+                                            .shadow(radius: 8)
+                                              .opacity(1)
+                                            .scaleEffect( 1.8, anchor: .center)
+//                                            .scaleEffect( 1.8, anchor: .center)
+//                                             .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
 
+                                        
+                                    }
+                                        
+                                        
+                                    .buttonStyle(PlainButtonStyle())   .padding(.trailing, 25)
+                                    
+                                    
+                                    
+                                }
+                                
+                                
+                                Button(action: {
+                                    // ACTION
+                                    self.haptics.notificationOccurred(.success)
+                                    
+                                    self.presentationMode.wrappedValue.dismiss()
+                                }, label: {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .foregroundColor(Color.white)
+                                        .shadow(radius: 8)
+                                        .opacity( 1 )
+                                        .scaleEffect( 2.0, anchor: .center)
+                                    //                                    .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
+                                })
+                                    .padding(.trailing, 25)   .buttonStyle(PlainButtonStyle())
+                            }
+                            
+                            
+                            
+                            Spacer()
+                        }
+                    }
+                )
+                    .padding(.top, 35)
+                    .background(Color.white)
+                    .cornerRadius(20)
+                    .offset(y: -80)
+                
                 
             }
-            
-            
             
         })
             .edgesIgnoringSafeArea(.all)
             .background(Color.white.edgesIgnoringSafeArea(.all))
             .onAppear{
                 self.favoriteViewModel.checkLiked(id: self.user.id)
+           
+                            self.pulsate.toggle()
+                   
                 
         }
         
     }
     
 }
-
-
-//struct ButtonView : View{
-//    var body: some View{
-//
-//    }
-//}
-
-

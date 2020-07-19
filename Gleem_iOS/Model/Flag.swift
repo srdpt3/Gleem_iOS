@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-import SwiftUI
 
 import Foundation
 struct Flag:  Encodable, Decodable ,Identifiable{

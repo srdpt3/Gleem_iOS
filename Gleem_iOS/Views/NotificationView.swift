@@ -43,36 +43,19 @@ struct NotificationView: View {
                                                 
                                             }
                                         }
-                                    }else{
-               
-                                        VStack(alignment: .leading, spacing: 5) {
-                                            Text(activity.username).font(.subheadline).bold()
-                                            Text(activity.typeDescription).font(.subheadline)
-                                        }
-                                        Spacer()
-                                        Text(timeAgoSinceDate(Date(timeIntervalSince1970: activity.date), currentDate: Date(), numericDates: true)).font(.caption).foregroundColor(.gray)
+                                        
+                                    }else if activity.type == "match"{
+                                        MatchedActivityRow(activity: activity)
                                         
                                         
                                     }
                                     
-                                    //                            //                            }
-                                    //
-                                    //
-                                    //
                                     
                                     
                                 }.padding(8)
                             }
                         }
-                        //                    else{
-                        //
-                        //                        Spacer()
-                        //
-                        //                        LoadingView(isLoading: self.activityViewModel.isLoading, error: self.activityViewModel.error) {
-                        //                            self.activityViewModel.loadActivities()
-                        //                        }
-                        //                        Spacer()
-                        //                    }
+                        
                         
                     }
                     
@@ -84,7 +67,7 @@ struct NotificationView: View {
             }.onAppear(){
                 
             }
-            .navigationBarTitle(Text(ACTIVITY).font(Font.custom(FONT, size: 20)).foregroundColor(Color("Color2"))
+            .navigationBarTitle(Text(ACTIVITY).font(Font.custom(FONT, size: 20)).foregroundColor(APP_THEME_COLOR)
 , displayMode: .inline).onAppear {
                   self.activityViewModel.loadActivities()
              }
@@ -130,6 +113,27 @@ struct CommentActivityRow: View {
             
             VStack(alignment: .leading, spacing: 5) {
                 Text(activity.username).font(.subheadline).bold()
+                Text(activity.typeDescription).font(.caption).font(Font.custom(FONT, size: 15))
+            }
+            Spacer()
+            Text(timeAgoSinceDate(Date(timeIntervalSince1970: activity.date), currentDate: Date(), numericDates: true)).font(.caption).foregroundColor(.gray)
+        }
+    }
+}
+
+
+struct MatchedActivityRow: View {
+    var activity: Activity
+    var body: some View {
+        HStack {
+            
+            Image("Gleem_3D")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .clipShape(Circle()).frame(width: 40, height: 40)
+            
+            VStack(alignment: .leading, spacing: 5) {
+                Text(activity.username + "[연결됨]").font(.subheadline).bold()
                 Text(activity.typeDescription).font(.caption).font(Font.custom(FONT, size: 15))
             }
             Spacer()

@@ -7,19 +7,20 @@
 //
 
 import SwiftUI
-
-
 import Foundation
 
 struct MyVote: Encodable, Decodable {
     var userId: String
     var myVotes: [String:Int]
     var attrNames: [String]
+    var voteDate: Double
     
-    init(userId: String, myVotes: [String:Int], attrNames: [String]) {
+    
+    init(userId: String, myVotes: [String:Int], attrNames: [String],voteDate: Double ) {
         self.userId = userId
         self.myVotes = myVotes
         self.attrNames = attrNames
+        self.voteDate = voteDate
         
         
         
@@ -28,6 +29,7 @@ struct MyVote: Encodable, Decodable {
         userId = _dictionary["userId"] as! String
         myVotes = _dictionary["imamyVotesgeURL"] as! [String:Int]
         attrNames = _dictionary["attrNames"] as! [String]
+        voteDate = _dictionary["voteDate"] as! Double
         
     }
     

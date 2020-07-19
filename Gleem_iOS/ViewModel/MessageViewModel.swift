@@ -17,14 +17,18 @@ class MessageViewModel: ObservableObject {
   
 
    @Published var inboxMessages: [InboxMessage] = [InboxMessage]()
-    
+//    private let objectWillChange = ObservableObjectPublisher()
+
    var listener: ListenerRegistration!
     
-    init() {
-        loadInboxMessages()
-    }
+//    init() {
+//        loadInboxMessages()
+//    }
    
    func loadInboxMessages() {
+//    defer {
+//              objectWillChange.send(())
+//          }
        self.inboxMessages = []
        
        Api.Chat.getInboxMessages(onSuccess: { (inboxMessages) in

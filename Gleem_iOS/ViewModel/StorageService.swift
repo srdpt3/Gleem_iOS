@@ -117,7 +117,7 @@ class StorageService {
                     //                    let user = User.init(uid: userId, email: email, profileImageUrl: metaImageUrl, username: username, bio: "", keywords: username.splitStringToArray())
                     //                    let user = User.init(uid: userId, email: email, profileImageUrl: metaImageUrl, username: username, bio: "")
                     
-                    let user = User.init(id: userId, email: email, profileImageUrl: metaImageUrl, username: username, age: "30", sex: "male", createdDate:  Date().timeIntervalSince1970, point_avail: 1)
+                    let user = User.init(id: userId, email: email, profileImageUrl: metaImageUrl, username: username, age: "30", sex: "male", createdDate:  Date().timeIntervalSince1970, point_avail: 20)
                     
                     guard let dict = try? user.toDictionary() else {return}
                     saveUserLocally(mUserDictionary: dict as NSDictionary)

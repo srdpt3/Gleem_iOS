@@ -22,10 +22,16 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #3 in closure #1 in FooterView.body.getter:FooterView.swift">
+         contextName = "closure #1 in ChatViewModel.leaveRoom(recipientId:):ChatViewModel.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.obs.last">
+               value = "document">
+            </PersistentString>
+            <PersistentString
+               value = "document!.exists">
+            </PersistentString>
+            <PersistentString
+               value = "doc.reference">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -33,18 +39,26 @@
          contextName = "closure #1 in FavoriteViewModel.loadFavoriteUsers():FavoriteViewModel.swift">
          <PersistentStrings>
             <PersistentString
+               value = "dict">
+            </PersistentString>
+            <PersistentString
                value = "snapshot!.documents">
             </PersistentString>
             <PersistentString
                value = " ActiveVote.init(fromDictionary: dict)">
             </PersistentString>
-            <PersistentString
-               value = "dict">
-            </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "closure #1 in NotificationView.body.getter:NotificationView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #1 in closure #2 in closure #1 in MainSubViewFavorite.body.getter:FavoriteView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "index">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "closure #1 in ActivityViewModel.loadActivities():ActivityViewModel.swift">
@@ -55,12 +69,15 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in closure #1 in closure #1 in closure #2 in closure #1 in MainSubViewFavorite.body.getter:FavoriteView.swift">
+         contextName = "closure #3 in closure #1 in FooterView.body.getter:FooterView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "index">
+               value = "self.obs.last">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #2 in closure #2 in closure #1 in closure #1 in closure #1 in MyStaticView.body.getter:MyStaticView.swift">
       </ContextState>
       <ContextState
          contextName = "closure #1 in FooterView.body.getter:FooterView.swift">

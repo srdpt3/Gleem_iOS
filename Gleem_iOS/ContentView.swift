@@ -34,7 +34,7 @@ struct subMainView : View {
                 else if self.index == 2{
                     FavoriteView().animation(.spring())
                 }
-                else if self.index == 2{
+                else if self.index == 3{
                     //                    Color.black
                     MessagesView()
                 }
@@ -135,11 +135,11 @@ struct CircleTab : View {
                     
                     if self.index != 2{
                         
-                        Image("heart").resizable().frame(width: 19, height: 19).foregroundColor(Color.black.opacity(0.2))
+                        Image("fav").resizable().frame(width: 19, height: 19).foregroundColor(Color.black.opacity(0.2))
                     }
                     else{
                         
-                        Image("heart")
+                        Image("fav")
                             .resizable()
                             .frame(width: 15, height: 15)
                             .foregroundColor(.white)

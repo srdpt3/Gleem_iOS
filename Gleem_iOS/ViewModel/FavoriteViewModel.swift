@@ -21,23 +21,50 @@ class FavoriteViewModel: ObservableObject {
     func addToMyList(user: ActiveVote) {
         
         guard let dict = try? user.toDictionary() else {return}
+        let batch = Ref.FIRESTORE_ROOT.batch()
+
+        let likeRef = Ref.FIRESTORE_COLLECTION_LIKED_USERID(userId: user.id)
+        batch.setData(dict, forDocument: likeRef)
         
-        Ref.FIRESTORE_COLLECTION_LIKED_USERID(userId: user.id).setData(dict) { (error) in
-            if error == nil {
-                print("persist sucessfully to my favorite list")
-                
-                
-//                guard let dict2 = try? User.currentUser().toDictionary() else {return}
-                
-                if User.currentUser()!.id != user.id {
-                    let activityId = Ref.FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID(userId: user.id).collection("liked").document().documentID
-                    let activityObject = Activity(activityId: activityId, type: "like", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: User.currentUser()!.profileImageUrl, message: "", date: Date().timeIntervalSince1970)
-                    guard let activityDict = try? activityObject.toDictionary() else { return }
-//                   
-                   Ref.FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID(userId: user.id).collection("liked").document(activityId).setData(activityDict)
-                }
-            }
+        if User.currentUser()!.id != user.id {
+            
+//            let someoneLikeId = Ref.FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID(userId: user.id).collection("liked").document().documentID
+            let someoneLikeObject = Activity(activityId: User.currentUser()!.id, type: "like", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: User.currentUser()!.profileImageUrl, message: "", date: Date().timeIntervalSince1970)
+            guard let activityDict = try? someoneLikeObject.toDictionary() else { return }
+            
+            
+            let someOneLikeRef  = Ref.FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID(userId: user.id).collection("liked").document(User.currentUser()!.id)
+            batch.setData(activityDict, forDocument: someOneLikeRef)
+            
+            print("Batch FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID.")
+
+            
+//            let activityId = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: user.id).collection("activity").document().documentID
+            let activityObject = Activity(activityId: User.currentUser()!.id, type: "like", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: User.currentUser()!.profileImageUrl, message: "", date: Date().timeIntervalSince1970)
+            guard let activityDict2 = try? activityObject.toDictionary() else { return }
+            
+            
+            let activityRef  = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: user.id).collection("activity").document(User.currentUser()!.id)
+            batch.setData(activityDict2, forDocument: activityRef)
+            print("Batch FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID.")
+
         }
+        
+        
+        
+        batch.commit() { err in
+                  if let err = err {
+                      print("Error writing batch \(err)")
+                  } else {
+                      print("Batch addToMyList write succeeded.")
+                      self.isSucess = true
+                  }
+              }
+        
+        
+        
+        
+
         
     }
     
