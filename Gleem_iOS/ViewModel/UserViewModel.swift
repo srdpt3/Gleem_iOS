@@ -27,8 +27,24 @@ class UserViewModel: ObservableObject {
                
                self.isLoading = false
                
-           }
-       }
+        }
+    }
+    
+    func updateUserPoint(point: Int){
+        
+        
+        Ref.FIRESTORE_DOCUMENT_USERID(userId: User.currentUser()!.id).updateData([
+            "point_avail": point]) { err in
+                if let err = err {
+                    print("Error updating document: \(err)")
+                } else {
+                    print("Document successfully updated")
+                }
+        }
+        
+        AuthService.saveUser(userId: User.currentUser()!.id)
+        
+    }
     
     
 }

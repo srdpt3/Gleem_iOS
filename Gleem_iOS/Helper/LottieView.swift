@@ -16,7 +16,6 @@ struct LottieView: UIViewRepresentable {
     func makeUIView(context: UIViewRepresentableContext<LottieView>) -> UIView {
         let view = UIView(frame: .zero)
         
-        print("asdfasdfa")
         let animationView = AnimationView()
         let animation = Animation.named(filename)
         animationView.animation = animation
@@ -48,7 +47,6 @@ struct LottieView2: UIViewRepresentable {
     func makeUIView(context: UIViewRepresentableContext<LottieView2>) -> UIView {
         let view = UIView(frame: .zero)
         
-        print("asdfasdfa")
         let animationView = AnimationView()
         let animation = Animation.named(filename)
         animationView.animation = animation

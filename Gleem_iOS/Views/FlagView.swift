@@ -10,7 +10,6 @@ struct RadioButtons : View {
     
     
     func flagPicture(reason: String){
-        print("flag")
         
         let currentVote = self.obs.getCurrentCard().user
         let flag = Flag(id: currentVote.id, email: currentVote.email, imageLocation: currentVote.imageLocation, username: currentVote.username, reason: reason, reporter: User.currentUser()!.id,   date:  Date().timeIntervalSince1970)
@@ -20,7 +19,6 @@ struct RadioButtons : View {
         
         print(flag)
         self.show.toggle()
-        print("asdfasdf selected \(self.selected)")
         self.obs.moveCards()
         
         self.selected = ""

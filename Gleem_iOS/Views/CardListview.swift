@@ -45,7 +45,7 @@ struct CardListview: View {
         return index == 0
     }
     
-  
+    
     enum DragState {
         case inactive
         case pressing
@@ -147,7 +147,7 @@ struct CardListview: View {
                                             if(self.isVoted){
                                                 self.obs.moveCards()
                                                 self.isVoted = false
-
+                                                
                                                 
                                             }
                                         }
@@ -162,15 +162,14 @@ struct CardListview: View {
                                         // ACTION
                                         //                                            self.presentationMode.wrappedValue.dismiss()
                                         self.showFlag.toggle()
-                                        print(self.selectedFlag)
                                         
                                     }, label: {
                                         Image(systemName: "flag.circle.fill")
                                             .font(.title)
                                             .foregroundColor(Color.white)
                                             .shadow(radius: 5)
-//                                            .opacity(self.pulsate ? 1 : 0.6)
-//                                            .scaleEffect(self.pulsate ? 1.3 : 0.9, anchor: .center)
+                                            //                                            .opacity(self.pulsate ? 1 : 0.6)
+                                            //                                            .scaleEffect(self.pulsate ? 1.3 : 0.9, anchor: .center)
                                             .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
                                     })
                                         .padding(.trailing, 20)
@@ -182,7 +181,7 @@ struct CardListview: View {
                         )
                     }else{
                         LoadingView(isLoading: self.obs.isLoading, error: self.obs.error) {
-                            self.obs.reload()
+                            self.obs.getNumVoted()
                         }
                     }
                     
@@ -210,10 +209,8 @@ struct CardListview: View {
                 
             }.navigationBarHidden(true).navigationBarTitle("")
                 .onAppear{
-                self.pulsate.toggle()
+                    //                self.pulsate.toggle()
             }
-            
-            
             
             VStack{
                 
@@ -247,7 +244,7 @@ struct CardListview: View {
                 ).edgesIgnoringSafeArea(.all)
                 
             }
-   
+            
             
         }
         

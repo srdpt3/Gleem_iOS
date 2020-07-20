@@ -52,7 +52,6 @@ struct ExpandView: View {
                 self.voteData.append((Double(vote.attr5) / Double(vote.numVote) * 100).roundToDecimal(0))
             }
             
-            print(self.voteData)
             
         }
     }

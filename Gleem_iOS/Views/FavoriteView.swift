@@ -24,6 +24,7 @@ struct FavoriteHome : View {
     @ObservedObject private var activityViewModel = ActivityViewModel()
     @ObservedObject private var chatViewModel = ChatViewModel()
     @ObservedObject private var matchingViewModel = MatchingViewModel()
+    @ObservedObject private var userViewModel = UserViewModel()
 
     @State var showAlertX : Bool = false
     @State var sendMessage : Bool = false
@@ -160,35 +161,50 @@ struct FavoriteHome : View {
                             // MESSAGE
                             
                             VStack(spacing: 16) {
-                                HStack{
-                                    AnimatedImage(url: URL(string:User.currentUser()!.profileImageUrl))
-                                        .resizable().frame(width: 70, height: 70).cornerRadius(15)
-                                        .cornerRadius(35)
-                                        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 8, y: 8)
-                                        .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
-                                    
-                                    Image("heart-2")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(maxHeight: 30)
-                                    
-                                    
-                                    AnimatedImage(url: URL(string:self.selectedUser!.userAvatar))
-                                        .resizable().frame(width: 70, height: 70).cornerRadius(15)
-                                        .cornerRadius(35)
-                                        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 8, y: 8)
-                                        .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
-                                    
-                                    
-                                }
+
                                 
                                 //
-                                Text("상대방에게 채팅요청시 5포인트가 소모됩니다. \n현재 가진 포인트: " + String(User.currentUser()!.point_avail))
-                                    .font(Font.custom(FONT, size: 15))
-                                    .lineLimit(2)
-                                    .multilineTextAlignment(.center)
-                                    .foregroundColor(Color.gray)
-                                    .layoutPriority(1)
+                                if(User.currentUser()!.point_avail >= POINT_USE){
+                                    
+                                    HStack{
+                                        AnimatedImage(url: URL(string:User.currentUser()!.profileImageUrl))
+                                            .resizable().frame(width: 70, height: 70).cornerRadius(15)
+                                            .cornerRadius(35)
+                                            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 8, y: 8)
+                                            .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+                                        
+                                        Image("heart-2")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(maxHeight: 30)
+                                        
+                                        
+                                        AnimatedImage(url: URL(string:self.selectedUser!.userAvatar))
+                                            .resizable().frame(width: 70, height: 70).cornerRadius(15)
+                                            .cornerRadius(35)
+                                            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 8, y: 8)
+                                            .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+                                        
+                                        
+                                    }
+                                    
+                                    Text(MATCHING_CHECK_CURRENT_POINT + String(User.currentUser()!.point_avail))
+                                         .font(Font.custom(FONT, size: 15))
+                                         .lineLimit(2)
+                                         .multilineTextAlignment(.center)
+                                         .foregroundColor(Color.gray)
+                                         .layoutPriority(1)
+                                    
+                                }else{
+                                    Text(NOT_ENOUGH_POINT + String(User.currentUser()!.point_avail))
+                                        .font(Font.custom(FONT, size: 15))
+                                        .lineLimit(3)
+                                        .multilineTextAlignment(.center)
+                                        .foregroundColor(Color.gray)
+                                        .layoutPriority(1)
+                                }
+                                
+
                                 
                                 
                                 HStack{
@@ -216,17 +232,18 @@ struct FavoriteHome : View {
                                         self.showingModal = false
                                         self.animatingModal = false
                                         
-                                        withAnimation(){
-                                            self.showMessageView.toggle()
-
+                                        
+                                        if(User.currentUser()!.point_avail >= POINT_USE){
+                                            withAnimation(){
+                                                self.showMessageView.toggle()
+                                                
+                                            }
+                                            self.matched()
+                                            self.userViewModel.updateUserPoint(point: User.currentUser()!.point_avail - POINT_USE)
+                                            
                                         }
-                                       self.matched()
-//
                                         
-
-                                                       
-                                        
-                                        
+                                 
                                     }) {
                                         Text("확인".uppercased())
                                             .font(Font.custom(FONT, size: 15))

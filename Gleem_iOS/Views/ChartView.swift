@@ -20,29 +20,29 @@ struct ChartView: UIViewRepresentable {
     let aaChartView = AAChartView()
     let animationType : AAChartAnimationType = AAChartAnimationType.bounce
     let gradientColorArr = [
-         AAGradientColor.oceanBlue,
-         AAGradientColor.sanguine,
-         AAGradientColor.lusciousLime,
-         AAGradientColor.purpleLake,
-         AAGradientColor.freshPapaya,
-         AAGradientColor.ultramarine,
-         AAGradientColor.pinkSugar,
-         AAGradientColor.lemonDrizzle,
-         AAGradientColor.victoriaPurple,
-         AAGradientColor.springGreens,
-         AAGradientColor.mysticMauve,
-         AAGradientColor.reflexSilver,
-         AAGradientColor.newLeaf,
-         AAGradientColor.cottonCandy,
-         AAGradientColor.pixieDust,
-         AAGradientColor.fizzyPeach,
-         AAGradientColor.sweetDream,
-         AAGradientColor.firebrick,
-         AAGradientColor.wroughtIron,
-         AAGradientColor.deepSea,
-         AAGradientColor.coastalBreeze,
-         AAGradientColor.eveningDelight,
-     ]
+        AAGradientColor.oceanBlue,
+        AAGradientColor.sanguine,
+        AAGradientColor.lusciousLime,
+        AAGradientColor.purpleLake,
+        AAGradientColor.freshPapaya,
+        AAGradientColor.ultramarine,
+        AAGradientColor.pinkSugar,
+        AAGradientColor.lemonDrizzle,
+        AAGradientColor.victoriaPurple,
+        AAGradientColor.springGreens,
+        AAGradientColor.mysticMauve,
+        AAGradientColor.reflexSilver,
+        AAGradientColor.newLeaf,
+        AAGradientColor.cottonCandy,
+        AAGradientColor.pixieDust,
+        AAGradientColor.fizzyPeach,
+        AAGradientColor.sweetDream,
+        AAGradientColor.firebrick,
+        AAGradientColor.wroughtIron,
+        AAGradientColor.deepSea,
+        AAGradientColor.coastalBreeze,
+        AAGradientColor.eveningDelight,
+    ]
     //Animation type
     //    case linear
     //    case easeInQuad
@@ -106,30 +106,7 @@ struct ChartView: UIViewRepresentable {
     //        AAGradientColor.eveningDelight,
     //    ]
     func updateUIView(_ uiView: AAChartView, context:  UIViewRepresentableContext<Self>) {
-//        let aaChartModel = AAChartModel()
-//            .chartType(areaType)
-//            .legendEnabled(false)
-//            .dataLabelsEnabled(true)
-//            //            .xAxisVisible(true)
-//            //            .animationType(animationType)
-//            .colorsTheme([AAGradientColor.coastalBreeze])
-//            .title(SERIES_TITLE)
-//            .markerRadius(2)
-//            .polar(true)
-//            .yAxisGridLineWidth(2)
-//            .xAxisGridLineWidth(2)
-//            .categories(categories).dataLabelsFontSize(15)
-//            .marginRight(10)
-//            .marginLeft(10)
-//
-//            //            .titleFontWeight(AAChartFontWeightType)
-//            .series([
-//                AASeriesElement().name(SERIES_TITLE)
-//                    .data([data[0],data[1],data[2],data[3],data[4]]),
-//
-//            ])
-//            .yAxisMax(Float(totalNum))
-//            .yAxisVisible(true)
+        
         uiView.aa_adaptiveScreenRotation()
         uiView.aa_onlyRefreshTheChartDataWithChartModelSeries([
             AASeriesElement().name(SERIES_TITLE)
@@ -144,35 +121,35 @@ struct ChartView: UIViewRepresentable {
         
         let aaChartModel = AAChartModel()
             .chartType(areaType)
-        .title("")
+            .title("")
             .legendEnabled(false)
             .dataLabelsEnabled(true)
             //            .xAxisVisible(true)
             .animationType(animationType)
-//            .colorsTheme([hexColor])
+            //            .colorsTheme([hexColor])
             .colorsTheme(gradientColorArr as [Any])
-
-//            .title(SERIES_TITLE)
+            
+            //            .title(SERIES_TITLE)
             .markerRadius(2)
             .polar(true)
             .yAxisGridLineWidth(2)
             .xAxisGridLineWidth(2)
             .categories(categories).dataLabelsFontSize(15)
-//            .marginRight(5)
-//            .marginLeft(5)
+            //            .marginRight(5)
+            //            .marginLeft(5)
             .marginBottom(50)
             .backgroundColor(Color.black.opacity(0.06))
             //            .titleFontWeight(AAChartFontWeightType)
             .series([
                 AASeriesElement().name(SERIES_TITLE)
-                        .data([data[0],data[1],data[2],data[3],data[4]]),
-                    
+                    .data([data[0],data[1],data[2],data[3],data[4]]),
+                
                 
             ])
             .yAxisMax(Float(totalNum))
             .yAxisVisible(true)
-       
-
+        
+        
         aaChartView.aa_drawChartWithChartModel(aaChartModel)
         return aaChartView
     }

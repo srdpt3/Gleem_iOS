@@ -21,6 +21,8 @@ class SignupViewModel: ObservableObject {
 
      var image: Image = Image("profilepic")
      var imageData: Data = Data()
+//     @State var gender: String = "male"
+
      var errorString = ""
      @Published var showImagePicker: Bool = false
      @Published var showAlert: Bool = false
@@ -28,9 +30,9 @@ class SignupViewModel: ObservableObject {
 
 //    @Binding var showLoader:
 //
-    func signup(username: String, email: String, password: String, imageData: Data, completed: @escaping(_ user: User) -> Void,  onError: @escaping(_ errorMessage: String) -> Void) {
+    func signup(username: String, email: String, password: String, imageData: Data, gender: String, completed: @escaping(_ user: User) -> Void,  onError: @escaping(_ errorMessage: String) -> Void) {
         if !username.isEmpty && !email.isEmpty && !password.isEmpty && !imageData.isEmpty {
-           AuthService.signupUser(username: username, email: email, password: password, imageData: imageData, onSuccess: completed, onError: onError)
+            AuthService.signupUser(username: username, email: email, password: password, imageData: imageData, gender: gender, onSuccess: completed, onError: onError)
         } else {
             showAlert = true
             errorString = "Please fill in all fields"

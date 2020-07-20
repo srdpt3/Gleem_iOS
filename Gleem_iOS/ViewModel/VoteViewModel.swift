@@ -15,44 +15,36 @@ class VoteViewModel: ObservableObject {
     @Published var voted : Bool = false
     @Published var liked : Bool = false
     @Published var totalVoted : Int = 0
-    @Published var totalVoted : Int = 0
-    @Published var votedCards  : [String] = [String]()
-    
+        @Published var votedCards = [String]()
     @Published var isLoading = false
     var updatedValueDict = ["attr1":0 , "attr2":0, "attr3":0, "attr4":0, "attr5":0]
     
     
-    func getNumVoted() {
-
-        //batch writing. vote multiple entries
-        Ref.FIRESTORE_COLLECTION_MYVOTE.document(User.currentUser()!.id).collection("voted").getDocuments { (snap,error) in
+    
+    func getNumVoted(){
+        Ref.FIRESTORE_COLLECTION_MYVOTE.document(User.currentUser()!.id).collection("voted").getDocuments { (snap, error) in
             self.totalVoted = 0
+            self.votedCards.removeAll()
             if error != nil {
                 print((error?.localizedDescription)!)
-
+                
             }
-
+            
             self.totalVoted = snap!.documents.count
             
             for i in snap!.documents{
-
+                
                 let id = i.documentID
                 if(id != Auth.auth().currentUser?.uid){
-
+                    self.votedCards.append(id)
                     print(id)
-
+                    
                 }
-
+                
             }
         }
-
-
-
-
-
     }
-    
-    
+
     func persist(id: String , buttonPressed : [Bool], buttonTitle : [String]) {
         
         //batch writing. vote multiple entries

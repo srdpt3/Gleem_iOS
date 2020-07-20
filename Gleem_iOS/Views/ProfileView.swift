@@ -13,6 +13,8 @@ struct ProfileView: View {
     @Binding var profile_show : Bool
     var body: some View {
         
+        
+        
         Profile(profile_show : self.$profile_show)
     }
 }
@@ -24,8 +26,12 @@ struct ProfileView: View {
 //}
 
 struct Profile : View {
+    @ObservedObject var voteViewModel = VoteViewModel()
+
     @Binding var profile_show : Bool
 
+    
+ 
     var body : some View{
         
         ZStack{
@@ -65,7 +71,7 @@ struct Profile : View {
                             VStack(alignment: .leading, spacing: 10) {
                                 
                                 Text(User.currentUser()!.username).font(Font.custom(FONT, size: 30))
-                                Text(User.currentUser()!.age).font(Font.custom(FONT, size: 20))
+                                Text("나이: " + User.currentUser()!.age).font(Font.custom(FONT, size: 20))
                             }
                             
                             Spacer()
@@ -74,7 +80,7 @@ struct Profile : View {
                                 
                                 Image("map").resizable().frame(width: 15, height: 20)
                                 
-                                Text("서울")
+                                Text("대한민국")
                                 
                             }.padding(8)
                                 .background(Color.black.opacity(0.1))
@@ -82,9 +88,9 @@ struct Profile : View {
                         }.padding(.top,35)
                         
                         VStack(alignment: .center, spacing: 10){
-                            Text("현재 쓸수 있는 포인트: " + String(User.currentUser()!.point_avail)).font(.subheadline).font(Font.custom(FONT, size: 15))
-                            Text("투표에 참여한 사진 갯수: " + String(User.currentUser()!.point_avail)).font(Font.custom(FONT, size: 15))
-                            Text("매칭된 횟수: " + String(User.currentUser()!.point_avail)).font(Font.custom(FONT, size: 15))
+                            Text("보유 Gleem 포인트: " + String(User.currentUser()!.point_avail)).font(.subheadline).font(Font.custom(FONT, size: 15))
+                            Text("참여한 투표카드 갯수: " +  String(self.voteViewModel.totalVoted)).font(Font.custom(FONT, size: 15))
+                            Text("매칭된 횟수: 0").font(Font.custom(FONT, size: 15))
                         }.padding(.top)
                         
                         
@@ -140,7 +146,10 @@ struct Profile : View {
                 }
                 
             }.padding()
+        }.onAppear{
+            self.voteViewModel.getNumVoted()
         }
+  
     }
 }
 

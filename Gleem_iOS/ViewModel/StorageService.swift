@@ -92,7 +92,7 @@ class StorageService {
     
     
     
-    static func saveAvatar(userId: String, username: String, email: String, imageData: Data, metadata: StorageMetadata, storageAvatarRef: StorageReference, onSuccess: @escaping(_ user: User) -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+    static func saveAvatar(userId: String, username: String, email: String, imageData: Data, metadata: StorageMetadata, storageAvatarRef: StorageReference, gender: String,  onSuccess: @escaping(_ user: User) -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
         storageAvatarRef.putData(imageData, metadata: metadata) { (storageMetadata, error) in
             if error != nil {
                 onError(error!.localizedDescription)
@@ -117,7 +117,7 @@ class StorageService {
                     //                    let user = User.init(uid: userId, email: email, profileImageUrl: metaImageUrl, username: username, bio: "", keywords: username.splitStringToArray())
                     //                    let user = User.init(uid: userId, email: email, profileImageUrl: metaImageUrl, username: username, bio: "")
                     
-                    let user = User.init(id: userId, email: email, profileImageUrl: metaImageUrl, username: username, age: "30", sex: "male", createdDate:  Date().timeIntervalSince1970, point_avail: 20)
+                    let user = User.init(id: userId, email: email, profileImageUrl: metaImageUrl, username: username, age: "N/A", sex: gender, createdDate:  Date().timeIntervalSince1970, point_avail: INITIAL_POINT)
                     
                     guard let dict = try? user.toDictionary() else {return}
                     saveUserLocally(mUserDictionary: dict as NSDictionary)

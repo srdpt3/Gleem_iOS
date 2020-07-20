@@ -19,7 +19,8 @@ let APP_LOGO = "gleem_resized"
 let COLOR_LIGHT_GRAY = Color(red: 0, green: 0, blue: 0, opacity: 0.15)
 let APP_THEME_COLOR = Color("Color2")
 
-
+let INITIAL_POINT = 500
+let POINT_USE = 10
 
 // Tabbar
 public let index1 = "카드"
@@ -91,7 +92,7 @@ public let SERIES_TITLE = "매력지수(%)"
 public let PROFILE_COMPLETE = "70% 완료"
 public let ACCOUNT = "계정"
 public let PROFILE = "프로필"
-public let BILLING = "결제"
+public let BILLING = "포인트 충전"
 public let LOGIN = "로그인"
 public let LOGOUT = "로그아웃"
 
@@ -121,6 +122,8 @@ public let CANCEL =  "취소"
 //Favorite
 public let SOMEONE_LIKED = "내게 끌림을 준 카드"
 public let I_LIKED = "내가 호감있는 카드"
+public let MATCHING_CHECK_CURRENT_POINT = "상대방에게 채팅요청시 5포인트가 소모됩니다. \n현재 가진 포인트: "
+public let NOT_ENOUGH_POINT = "가지고계신 포인트가 부족합니다. \n필요한 포인트: " + String(POINT_USE) + "\n현재 가진 포인트: "
 
 
 //Stat

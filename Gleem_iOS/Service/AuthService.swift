@@ -35,7 +35,19 @@ class AuthService {
 
     }
     
-    static func signupUser(username: String, email: String, password: String, imageData: Data, onSuccess: @escaping(_ user: User) -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+    
+    static func saveUser(userId: String){
+        let firestoreUserId = Ref.FIRESTORE_DOCUMENT_USERID(userId: userId)
+        firestoreUserId.getDocument { (document, error) in
+            if let dict = document?.data() {
+                guard let decoderUser = try? User.init(_dictionary: dict as NSDictionary) else {return}
+                saveUserLocally(mUserDictionary: dict as NSDictionary)
+                print("Save Locally")
+            }
+        }
+    }
+    
+    static func signupUser(username: String, email: String, password: String, imageData: Data, gender: String, onSuccess: @escaping(_ user: User) -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
          //Firebase.createAccount(username: username, email: email, password: password, imageData: imageData)
                 Auth.auth().createUser(withEmail: email, password: password) { (authData, error) in
                     if error != nil {
@@ -51,7 +63,7 @@ class AuthService {
                     let metadata = StorageMetadata()
                     metadata.contentType = "image/jpg"
                     
-                    StorageService.saveAvatar(userId: userId, username: username, email: email, imageData: imageData, metadata: metadata, storageAvatarRef: storageAvatarUserId, onSuccess: onSuccess, onError: onError)
+                    StorageService.saveAvatar(userId: userId, username: username, email: email, imageData: imageData, metadata: metadata, storageAvatarRef: storageAvatarUserId, gender : gender, onSuccess: onSuccess, onError: onError)
  
                 }
     }

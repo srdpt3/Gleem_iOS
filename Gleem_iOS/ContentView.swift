@@ -23,34 +23,37 @@ struct subMainView : View {
     @State var index = 0
     var body: some View {
         NavigationView{
-            VStack(spacing: 0){
-                
-                if self.index == 0{
-                    CardListview().animation(.spring())
-                }
-                else if self.index == 1{
-                    MyStaticView().animation(.spring())
-                }
-                else if self.index == 2{
-                    FavoriteView().animation(.spring())
-                }
-                else if self.index == 3{
-                    //                    Color.black
-                    MessagesView()
-                }
+            ZStack{
+                VStack(spacing: 0){
                     
-                else{
-                    //                    Color.black
-                    MessagesView()
+                    if self.index == 0{
+                        CardListview().animation(.spring())
+                    }
+                    else if self.index == 1{
+                        MyStaticView().animation(.spring())
+                    }
+                    else if self.index == 2{
+                        FavoriteView().animation(.spring())
+                    }
+                    else if self.index == 3{
+                        //                    Color.black
+                        MessagesView()
+                    }
+                        
+                    else{
+                        //                    Color.black
+                        MessagesView()
+                    }
+                    //                Spacer()
+                    CircleTab(index: self.$index)
+                        .background(Color.white.edgesIgnoringSafeArea(.bottom))
+                        .opacity(self.obs.isLoading == true ? 0 : 1)
+                    
+                    
+                    
                 }
-                //                Spacer()
-                CircleTab(index: self.$index)
-                    .background(Color.white.edgesIgnoringSafeArea(.bottom))
-                    .opacity(self.obs.isLoading == true ? 0 : 1)
-                
-                
-                
             }
+
         }
     }
     

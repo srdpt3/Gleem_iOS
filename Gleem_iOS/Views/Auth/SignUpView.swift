@@ -20,15 +20,16 @@ struct SignUpView: View {
     //    @Binding var showSignInView : Bool
     @State var showLoader : Bool = false
     @State var agree = false
-    @State var selected = 0
+    @State var gender = "male"
+    @State var finishSignUp : Bool = false
 
     func signUp() {
         self.showLoader.toggle()
         
-        signupViewModel.signup(username: signupViewModel.username, email: signupViewModel.email, password: signupViewModel.password, imageData: signupViewModel.imageData,  completed: { (user) in
+        signupViewModel.signup(username: signupViewModel.username, email: signupViewModel.email, password: signupViewModel.password, imageData: signupViewModel.imageData, gender: self.gender,  completed: { (user) in
             print("SignUp \(user.email)")
             self.showLoader.toggle()
-            self.signupViewModel.finishSignUp = true
+            self.finishSignUp = true
 
             self.clean()
         }) { (errorMessage) in
@@ -44,7 +45,7 @@ struct SignUpView: View {
     
     func clean() {
         
-//        self.presentationMode.wrappedValue.dismiss()
+//      self.presentationMode.wrappedValue.dismiss()
         
         self.signupViewModel.username = ""
         self.signupViewModel.email = ""
@@ -56,21 +57,7 @@ struct SignUpView: View {
     
     var body: some View {
         ZStack{
-            //            HStack{
-            //
-            //                Spacer()
-            //
-            //                Image("shape")
-            //
-            //            }
-            //
-            //            VStack{
-            //
-            //                Image("Gleem 3D Icon Type Black Transparent_resized").resizable().scaledToFit().frame(width: 200, height: 150)
-            //                Image("name").padding(.top,10)
-            //
-            //            }.offset(y: -122)
-            //                .padding(.bottom,-132)
+ 
             VStack(spacing: 20){
                 HStack{
                     signupViewModel.image.resizable().aspectRatio(contentMode: .fill).frame(width: 80, height: 80)
@@ -79,7 +66,7 @@ struct SignUpView: View {
                             print("Tapped")
                             self.signupViewModel.showImagePicker = true
                     }
-                    Topbar(selected: self.$selected).padding(.top)
+                    Topbar(selected: self.$gender).padding(.top)
 
 //                    VStack{
 //                        //                        Spacer()
@@ -150,12 +137,13 @@ struct SignUpView: View {
                         
                     }))
                 }
-                .alert(isPresented: $signupViewModel.finishSignUp) {
+                .alert(isPresented: self.$finishSignUp) {
                     Alert(title: Text("완료"), message: Text("가입이 성공적으로 완료 되었습니다"),  dismissButton: .default(Text("OK"), action: {
-                        
+                          ContentView()
                         self.showSignupView = false
+                        self.finishSignUp = false
 //                        self.presentationMode.wrappedValue.dismiss()
-                        ContentView()
+//
                         
                     }))
                 }
@@ -187,6 +175,7 @@ struct SignUpView: View {
             }
             
         }
+        
   
     }
     
@@ -197,7 +186,7 @@ struct SignUpView: View {
 
 struct Topbar : View {
     
-    @Binding var selected : Int
+    @Binding var selected : String
     
     var body : some View{
         
@@ -205,7 +194,8 @@ struct Topbar : View {
             
             Button(action: {
                 
-                self.selected = 0
+                self.selected = "male"
+                print("male")
                 
             }) {
                 
@@ -214,28 +204,30 @@ struct Topbar : View {
                     .frame(width: 20, height: 20)
                     .padding(.vertical,6)
                     .padding(.horizontal,15)
-                    .background(self.selected == 0 ? Color.white : Color.clear)
+                    .background(self.selected == "male" ? Color.white : Color.clear)
                     .clipShape(Capsule())
             }
-            .foregroundColor(self.selected == 0 ?  Color("Color1"): .gray)
+//            .foregroundColor(self.selected ==  "male" ?  Color("Color1"): .gray)
             
             Button(action: {
                 
-                self.selected = 1
+                self.selected = "female"
+                print("female")
+                
                 
             }) {
                 
                 Image("female")
-                .resizable()
-                .frame(width: 25, height: 20)
-                .padding(.vertical,6)
-                .padding(.horizontal,15)
-                .background(self.selected == 1 ? Color.white : Color.clear)
-                .clipShape(Capsule())
+                    .resizable()
+                    .frame(width: 25, height: 20)
+                    .padding(.vertical,6)
+                    .padding(.horizontal,15)
+                    .background(self.selected == "female" ? Color.white : Color.clear)
+                    .clipShape(Capsule())
             }
-            .foregroundColor(self.selected == 1 ? Color("myvote") : .gray)
+            .foregroundColor(self.selected == "female" ? Color("myvote") : .gray)
             
-            }.padding(8)
+        }.padding(8)
             .background(Color("Color-2"))
             .clipShape(Capsule())
             .animation(.default)

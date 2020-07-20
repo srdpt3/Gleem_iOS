@@ -23,16 +23,30 @@ class observer : ObservableObject{
     @Published var index = -1;
     @Published var isLoggedIn = false
     
+    @Published var votedCards = [String]()
     
-    //    init() {
-    //                       self.reload()
-    //
-    //
-    //    }
-    //
+    
     var handle: AuthStateDidChangeListenerHandle?
     
-    
+    func getNumVoted(){
+        Ref.FIRESTORE_COLLECTION_MYVOTE.document(Auth.auth().currentUser!.uid).collection("voted").getDocuments { (snap, error) in
+            self.votedCards.removeAll()
+            if error != nil {
+                print((error?.localizedDescription)!)
+                
+            }
+            for i in snap!.documents{
+                
+                let id = i.documentID
+                if(id != Auth.auth().currentUser?.uid){
+                    self.votedCards.append(id)
+                }
+                
+            }
+            
+            self.reload()
+        }
+    }
     
     func getCurrentCard() -> MainCardView {
         return self.cardViews.first!
@@ -41,8 +55,8 @@ class observer : ObservableObject{
     func listenAuthenticationState() {
         handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
             if let user = user {
-                self.reload()
-                print("listenAuthenticationState \(user.email)")
+                self.getNumVoted()
+                print("listenAuthenticationState \(user.uid)")
                 //                let firestoreUserId = Ref.FIRESTORE_DOCUMENT_USERID(userId: user.uid)
                 //                firestoreUserId.getDocument { (document, error) in
                 //                    if let dict = document?.data() {
@@ -52,7 +66,6 @@ class observer : ObservableObject{
                 //                    }
                 //                }
                 //
-                
                 
                 self.isLoggedIn = true
             } else {
@@ -71,7 +84,7 @@ class observer : ObservableObject{
         if(self.users.count == 2 &&  index == 2){
             self.index += 1
             self.last += 1
-
+            
         }else{
             
             if(self.index > self.users.count ){
@@ -104,7 +117,7 @@ class observer : ObservableObject{
             
             resetDefaults()
             URLCache.shared.removeAllCachedResponses()
-
+            
             //            unbind()
         } catch  {
             print("Logout Failed")
@@ -142,7 +155,10 @@ class observer : ObservableObject{
     
     
     func reload(){
+        
         self.isLoading = true
+        
+        
         Ref.FIRESTORE_COLLECTION_ACTIVE_VOTE.getDocuments { (snap, err) in
             self.users.removeAll()
             
@@ -160,7 +176,19 @@ class observer : ObservableObject{
                     let dict = i.data()
                     guard let decoderPost = try? ActiveVote.init(fromDictionary: dict) else {return}
                     self.users.append(decoderPost)
-     
+                    if self.votedCards.contains(id) {
+                        print("contained " +  id)
+                    }
+                    
+                    
+                    //                    else{
+                    //                        let dict = i.data()
+                    //                        guard let decoderPost = try? ActiveVote.init(fromDictionary: dict) else {return}
+                    //                        self.users.append(decoderPost)
+                    //                    }
+                    
+                    
+                    
                 }
                 
             }
@@ -170,11 +198,11 @@ class observer : ObservableObject{
             self.last = 0
             self.createCardView()
         }
-
+        
     }
     
     
-   
+    
     
 }
 

@@ -16,7 +16,7 @@ struct MyStaticView: View {
     @State var voteData:[Double] = []
     @State var voteNum:[Int] = []
     let numberIVoted = 30
-    @State var buttonTitle : [String] = []
+    @State var buttonTitle : [String] = ["없음", "없음","없음", "없음", "없음"]
     @State var date : Double = 0
     @State var noVotePic : Bool = false
     @State var votePiclocation : String = ""
@@ -35,6 +35,7 @@ struct MyStaticView: View {
     
     @State var showUploadView = false
     @State var buttonPressed = [false,false,false,false,false]
+  
     var selectedButton = [String]()
     
     @ObservedObject var chartViewModel = ChartViewModel()
@@ -43,10 +44,13 @@ struct MyStaticView: View {
             
             if vote.attrNames.count == 0 {
                 self.noVotePic = true
+                self.voteData = [0,0,0,0,0]
+                self.totalNum = 0
                 return
             }else{
                 self.voteData.removeAll()
                 self.voteNum.removeAll()
+                self.buttonTitle.removeAll()
                 if(vote.numVote == 0){
                     self.voteData = [0,0,0,0,0]
                     self.totalNum = 0
@@ -66,8 +70,8 @@ struct MyStaticView: View {
                 
                 self.totalNum = vote.numVote
                 //                self.totalNum = 100
-                print(self.voteData)
-                print( self.totalNum)
+//                print(self.voteData)
+//                print( self.totalNum)
                 self.date = vote.createdDate
                 self.buttonTitle = vote.attrNames
                 self.votePiclocation = vote.imageLocation
@@ -312,9 +316,103 @@ struct MyStaticView: View {
                     .background(Color.white.edgesIgnoringSafeArea(.top))
                     .cornerRadius(10)
                     .padding(.horizontal, 5)
+                    
+                    HStack(spacing: 5){
+                            
+                            
+                            ZStack{
+                                VStack{
+                                    
+                                    ZStack{
+                                        //                                        LoadingView2(filename: "heart")
+                                        LottieView(filename: "heart")
+                                            .frame(width: 80, height: 100)
+                                    }
+                                    
+                                }
+                                
+                                
+                                
+                            }
+                            .padding().padding(.top, -20)
+                            
+                            
+                            
+                            
+                            ForEach(Array(self.voteData.enumerated()), id: \.offset) { index, work in
+                                
+                                VStack{
+                                    
+                                    
+                                    if(work == 0){
+                                        VStack{
+                                            
+                                            Spacer(minLength: 0)
+                                            
+                                            
+                                            RoundedShape()
+                                                .fill(LinearGradient(gradient: .init(colors:  self.empty_color), startPoint: .top, endPoint: .bottom))
+                                                // max height = 200
+                                                .frame(height:  150 ).animation(.linear)
+                                        }
+                                        .frame(height: UIScreen.main.bounds.width / 2.55).padding(.bottom, 10).padding(.horizontal, 2)
+                                    }else{
+                                        VStack{
+                                            
+                                            Spacer(minLength: 0)
+                                            
+                                            
+                                            RoundedShape()
+                                                .fill(LinearGradient(gradient: .init(colors:  self.colors[index]), startPoint: .top, endPoint: .bottom))
+                                                // max height = 200
+                                                .frame(height:  self.getHeight(value: CGFloat(work))).animation(.linear)
+                                        }
+                                        .frame(height: UIScreen.main.bounds.width / 2.55).padding(.bottom, 10).padding(.horizontal, 2)
+                                    }
+                                    
+                                    Spacer()
+                                    Text(self.buttonTitle[index]).fontWeight(.heavy).font(Font.custom(FONT, size: 12)).foregroundColor(.gray).multilineTextAlignment(.leading).lineLimit(2)
+                                    
+                                }
+                            }
+                        }.padding(.horizontal,5)
+                        
+                        
+                        HStack{
+                            
+                            Text(MY_STAT_RADAR).fontWeight(.heavy).font(Font.custom(FONT, size: 20)).foregroundColor(APP_THEME_COLOR)
+                            Spacer(minLength: 0)
+                        }
+                        .padding()
+                        VStack{
+                            
+                            if !self.voteData.isEmpty {
+                                ZStack{
+                                    
+                                    //                                    LottieView(filename: "fireworks")
+                                    ChartView(data: self.$voteData, totalNum: 100, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height/2.4)  .padding(.top, -20).background(Color.clear).padding(.bottom, 30)
+                                        .rotationEffect(.degrees(Double(celsius)))
+                                    
+                                    
+                                    LottieView(filename: "radar-motion").frame(width: 300  , height: 300).padding(.bottom, 30)
+                                    
+                                }
+                                
+                                
+                            }
+                            else {
+                                LoadingView(isLoading: self.chartViewModel.isLoading, error: self.chartViewModel.error) {
+                                    self.loadChartData()
+                                }
+                            }
+                        }
+                    
+    
+                    
+                    
                 }
-                
-                
+
+                    
                 
             }
             .background(Color.white.edgesIgnoringSafeArea(.top))
