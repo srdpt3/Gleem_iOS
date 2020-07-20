@@ -69,6 +69,18 @@ class FavoriteViewModel: ObservableObject {
     }
     
     
+    func checkLiked2(id: String) -> Bool {
+        var result : Bool = false
+        Ref.FIRESTORE_COLLECTION_LIKED_USERID(userId: id).getDocument { (document, error) in
+            if let doc = document, doc.exists {
+                result = true
+            } else {
+                result =  false
+            }
+        }
+        return result
+    }
+    
     func checkLiked(id: String) {
         
         Ref.FIRESTORE_COLLECTION_LIKED_USERID(userId: id).getDocument { (document, error) in

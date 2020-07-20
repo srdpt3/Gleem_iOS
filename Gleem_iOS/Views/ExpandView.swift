@@ -264,9 +264,7 @@ struct ExpandView: View {
             .background(Color.white.edgesIgnoringSafeArea(.all))
             .onAppear{
                 self.favoriteViewModel.checkLiked(id: self.user.id)
-           
-                            self.pulsate.toggle()
-                   
+
                 
         }
         

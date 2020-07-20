@@ -51,12 +51,12 @@ struct InfoView_Previews: PreviewProvider {
 struct AppInfoView: View {
   var body: some View {
     VStack(alignment: .leading, spacing: 10) {
-      RowAppInfoView(ItemOne: "어플리케이션", ItemTwo: "Gleem App")
-      RowAppInfoView(ItemOne: "플랫폼", ItemTwo: "iPhone")
-      RowAppInfoView(ItemOne: "개발자", ItemTwo: "FrontYard Tech")
-      RowAppInfoView(ItemOne: "디자인", ItemTwo: "Dustin Yang")
+      RowAppInfoView(ItemOne: "앱 정보", ItemTwo: "Gleem App")
+      RowAppInfoView(ItemOne: "플랫폼", ItemTwo: "iPhone iOS 13 이상")
+      RowAppInfoView(ItemOne: "회사", ItemTwo: "FrontYard Tech")
+//      RowAppInfoView(ItemOne: "", ItemTwo: "Dustin Yang")
       RowAppInfoView(ItemOne: "회사 홈페이지", ItemTwo: "FrontYardTech.com")
-      RowAppInfoView(ItemOne: "버젼", ItemTwo: "1.0.0")
+      RowAppInfoView(ItemOne: "버젼", ItemTwo: "1.0.0. 데모버젼")
     }
   }
 }

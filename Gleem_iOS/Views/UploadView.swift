@@ -21,14 +21,15 @@ struct UploadView: View {
     @State var showAlert : Bool = false
     let characterLimit = 10
     @State private var entry = ""
-    @State var buttonPressed = [false,false,false,false,false,false,false,false]
+    @State var buttonPressed = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
     @State  var buttonTitle = [String]()
-    
+    let haptics = UINotificationFeedbackGenerator()
+
     @ObservedObject var attributeViewModel = AttributeViewModel()
     @ObservedObject var uploadViewModel = UploadViewModel()
     
     func clean() {
-        self.buttonPressed = [false,false,false,false,false,false,false,false]
+        self.buttonPressed = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
     }
     
     func checkAttrSelected() -> Bool{
@@ -75,10 +76,10 @@ struct UploadView: View {
                             if self.images[0].count == 0{
                                 
                                 RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color("Color-3"))
+                                    .fill(Color("Color-2"))
                                 
                                 Image(systemName: "plus")
-                                    .font(.system(size: 24, weight: .bold)).foregroundColor(.white)
+                                    .font(.system(size: 24, weight: .bold)).foregroundColor(APP_THEME_COLOR)
                             }
                             else{
                                 
@@ -113,43 +114,79 @@ struct UploadView: View {
                             
                         }.padding(.horizontal, 2)
                         HStack(spacing : 2){
-                            AttrButtonView(isPressed: self.$buttonPressed[5],title:self.attributeViewModel.buttonAttributes[5])
-                            
                             AttrButtonView(isPressed: self.$buttonPressed[6],title:self.attributeViewModel.buttonAttributes[6])
-                            //                        Spacer()
+                            
                             AttrButtonView(isPressed: self.$buttonPressed[7],title:self.attributeViewModel.buttonAttributes[7])
+                            //                        Spacer()
+                            AttrButtonView(isPressed: self.$buttonPressed[8],title:self.attributeViewModel.buttonAttributes[8])
+                            //                            AttrButtonView(isPressed: self.$buttonPressed[8],title:buttonTitle[8])
+                            
+                        }.padding(.horizontal, 2)
+                        HStack(spacing : 2){
+                            AttrButtonView(isPressed: self.$buttonPressed[9],title:self.attributeViewModel.buttonAttributes[9])
+                            
+                            AttrButtonView(isPressed: self.$buttonPressed[5],title:self.attributeViewModel.buttonAttributes[5])
+                            AttrButtonView(isPressed: self.$buttonPressed[12],title:self.attributeViewModel.buttonAttributes[12])
+                            
+                        }.padding(.horizontal, 2)
+                        
+                        HStack(spacing : 2){
+                            AttrButtonView(isPressed: self.$buttonPressed[16],title:self.attributeViewModel.buttonAttributes[16])
+                            
+                            //                        Spacer()
+                            //                            AttrButtonView(isPressed: self.$buttonPressed[8],title:buttonTitle[8])
+                            AttrButtonView(isPressed: self.$buttonPressed[10],title:self.attributeViewModel.buttonAttributes[10])
+                            
+                        }.padding(.horizontal, 2)
+                        
+                        
+                        HStack(spacing : 2){
+                            AttrButtonView(isPressed: self.$buttonPressed[14],title:self.attributeViewModel.buttonAttributes[14])
+                            AttrButtonView(isPressed: self.$buttonPressed[15],title:self.attributeViewModel.buttonAttributes[15])
+                            
+                            //                        Spacer()
+                            //                                                AttrButtonView(isPressed: self.$buttonPressed[7],title:self.attributeViewModel.buttonAttributes[7])
+                            //                            AttrButtonView(isPressed: self.$buttonPressed[8],title:buttonTitle[8])
+                            
+                        }.padding(.horizontal, 2)
+                        HStack(spacing : 2){
+                            AttrButtonView(isPressed: self.$buttonPressed[13],title:self.attributeViewModel.buttonAttributes[13])
+                            
+                            AttrButtonView(isPressed: self.$buttonPressed[11],title:self.attributeViewModel.buttonAttributes[11])
+                            //                        Spacer()
+                            //                                                AttrButtonView(isPressed: self.$buttonPressed[7],title:self.attributeViewModel.buttonAttributes[7])
                             //                            AttrButtonView(isPressed: self.$buttonPressed[8],title:buttonTitle[8])
                             
                         }.padding(.horizontal, 2)
                         
-                        HStack(alignment: .center) {
-                            
-                            TextField("10자 내외 직접입력 ..".uppercased(), text: $entry)
-                                .keyboardType(.emailAddress)
-                                .font(.subheadline)
-                                //                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                                .padding(.leading)
-                                .frame(height: 44)
-                                .background(
-                                    Capsule()
-                                        .strokeBorder(lineWidth: 1.75)
-                                        .foregroundColor(APP_THEME_COLOR)
-                            )
-                                .onTapGesture {
-                                    //                                                     self.isFocused = true
-                            }
-                            //                            frame(height: 136)
-                            //                            .frame(maxWidth: 712)
-                            //                            .background(BlurView(style: .systemMaterial))
-                            //                            .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-                            //                            .shadow(color: Color.black.opacity(0.15), radius: 20, x: 0, y: 20)
-                            //                            .padding(.horizontal)
-                            
-                            
-                            //                            TextField("10자 내외 직접입력 ..", text: $customAttr)
-                            //                                .textFieldStyle(CustomStyle()).disabled(entry.count > (characterLimit - 1))
-                            
-                        }.padding(.horizontal)
+                        //                        HStack(alignment: .center) {
+                        //
+                        //                            TextField("10자 내외 직접입력 ..".uppercased(), text: $entry)
+                        //                                .keyboardType(.emailAddress)
+                        //                                .font(.subheadline)
+                        //                                //                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                        //                                .padding(.leading)
+                        //                                .frame(height: 44)
+                        //                                .background(
+                        //                                    Capsule()
+                        //                                        .strokeBorder(lineWidth: 1.75)
+                        //                                        .foregroundColor(APP_THEME_COLOR)
+                        //                            )
+                        //                                .onTapGesture {
+                        //                                    //                                                     self.isFocused = true
+                        //                            }
+                        //                            //                            frame(height: 136)
+                        //                            //                            .frame(maxWidth: 712)
+                        //                            //                            .background(BlurView(style: .systemMaterial))
+                        //                            //                            .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+                        //                            //                            .shadow(color: Color.black.opacity(0.15), radius: 20, x: 0, y: 20)
+                        //                            //                            .padding(.horizontal)
+                        //
+                        //
+                        //                            //                            TextField("10자 내외 직접입력 ..", text: $customAttr)
+                        //                            //                                .textFieldStyle(CustomStyle()).disabled(entry.count > (characterLimit - 1))
+                        //
+                        //                        }.padding(.horizontal)
                     }.background(Color.clear)
                     
                     Button(action: {
@@ -158,6 +195,8 @@ struct UploadView: View {
                             self.showAlert.toggle()
                         }else{
                             self.uploadPicture()
+                            self.haptics.notificationOccurred(.success)
+
                         }
                         
                     }) {
@@ -180,7 +219,7 @@ struct UploadView: View {
                 }else{
                     
                     LoadingView(isLoading: self.attributeViewModel.isLoading, error: self.attributeViewModel.error) {
-                        self.attributeViewModel.loadAttributes(sex: "male")
+                        self.attributeViewModel.loadAttributes()
                     }
                     
                 }
@@ -196,7 +235,7 @@ struct UploadView: View {
             .sheet(isPresented: self.$imagePicker) {
                 ImagePicker(showImagePicker: self.$imagePicker, pickedImage: self.$image, imageData: self.$images[self.index])
         }.padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top).onAppear{
-            self.attributeViewModel.loadAttributes(sex: "male")
+            self.attributeViewModel.loadAttributes()
         } .alert(isPresented: self.$showAlert) {
             Alert(title: Text("Error"), message: Text("5개의 항목을 선택해주세요"),  dismissButton: .default(Text("OK"), action: {
                 //                self.showLoader.toggle()

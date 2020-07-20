@@ -238,7 +238,7 @@ class Ref {
     
     static var FIRESTORE_COLLECTION_ATTRIBUTE = FIRESTORE_ROOT.collection("Attributes")
     static func FIRESTORE_COLLECTION_ATTRIBUTE_MALE() -> DocumentReference {
-        return FIRESTORE_COLLECTION_VOTE.document("male")
+        return FIRESTORE_COLLECTION_VOTE.document(User.currentUser()!.sex)
     }
     
     static func FIRESTORE_COLLECTION_ATTRIBUTE_FEMALE() -> DocumentReference {
