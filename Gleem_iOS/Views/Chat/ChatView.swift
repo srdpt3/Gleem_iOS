@@ -230,21 +230,25 @@ struct ChatView: View {
                 ImagePicker(showImagePicker: self.$chatViewModel.showImagePicker, pickedImage: self.$chatViewModel.image, imageData: self.$chatViewModel.imageData)
             }
             
-        }
+            }
         .onAppear {
             self.chatViewModel.recipientId = self.recipientId
             self.chatViewModel.loadChatMessages()
+            self.obs.showTab.toggle()
         }
         .onDisappear {
-            
+            self.obs.showTab.toggle()
+
             if self.chatViewModel.listener != nil {
                 self.chatViewModel.listener.remove()
             }
-        }.navigationBarHidden(true)
+        }    .navigationBarHidden(true)
             .navigationBarTitle("")
         
         
     }
+
+    
     
 }
 

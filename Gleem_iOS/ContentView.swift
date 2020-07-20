@@ -22,8 +22,7 @@ struct subMainView : View {
     @EnvironmentObject var obs : observer
     @State var index = 0
     var body: some View {
-        NavigationView{
-            ZStack{
+        
                 VStack(spacing: 0){
                     
                     if self.index == 0{
@@ -37,7 +36,9 @@ struct subMainView : View {
                     }
                     else if self.index == 3{
                         //                    Color.black
-                        MessagesView()
+           
+                            
+                           MessagesView()
                     }
                         
                     else{
@@ -48,13 +49,18 @@ struct subMainView : View {
                     CircleTab(index: self.$index)
                         .background(Color.white.edgesIgnoringSafeArea(.bottom))
                         .opacity(self.obs.isLoading == true ? 0 : 1)
+                        .opacity(self.obs.showTab == true  ? 0 : 1)
+                    
+                    
+                    
+                    //                        .offset(y:self.obs.showTab == true ? 50 : 0 )
+                    
                     
                     
                     
                 }
-            }
-
-        }
+          
+            
     }
     
 }

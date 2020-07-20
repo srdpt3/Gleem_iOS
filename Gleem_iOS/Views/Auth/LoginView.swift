@@ -61,106 +61,105 @@ struct LoginView: View {
     //
     //    }
     var body: some View {
-        NavigationView {
-            
-            ZStack {
-//
-//                NavigationLink(destination: SignUpView(showSignupView: self.$showSignupView), isActive: self.$showSignupView) {
-//                                                 Text("")
-//                                     }
-//
-                
-                
-                ScrollView(.vertical, showsIndicators: false){
-                    
-                
-                    
-                    VStack {
-                        HStack{
-                            Spacer()
-                            Image("shape")
-                        }
+        
+              ZStack {
+        //
+        //                NavigationLink(destination: SignUpView(showSignupView: self.$showSignupView), isActive: self.$showSignupView) {
+        //                                                 Text("")
+        //                                     }
+        //
                         
-                        VStack{
-                            Image("Gleem 3D Icon Type Black Transparent_resized").resizable().scaledToFit().frame(width: 200, height: 150)
-                            Image("name").padding(.top,10)
-                            
-                        }.offset(y: -122)
-                            .padding(.bottom,-132)
                         
-                        //                        EmailTextField(email: $signinViewModel.email)
-                        //                        PasswordTextField(password: $signinViewModel.password)
-                        //
-                        VStack(spacing: 20){
-                            CustomTF(value: $signinViewModel.email, isemail: true)
+                        ScrollView(.vertical, showsIndicators: false){
                             
-                            CustomTF(value: $signinViewModel.password, isemail: false)
+                        
                             
-                            HStack{
+                            VStack {
+                                HStack{
+                                    Spacer()
+                                    Image("shape")
+                                }
                                 
-                                Spacer()
+                                VStack{
+                                    Image("Gleem 3D Icon Type Black Transparent_resized").resizable().scaledToFit().frame(width: 200, height: 150)
+                                    Image("name").padding(.top,10)
+                                    
+                                }.offset(y: -122)
+                                    .padding(.bottom,-132)
+                                
+                                //                        EmailTextField(email: $signinViewModel.email)
+                                //                        PasswordTextField(password: $signinViewModel.password)
+                                //
+                                VStack(spacing: 20){
+                                    CustomTF(value: $signinViewModel.email, isemail: true)
+                                    
+                                    CustomTF(value: $signinViewModel.password, isemail: false)
+                                    
+                                    HStack{
+                                        
+                                        Spacer()
+                                        
+                                        Button(action: {
+                                            
+                                        }) {
+                                            
+                                            Text("Forget Password ?").foregroundColor(Color.black.opacity(0.1))
+                                        }
+                                    }
+                                    
+                                    
+                                    
+                                    
+                                    SigninButton(action: signIn, label: TEXT_SIGN_IN).alert(isPresented: $signinViewModel.showAlert) {
+                                        Alert(title: Text("Error"), message: Text(self.signinViewModel.errorString), dismissButton: .default(Text("OK"), action: {
+                                            
+                                        }))
+                                        
+                                    }
+                                    
+                                    Text("Or Login Using Social Media").fontWeight(.bold)
+                                    
+                                    SocialMedia()
+                                    
+                                }.padding()
+                                    .background(Color.white)
+                                    .cornerRadius(5)
+                                    .padding()
+                                
+                                
+                                
+                                
                                 
                                 Button(action: {
-                                    
-                                }) {
-                                    
-                                    Text("Forget Password ?").foregroundColor(Color.black.opacity(0.1))
+                                    self.showSignupView.toggle()
+                                    self.signinViewModel.show.toggle()
+                                }){
+                                    HStack {
+                                        Text(TEXT_NEED_AN_ACCOUNT).font(.footnote).foregroundColor(.gray)
+                                        Text(TEXT_SIGN_UP).foregroundColor(APP_THEME_COLOR)
+                                    }
                                 }
-                            }
-                            
-                            
-                            
-                            
-                            SigninButton(action: signIn, label: TEXT_SIGN_IN).alert(isPresented: $signinViewModel.showAlert) {
-                                Alert(title: Text("Error"), message: Text(self.signinViewModel.errorString), dismissButton: .default(Text("OK"), action: {
-                                    
-                                }))
+                                
+                                Spacer()
+                                //                        Spacer()
                                 
                             }
+                         
                             
-                            Text("Or Login Using Social Media").fontWeight(.bold)
                             
-                            SocialMedia()
                             
-                        }.padding()
-                            .background(Color.white)
-                            .cornerRadius(5)
-                            .padding()
-                        
-                        
-                        
-                        
-                        
-                        Button(action: {
-                            self.showSignupView.toggle()
-                            self.signinViewModel.show.toggle()
-                        }){
-                            HStack {
-                                Text(TEXT_NEED_AN_ACCOUNT).font(.footnote).foregroundColor(.gray)
-                                Text(TEXT_SIGN_UP).foregroundColor(APP_THEME_COLOR)
-                            }
                         }
+                        //                .edgesIgnoringSafeArea(.all).padding()
                         
-                        Spacer()
-                        //                        Spacer()
                         
-                    }
-                 
-                    
-                    
-                    
-                }
-                //                .edgesIgnoringSafeArea(.all).padding()
-                
-                
-                //                                getSinWave(interval: universalSize.width, amplitude: 130, baseline: -50 + universalSize.height/1.7)
-                //                                    .foregroundColor(Color.init(red: 0.3, green: 0.6, blue: 1).opacity(0.4))
-                //                                    .offset(x: isAnimated ? -1*universalSize.width : 0)
-                //                                    .animation(
-                //                                        Animation.linear(duration: 2)
-                //                                            .repeatForever(autoreverses: false)
-                //                                )
-                //                                getSinWave(interval: universalSize.width*1.2, amplitude: 130, baseline: 50 + universalSize.height/1.7)
+                        //                                getSinWave(interval: universalSize.width, amplitude: 130, baseline: -50 + universalSize.height/1.7)
+                        //                                    .foregroundColor(Color.init(red: 0.3, green: 0.6, blue: 1).opacity(0.4))
+                        //                                    .offset(x: isAnimated ? -1*universalSize.width : 0)
+                        //                                    .animation(
+                        //                                        Animation.linear(duration: 2)
+                        //                                            .repeatForever(autoreverses: false)
+                        //                                )
+                        //                                getSinWave(interval: universalSize.width*1.2, amplitude: 130, baseline: 50 + universalSize.height/1.7)
                 //                                    .foregroundColor(Color.init(red: 0.3, green: 0.6, blue: 1).opacity(0.4))
                 //                                    .offset(x: isAnimated ? -1*(universalSize.width*1.2) : 0)
                 //                                    .animation(
@@ -169,19 +168,21 @@ struct LoginView: View {
                 //                                )
                 //                                Spacer()
                 
-            }.onAppear(){
+              }.onAppear(){
                 self.isAnimated = true
                 
-            }.KeyboardResponsive()
+              }.KeyboardResponsive()
                 .navigationBarTitle("")
                 .navigationBarHidden(true)
                 .edgesIgnoringSafeArea(.all)
                 .background(Color("Color-2").edgesIgnoringSafeArea(.all))
-        }.accentColor(Color.black)
+                .accentColor(Color.black)
                 .sheet(isPresented: self.$signinViewModel.show) {
+                    
+                    SignUpView(showSignupView: self.$signinViewModel.show)
+        }
         
-                            SignUpView(showSignupView: self.$signinViewModel.show)
-                        }
+        
         
         
     }

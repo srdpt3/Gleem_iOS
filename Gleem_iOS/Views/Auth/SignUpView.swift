@@ -26,6 +26,7 @@ struct SignUpView: View {
     func signUp() {
         self.showLoader.toggle()
         
+        
         signupViewModel.signup(username: signupViewModel.username, email: signupViewModel.email, password: signupViewModel.password, imageData: signupViewModel.imageData, gender: self.gender,  completed: { (user) in
             print("SignUp \(user.email)")
             self.showLoader.toggle()
@@ -33,8 +34,8 @@ struct SignUpView: View {
 
             self.clean()
         }) { (errorMessage) in
-            
-            
+
+
             print("Error: \(errorMessage)")
             self.signupViewModel.showAlert = true
             self.signupViewModel.errorString = errorMessage
@@ -45,8 +46,7 @@ struct SignUpView: View {
     
     func clean() {
         
-//      self.presentationMode.wrappedValue.dismiss()
-        
+         self.presentationMode.wrappedValue.dismiss()
         self.signupViewModel.username = ""
         self.signupViewModel.email = ""
         self.signupViewModel.password = ""
@@ -137,16 +137,7 @@ struct SignUpView: View {
                         
                     }))
                 }
-                .alert(isPresented: self.$finishSignUp) {
-                    Alert(title: Text("완료"), message: Text("가입이 성공적으로 완료 되었습니다"),  dismissButton: .default(Text("OK"), action: {
-                          ContentView()
-                        self.showSignupView = false
-                        self.finishSignUp = false
-//                        self.presentationMode.wrappedValue.dismiss()
-//
-                        
-                    }))
-                }
+             
                 
                 Divider()
                 Text(TEXT_SIGNUP_NOTE).font(.footnote).foregroundColor(.gray).padding().lineLimit(nil)
@@ -175,7 +166,15 @@ struct SignUpView: View {
             }
             
         }
-        
+           .alert(isPresented: self.$finishSignUp) {
+                            Alert(title: Text("완료"), message: Text("가입이 성공적으로 완료 되었습니다"),  dismissButton: .default(Text("OK"), action: {
+                                self.showSignupView.toggle()
+                                self.finishSignUp = false
+        //                        self.presentationMode.wrappedValue.dismiss()
+        //
+                                
+                            }))
+                        }
   
     }
     

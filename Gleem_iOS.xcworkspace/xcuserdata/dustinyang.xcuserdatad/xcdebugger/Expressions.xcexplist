@@ -74,6 +74,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #2 in closure #1 in SignUpView.body.getter:SignUpView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.$signupViewModel.showImagePicker">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in MyStaticView.loadChartData():MyStaticView.swift">
          <PersistentStrings>
             <PersistentString

@@ -14,7 +14,8 @@ class observer : ObservableObject{
     
     @Published var users = [ActiveVote]()
     @Published var totalCount = 0
-    
+    @Published var showTab : Bool = false
+
     @Published var last = 0
     @Published var isLoading = false
     @Published var error: NSError?
@@ -53,19 +54,20 @@ class observer : ObservableObject{
     }
     
     func listenAuthenticationState() {
+        
         handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
             if let user = user {
                 self.getNumVoted()
                 print("listenAuthenticationState \(user.uid)")
-                //                let firestoreUserId = Ref.FIRESTORE_DOCUMENT_USERID(userId: user.uid)
-                //                firestoreUserId.getDocument { (document, error) in
-                //                    if let dict = document?.data() {
-                ////                        guard let decoderUser = try? User.init(fromDictionary: dict) else {return}
-                //                        guard let decoderUser = try? User.init(_dictionary: dict as NSDictionary) else {return}
-                //                        saveUserLocally(mUserDictionary: dict as NSDictionary)
-                //                    }
-                //                }
-                //
+                let firestoreUserId = Ref.FIRESTORE_DOCUMENT_USERID(userId: user.uid)
+                firestoreUserId.getDocument { (document, error) in
+                    if let dict = document?.data() {
+                        //                        guard let decoderUser = try? User.init(fromDictionary: dict) else {return}
+                        guard let decoderUser = try? User.init(_dictionary: dict as NSDictionary) else {return}
+                        saveUserLocally(mUserDictionary: dict as NSDictionary)
+                    }
+                }
+                
                 
                 self.isLoggedIn = true
             } else {

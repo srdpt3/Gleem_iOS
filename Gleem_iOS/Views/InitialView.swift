@@ -21,15 +21,18 @@ struct InitialView: View {
     }
     
     var body: some View {
-        Group {
-            if(User.currentUser() != nil || self.obs.isLoggedIn){
-            
-                ContentView()
-            } else {
-                LoginView()
-            }
+        NavigationView{
+            Group {
+                if(obs.isLoggedIn){
+                
+                    ContentView()
+                } else {
+                    LoginView()
+                }
 
+            }
         }
+
         
       .onAppear(perform: listen)
     }

@@ -14,9 +14,8 @@ struct MessagesView: View {
     
     var body: some View {
         //        NavigationView {
-        
-        HomeView()
-        //        }
+            HomeView()
+     
         
         
     }
@@ -38,46 +37,51 @@ struct MessageSubView: View {
     @ObservedObject var messageViewModel = MessageViewModel()
     
     init(){
-         self.messageViewModel.loadInboxMessages()
+        self.messageViewModel.loadInboxMessages()
     }
     var body: some View{
-        List {
-            if !messageViewModel.inboxMessages.isEmpty {
-                ForEach(messageViewModel.inboxMessages, id: \.id) { inboxMessage in
-                    NavigationLink(destination: ChatView(recipientId: inboxMessage.userId, recipientAvatarUrl: inboxMessage.avatarUrl, recipientUsername: inboxMessage.username)) {
-                        HStack {
-                            AnimatedImage(url: URL(string: inboxMessage.avatarUrl)!)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .clipShape(Circle())
-                                .frame(width: 50, height: 50)
-                            VStack(alignment: .leading, spacing: 5) {
-                                Text(inboxMessage.username).font(.headline).bold()
-                                Text(inboxMessage.lastMessage).font(.subheadline).lineLimit(2)
-                            }
-                            Spacer()
-                            VStack(spacing: 5) {
-                                Text(timeAgoSinceDate(Date(timeIntervalSince1970: inboxMessage.date), currentDate: Date(), numericDates: true)).font(.caption).padding(.leading, 15)
-                                //                                 Text("2").padding(8).background(Color.blue).foregroundColor(Color.white).clipShape(Circle())
-                            }
-                            
-                        }.padding(10)
+        ZStack{
+            List {
+                if !messageViewModel.inboxMessages.isEmpty {
+                    ForEach(messageViewModel.inboxMessages, id: \.id) { inboxMessage in
+                        NavigationLink(destination: ChatView(recipientId: inboxMessage.userId, recipientAvatarUrl: inboxMessage.avatarUrl, recipientUsername: inboxMessage.username)) {
+                            HStack {
+                                AnimatedImage(url: URL(string: inboxMessage.avatarUrl)!)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .clipShape(Circle())
+                                    .frame(width: 50, height: 50)
+                                VStack(alignment: .leading, spacing: 5) {
+                                    Text(inboxMessage.username).font(.headline).bold()
+                                    Text(inboxMessage.lastMessage).font(.subheadline).lineLimit(2)
+                                }
+                                Spacer()
+                                VStack(spacing: 5) {
+                                    Text(timeAgoSinceDate(Date(timeIntervalSince1970: inboxMessage.date), currentDate: Date(), numericDates: true)).font(.caption).padding(.leading, 15)
+                                    //                                 Text("2").padding(8).background(Color.blue).foregroundColor(Color.white).clipShape(Circle())
+                                }
+                                
+                            }.padding(10)
+                        }
+                        
                     }
-                    
                 }
+                
             }
-            
+                
+                //            .navigationBarTitle(Text("Messages"), displayMode: .inline)
+                .onDisappear {
+                    if self.messageViewModel.listener != nil {
+                        self.messageViewModel.listener.remove()
+                    }
+            }
         }.navigationBarTitle("").navigationBarHidden(true)
-            
-            //            .navigationBarTitle(Text("Messages"), displayMode: .inline)
-            .onDisappear {
-                if self.messageViewModel.listener != nil {
-                    self.messageViewModel.listener.remove()
-                }
-        }
-//        .onReceive(messageViewModel.$inboxMessages, perform: { _ in
-//            self.messageViewModel.loadInboxMessages()
-//               })
+        
+        
+        
+        //        .onReceive(messageViewModel.$inboxMessages, perform: { _ in
+        //            self.messageViewModel.loadInboxMessages()
+        //               })
         
     
 //                    .onAppear() {

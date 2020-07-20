@@ -398,11 +398,11 @@
 				11783EF924B57E2200EEFE80 /* ProfileList.swift */,
 				11783EFB24B57FAE00EEFE80 /* MenuView.swift */,
 				11783F0724B6A44500EEFE80 /* SuccessView.swift */,
-				1153A79924B97F6400CE3574 /* InitialView.swift */,
 				11B5ED0024BC210E0055700B /* RatingDetailView.swift */,
 				11B5ED0224BCC3690055700B /* ProfileView.swift */,
 				11B5ED0A24BD35C50055700B /* NotificationView.swift */,
 				11B5ED2924BE20F20055700B /* FlagView.swift */,
+				1153A79924B97F6400CE3574 /* InitialView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
