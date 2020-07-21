@@ -60,13 +60,16 @@ struct SignUpView: View {
  
             VStack(spacing: 20){
                 HStack{
-                    signupViewModel.image.resizable().aspectRatio(contentMode: .fill).frame(width: 80, height: 80)
+                    
+                    Text("프로필 사진 ").font(.custom(FONT, size: 17)).foregroundColor(Color.black.opacity(0.3))
+
+                    signupViewModel.image.resizable().aspectRatio(contentMode: .fit).frame(width: 80, height: 80).foregroundColor(APP_THEME_COLOR)
                         .clipShape(Circle()).padding(.bottom, 10).padding(.top, 10)
                         .onTapGesture {
                             print("Tapped")
                             self.signupViewModel.showImagePicker = true
                     }
-                    Topbar(selected: self.$gender).padding(.top)
+                  
 
 //                    VStack{
 //                        //                        Spacer()
@@ -91,32 +94,37 @@ struct SignUpView: View {
                     //                    PasswordTextField(password: $signupViewModel.password)
                     Text(TEXT_SIGNUP_PASSWORD_REQUIRED).font(.footnote).foregroundColor(.gray).padding([.leading])
                 }
+//                HStack{
+//
+//                    Button(action: {
+//
+//                        self.agree.toggle()
+//
+//                    }) {
+//
+//                        ZStack{
+//
+//                            Circle().fill(Color.black.opacity(0.05)).frame(width: 20, height: 20)
+//
+//                            if self.agree{
+//
+//                                Image("check").resizable().frame(width: 10, height: 10)
+//                                    .foregroundColor(Color("Color1"))
+//                            }
+//                        }
+//
+//                    }
+//
+//                    Text(TERM_AGREEMENT2).font(.caption)
+//                        .foregroundColor(Color.black.opacity(0.1))
+//
+//                    Spacer()
+//
+//                }
                 HStack{
-                    
-                    Button(action: {
-                        
-                        self.agree.toggle()
-                        
-                    }) {
-                        
-                        ZStack{
-                            
-                            Circle().fill(Color.black.opacity(0.05)).frame(width: 20, height: 20)
-                            
-                            if self.agree{
-                                
-                                Image("check").resizable().frame(width: 10, height: 10)
-                                    .foregroundColor(Color("Color1"))
-                            }
-                        }
-                        
-                    }
-                    
-                    Text(TERM_AGREEMENT2).font(.caption)
-                        .foregroundColor(Color.black.opacity(0.1))
-                    
-                    Spacer()
-                    
+                    Text("성별: ").font(.custom(FONT, size: 17)).foregroundColor(Color.black.opacity(0.3))
+                    Topbar(selected: self.$gender).padding(.top)
+
                 }
                 Button(action: {
                     
@@ -162,7 +170,7 @@ struct SignUpView: View {
                     
                     Loader()
                     
-                }.background(Color.black.opacity(0.35).edgesIgnoringSafeArea(.all))
+                }.background(Color.white.edgesIgnoringSafeArea(.all))
             }
             
         }

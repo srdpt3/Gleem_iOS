@@ -19,7 +19,7 @@ class SignupViewModel: ObservableObject {
      var password: String = ""
      var repassword: String = ""
 
-     var image: Image = Image("profilepic")
+     var image: Image = Image(systemName: "person.fill")
      var imageData: Data = Data()
 //     @State var gender: String = "male"
 

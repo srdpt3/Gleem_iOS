@@ -92,7 +92,9 @@ struct UploadView: View {
                             }
                         }
                             // Fixed Height...
-                            .frame(width: 200, height: 200)
+                        .frame(width: 180, height: 180)
+                        
+                        Text(SELECT_ATTRIBUTES).font(Font.custom(FONT, size: 14)).foregroundColor(Color.gray)
                     }
                     
                 }
@@ -201,7 +203,7 @@ struct UploadView: View {
                         
                     }) {
                         
-                        Text("올리기")
+                        Text("올리기")  .font(.custom(FONT, size: 20))
                             .fontWeight(.bold)
                             .foregroundColor(.white)
                             .padding(.vertical, 10)

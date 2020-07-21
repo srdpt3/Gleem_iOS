@@ -16,7 +16,8 @@ struct Loader : View {
         VStack{
 
             Image("50").resizable().frame(width: 50, height: 50).cornerRadius(25).foregroundColor(Color("Color"))
-                .rotationEffect(.init(degrees: self.animate ? 360 : 0)).animation(Animation.linear(duration: 1.1 ).repeatForever(autoreverses: false)).padding(.top, 20)
+                .rotationEffect(.init(degrees: self.animate ? 360 : 0)).animation(Animation.linear(duration: 1.1 ).repeatForever(autoreverses: false))
+//                .padding(.top, 20)
             Text(textmsg).padding(.all, 10).foregroundColor(APP_THEME_COLOR)
         }.background(Color.white).cornerRadius(20).onAppear(){
             self.animate.toggle()

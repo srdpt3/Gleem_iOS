@@ -103,7 +103,7 @@ struct LoginView: View {
                                             
                                         }) {
                                             
-                                            Text("Forget Password ?").foregroundColor(Color.black.opacity(0.1))
+                                            Text("비밀번호를 잊어버렸습니다").foregroundColor(Color.black.opacity(0.1)).font(.custom(FONT, size: 15))
                                         }
                                     }
                                     
@@ -117,7 +117,7 @@ struct LoginView: View {
                                         
                                     }
                                     
-                                    Text("Or Login Using Social Media").fontWeight(.bold)
+                                    Text("소셜미디어로 로그인하기").fontWeight(.bold).font(.custom(FONT, size: 15))
                                     
                                     SocialMedia()
                                     
@@ -234,7 +234,7 @@ struct CustomTF : View {
         VStack(spacing: 8){
             
             HStack{
-                Text(self.isemail ? TEXT_EMAIL : self.username ? TEXT_USERNAME : (self.reenter ? TEXT_PASSWORD_REENTER : TEXT_PASSWORD)).foregroundColor(Color.black.opacity(0.1))
+                Text(self.isemail ? TEXT_EMAIL : self.username ? TEXT_USERNAME : (self.reenter ? TEXT_PASSWORD_REENTER : TEXT_PASSWORD)).foregroundColor(Color.black.opacity(0.1)).font(.custom(FONT, size: 16))
                 Spacer()
             }
  

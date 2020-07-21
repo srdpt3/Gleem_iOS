@@ -15,7 +15,7 @@ struct SigninButton: View {
         Button(action: action) {
             HStack {
                 Spacer()
-                Text(label).fontWeight(.bold).foregroundColor(Color.white)   .padding(.vertical)
+                Text(label).fontWeight(.bold).foregroundColor(Color.white)   .padding(.vertical).font(.custom(FONT, size: 18))
                 Spacer()
             }
             

@@ -30,7 +30,7 @@ struct InfoView: View {
           // print("A button was tapped.")
           self.presentationMode.wrappedValue.dismiss()
         }) {
-          Text("계속".uppercased())
+          Text("계속".uppercased()).font(Font.custom(FONT, size: 20))
             .modifier(ButtonModifier())
         }
       }
@@ -56,7 +56,8 @@ struct AppInfoView: View {
       RowAppInfoView(ItemOne: "회사", ItemTwo: "FrontYard Tech")
 //      RowAppInfoView(ItemOne: "", ItemTwo: "Dustin Yang")
       RowAppInfoView(ItemOne: "회사 홈페이지", ItemTwo: "FrontYardTech.com")
-      RowAppInfoView(ItemOne: "버젼", ItemTwo: "1.0.0. 데모버젼")
+      RowAppInfoView(ItemOne: "버젼", ItemTwo: "1.0.0. MVP")
+        
     }
   }
 }
@@ -69,9 +70,9 @@ struct RowAppInfoView: View {
   var body: some View {
     VStack {
       HStack {
-        Text(ItemOne).foregroundColor(Color.gray)
+        Text(ItemOne).foregroundColor(Color.gray).font(Font.custom(FONT, size: 16))
         Spacer()
-        Text(ItemTwo)
+        Text(ItemTwo).font(Font.custom(FONT, size: 16))
       }
       Divider()
     }
@@ -82,16 +83,16 @@ struct CreditsView: View {
   var body: some View {
     VStack(alignment: .leading, spacing: 10) {
       HStack {
-        Text("테스트").foregroundColor(Color.gray)
+        Text("개발자").foregroundColor(Color.gray).font(Font.custom(FONT, size: 16))
         Spacer()
-        Text("테스트")
+        Text("SRPDT3, DESP99").font(Font.custom(FONT, size: 16))
       }
       
       Divider()
       
-      Text("Developer").foregroundColor(Color.gray)
-      
-      Text("")
+//      Text("Developer").foregroundColor(Color.gray)
+//
+//      Text("")
         .multilineTextAlignment(.leading)
         .font(.footnote)
     }

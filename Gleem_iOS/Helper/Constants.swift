@@ -44,17 +44,17 @@ public let CHART_Y_AXIS = 100
 
 
 // Sign in and Sign up pages
-let TEXT_NEED_AN_ACCOUNT = "Don't have an account?"
-let TEXT_SIGN_UP = "Sign up"
-let TEXT_SIGN_IN = "Sign in"
+let TEXT_NEED_AN_ACCOUNT = "계정이 없으신가요?"
+let TEXT_SIGN_UP = "새로 가입하기"
+let TEXT_SIGN_IN = "로그인 하기"
 let TEXT_EMAIL = "이메일"
-let TEXT_USERNAME = "ID"
+let TEXT_USERNAME = "아이디"
 let TEXT_PASSWORD = "비밀번호"
 let TEXT_PASSWORD_REENTER = "비밀번호 다시입력"
 
-let TEXT_SIGNIN_SUBHEADLINE = "The essiest way to share photos with family and friends"
+let TEXT_SIGNIN_SUBHEADLINE = "실시간 내가 올린 사진 평가받고, 원하는 이성이랑 매칭"
 let TEXT_SIGNUP_NOTE = "An account will allow you to save and access photo information across devices. You can delete your account at any time and your information will not be shared."
-let TEXT_SIGNUP_PASSWORD_REQUIRED = "At least 8 characters required"
+let TEXT_SIGNUP_PASSWORD_REQUIRED = "최소 8자리 비밀번호를 입력해주세요"
 let TERM_AGREEMENT = "I Read And Agree The Terms And Conditions"
 let TERM_AGREEMENT2 = "약관에 동의합니다"
 
@@ -99,6 +99,7 @@ public let LOGOUT = "로그아웃"
 
 // Upload voting picture
 public let PHOTOUPLOAD = "평가받고 싶은 사진 올리기"
+public let SELECT_ATTRIBUTES = "사진에 대한 5가지 키워드를 선택해주세요"
 
 //CHAT
 public let SEND_LIKE_MESSAGE = "안녕하세요" + User.currentUser()!.username + "님께서 관심을 표현하였습니다."
@@ -110,6 +111,7 @@ public let MESSAGEVIEW_TITLE = "채팅"
 public let ACTIVITY = "알림"
 public let LIKED_MESSAGE = "님이 끌림을 주셧습니다"
 public let MATCHED_MESSAGE = "님과 서로 연결이 되었습니다. \n채팅창에서 인사해보세요 ^^"
+public let NOTIFICATION_HEADER = "최근 15일 이내 내역이 보관됩니다"
 
 //Chat View
 public let TYPE_MESSAGE = "메세지를 입력해주세요"
@@ -120,7 +122,7 @@ public let CANCEL =  "취소"
 
 
 //Favorite
-public let SOMEONE_LIKED = "내게 끌림을 준 카드"
+public let SOMEONE_LIKED = "나에게 끌림을 준 카드"
 public let I_LIKED = "내가 호감있는 카드"
 public let MATCHING_CHECK_CURRENT_POINT = "상대방에게 채팅요청시 5포인트가 소모됩니다. \n현재 가진 포인트: "
 public let NOT_ENOUGH_POINT = "가지고계신 포인트가 부족합니다. \n필요한 포인트: " + String(POINT_USE) + "\n현재 가진 포인트: "

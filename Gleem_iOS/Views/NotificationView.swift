@@ -27,6 +27,8 @@ struct NotificationView: View {
                 VStack(spacing: 10){
                     VStack{
                         Image("Gleem 3D Icon Type Black Transparent_resized").resizable().scaledToFit().frame(height: 70).padding(.top, 10)
+                        Text(NOTIFICATION_HEADER).font(Font.custom(FONT, size: 13)).foregroundColor(Color.gray)
+
                     }
                     Divider()
                     List{

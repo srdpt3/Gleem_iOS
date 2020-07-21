@@ -102,9 +102,17 @@ struct CardListview: View {
                                         //                                .opacity(self.dragState.translation.width < -self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
                                         //
                                         // HEART SYMBOL
-                                        Image(systemName: "heart.circle")
-                                            .modifier(SymbolModifier())
-                                            .opacity(self.dragState.translation.width > self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
+                                        
+                                        if(self.isVoted){
+                                            Image(systemName: "heart.circle")
+                                                .modifier(SymbolModifier())
+                                                .opacity(self.dragState.translation.width > self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
+                                        }else{
+                                            Text("사진 첫인상 투표를 \n먼저해주세요 ㅠㅠ").foregroundColor(Color.white)
+                                                .font(.custom(FONT, size: CGFloat(25)))
+                                                .opacity(self.dragState.translation.width > self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
+                                        }
+                                        
                                     }
                             )
                                 .offset(x: self.isTopCard(cardView: cardView) ?  self.dragState.translation.width : 0, y: self.isTopCard(cardView: cardView) ?  self.dragState.translation.height : 0)

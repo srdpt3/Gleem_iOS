@@ -104,25 +104,26 @@ struct topView : View {
                 Text(MESSAGEVIEW_TITLE).fontWeight(.heavy).font(.system(size: 23))
                 
                 Spacer()
-                
-                //                Button(action: {
-                //
-                //                }) {
-                //
-                //                    Image(systemName: "magnifyingglass").resizable().frame(width: 20, height: 20)
-                //                }
-                //
-                //                Button(action: {
-                //
-                //                }) {
-                //
-                //                    Image("menu").resizable().frame(width: 20, height: 20)
-                //                }
+//                
+//                                Button(action: {
+//                
+//                                }) {
+//                
+//                                    Image(systemName: "magnifyingglass").resizable().frame(width: 20, height: 20)
+//                                }
+//                
+//                                Button(action: {
+//                
+//                                }) {
+//                
+//                                    Image("menu").resizable().frame(width: 20, height: 20)
+//                                }
                 
             }
             .foregroundColor(Color.white)
             .padding()
-            
+            Text(NOTIFICATION_HEADER).font(Font.custom(FONT, size: 13)).foregroundColor(Color.white)
+
             GeometryReader{_ in
                 
                 MessageSubView().clipShape(Rounded())

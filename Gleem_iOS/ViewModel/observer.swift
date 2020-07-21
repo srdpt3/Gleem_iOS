@@ -177,7 +177,10 @@ class observer : ObservableObject{
                     
                     let dict = i.data()
                     guard let decoderPost = try? ActiveVote.init(fromDictionary: dict) else {return}
-                    self.users.append(decoderPost)
+                    if(User.currentUser()!.sex != decoderPost.sex ){
+                        self.users.append(decoderPost)
+                    }
+                
                     if self.votedCards.contains(id) {
                         print("contained " +  id)
                     }
