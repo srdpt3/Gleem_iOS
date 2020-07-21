@@ -53,12 +53,13 @@ struct UploadView: View {
     var body: some View {
         
         ZStack{
-            VStack(spacing: 35){
+            VStack(spacing: 25){
                 
                 HStack{
-                    Spacer(minLength: 0)
-                    Text(PHOTOUPLOAD).font(Font.custom(FONT, size: 30)).foregroundColor(APP_THEME_COLOR).multilineTextAlignment(.leading).lineLimit(2)
-                    Spacer(minLength: 0)
+                    Spacer()
+                    Text(PHOTOUPLOAD).font(Font.custom(FONT, size: 25)).foregroundColor(APP_THEME_COLOR).multilineTextAlignment(.leading).lineLimit(2)
+                    Spacer()
+
                 }
                 .padding(.top, 25)
                 
@@ -68,6 +69,8 @@ struct UploadView: View {
                         
                         self.index = 0
                         self.imagePicker.toggle()
+                        self.haptics.notificationOccurred(.success)
+
                         
                     }) {
                         
@@ -87,12 +90,12 @@ struct UploadView: View {
                                     .resizable()
                                     .renderingMode(.original)
                                     .aspectRatio(contentMode: .fill)
-                                    .frame(width: 200, height: 200)
+                                    .frame(width: 160, height: 160)
                                     .cornerRadius(10)
                             }
                         }
                             // Fixed Height...
-                        .frame(width: 180, height: 180)
+                        .frame(width: 160, height: 160)
                         
                         Text(SELECT_ATTRIBUTES).font(Font.custom(FONT, size: 14)).foregroundColor(Color.gray)
                     }
@@ -116,7 +119,6 @@ struct UploadView: View {
                             
                         }.padding(.horizontal, 2)
                         HStack(spacing : 2){
-                            AttrButtonView(isPressed: self.$buttonPressed[6],title:self.attributeViewModel.buttonAttributes[6])
                             
                             AttrButtonView(isPressed: self.$buttonPressed[7],title:self.attributeViewModel.buttonAttributes[7])
                             //                        Spacer()
@@ -155,9 +157,8 @@ struct UploadView: View {
                             AttrButtonView(isPressed: self.$buttonPressed[13],title:self.attributeViewModel.buttonAttributes[13])
                             
                             AttrButtonView(isPressed: self.$buttonPressed[11],title:self.attributeViewModel.buttonAttributes[11])
-                            //                        Spacer()
-                            //                                                AttrButtonView(isPressed: self.$buttonPressed[7],title:self.attributeViewModel.buttonAttributes[7])
-                            //                            AttrButtonView(isPressed: self.$buttonPressed[8],title:buttonTitle[8])
+                            AttrButtonView(isPressed: self.$buttonPressed[6],title:self.attributeViewModel.buttonAttributes[6])
+
                             
                         }.padding(.horizontal, 2)
                         
@@ -206,12 +207,12 @@ struct UploadView: View {
                         Text("올리기")  .font(.custom(FONT, size: 20))
                             .fontWeight(.bold)
                             .foregroundColor(.white)
-                            .padding(.vertical, 10)
-                            .padding(.horizontal, 45)
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 60)
                             .background(APP_THEME_COLOR)
                             .clipShape(Capsule())
                     }
-                    .padding(.top, 10)
+                    .padding(.top, 5)
                         // Disabling button by verifying all images...
                         .opacity(self.verifyImages() ? 1 : 0.35)
                         .disabled(self.verifyImages() ? false : true)

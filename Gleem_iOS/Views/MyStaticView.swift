@@ -24,7 +24,9 @@ struct MyStaticView: View {
     @State var selected = 0
     @State private var rotation = 0
     @State private var celsius: Double = 0
-    
+    @State var ymax : Int = 100
+    let haptics = UINotificationFeedbackGenerator()
+
     var colors = [[Color("Color"),Color("Color1")],
                   [Color("Color1"),Color("Color3")],
                   [Color("Color3"),Color("Color4")],
@@ -55,11 +57,40 @@ struct MyStaticView: View {
                     self.voteData = [0,0,0,0,0]
                     self.totalNum = 0
                 }else{
-                    self.voteData.append((Double(vote.attr1) / Double(vote.numVote) * 100).roundToDecimal(0))
-                    self.voteData.append((Double(vote.attr2) / Double(vote.numVote) * 100).roundToDecimal(0))
-                    self.voteData.append((Double(vote.attr3) / Double(vote.numVote) * 100).roundToDecimal(0))
-                    self.voteData.append((Double(vote.attr4) / Double(vote.numVote) * 100).roundToDecimal(0))
-                    self.voteData.append((Double(vote.attr5) / Double(vote.numVote) * 100).roundToDecimal(0))
+                    
+                    let attr1 = (Double(vote.attr1) / Double(vote.numVote) * 100).roundToDecimal(0)
+                    let attr2 = (Double(vote.attr2) / Double(vote.numVote) * 100).roundToDecimal(0)
+                    let attr3 = (Double(vote.attr3) / Double(vote.numVote) * 100).roundToDecimal(0)
+                    let attr4 = (Double(vote.attr4) / Double(vote.numVote) * 100).roundToDecimal(0)
+                    let attr5 = (Double(vote.attr5) / Double(vote.numVote) * 100).roundToDecimal(0)
+                    
+                    
+                    if(attr1 > 80 ||  attr2 > 80  || attr3 > 80  || attr4 > 80  || attr5 > 80 ){
+                        self.ymax  = 100
+                    }else if(attr1 > 70 ||  attr2 > 70  || attr3 > 70  || attr4 > 70  || attr5 > 70 ){
+                        self.ymax  = 80
+                    }else  if(attr1 > 60 ||  attr2 > 60  || attr3 > 60  || attr4 > 60  || attr5 > 60 ){
+                        self.ymax  = 70
+                    }else if(attr1 > 50 ||  attr2 > 50  || attr3 > 50  || attr4 > 50  || attr5 > 50 ){
+                        self.ymax  = 60
+                    }else  if(attr1 > 40 ||  attr2 > 40  || attr3 > 40  || attr4 > 40  || attr5 > 40 ){
+                        self.ymax  = 50
+                    }else if(attr1 > 30 ||  attr2 > 30  || attr3 > 30  || attr4 > 30  || attr5 > 30 ){
+                        self.ymax  = 40
+                    }else if(attr1 > 20 ||  attr2 > 20  || attr3 > 20  || attr4 > 20  || attr5 > 20 ){
+                        self.ymax  = 30
+                    }else{
+                        self.ymax = 20
+                    }
+                    
+                    
+                    self.voteData = [attr1, attr2, attr3, attr4, attr5]
+                    //
+                    //                    self.voteData.append((Double(vote.attr1) / Double(vote.numVote) * 100).roundToDecimal(0))
+                    //                    self.voteData.append((Double(vote.attr2) / Double(vote.numVote) * 100).roundToDecimal(0))
+                    //                    self.voteData.append((Double(vote.attr3) / Double(vote.numVote) * 100).roundToDecimal(0))
+                    //                    self.voteData.append((Double(vote.attr4) / Double(vote.numVote) * 100).roundToDecimal(0))
+                    //                    self.voteData.append((Double(vote.attr5) / Double(vote.numVote) * 100).roundToDecimal(0))
                 }
                 
                 self.voteNum.append(vote.attr1)
@@ -70,8 +101,8 @@ struct MyStaticView: View {
                 
                 self.totalNum = vote.numVote
                 //                self.totalNum = 100
-//                print(self.voteData)
-//                print( self.totalNum)
+                //                print(self.voteData)
+                //                print( self.totalNum)
                 self.date = vote.createdDate
                 self.buttonTitle = vote.attrNames
                 self.votePiclocation = vote.imageLocation
@@ -96,13 +127,16 @@ struct MyStaticView: View {
                                 Spacer()
                                 
                                 AnimatedImage(url: URL(string: self.votePiclocation)!).resizable().frame(width: 80, height: 80).cornerRadius(40).padding(.trailing, 10).onTapGesture {
+                                    self.haptics.notificationOccurred(.success)
+
                                     self.showUploadView.toggle()
+                                    
                                 }
                                 VStack(alignment: .leading, spacing: 10){
          
                                     Text(timeAgoSinceDate(Date(timeIntervalSince1970: self.date ), currentDate: Date(), numericDates: true) + "에 참여하였습니다.").font(Font.custom(FONT, size: 13)).multilineTextAlignment(.leading).lineLimit(2)
                                         .foregroundColor(.gray)
-                                    Text(NEW_UPLOAD).font(Font.custom(FONT, size: 12)).multilineTextAlignment(.leading).lineLimit(2)
+                                    Text(NEW_UPLOAD).font(Font.custom(FONT, size: 13)).multilineTextAlignment(.leading).lineLimit(2)
                                         .foregroundColor(.gray)
                                     if(self.totalNum == 0){
                                         Text(NO_DATA).font(Font.custom(FONT, size: 12)).multilineTextAlignment(.leading).lineLimit(2)
@@ -197,7 +231,7 @@ struct MyStaticView: View {
                                 ZStack{
                                     
                                     //                                    LottieView(filename: "fireworks")
-                                    ChartView(data: self.$voteData, totalNum: 100, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height/2.4)  .padding(.top, -20).background(Color.clear).padding(.bottom, 30)
+                                    ChartView(data: self.$voteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height/2.4)  .padding(.top, -20).background(Color.clear).padding(.bottom, 30)
                                         .rotationEffect(.degrees(Double(celsius)))
                                     
                                     
@@ -300,10 +334,10 @@ struct MyStaticView: View {
                                 
                                 
                                 
-                                Text("첫인상 투표에 참여하고 있는 사진이 없습니다 ").font(Font.custom(FONT, size: 13)).multilineTextAlignment(.leading).lineLimit(2)
+                                Text("투표에 참여하고 있는 사진이 없습니다 ").font(Font.custom(FONT, size: 13)).multilineTextAlignment(.leading).lineLimit(2)
                                     .foregroundColor(.gray)
-                                Text(NEW_UPLOAD).font(Font.custom(FONT, size: 12)).multilineTextAlignment(.leading).lineLimit(2)
-                                    .foregroundColor(.gray)
+                                Text(NEW_UPLOAD2).font(Font.custom(FONT, size: 17)).multilineTextAlignment(.leading).lineLimit(2)
+                                      .foregroundColor(Color("sleep"))
                                 Spacer(minLength: 0)
                                 
                             }.padding(.top, 15)
@@ -390,7 +424,7 @@ struct MyStaticView: View {
                                 ZStack{
                                     
                                     //                                    LottieView(filename: "fireworks")
-                                    ChartView(data: self.$voteData, totalNum: 100, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height/2.4)  .padding(.top, -20).background(Color.clear).padding(.bottom, 30)
+                                    ChartView(data: self.$voteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height/2.4)  .padding(.top, -20).background(Color.clear).padding(.bottom, 30)
                                         .rotationEffect(.degrees(Double(celsius)))
                                     
                                     

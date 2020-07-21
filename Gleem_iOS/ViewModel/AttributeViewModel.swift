@@ -24,7 +24,7 @@ class  AttributeViewModel: ObservableObject {
                 return
             }
             for i in snap.documents {
-//                if(i.documentID == sex){
+                if(i.documentID == User.currentUser()!.sex){
                     self.buttonAttributes.append(i.get("attr1") as! String)
                     self.buttonAttributes.append(i.get("attr2") as! String)
                     self.buttonAttributes.append(i.get("attr3") as! String)
@@ -46,7 +46,7 @@ class  AttributeViewModel: ObservableObject {
                     
                     self.isLoading = false
                     break
-//                }
+                }
                 
                 
             }

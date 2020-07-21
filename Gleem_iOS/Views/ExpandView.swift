@@ -17,7 +17,8 @@ struct ExpandView: View {
     //    @State var voted: Bool = false
     @State var voteData:[Double] = []
     //    @State var voteData = [Int.random(in: 0 ..< 100),Int.random(in: 0 ..< 100),Int.random(in: 0 ..< 100),Int.random(in: 0 ..< 100),Int.random(in: 0 ..< 100)]
-    
+    @State var ymax = 100
+
     @State var buttonPressed = [false,false,false,false,false]
     var selectedButton = [String]()
     
@@ -45,11 +46,32 @@ struct ExpandView: View {
             if(vote.numVote == 0){
                 self.voteData = [10,10,10,10,10]
             }else{
-                self.voteData.append((Double(vote.attr1) / Double(vote.numVote) * 100).roundToDecimal(0))
-                self.voteData.append((Double(vote.attr2) / Double(vote.numVote) * 100).roundToDecimal(0))
-                self.voteData.append((Double(vote.attr3) / Double(vote.numVote) * 100).roundToDecimal(0))
-                self.voteData.append((Double(vote.attr4) / Double(vote.numVote) * 100).roundToDecimal(0))
-                self.voteData.append((Double(vote.attr5) / Double(vote.numVote) * 100).roundToDecimal(0))
+                let attr1 = (Double(vote.attr1) / Double(vote.numVote) * 100).roundToDecimal(0)
+                let attr2 = (Double(vote.attr2) / Double(vote.numVote) * 100).roundToDecimal(0)
+                let attr3 = (Double(vote.attr3) / Double(vote.numVote) * 100).roundToDecimal(0)
+                let attr4 = (Double(vote.attr4) / Double(vote.numVote) * 100).roundToDecimal(0)
+                let attr5 = (Double(vote.attr5) / Double(vote.numVote) * 100).roundToDecimal(0)
+                
+                if(attr1 > 80 ||  attr2 > 80  || attr3 > 80  || attr4 > 80  || attr5 > 80 ){
+                    self.ymax  = 100
+                }else if(attr1 > 70 ||  attr2 > 70  || attr3 > 70  || attr4 > 70  || attr5 > 70 ){
+                    self.ymax  = 80
+                }else  if(attr1 > 60 ||  attr2 > 60  || attr3 > 60  || attr4 > 60  || attr5 > 60 ){
+                    self.ymax  = 70
+                }else if(attr1 > 50 ||  attr2 > 50  || attr3 > 50  || attr4 > 50  || attr5 > 50 ){
+                    self.ymax  = 60
+                }else  if(attr1 > 40 ||  attr2 > 40  || attr3 > 40  || attr4 > 40  || attr5 > 40 ){
+                    self.ymax  = 50
+                }else if(attr1 > 30 ||  attr2 > 30  || attr3 > 30  || attr4 > 30  || attr5 > 30 ){
+                    self.ymax  = 40
+                }else if(attr1 > 20 ||  attr2 > 20  || attr3 > 20  || attr4 > 20  || attr5 > 20 ){
+                    self.ymax  = 30
+                }else{
+                    self.ymax = 20
+                }
+                
+                self.voteData = [attr1, attr2, attr3, attr4, attr5]
+                //
             }
             
             
@@ -187,7 +209,7 @@ struct ExpandView: View {
                                     
                                 }.zIndex(1)
                                 
-                                ChartView(data: self.$voteData, totalNum: CHART_Y_AXIS, categories: self.user.attrNames)
+                                ChartView(data: self.$voteData, totalNum: self.$ymax, categories: self.user.attrNames)
                                     .frame(height: (UIScreen.main.bounds.height) / 2.5)
                                 
                             } else {

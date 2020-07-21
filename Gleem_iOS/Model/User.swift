@@ -51,7 +51,7 @@ struct User: Encodable, Decodable ,Identifiable{
         
         if Auth.auth().currentUser != nil {
             if let dictionary = UserDefaults.standard.object(forKey: "currentUser") {
-                print(User.init(_dictionary: dictionary as! NSDictionary))
+//                print(User.init(_dictionary: dictionary as! NSDictionary))
                 
                 return User.init(_dictionary: dictionary as! NSDictionary)
             }

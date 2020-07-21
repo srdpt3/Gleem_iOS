@@ -15,6 +15,7 @@ class observer : ObservableObject{
     @Published var users = [ActiveVote]()
     @Published var totalCount = 0
     @Published var showTab : Bool = false
+    @Published var gender : String = ""
 
     @Published var last = 0
     @Published var isLoading = false
@@ -54,10 +55,9 @@ class observer : ObservableObject{
     }
     
     func listenAuthenticationState() {
-        
+        resetDefaults()
         handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
             if let user = user {
-                self.getNumVoted()
                 print("listenAuthenticationState \(user.uid)")
                 let firestoreUserId = Ref.FIRESTORE_DOCUMENT_USERID(userId: user.uid)
                 firestoreUserId.getDocument { (document, error) in
@@ -65,10 +65,12 @@ class observer : ObservableObject{
                         //                        guard let decoderUser = try? User.init(fromDictionary: dict) else {return}
                         guard let decoderUser = try? User.init(_dictionary: dict as NSDictionary) else {return}
                         saveUserLocally(mUserDictionary: dict as NSDictionary)
+
+
                     }
                 }
-                
-                
+                self.getNumVoted()
+
                 self.isLoggedIn = true
             } else {
                 print("isLoogedIn is false")
@@ -83,6 +85,11 @@ class observer : ObservableObject{
         print("lastCardIndex \(index) asdfas \(self.totalCount)")
         
         
+        if(self.users.count == 1 &&  index == 1){
+            self.getNumVoted()
+
+        }
+            
         if(self.users.count == 2 &&  index == 2){
             self.index += 1
             self.last += 1
@@ -92,7 +99,7 @@ class observer : ObservableObject{
             if(self.index > self.users.count ){
                 print("reload")
                 
-                self.reload()
+                self.getNumVoted()
                 self.index = 2
             }else{
                 
@@ -177,9 +184,11 @@ class observer : ObservableObject{
                     
                     let dict = i.data()
                     guard let decoderPost = try? ActiveVote.init(fromDictionary: dict) else {return}
-                    if(User.currentUser()!.sex != decoderPost.sex ){
+                                    if(User.currentUser()!.sex != decoderPost.sex ){
                         self.users.append(decoderPost)
-                    }
+                        print("Added")
+
+                   }
                 
                     if self.votedCards.contains(id) {
                         print("contained " +  id)

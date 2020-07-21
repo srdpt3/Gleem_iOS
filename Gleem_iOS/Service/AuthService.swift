@@ -57,7 +57,10 @@ class AuthService {
                     }
                     
                     guard let userId = authData?.user.uid else { return }
+                    let user = User.init(id: userId, email: email, profileImageUrl: "", username: username, age: "N/A", sex: gender, createdDate:  Date().timeIntervalSince1970, point_avail: INITIAL_POINT)
                     
+                    guard let dict = try? user.toDictionary() else {return}
+                    saveUserLocally(mUserDictionary: dict as NSDictionary)
                     
                     let storageAvatarUserId = Ref.STORAGE_AVATAR_USERID(userId: userId)
                     let metadata = StorageMetadata()

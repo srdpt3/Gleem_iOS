@@ -12,10 +12,10 @@ import AAInfographics
 struct ChartView: UIViewRepresentable {
     
     @Binding var data : [Double]
-    var totalNum : Int
+    @Binding var totalNum : Int
     var categories : [String]
-    let hexColor = "#A3ADF9"
-    //    "#A3ADF9"
+    let hexColor = "#757AF9"
+//        "#A3ADF9"
     let areaType = AAChartType.area
     let aaChartView = AAChartView()
     let animationType : AAChartAnimationType = AAChartAnimationType.bounce
@@ -107,11 +107,45 @@ struct ChartView: UIViewRepresentable {
     //    ]
     func updateUIView(_ uiView: AAChartView, context:  UIViewRepresentableContext<Self>) {
         
-        uiView.aa_adaptiveScreenRotation()
+                let aaChartModel = AAChartModel()
+                    .chartType(areaType)
+                    .title("")
+                    .legendEnabled(false)
+                    .dataLabelsEnabled(true)
+                    //            .xAxisVisible(true)
+                    .animationType(animationType)
+                                .colorsTheme([hexColor])
+        //            .colorsTheme(gradientColorArr as [Any])
+                    
+                    //            .title(SERIES_TITLE)
+                    .markerRadius(2)
+                    .polar(true)
+                    .yAxisGridLineWidth(2)
+                    .xAxisGridLineWidth(2)
+                    .categories(categories).dataLabelsFontSize(15)
+                    //            .marginRight(5)
+                    //            .marginLeft(5)
+                    .marginBottom(50)
+                    .backgroundColor(Color.black.opacity(0.06))
+                    //            .titleFontWeight(AAChartFontWeightType)
+                    .series([
+                        AASeriesElement().name(SERIES_TITLE)
+                            .data([data[0],data[1],data[2],data[3],data[4]]),
+                        
+                        
+                    ])
+                    .yAxisMax(Float(totalNum))
+                    .yAxisVisible(true)
+//        uiView.
+//        uiView.aa_updateChart(options: aaChartModel, redraw: true)
+//
+        
+//        uiView.aa_refreshChartWholeContentWithChartModel(aaChartModel)
+        
         uiView.aa_onlyRefreshTheChartDataWithChartModelSeries([
             AASeriesElement().name(SERIES_TITLE)
                 .data([data[0],data[1],data[2],data[3],data[4]]),
-            
+
         ])
         //        uiView.aa_onlyRefreshTheChartDataWithChartModelSeries([["data": [data[0],data[1],data[2],data[3],data[4]] as AnyObject]])
         
@@ -126,8 +160,8 @@ struct ChartView: UIViewRepresentable {
             .dataLabelsEnabled(true)
             //            .xAxisVisible(true)
             .animationType(animationType)
-            //            .colorsTheme([hexColor])
-            .colorsTheme(gradientColorArr as [Any])
+                        .colorsTheme([hexColor])
+//            .colorsTheme(gradientColorArr as [Any])
             
             //            .title(SERIES_TITLE)
             .markerRadius(2)

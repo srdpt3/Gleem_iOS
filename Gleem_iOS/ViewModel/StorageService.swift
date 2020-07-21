@@ -101,6 +101,12 @@ class StorageService {
             
             storageAvatarRef.downloadURL { (url, error) in
                 if let metaImageUrl = url?.absoluteString {
+                    
+                    let user = User.init(id: userId, email: email, profileImageUrl: metaImageUrl, username: username, age: "N/A", sex: gender, createdDate:  Date().timeIntervalSince1970, point_avail: INITIAL_POINT)
+                    
+                    guard let dict = try? user.toDictionary() else {return}
+                    saveUserLocally(mUserDictionary: dict as NSDictionary)
+                    
                     if let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest() {
                         changeRequest.photoURL = url
                         changeRequest.displayName = username
@@ -117,10 +123,7 @@ class StorageService {
                     //                    let user = User.init(uid: userId, email: email, profileImageUrl: metaImageUrl, username: username, bio: "", keywords: username.splitStringToArray())
                     //                    let user = User.init(uid: userId, email: email, profileImageUrl: metaImageUrl, username: username, bio: "")
                     
-                    let user = User.init(id: userId, email: email, profileImageUrl: metaImageUrl, username: username, age: "N/A", sex: gender, createdDate:  Date().timeIntervalSince1970, point_avail: INITIAL_POINT)
-                    
-                    guard let dict = try? user.toDictionary() else {return}
-                    saveUserLocally(mUserDictionary: dict as NSDictionary)
+
                     
                     //
                     //                        guard let decoderUser = try? User.init(fromDictionary: dict) else {return}

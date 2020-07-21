@@ -130,7 +130,9 @@ public let NOT_ENOUGH_POINT = "가지고계신 포인트가 부족합니다. \n�
 
 //Stat
 public let MY_STAT_RADAR = "나의 이미지 그래프(%)"
-public let NEW_UPLOAD = "(새로운 투표 사진 업로드는 왼쪽 사진을 눌러해주세요)"
+public let NEW_UPLOAD = "(새로운 투표 사진 업로드는 왼쪽 사진을 눌러주세요)"
+public let NEW_UPLOAD2 = "(새로운 투표 사진 업로드는 왼쪽 프로필사진을 눌러주세요)"
+
 public let NO_DATA = "현재 투표받은 데이터가 없습니다"
 //public let I_LIKED = "내가 호감있는 카드"
 
@@ -239,8 +241,8 @@ class Ref {
     
     
     static var FIRESTORE_COLLECTION_ATTRIBUTE = FIRESTORE_ROOT.collection("Attributes")
-    static func FIRESTORE_COLLECTION_ATTRIBUTE_MALE() -> DocumentReference {
-        return FIRESTORE_COLLECTION_VOTE.document(User.currentUser()!.sex)
+    static func FIRESTORE_COLLECTION_ATTRIBUTE_GENDER(gender: String) -> DocumentReference {
+        return FIRESTORE_COLLECTION_VOTE.document(gender)
     }
     
     static func FIRESTORE_COLLECTION_ATTRIBUTE_FEMALE() -> DocumentReference {

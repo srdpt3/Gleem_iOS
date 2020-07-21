@@ -135,6 +135,7 @@ struct FavoriteHome : View {
                     ZStack {
 
                         LoadingView2(filename: "heart2")
+                        
                     }
                  
                 }

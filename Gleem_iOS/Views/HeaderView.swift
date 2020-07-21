@@ -25,7 +25,6 @@ struct HeaderView: View {
                 //        playSound(sound: "sound-click", type: "mp3")
                 self.haptics.notificationOccurred(.success)
                 self.showInfoView.toggle()
-                print(self.showInfoView)
             }) {
                 Image(systemName: "info.circle")
                     .font(.system(size: 24, weight: .regular))

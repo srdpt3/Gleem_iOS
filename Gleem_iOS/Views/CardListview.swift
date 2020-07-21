@@ -217,7 +217,7 @@ struct CardListview: View {
                 
             }.navigationBarHidden(true).navigationBarTitle("")
                 .onAppear{
-                    //                self.pulsate.toggle()
+
             }
             
             VStack{
