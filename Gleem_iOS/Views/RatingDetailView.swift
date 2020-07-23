@@ -11,21 +11,21 @@ import SwiftUI
 struct RatingDetailView: View {
     
 //    var recipe: Recipe
-
+    var card:  ActiveVote
     
     var body: some View {
           HStack(alignment: .center, spacing: 12) {
             HStack(alignment: .center, spacing: 2) {
               Image(systemName: "person.2")
-              Text("투표수: 5")
+                Text("투표수: " +  String(self.card.numVote))
             }
             HStack(alignment: .center, spacing: 2) {
               Image(systemName: "clock")
-              Text("업로드된 날짜: 5일전")
+                Text("업로드된 날짜: " + timeAgoSinceDate(Date(timeIntervalSince1970: self.card.createdDate ), currentDate: Date(), numericDates: true))
             }
             HStack(alignment: .center, spacing: 2) {
               Image(systemName: "flame")
-                Text("성별 :" + (User.currentUser()?.sex == "male" ? "남자" : "여자" ))
+                Text("성별 :" + (self.card.sex == "male" ? "남자" : "여자" ))
             }
           }
           .font(.footnote)
@@ -33,9 +33,3 @@ struct RatingDetailView: View {
         }
     }
 
-
-struct RatingDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        RatingDetailView()
-    }
-}

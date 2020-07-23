@@ -77,7 +77,7 @@ struct LoginView: View {
                             VStack {
                                 HStack{
                                     Spacer()
-                                    Image("shape")
+                                    Image("shape").foregroundColor(Color("Color2"))
                                 }
                                 
                                 VStack{

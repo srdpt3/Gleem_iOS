@@ -157,7 +157,7 @@ struct ExpandView: View {
                                 }
                                 Spacer()
                             }.padding(.bottom, 20).padding(.leading, 20)
-                            RatingDetailView()
+                            RatingDetailView(card: user)
                         }
                         
                         VStack(spacing: 6){
@@ -286,8 +286,6 @@ struct ExpandView: View {
             .background(Color.white.edgesIgnoringSafeArea(.all))
             .onAppear{
                 self.favoriteViewModel.checkLiked(id: self.user.id)
-
-                
         }
         
     }

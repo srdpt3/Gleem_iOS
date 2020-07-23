@@ -22,6 +22,7 @@ struct ChatView: View {
     @State  var animatingModal: Bool = false
     @State var showFavoriteView : Bool = false
     func sendTextMessage() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         chatViewModel.sendTextMessage(recipientId: recipientId, recipientAvatarUrl: recipientAvatarUrl, recipientUsername: recipientUsername, completed: {
             self.clean()
         }) { (errorMessage) in
@@ -208,7 +209,7 @@ struct ChatView: View {
                         
                     }.padding()
                         .background(Color("Color-2"))
-                        .clipShape(Capsule())
+                        .clipShape(Capsule()).KeyboardResponsive()
                     
                     Button(action: self.sendTextMessage) {
                         
@@ -220,7 +221,7 @@ struct ChatView: View {
                             .background(APP_THEME_COLOR)
                             .clipShape(Circle())
                         
-                    }.foregroundColor(.gray)
+                    }.foregroundColor(.gray).KeyboardResponsive()
                     
                 }.padding(.horizontal, 10)
                     .background(Color.white)

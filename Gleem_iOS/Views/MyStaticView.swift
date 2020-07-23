@@ -125,13 +125,19 @@ struct MyStaticView: View {
                             
                             HStack(alignment: .top){
                                 Spacer()
-                                
-                                AnimatedImage(url: URL(string: self.votePiclocation)!).resizable().frame(width: 80, height: 80).cornerRadius(40).padding(.trailing, 10).onTapGesture {
-                                    self.haptics.notificationOccurred(.success)
+                                ZStack{
+                                    AnimatedImage(url: URL(string: self.votePiclocation)!).resizable().frame(width: 80, height: 80).cornerRadius(40).padding(.trailing, 10)
 
-                                    self.showUploadView.toggle()
+                                        .onTapGesture {
+                                            self.haptics.notificationOccurred(.success)
+                                            
+                                            self.showUploadView.toggle()
+                                    }
+                                    Circle().stroke(APP_THEME_COLOR, lineWidth: 5).frame(width: 85, height: 85).cornerRadius(40).padding(.trailing, 10)
+
                                     
                                 }
+                                
                                 VStack(alignment: .leading, spacing: 10){
          
                                     Text(timeAgoSinceDate(Date(timeIntervalSince1970: self.date ), currentDate: Date(), numericDates: true) + "에 참여하였습니다.").font(Font.custom(FONT, size: 13)).multilineTextAlignment(.leading).lineLimit(2)
