@@ -10,8 +10,9 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct ExpandView: View {
-    
+
     var user : ActiveVote
+    @State var updateVoteImage : Bool = false
     @Binding var show : Bool
     @Binding var isVoted: Bool
     //    @State var voted: Bool = false
@@ -28,7 +29,7 @@ struct ExpandView: View {
     @State private var pulsate: Bool = false
     @Environment(\.presentationMode) var presentationMode
     let haptics = UINotificationFeedbackGenerator()
-
+    
     //    @State var buttonSelected: Bool = false
     
     
@@ -141,6 +142,9 @@ struct ExpandView: View {
                 VStack(alignment: .leading,spacing: 15){
                     if(!self.isVoted){
                         VStack(alignment: .center, spacing: 0) {
+
+                               
+                            
                             HStack(spacing: 10){
                                 
                                 Text(RATING_TEXT)
@@ -160,6 +164,11 @@ struct ExpandView: View {
                             RatingDetailView(card: user)
                         }
                         
+                        if(!self.updateVoteImage){
+                           Text("내 이미지 투표사진을 올려야 남들이 나를 볼 수 있어요~ \n이성과 연결이 되고 싶다면 평가 사진 올리기를 먼저 해주세요~")
+                                              .font(.custom(FONT, size: CGFloat(13))).foregroundColor(Color("sleep")).padding(.horizontal)
+                        }
+  
                         VStack(spacing: 6){
                             HStack(spacing : 6){
                                 AttrButtonView(isPressed: self.$buttonPressed[0],  title:user.attrNames[0])

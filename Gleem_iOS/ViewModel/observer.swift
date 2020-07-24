@@ -26,11 +26,12 @@ class observer : ObservableObject{
     @Published var isLoggedIn = false
     
     @Published var votedCards = [String]()
-    
+    @Published var updateVoteImage : Bool = false
     
     var handle: AuthStateDidChangeListenerHandle?
     
     func getNumVoted(){
+ 
         Ref.FIRESTORE_COLLECTION_MYVOTE.document(Auth.auth().currentUser!.uid).collection("voted").getDocuments { (snap, error) in
             self.votedCards.removeAll()
             if error != nil {
@@ -45,6 +46,7 @@ class observer : ObservableObject{
                 }
                 
             }
+
             
             self.reload()
         }
@@ -52,6 +54,15 @@ class observer : ObservableObject{
     
     func getCurrentCard() -> MainCardView {
         return self.cardViews.first!
+    }
+    
+    func checkUserUploadVote() {
+        
+        Ref.FIRESTORE_COLLECTION_ACTIVE_VOTE_USERID(userId: User.currentUser()!.id).getDocument { (document, error) in
+            if let document = document, document.exists {
+                self.updateVoteImage = true
+            }
+        }
     }
     
     func listenAuthenticationState() {
@@ -168,7 +179,7 @@ class observer : ObservableObject{
         self.isLoading = true
         
         
-        Ref.FIRESTORE_COLLECTION_ACTIVE_VOTE.getDocuments { (snap, err) in
+        Ref.FIRESTORE_COLLECTION_ACTIVE_VOTE.order(by: "createdDate",descending: true).getDocuments { (snap, err) in
             self.users.removeAll()
             
             if err != nil{
@@ -211,6 +222,7 @@ class observer : ObservableObject{
             self.totalCount = self.users.count
             self.last = 0
             self.createCardView()
+            self.checkUserUploadVote()
         }
         
     }

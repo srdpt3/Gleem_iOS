@@ -3,7 +3,7 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "closure #1 in NotificationView.body.getter:NotificationView.swift">
+         contextName = "closure #1 in closure #2 in closure #2 in closure #1 in closure #1 in closure #1 in MyStaticView.body.getter:MyStaticView.swift">
       </ContextState>
       <ContextState
          contextName = "closure #1 in ChatViewModel.leaveRoom(recipientId:):ChatViewModel.swift">
@@ -20,9 +20,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in closure #2 in closure #2 in closure #1 in closure #1 in closure #1 in MyStaticView.body.getter:MyStaticView.swift">
-      </ContextState>
-      <ContextState
          contextName = "closure #1 in FooterView.body.getter:FooterView.swift">
          <PersistentStrings>
             <PersistentString
@@ -31,10 +28,29 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in ActivityViewModel.loadActivities():ActivityViewModel.swift">
+         contextName = "closure #1 in ChartViewModel.loadChartData(userId:onSuccess:):ChartViewModel.swift">
          <PersistentStrings>
             <PersistentString
-               value = "snapshot!.documents">
+               value = "querySnapshot!.documentID ">
+            </PersistentString>
+            <PersistentString
+               value = "document.documentID">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in MessageSubView.delete(with:):MessagesView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "$0">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #3 in closure #1 in FooterView.body.getter:FooterView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.obs.last">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -47,10 +63,21 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #3 in closure #1 in FooterView.body.getter:FooterView.swift">
+         contextName = "closure #1 in ActivityViewModel.loadActivities():ActivityViewModel.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.obs.last">
+               value = "snapshot!.documents">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #2 in closure #1 in ExpandView.body.getter:ExpandView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.obs">
+            </PersistentString>
+            <PersistentString
+               value = "self.obs.updateVoteImage">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -77,10 +104,10 @@
          contextName = "closure #1 in FavoriteViewModel.loadFavoriteUsers():FavoriteViewModel.swift">
          <PersistentStrings>
             <PersistentString
-               value = " ActiveVote.init(fromDictionary: dict)">
+               value = "snapshot!.documents">
             </PersistentString>
             <PersistentString
-               value = "snapshot!.documents">
+               value = " ActiveVote.init(fromDictionary: dict)">
             </PersistentString>
             <PersistentString
                value = "dict">
@@ -96,15 +123,7 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in ChartViewModel.loadChartData(userId:onSuccess:):ChartViewModel.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "querySnapshot!.documentID ">
-            </PersistentString>
-            <PersistentString
-               value = "document.documentID">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "closure #1 in NotificationView.body.getter:NotificationView.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

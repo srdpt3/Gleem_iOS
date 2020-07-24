@@ -13,11 +13,15 @@ struct ChatView: View {
     @ObservedObject var chatViewModel = ChatViewModel()
     @EnvironmentObject var obs : observer
     @Environment(\.presentationMode) var presentationMode
-    
+    //    @Binding var showChatView: Bool
     var recipientId = ""
     var recipientAvatarUrl = ""
     var recipientUsername = ""
     @State var doneChatting : Bool = false
+    
+    @State var leftRoom : Bool = false
+    
+    
     @State  var showMessageView: Bool = false
     @State  var animatingModal: Bool = false
     @State var showFavoriteView : Bool = false
@@ -52,7 +56,6 @@ struct ChatView: View {
     func leaveRoom(){
         print("leave room")
         
-        
         chatViewModel.leaveRoom(recipientId: recipientId)
         
         
@@ -86,12 +89,12 @@ struct ChatView: View {
                         .background(Color.white)
                         .clipShape(Rounded())
                         .blur(radius: self.$doneChatting.wrappedValue ? 5 : 0, opaque: false)
-//                    
-//                    
-//                    if self.showFavoriteView {
-//                        Fa
-//                    }
-//                    
+                    //                    
+                    //                    
+                    //                    if self.showFavoriteView {
+                    //                        Fa
+                    //                    }
+                    //                    
                     if self.doneChatting {
                         ZStack {
                             
@@ -126,7 +129,10 @@ struct ChatView: View {
                                         Button(action: {
                                             self.animatingModal = false
                                             //                                         self.presentationMode.wrappedValue.dismiss()
-                                            
+                                            withAnimation(){
+                                                self.doneChatting.toggle()
+                                                
+                                            }
                                         }) {
                                             Text(CANCEL.uppercased())
                                                 .font(Font.custom(FONT, size: 15))
@@ -151,11 +157,11 @@ struct ChatView: View {
                                             
                                             
                                             self.leaveRoom()
-                                            
+                                            self.leftRoom = true
                                             withAnimation(){
-                                                 self.showFavoriteView.toggle()
-                                                 
-                                             }
+                                                self.showFavoriteView.toggle()
+                                                
+                                            }
                                             
                                             
                                         }) {
@@ -231,15 +237,18 @@ struct ChatView: View {
                 ImagePicker(showImagePicker: self.$chatViewModel.showImagePicker, pickedImage: self.$chatViewModel.image, imageData: self.$chatViewModel.imageData)
             }
             
-            }
+        }
         .onAppear {
             self.chatViewModel.recipientId = self.recipientId
             self.chatViewModel.loadChatMessages()
-            self.obs.showTab.toggle()
+            //            self.showChatView = true
+            
+            //            self.obs.showTab.toggle()
         }
         .onDisappear {
-            self.obs.showTab.toggle()
-
+            //            self.obs.showTab.toggle()
+            
+            //
             if self.chatViewModel.listener != nil {
                 self.chatViewModel.listener.remove()
             }
@@ -248,22 +257,23 @@ struct ChatView: View {
         
         
     }
-
+    
     
     
 }
 
 
-struct ChatView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChatView()
-    }
-}
+//struct ChatView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ChatView()
+//    }
+//}
 
 import SDWebImageSwiftUI
 
 struct TextMessageRow: View {
     var chat: Chat
+    
     var body: some View {
         HStack {
             if chat.isCurrentUser {
@@ -348,6 +358,7 @@ struct chatTopview : View {
     var recipientAvatarUrl = ""
     var recipientUsername = ""
     @Binding var doneChatting : Bool
+    //    @Binding var showChatView: Bool
     
     @Environment(\.presentationMode) var presentation
     
@@ -360,7 +371,7 @@ struct chatTopview : View {
                 Button(action: {
                     
                     self.presentation.wrappedValue.dismiss()
-                    
+                    //                    self.showChatView = false
                     
                 }) {
                     

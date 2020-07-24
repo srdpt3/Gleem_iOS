@@ -9,8 +9,6 @@ import SwiftUI
 //import URLImage
 import SDWebImageSwiftUI
 struct MessagesView: View {
-    @ObservedObject var messageViewModel = MessageViewModel()
-    
     
     var body: some View {
         //        NavigationView {
@@ -35,16 +33,20 @@ struct HomeView : View {
 
 struct MessageSubView: View {
     @ObservedObject var messageViewModel = MessageViewModel()
-    
-    init(){
-        self.messageViewModel.loadInboxMessages()
-    }
+    @ObservedObject var chatViewModel = ChatViewModel()
+
+//    init(){
+//        self.messageViewModel.loadInboxMessages()
+//
+//    }
     var body: some View{
         ZStack{
             List {
                 if !messageViewModel.inboxMessages.isEmpty {
                     ForEach(messageViewModel.inboxMessages, id: \.id) { inboxMessage in
-                        NavigationLink(destination: ChatView(recipientId: inboxMessage.userId, recipientAvatarUrl: inboxMessage.avatarUrl, recipientUsername: inboxMessage.username)) {
+                        
+                        
+                        NavigationLink(destination:ChatView( recipientId: inboxMessage.userId, recipientAvatarUrl: inboxMessage.avatarUrl, recipientUsername: inboxMessage.username))  {
                             HStack {
                                 AnimatedImage(url: URL(string: inboxMessage.avatarUrl)!)
                                     .resizable()
@@ -61,10 +63,12 @@ struct MessageSubView: View {
                                     //                                 Text("2").padding(8).background(Color.blue).foregroundColor(Color.white).clipShape(Circle())
                                 }
                                 
+                          
+                                
                             }.padding(10)
                         }
                         
-                    }
+                    }.onDelete(perform: delete)
                 }
                 
             }
@@ -73,7 +77,24 @@ struct MessageSubView: View {
                 .onDisappear {
                     if self.messageViewModel.listener != nil {
                         self.messageViewModel.listener.remove()
+                        
                     }
+                    //                     self.showChatView = false
+                    //                    self.showChatView = true
+            }
+            .onAppear() {
+                
+//                if(self.showChatView){
+//                    self.messageViewModel.loadInboxMessages()
+//                    self.showChatView = false
+
+//                }
+//                self.messageViewModel.loadInboxMessages()
+//                print(self.showChatView )
+//                self.showChatView = false
+//                //                        if self.messageViewModel.listener != nil {
+//                self.messageViewModel.loadInboxMessages()
+                //                        }
             }
         }.navigationBarTitle("").navigationBarHidden(true)
         
@@ -83,12 +104,20 @@ struct MessageSubView: View {
         //            self.messageViewModel.loadInboxMessages()
         //               })
         
-    
-//                    .onAppear() {
-////                        if self.messageViewModel.listener != nil {
-//                            self.messageViewModel.loadInboxMessages()
-////                        }
-//                }
+        
+        
+    }
+    private func delete(with indexSet: IndexSet) {
+        let index = indexSet[indexSet.startIndex]
+        print(messageViewModel.inboxMessages[index].userId)
+        self.chatViewModel.leaveRoom(recipientId: messageViewModel.inboxMessages[index].userId)
+
+        indexSet.forEach {
+           messageViewModel.inboxMessages.remove(at: $0)
+//            messageViewModel.inboxMessages.index(at: $0)
+            
+            
+        }
     }
     
 }
@@ -140,5 +169,15 @@ struct Rounded : Shape {
         
         let path = UIBezierPath(roundedRect: rect, byRoundingCorners: .topLeft, cornerRadii: CGSize(width: 55, height: 55))
         return Path(path.cgPath)
+    }
+}
+
+struct LazyView<Content: View>: View {
+    let build: () -> Content
+    init(_ build: @autoclosure @escaping () -> Content) {
+        self.build = build
+    }
+    var body: Content {
+        build()
     }
 }

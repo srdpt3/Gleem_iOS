@@ -11,26 +11,24 @@ import FirebaseAuth
 import Firebase
 import FirebaseStorage
 import SwiftUI
-
+import Combine
 
 class MessageViewModel: ObservableObject {
   
 
    @Published var inboxMessages: [InboxMessage] = [InboxMessage]()
-//    private let objectWillChange = ObservableObjectPublisher()
+// let objectWillChange = ObservableObjectPublisher()
 
    var listener: ListenerRegistration!
     
-//    init() {
-//        loadInboxMessages()
-//    }
+    init() {
+        loadInboxMessages()
+    }
    
    func loadInboxMessages() {
-//    defer {
-//              objectWillChange.send(())
-//          }
+
        self.inboxMessages = []
-       
+
        Api.Chat.getInboxMessages(onSuccess: { (inboxMessages) in
            if self.inboxMessages.isEmpty {
                self.inboxMessages = inboxMessages
@@ -41,10 +39,15 @@ class MessageViewModel: ObservableObject {
            if !self.inboxMessages.isEmpty {
                self.inboxMessages.append(inboxMessage)
            }
+ 
+        
+        
        }) { (listener) in
            self.listener = listener
        }
-       
+//       defer {
+//            objectWillChange.send()
+//        }
 
    }
 }

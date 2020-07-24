@@ -190,6 +190,7 @@ struct CardListview: View {
                     }else{
                         LoadingView(isLoading: self.obs.isLoading, error: self.obs.error) {
                             self.obs.getNumVoted()
+                            
                         }
                     }
                     

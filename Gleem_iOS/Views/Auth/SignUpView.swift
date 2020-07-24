@@ -46,7 +46,7 @@ struct SignUpView: View {
     
     func clean() {
         
-         self.presentationMode.wrappedValue.dismiss()
+        self.presentationMode.wrappedValue.dismiss()
         self.signupViewModel.username = ""
         self.signupViewModel.email = ""
         self.signupViewModel.password = ""
@@ -61,7 +61,7 @@ struct SignUpView: View {
             VStack(spacing: 20){
                 HStack{
                     
-                    Text("프로필 사진 ").font(.custom(FONT, size: 17)).foregroundColor(Color.black.opacity(0.3))
+                    Text("프로필 사진을 등록해주세요 ").font(.custom(FONT, size: 16)).foregroundColor(Color.black.opacity(0.3))
 
                     signupViewModel.image.resizable().aspectRatio(contentMode: .fit).frame(width: 80, height: 80).foregroundColor(APP_THEME_COLOR)
                         .clipShape(Circle()).padding(.bottom, 10).padding(.top, 10)

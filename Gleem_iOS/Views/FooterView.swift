@@ -17,6 +17,7 @@ struct FooterView: View {
     let haptics = UINotificationFeedbackGenerator()
     
     var body: some View {
+        
         HStack {
             
             Spacer()
@@ -45,7 +46,7 @@ struct FooterView: View {
             } .animation(.linear)
                 
                 .sheet(isPresented: self.$showVotingScreen) {
-                    ExpandView(user: self.obs.users[self.obs.last], show: self.$showVotingScreen, isVoted:self.$isVoted)
+                    ExpandView(user: self.obs.users[self.obs.last], updateVoteImage: self.obs.updateVoteImage, show: self.$showVotingScreen, isVoted:self.$isVoted)
                         .animation(.spring(response: 0.5, dampingFraction: 0.7, blendDuration: 0))
                     
                     //                        shrinking the view in background...

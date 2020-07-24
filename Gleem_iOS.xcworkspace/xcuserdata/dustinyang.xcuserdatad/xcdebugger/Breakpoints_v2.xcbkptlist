@@ -94,10 +94,90 @@
             filePath = "Gleem_iOS/ViewModel/observer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "moveCards()"
-            landmarkType = "7">
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0F90F306-27CA-47F0-A186-1EADF883A399"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Gleem_iOS/Views/ExpandView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6273C8D9-1DED-40FC-BDED-409CD5A4A813"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Gleem_iOS/Views/Chat/ChatView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "373"
+            endingLineNumber = "373"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "560D4F0D-AFCD-49C7-95C4-0E667EC6386C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Gleem_iOS/Views/Chat/MessagesView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  uuid = "560D4F0D-AFCD-49C7-95C4-0E667EC6386C - e88898328175fc8d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Gleem_iOS.MessageSubView.(delete in _D8136CAB891DB05A73BA559BD4DA6559)(with: Foundation.IndexSet) -&gt; ()"
+                  moduleName = "Gleem_iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dustinyang/project/iOs/Gleem_iOS/Gleem_iOS/Views/Chat/MessagesView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "110"
+                  endingLineNumber = "110"
+                  offsetFromSymbolStart = "112">
+               </Location>
+               <Location
+                  uuid = "560D4F0D-AFCD-49C7-95C4-0E667EC6386C - 74acddc21f0310b8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Int) -&gt; () in Gleem_iOS.MessageSubView.(delete in _D8136CAB891DB05A73BA559BD4DA6559)(with: Foundation.IndexSet) -&gt; ()"
+                  moduleName = "Gleem_iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dustinyang/project/iOs/Gleem_iOS/Gleem_iOS/Views/Chat/MessagesView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "104">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
