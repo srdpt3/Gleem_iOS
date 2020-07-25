@@ -130,7 +130,12 @@ struct FavoriteHome : View {
                 
                 
                 if(self.showMessageView){
-                    MessagesView()
+                    
+                    
+                    
+//                    ChatView( recipientId: self.selectedUser!.userId, recipientAvatarUrl: self.selectedUser!.userAvatar, recipientUsername: self.selectedUser!.username)
+                    
+//                    MessagesView()
 
                     ZStack {
 

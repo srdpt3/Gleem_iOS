@@ -81,7 +81,6 @@ class observer : ObservableObject{
                     }
                 }
                 self.getNumVoted()
-
                 self.isLoggedIn = true
             } else {
                 print("isLoogedIn is false")
@@ -154,6 +153,42 @@ class observer : ObservableObject{
     deinit {
         unbind()
     }
+    
+    @Published var inboxMessages: [InboxMessage] = [InboxMessage]()
+      // let objectWillChange = ObservableObjectPublisher()
+
+      var listener: ListenerRegistration!
+      
+    
+      
+      func loadInboxMessages() {
+          self.isLoading = true
+          self.inboxMessages = []
+          
+          Api.Chat.getInboxMessages(onSuccess: { (inboxMessages) in
+              if self.inboxMessages.isEmpty {
+                  self.inboxMessages = inboxMessages
+              }
+          }, onError: { (errorMessage) in
+              
+          }, newInboxMessage: { (inboxMessage) in
+              if !self.inboxMessages.isEmpty {
+                  self.inboxMessages.append(inboxMessage)
+              }
+              
+              
+              
+          }) { (listener) in
+              self.listener = listener
+          }
+          //       defer {
+          //            objectWillChange.send()
+          //        }
+          self.isLoading = false
+      }
+      
+    
+    
     
     func createCardView(){
         self.cardViews.removeAll()

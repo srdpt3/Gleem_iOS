@@ -56,6 +56,12 @@ func saveUserLocally(mUserDictionary: NSDictionary) {
 }
 
 
+func signInFirstTime(mUserDictionary: NSDictionary) {
+    print("SAved signInFirstTime")
+    UserDefaults.standard.set(mUserDictionary, forKey: "signedIn")
+    UserDefaults.standard.synchronize()
+}
+
 func resetDefaults() {
     print("resetDefaults")
     
@@ -64,6 +70,17 @@ func resetDefaults() {
     dictionary.keys.forEach { key in
         defaults.removeObject(forKey: key)
     }
+}
+
+func removeDefaults(entry: String) {
+    print("SAved signInFirstTime")
+    if(isKeyPresentInUserDefaults(key: entry)){
+        UserDefaults.standard.removeObject(forKey: entry)
+    }
+}
+
+func isKeyPresentInUserDefaults(key: String) -> Bool {
+    return UserDefaults.standard.object(forKey: key) != nil
 }
 
 

@@ -12,8 +12,8 @@ struct MessagesView: View {
     
     var body: some View {
         //        NavigationView {
-            HomeView()
-     
+        HomeView()
+        
         
         
     }
@@ -33,16 +33,21 @@ struct HomeView : View {
 
 struct MessageSubView: View {
     @ObservedObject var messageViewModel = MessageViewModel()
-    @ObservedObject var chatViewModel = ChatViewModel()
+    @State var doneChatting : Bool = false
+    @State var indexSet : IndexSet = IndexSet()
+    @State  var showMessageView: Bool = false
+    @State  var animatingModal: Bool = false
+    @State var showFavoriteView : Bool = false
+    @State var userID : String = ""
+    @State var userNickName : String = ""
+    @EnvironmentObject  var obs : observer
 
-//    init(){
-//        self.messageViewModel.loadInboxMessages()
-//
-//    }
+
     var body: some View{
         ZStack{
             List {
-                if !messageViewModel.inboxMessages.isEmpty {
+                if !messageViewModel.inboxMessages.isEmpty  {
+
                     ForEach(messageViewModel.inboxMessages, id: \.id) { inboxMessage in
                         
                         
@@ -63,40 +68,134 @@ struct MessageSubView: View {
                                     //                                 Text("2").padding(8).background(Color.blue).foregroundColor(Color.white).clipShape(Circle())
                                 }
                                 
-                          
+                                
                                 
                             }.padding(10)
                         }
                         
                     }.onDelete(perform: delete)
+                } else{
+                    
+                    ZStack{
+EmptyChattingView()
+                    }
+                
                 }
                 
-            }
+            }.onDisappear {
                 
-                //            .navigationBarTitle(Text("Messages"), displayMode: .inline)
-                .onDisappear {
-                    if self.messageViewModel.listener != nil {
-                        self.messageViewModel.listener.remove()
+                
+            }.onAppear(){
+
+            }
+            .blur(radius: self.$doneChatting.wrappedValue ? 5 : 0, opaque: false)
+
+            if self.doneChatting {
+                ZStack {
+                    
+                    Color("ColorTransparentBlack").edgesIgnoringSafeArea(.all)
+                    
+                    // MODAL
+                    VStack(spacing: 0) {
+                        // TITLE
+                        Text(LEAVE_ROOM)
+                            .font(Font.custom(FONT, size: 20))
+                            .fontWeight(.heavy)
+                            .padding()
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                            .background(APP_THEME_COLOR)
+                            .foregroundColor(Color.white)
+                        
+                        Spacer()
+                        
+                        // MESSAGE
+                        
+                        VStack(spacing: 16) {
+                            
+                            HStack{
+                                Text(self.userNickName  + END_CHAT)
+                                    .font(Font.custom(FONT, size: 15))
+                                    .lineLimit(2)
+                                    .multilineTextAlignment(.center)
+                                    .foregroundColor(Color.gray)
+                                    .layoutPriority(1)
+                                
+                                Button(action: {
+                                }) {
+                                    
+                                    Image("heart_broken").resizable().frame(width: 30, height: 30).foregroundColor(Color("sleep"))
+                                }
+                            }
+                            
+                            
+                            
+                            HStack{
+                                Button(action: {
+                                    self.animatingModal = false
+                                    self.doneChatting.toggle()
+                                    
+                                }) {
+                                    Text(CANCEL.uppercased())
+                                        .font(Font.custom(FONT, size: 15))
+                                        .fontWeight(.semibold)
+                                        .accentColor(Color.gray)
+                                        .padding(.horizontal, 55)
+                                        .padding(.vertical, 15)
+                                        .frame(minWidth: 100)
+                                        .background(
+                                            Capsule()
+                                                .strokeBorder(lineWidth: 1.75)
+                                                .foregroundColor(Color.gray)
+                                    )
+                                }
+                                Button(action: {
+       
+                                    withAnimation(){
+                                        self.doneChatting.toggle()
+                                        
+                                    }
+                                    self.messageViewModel.leaveRoom(recipientId: self.userID)
+                                    
+                                    self.indexSet.forEach {
+                                        self.messageViewModel.inboxMessages.remove(at: $0)
+                                    }
+                                    
+                                }) {
+                                    Text(CONFIRM.uppercased())
+                                        .font(Font.custom(FONT, size: 15))
+                                        .fontWeight(.semibold)
+                                        .accentColor(APP_THEME_COLOR)
+                                        .padding(.horizontal, 55)
+                                        .padding(.vertical, 15)
+                                        .frame(minWidth: 100)
+                                        .background(
+                                            Capsule()
+                                                .strokeBorder(lineWidth: 1.75)
+                                                .foregroundColor(APP_THEME_COLOR)
+                                    )
+                                }
+                                
+                            }
+                        }
+                        
+                        Spacer()
                         
                     }
-                    //                     self.showChatView = false
-                    //                    self.showChatView = true
+                    .frame(minWidth: 260, idealWidth: 260, maxWidth: 300, minHeight: 140, idealHeight: 160, maxHeight: 200, alignment: .center)
+                    .background(Color.white)
+                    .cornerRadius(20)
+                    .shadow(color: Color("ColorTransparentBlack"), radius: 6, x: 0, y: 8)
+                    .opacity(self.$animatingModal.wrappedValue ? 1 : 0)
+                    .offset(y: self.$animatingModal.wrappedValue ? 0 : -100)
+                    .animation(Animation.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0))
+                    .onAppear(perform: {
+                        self.animatingModal = true
+                    })
+                }
             }
-            .onAppear() {
-                
-//                if(self.showChatView){
-//                    self.messageViewModel.loadInboxMessages()
-//                    self.showChatView = false
-
-//                }
-//                self.messageViewModel.loadInboxMessages()
-//                print(self.showChatView )
-//                self.showChatView = false
-//                //                        if self.messageViewModel.listener != nil {
-//                self.messageViewModel.loadInboxMessages()
-                //                        }
-            }
+  
         }.navigationBarTitle("").navigationBarHidden(true)
+        
         
         
         
@@ -109,15 +208,12 @@ struct MessageSubView: View {
     }
     private func delete(with indexSet: IndexSet) {
         let index = indexSet[indexSet.startIndex]
-        print(messageViewModel.inboxMessages[index].userId)
-        self.chatViewModel.leaveRoom(recipientId: messageViewModel.inboxMessages[index].userId)
-
-        indexSet.forEach {
-           messageViewModel.inboxMessages.remove(at: $0)
-//            messageViewModel.inboxMessages.index(at: $0)
-            
-            
-        }
+        self.userNickName =   messageViewModel.inboxMessages[index].username
+        self.userID =   messageViewModel.inboxMessages[index].userId
+        
+        self.doneChatting = true
+        self.indexSet = indexSet
+        
     }
     
 }
@@ -133,26 +229,26 @@ struct topView : View {
                 Text(MESSAGEVIEW_TITLE).fontWeight(.heavy).font(.system(size: 23))
                 
                 Spacer()
-//                
-//                                Button(action: {
-//                
-//                                }) {
-//                
-//                                    Image(systemName: "magnifyingglass").resizable().frame(width: 20, height: 20)
-//                                }
-//                
-//                                Button(action: {
-//                
-//                                }) {
-//                
-//                                    Image("menu").resizable().frame(width: 20, height: 20)
-//                                }
+                //
+                //                                Button(action: {
+                //
+                //                                }) {
+                //
+                //                                    Image(systemName: "magnifyingglass").resizable().frame(width: 20, height: 20)
+                //                                }
+                //
+                //                                Button(action: {
+                //
+                //                                }) {
+                //
+                //                                    Image("menu").resizable().frame(width: 20, height: 20)
+                //                                }
                 
             }
             .foregroundColor(Color.white)
             .padding()
             Text(NOTIFICATION_HEADER).font(Font.custom(FONT, size: 13)).foregroundColor(Color.white)
-
+            
             GeometryReader{_ in
                 
                 MessageSubView().clipShape(Rounded())

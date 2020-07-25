@@ -27,71 +27,7 @@ class ChatViewModel: ObservableObject {
     @Published var isLoading = false
     var recipientId = ""
     var listener: ListenerRegistration!
-    
-    
-    func leaveRoom(recipientId: String){
-        //        batch writing. vote multiple entries
-        
-        guard let senderId = Auth.auth().currentUser?.uid else { return }
-        // Delete CHAT
-        
-        Ref.FIRESTORE_COLLECTION_CHATROOM(senderId: senderId, recipientId: recipientId).getDocuments { (documents, err) in
-            if err != nil{
-                return
-            }
-            
-            for document in documents!.documents {
-                print(document.documentID)
-                document.reference.delete()
-                print("Removed sucessfully from ChatRoom : " + recipientId + " " + senderId)
-            }
-            
-            Ref.FIRESTORE_COLLECTION_CHATROOM(senderId: recipientId, recipientId: senderId).getDocuments { (documents, err) in
-                if err != nil{
-                    return
-                }
-                
-                for document in documents!.documents {
-                    print(document.documentID)
-                    document.reference.delete()
-                    print("Removed sucessfully from ChatRoom : " + senderId + " " + recipientId)
-                }
-            }
-            
-            // DElete CHAT
-            Ref.FIRESTORE_COLLECTION_INBOX_MESSAGES_DOCUMENT_USERID(senderId: senderId, recipientId: recipientId).getDocument { (document, error) in
-                if error == nil {
-                    print("persist sucessfully to my vote")
-                }
-                
-                if let doc = document, document!.exists {
-                    doc.reference.delete()
-                    print("Removed sucessfully from Message inbox1 : " + senderId + " " + recipientId)
-                    
-                    
-                    Ref.FIRESTORE_COLLECTION_INBOX_MESSAGES_DOCUMENT_USERID(senderId: recipientId, recipientId: senderId).getDocument { (document, error) in
-                        if error == nil {
-                            print("persist sucessfully to my vote")
-                        }
-                        
-                        if let doc = document, document!.exists {
-                            doc.reference.delete()
-                            print("Removed sucessfully from Message inbox2 : " + recipientId + " " + senderId)
-                            
-                        }
-                        
-                        
-                    }
-                    
-                }
-            }
-            
-        }
-        
-        
-    }
-    
-    
+
     
     func loadChatMessages() {
         self.chatArray = []

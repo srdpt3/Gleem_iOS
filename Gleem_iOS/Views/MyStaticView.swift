@@ -131,17 +131,17 @@ struct MyStaticView: View {
                             Spacer()
                             
                             HStack(alignment: .top){
-                                Spacer()
+                               
                                 ZStack{
-                                    AnimatedImage(url: URL(string: self.votePiclocation)!).resizable().frame(width: 80, height: 80).cornerRadius(40).padding(.trailing, 10)
+                                    AnimatedImage(url: URL(string: self.votePiclocation)!).resizable().frame(width: 100, height: 100).cornerRadius(50).padding(.trailing, 10)
                                         
                                         .onTapGesture {
                                             self.haptics.notificationOccurred(.success)
                                             
                                             self.showUploadView.toggle()
                                     }
-                                    Circle().stroke(APP_THEME_COLOR, lineWidth: 5).frame(width: 85, height: 85).cornerRadius(40).padding(.trailing, 10)
-                                    
+                                    Circle().stroke(APP_THEME_COLOR, lineWidth: 5).frame(width: 110, height: 110).cornerRadius(55).padding(.trailing, 10)
+                                     Spacer()
                                     
                                 }
                                 
@@ -149,7 +149,7 @@ struct MyStaticView: View {
                                     
                                     Text(timeAgoSinceDate(Date(timeIntervalSince1970: self.date ), currentDate: Date(), numericDates: true) + "에 참여하였습니다.").font(Font.custom(FONT, size: 13)).multilineTextAlignment(.leading).lineLimit(2)
                                         .foregroundColor(.gray)
-                                    Text(self.uploadMsg).font(Font.custom(FONT, size: 12)).multilineTextAlignment(.leading).lineLimit(2)
+                                    Text(self.uploadMsg).font(Font.custom(FONT, size: 13)).multilineTextAlignment(.leading).lineLimit(2)
                                         .foregroundColor(.gray)
                                     if(self.totalNum == 0){
                                         Text(NO_DATA).font(Font.custom(FONT, size: 12)).multilineTextAlignment(.leading).lineLimit(2)
@@ -245,7 +245,7 @@ struct MyStaticView: View {
                                     
                                     //                                    LottieView(filename: "fireworks")
                                     ChartView(data: self.$voteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height/2.4)  .padding(.top, -20).background(Color.clear).padding(.bottom, 30)
-                                        .rotationEffect(.degrees(Double(celsius)))
+                                        .rotationEffect(.degrees(Double(celsius))).zIndex(1)
                                     
                                     
                                     LottieView(filename: "radar-motion").frame(width: 300  , height: 300).padding(.bottom, 30)

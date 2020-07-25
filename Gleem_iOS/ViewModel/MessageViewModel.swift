@@ -14,40 +14,123 @@ import SwiftUI
 import Combine
 
 class MessageViewModel: ObservableObject {
-  
+    
+    
+    @Published var inboxMessages: [InboxMessage] = [InboxMessage]()
+    // let objectWillChange = ObservableObjectPublisher()
+    @Published var isLoading : Bool = false
+    @Published var finished : String = ""
 
-   @Published var inboxMessages: [InboxMessage] = [InboxMessage]()
-// let objectWillChange = ObservableObjectPublisher()
-
-   var listener: ListenerRegistration!
+    var listener: ListenerRegistration!
     
     init() {
+ UITableView.appearance().separatorColor = .clear
         loadInboxMessages()
     }
-   
-   func loadInboxMessages() {
-
-       self.inboxMessages = []
-
-       Api.Chat.getInboxMessages(onSuccess: { (inboxMessages) in
-           if self.inboxMessages.isEmpty {
-               self.inboxMessages = inboxMessages
-           }
-       }, onError: { (errorMessage) in
-
-       }, newInboxMessage: { (inboxMessage) in
-           if !self.inboxMessages.isEmpty {
-               self.inboxMessages.append(inboxMessage)
-           }
- 
+    
+    func loadInboxMessages() {
+        self.isLoading = true
+        self.inboxMessages = []
         
-        
-       }) { (listener) in
-           self.listener = listener
-       }
-//       defer {
-//            objectWillChange.send()
+        Api.Chat.getInboxMessages(onSuccess: { (inboxMessages) in
+            if self.inboxMessages.isEmpty {
+                self.inboxMessages = inboxMessages
+            }
+        }, onError: { (errorMessage) in
+            
+        }, newInboxMessage: { (inboxMessage) in
+            if !self.inboxMessages.isEmpty {
+                self.inboxMessages.append(inboxMessage)
+
+            }
+
+        }) { (listener) in
+            self.listener = listener
+        }
+//
+//          if self.inboxMessages.isEmpty {
+//            if(isKeyPresentInUserDefaults(key: "signedIn")){
+////                self.finished = "empty"
+//                removeDefaults(entry: "signedIn")
+//
+//
+//            }
+//          }else{
+//            self.finished = ""
 //        }
+        
+        print("loadInboxMessages finished")
+        //       defer {
+        //            objectWillChange.send()
+        //        }
+        
+    
+    }
+    
+    
+    func leaveRoom(recipientId: String){
+        //        batch writing. vote multiple entries
+        
+        guard let senderId = Auth.auth().currentUser?.uid else { return }
+        // Delete CHAT
+        
+        Ref.FIRESTORE_COLLECTION_CHATROOM(senderId: senderId, recipientId: recipientId).getDocuments { (documents, err) in
+            if err != nil{
+                return
+            }
+            
+            for document in documents!.documents {
+                print(document.documentID)
+                document.reference.delete()
+                print("Removed sucessfully from ChatRoom : " + recipientId + " " + senderId)
+            }
+            
+            Ref.FIRESTORE_COLLECTION_CHATROOM(senderId: recipientId, recipientId: senderId).getDocuments { (documents, err) in
+                if err != nil{
+                    return
+                }
+                
+                for document in documents!.documents {
+                    print(document.documentID)
+                    document.reference.delete()
+                    print("Removed sucessfully from ChatRoom : " + senderId + " " + recipientId)
+                }
+            }
+            
+            // DElete CHAT
+            Ref.FIRESTORE_COLLECTION_INBOX_MESSAGES_DOCUMENT_USERID(senderId: senderId, recipientId: recipientId).getDocument { (document, error) in
+                if error == nil {
+                    print("persist sucessfully to my vote")
+                }
+                
+                if let doc = document, document!.exists {
+                    doc.reference.delete()
+                    print("Removed sucessfully from Message inbox1 : " + senderId + " " + recipientId)
+                    
+                    
+                    Ref.FIRESTORE_COLLECTION_INBOX_MESSAGES_DOCUMENT_USERID(senderId: recipientId, recipientId: senderId).getDocument { (document, error) in
+                        if error == nil {
+                            print("persist sucessfully to my vote")
+                        }
+                        
+                        if let doc = document, document!.exists {
+                            doc.reference.delete()
+                            print("Removed sucessfully from Message inbox2 : " + recipientId + " " + senderId)
+                            
+                        }
+                        
+                        
+                    }
+                    
+                }
+            }
+            
+        }
+        ZStack {
+            
+            LoadingView2(filename: "break-heart")
+        }
+//
 
-   }
+    }
 }

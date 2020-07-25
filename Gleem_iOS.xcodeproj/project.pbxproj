@@ -74,6 +74,11 @@
 		11783F0824B6A44500EEFE80 /* SuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783F0724B6A44500EEFE80 /* SuccessView.swift */; };
 		11783F0A24B6A4DD00EEFE80 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783F0924B6A4DD00EEFE80 /* LottieView.swift */; };
 		118BAC1B24CB6BA900989F47 /* break-heart.json in Resources */ = {isa = PBXBuildFile; fileRef = 118BAC1A24CB6BA800989F47 /* break-heart.json */; };
+		118BAC1E24CB7D1B00989F47 /* KeyboardObserving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118BAC1D24CB7D1B00989F47 /* KeyboardObserving.swift */; };
+		118BAC2024CB9BEA00989F47 /* EmptyChattingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118BAC1F24CB9BEA00989F47 /* EmptyChattingView.swift */; };
+		118BAC2224CBA92700989F47 /* no-chat.json in Resources */ = {isa = PBXBuildFile; fileRef = 118BAC2124CBA92700989F47 /* no-chat.json */; };
+		118BAC2424CBD94A00989F47 /* no-chat2.json in Resources */ = {isa = PBXBuildFile; fileRef = 118BAC2324CBD94800989F47 /* no-chat2.json */; };
+		118BAC2824CBDD6A00989F47 /* noti.json in Resources */ = {isa = PBXBuildFile; fileRef = 118BAC2724CBDD6A00989F47 /* noti.json */; };
 		11B5ECE324BB7D920055700B /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5ECE224BB7D920055700B /* Chat.swift */; };
 		11B5ECE524BB7DA50055700B /* InboxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5ECE424BB7DA50055700B /* InboxMessage.swift */; };
 		11B5ECEF24BB802E0055700B /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5ECEE24BB802D0055700B /* UserViewModel.swift */; };
@@ -202,6 +207,11 @@
 		11783F0724B6A44500EEFE80 /* SuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessView.swift; sourceTree = "<group>"; };
 		11783F0924B6A4DD00EEFE80 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		118BAC1A24CB6BA800989F47 /* break-heart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "break-heart.json"; sourceTree = "<group>"; };
+		118BAC1D24CB7D1B00989F47 /* KeyboardObserving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserving.swift; sourceTree = "<group>"; };
+		118BAC1F24CB9BEA00989F47 /* EmptyChattingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyChattingView.swift; sourceTree = "<group>"; };
+		118BAC2124CBA92700989F47 /* no-chat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "no-chat.json"; sourceTree = "<group>"; };
+		118BAC2324CBD94800989F47 /* no-chat2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "no-chat2.json"; sourceTree = "<group>"; };
+		118BAC2724CBDD6A00989F47 /* noti.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = noti.json; sourceTree = "<group>"; };
 		11B5ECE224BB7D920055700B /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		11B5ECE424BB7DA50055700B /* InboxMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessage.swift; sourceTree = "<group>"; };
 		11B5ECEE24BB802D0055700B /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
@@ -419,6 +429,7 @@
 				11783EFD24B6293A00EEFE80 /* BlurView.swift */,
 				11783F0924B6A4DD00EEFE80 /* LottieView.swift */,
 				1153A7A824BA023F00CE3574 /* CustomController.swift */,
+				118BAC1D24CB7D1B00989F47 /* KeyboardObserving.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -455,7 +466,10 @@
 		118BAC1C24CB6BB500989F47 /* Lottie Json */ = {
 			isa = PBXGroup;
 			children = (
+				118BAC2124CBA92700989F47 /* no-chat.json */,
 				11143D3424C268920082E48F /* radar-motion.json */,
+				118BAC2324CBD94800989F47 /* no-chat2.json */,
+				118BAC2724CBDD6A00989F47 /* noti.json */,
 				11143D3224C25ED50082E48F /* radar.json */,
 				118BAC1A24CB6BA800989F47 /* break-heart.json */,
 				11143D2724C242320082E48F /* heart2.json */,
@@ -470,6 +484,7 @@
 				11B5ECF824BB9A150055700B /* ChatView.swift */,
 				11B5ECF424BB99C90055700B /* MessagesView.swift */,
 				11B5ECFE24BBAC700055700B /* CustomScrollView.swift */,
+				118BAC1F24CB9BEA00989F47 /* EmptyChattingView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -656,11 +671,14 @@
 			files = (
 				11783EF724B53F4700EEFE80 /* GoogleService-Info.plist in Resources */,
 				11B5ED0D24BDF9A10055700B /* CookieRun Regular.ttf in Resources */,
+				118BAC2224CBA92700989F47 /* no-chat.json in Resources */,
 				11783E7B24B53BA900EEFE80 /* LaunchScreen.storyboard in Resources */,
 				11143D3324C25ED60082E48F /* radar.json in Resources */,
 				118BAC1B24CB6BA900989F47 /* break-heart.json in Resources */,
+				118BAC2824CBDD6A00989F47 /* noti.json in Resources */,
 				11B5ED1124BDFB6D0055700B /* JSDongkang-Regular.ttf in Resources */,
 				11143D2824C242330082E48F /* heart.json in Resources */,
+				118BAC2424CBD94A00989F47 /* no-chat2.json in Resources */,
 				11143D3524C268940082E48F /* radar-motion.json in Resources */,
 				11143D2924C242330082E48F /* heart2.json in Resources */,
 				11783E7824B53BA900EEFE80 /* Preview Assets.xcassets in Resources */,
@@ -811,6 +829,7 @@
 				11783EB124B53CEC00EEFE80 /* UploadViewModel.swift in Sources */,
 				11B5ED0324BCC3690055700B /* ProfileView.swift in Sources */,
 				11783EFE24B6293A00EEFE80 /* BlurView.swift in Sources */,
+				118BAC2024CB9BEA00989F47 /* EmptyChattingView.swift in Sources */,
 				11B5ECE524BB7DA50055700B /* InboxMessage.swift in Sources */,
 				11B5ED0B24BD35C50055700B /* NotificationView.swift in Sources */,
 				11783EC924B53D1A00EEFE80 /* ChartView.swift in Sources */,
@@ -850,6 +869,7 @@
 				11B5ED0124BC210E0055700B /* RatingDetailView.swift in Sources */,
 				11B5ED2324BE086D0055700B /* FooterView.swift in Sources */,
 				11B5ED0524BD02E70055700B /* Notification.swift in Sources */,
+				118BAC1E24CB7D1B00989F47 /* KeyboardObserving.swift in Sources */,
 				11783ED124B53D1A00EEFE80 /* ExpandView.swift in Sources */,
 				1153A79324B9679200CE3574 /* SignupButton.swift in Sources */,
 				11B5ED0724BD17EC0055700B /* ActivityApi.swift in Sources */,

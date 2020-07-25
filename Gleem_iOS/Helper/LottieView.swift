@@ -15,14 +15,16 @@ struct LottieView: UIViewRepresentable {
     
     func makeUIView(context: UIViewRepresentableContext<LottieView>) -> UIView {
         let view = UIView(frame: .zero)
-        
+
         let animationView = AnimationView()
+        
         let animation = Animation.named(filename)
         animationView.animation = animation
         animationView.loopMode = LottieLoopMode.loop
         animationView.contentMode = .scaleAspectFill
         animationView.play()
-
+        
+        
         animationView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(animationView)
         

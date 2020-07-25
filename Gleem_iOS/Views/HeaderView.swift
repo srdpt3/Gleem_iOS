@@ -49,22 +49,25 @@ struct HeaderView: View {
             
             Spacer(minLength: 50)
             
-            Button(action: {
-                // ACTION
-                //        playSound(sound: "sound-click", type: "mp3")
-                
-                self.haptics.notificationOccurred(.success)
-                self.showNotification.toggle()
-            }) {
-                Image(systemName:  BELL)
-                    
-                    .font(.system(size: 24, weight: .regular))
-            }
-            .accentColor(Color("bell"))
-            .sheet(isPresented: $showNotification) {
-                //        GuideView()
-                NotificationView()
-            }
+            
+            LottieView(filename: "noti").frame(width: 50, height: 50)
+            
+//            Button(action: {
+//                // ACTION
+//                //        playSound(sound: "sound-click", type: "mp3")
+//
+//                self.haptics.notificationOccurred(.success)
+//                self.showNotification.toggle()
+//            }) {
+//                Image(systemName:  BELL)
+//
+//                    .font(.system(size: 24, weight: .regular))
+//            }
+//            .accentColor(Color("bell"))
+//            .sheet(isPresented: $showNotification) {
+//                //        GuideView()
+//                NotificationView()
+//            }
             
             
             Button(action: {
