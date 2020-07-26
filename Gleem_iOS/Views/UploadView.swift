@@ -11,6 +11,9 @@ struct UploadView: View {
     
     // intializing Four Image cards...
     @Environment(\.presentationMode) var presentationMode
+    
+    var noVotePic : Bool
+    var vote : Vote
     @State var image: Image = Image("profilepic")
     
     @State var images : [Data] = [Data()]

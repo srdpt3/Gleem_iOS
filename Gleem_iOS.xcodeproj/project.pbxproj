@@ -81,6 +81,7 @@
 		118BAC2824CBDD6A00989F47 /* noti.json in Resources */ = {isa = PBXBuildFile; fileRef = 118BAC2724CBDD6A00989F47 /* noti.json */; };
 		118BAC2A24CC9C1E00989F47 /* profile.json in Resources */ = {isa = PBXBuildFile; fileRef = 118BAC2924CC9C1D00989F47 /* profile.json */; };
 		118BAC2C24CCC02B00989F47 /* femaie.json in Resources */ = {isa = PBXBuildFile; fileRef = 118BAC2B24CCC02500989F47 /* femaie.json */; };
+		118BAC2E24CD3DD100989F47 /* welcome.json in Resources */ = {isa = PBXBuildFile; fileRef = 118BAC2D24CD3DD000989F47 /* welcome.json */; };
 		11B5ECE324BB7D920055700B /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5ECE224BB7D920055700B /* Chat.swift */; };
 		11B5ECE524BB7DA50055700B /* InboxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5ECE424BB7DA50055700B /* InboxMessage.swift */; };
 		11B5ECEF24BB802E0055700B /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5ECEE24BB802D0055700B /* UserViewModel.swift */; };
@@ -216,6 +217,7 @@
 		118BAC2724CBDD6A00989F47 /* noti.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = noti.json; sourceTree = "<group>"; };
 		118BAC2924CC9C1D00989F47 /* profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = profile.json; sourceTree = "<group>"; };
 		118BAC2B24CCC02500989F47 /* femaie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = femaie.json; sourceTree = "<group>"; };
+		118BAC2D24CD3DD000989F47 /* welcome.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = welcome.json; sourceTree = "<group>"; };
 		11B5ECE224BB7D920055700B /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		11B5ECE424BB7DA50055700B /* InboxMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessage.swift; sourceTree = "<group>"; };
 		11B5ECEE24BB802D0055700B /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
@@ -472,6 +474,7 @@
 			children = (
 				118BAC2924CC9C1D00989F47 /* profile.json */,
 				118BAC2B24CCC02500989F47 /* femaie.json */,
+				118BAC2D24CD3DD000989F47 /* welcome.json */,
 				118BAC2124CBA92700989F47 /* no-chat.json */,
 				11143D3424C268920082E48F /* radar-motion.json */,
 				118BAC2324CBD94800989F47 /* no-chat2.json */,
@@ -679,6 +682,7 @@
 				11783EF724B53F4700EEFE80 /* GoogleService-Info.plist in Resources */,
 				11B5ED0D24BDF9A10055700B /* CookieRun Regular.ttf in Resources */,
 				118BAC2224CBA92700989F47 /* no-chat.json in Resources */,
+				118BAC2E24CD3DD100989F47 /* welcome.json in Resources */,
 				11783E7B24B53BA900EEFE80 /* LaunchScreen.storyboard in Resources */,
 				11143D3324C25ED60082E48F /* radar.json in Resources */,
 				118BAC1B24CB6BA900989F47 /* break-heart.json in Resources */,

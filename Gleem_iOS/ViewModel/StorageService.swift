@@ -102,6 +102,9 @@ class StorageService {
             storageAvatarRef.downloadURL { (url, error) in
                 if let metaImageUrl = url?.absoluteString {
                     
+                    
+                    let batch = Ref.FIRESTORE_ROOT.batch()
+                    
                     let user = User.init(id: userId, email: email, profileImageUrl: metaImageUrl, username: username, age: "N/A", sex: gender, createdDate:  Date().timeIntervalSince1970, point_avail: INITIAL_POINT)
                     
                     guard let dict = try? user.toDictionary() else {return}
@@ -117,25 +120,54 @@ class StorageService {
                             }
                         }
                     }
-                    
                     let firestoreUserId = Ref.FIRESTORE_DOCUMENT_USERID(userId: userId)
+
+                    batch.setData(dict, forDocument: firestoreUserId)
+
+                    
+                    let activityId = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: userId).collection("activity").document().documentID
+                    let activityObject = Activity(activityId: activityId, type: "intro", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: metaImageUrl, message: "", date: Date().timeIntervalSince1970)
+                    guard let activityDict = try? activityObject.toDictionary() else { return }
+                    
+                    
+                    let activityRef  = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId:userId).collection("activity").document(activityId)
+                    batch.setData(activityDict, forDocument: activityRef)
+                    
                     //                    let userInfor = ["username": username, "email": email, "profileImageUrl": metaImageUrl]
                     //                    let user = User.init(uid: userId, email: email, profileImageUrl: metaImageUrl, username: username, bio: "", keywords: username.splitStringToArray())
                     //                    let user = User.init(uid: userId, email: email, profileImageUrl: metaImageUrl, username: username, bio: "")
                     
-
+                    
                     
                     //
                     //                        guard let decoderUser = try? User.init(fromDictionary: dict) else {return}
                     //                        print(decoderUser.username)
                     
-                    firestoreUserId.setData(dict) { (error) in
-                        if error != nil {
-                            onError(error!.localizedDescription)
-                            return
+//                    firestoreUserId.setData() { (error) in
+//                        if error != nil {
+//                            onError(error!.localizedDescription)
+//                            return
+//                        }
+//                        onSuccess(user)
+//                    }
+                    
+                    batch.commit() { err in
+                        if let err = err {
+                            print("Error writing batch \(err)")
+                        } else {
+                            print("Batch persistMatching write succeeded.")
+                            onSuccess(user)
+                            
+                            
+                            //
+                            //                    LottieView(filename: "fireworks")
+                            //                                   .frame(width: 300, height: 300)
+                            
+                            
+                            
                         }
-                        onSuccess(user)
                     }
+                    
                 }
             }
             

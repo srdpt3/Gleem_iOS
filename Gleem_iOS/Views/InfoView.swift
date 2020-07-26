@@ -85,7 +85,7 @@ struct CreditsView: View {
       HStack {
         Text("개발자").foregroundColor(Color.gray).font(Font.custom(FONT, size: 16))
         Spacer()
-        Text("SRPDT3, DESP99").font(Font.custom(FONT, size: 16))
+        Text("앞마당테크").font(Font.custom(FONT, size: 16))
       }
       
       Divider()

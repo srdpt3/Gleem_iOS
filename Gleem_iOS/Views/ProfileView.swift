@@ -70,8 +70,8 @@ struct Profile : View {
                             
                             VStack(alignment: .leading, spacing: 10) {
                                 
-                                Text(User.currentUser()!.username).font(Font.custom(FONT, size: 30))
-                                Text("나이: " + User.currentUser()!.age).font(Font.custom(FONT, size: 20))
+                                Text(User.currentUser()!.username).font(Font.custom(FONT, size: 20))
+                                Text("나이: " + User.currentUser()!.age).font(Font.custom(FONT, size: 15))
                             }
                             
                             Spacer()

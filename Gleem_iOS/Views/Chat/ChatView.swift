@@ -92,7 +92,7 @@ struct ChatView: View {
                     
                     HStack(spacing : 8){
                         
-                        TextField("asdfasfd", text: self.$chatViewModel.composedMessage)
+                        TextField("메세지를 입력해주세요", text: self.$chatViewModel.composedMessage)
                         
                         Button(action: self.showPicker) {
                             

@@ -25,7 +25,7 @@ struct FavoriteHome : View {
     @ObservedObject private var chatViewModel = ChatViewModel()
     @ObservedObject private var matchingViewModel = MatchingViewModel()
     @ObservedObject private var userViewModel = UserViewModel()
-
+    
     @State var showAlertX : Bool = false
     @State var sendMessage : Bool = false
     @State private var showingModal: Bool = false
@@ -126,23 +126,32 @@ struct FavoriteHome : View {
                     
                     
                 }  .blur(radius: self.$showingModal.wrappedValue ? 5 : 0, opaque: false)
-                // MARK: - POPUP
                 
+                // MARK: - POPUP
+                //                       .sheet(isPresented: self.$showMessageView) {
+                //
+                //                                ZStack {
+                //
+                //                                    LoadingView2(filename: "heart2")
+                //
+                //                                }
+                //                             ChatView( recipientId: self.selectedUser!.userId, recipientAvatarUrl: self.selectedUser!.userAvatar, recipientUsername: self.selectedUser!.username)
+                //                    }
                 
                 if(self.showMessageView){
                     
                     
                     
-//                    ChatView( recipientId: self.selectedUser!.userId, recipientAvatarUrl: self.selectedUser!.userAvatar, recipientUsername: self.selectedUser!.username)
+                    //                    ChatView( recipientId: self.selectedUser!.userId, recipientAvatarUrl: self.selectedUser!.userAvatar, recipientUsername: self.selectedUser!.username)
                     
-//                    MessagesView()
-
+                    //                    MessagesView()
+                    
                     ZStack {
-
+                        
                         LoadingView2(filename: "heart2")
                         
                     }
-                 
+                    
                 }
                 
                 
@@ -167,7 +176,7 @@ struct FavoriteHome : View {
                             // MESSAGE
                             
                             VStack(spacing: 16) {
-
+                                
                                 
                                 //
                                 if(User.currentUser()!.point_avail >= POINT_USE){
@@ -195,11 +204,11 @@ struct FavoriteHome : View {
                                     }
                                     
                                     Text(MATCHING_CHECK_CURRENT_POINT + String(User.currentUser()!.point_avail))
-                                         .font(Font.custom(FONT, size: 15))
-                                         .lineLimit(2)
-                                         .multilineTextAlignment(.center)
-                                         .foregroundColor(Color.gray)
-                                         .layoutPriority(1)
+                                        .font(Font.custom(FONT, size: 15))
+                                        .lineLimit(2)
+                                        .multilineTextAlignment(.center)
+                                        .foregroundColor(Color.gray)
+                                        .layoutPriority(1)
                                     
                                 }else{
                                     Text(NOT_ENOUGH_POINT + String(User.currentUser()!.point_avail))
@@ -210,7 +219,7 @@ struct FavoriteHome : View {
                                         .layoutPriority(1)
                                 }
                                 
-
+                                
                                 
                                 
                                 HStack{
@@ -249,7 +258,7 @@ struct FavoriteHome : View {
                                             
                                         }
                                         
-                                 
+                                        
                                     }) {
                                         Text("확인".uppercased())
                                             .font(Font.custom(FONT, size: 15))
@@ -286,8 +295,15 @@ struct FavoriteHome : View {
                     
                     
                 }
+            }   .alert(isPresented: self.$showMessageView) {
+                Alert(title: Text("연결!!!"), message: Text("축하해요 채팅으로 가서 대화를 나눠보세요~"),  dismissButton: .default(Text("OK"), action: {
+                    
+                    //                        self.presentationMode.wrappedValue.dismiss()
+                    //
+                    
+                }))
             }
-
+            
         }
         .navigationBarHidden(true)
         .navigationBarTitle("").environment(\.horizontalSizeClass, .compact)
@@ -334,12 +350,12 @@ struct MainSubViewFavorite: View{
                             
                             
                             if(i.imageLocation != ""){
-//                                NavigationLink(destination:   ExpandView(user: i, show: self.$show, isVoted: self.$isVoted)) {
-                                    FavoriteCard(user: i).onTapGesture {
-                                        self.showExpandView.toggle()
-                                        self.selectedUser = i
-                                    }
-
+                                //                                NavigationLink(destination:   ExpandView(user: i, show: self.$show, isVoted: self.$isVoted)) {
+                                FavoriteCard(user: i).onTapGesture {
+                                    self.showExpandView.toggle()
+                                    self.selectedUser = i
+                                }
+                                
                             }else{
                                 FavoriteCard(user: i)
                             }
@@ -358,7 +374,7 @@ struct MainSubViewFavorite: View{
         }.sheet(isPresented: self.$showExpandView){
             ExpandView(user: self.selectedUser!, show: self.$show, isVoted: self.$isVoted)
         }
-
+        
     }
 }
 
@@ -394,9 +410,9 @@ struct FavoriteCard: View {
                                             .font(.title)
                                             .foregroundColor(Color.white)
                                             .shadow(radius: 3)
-                                            //                                            .opacity(self.pulsate ? 1 : 0.6)
-                                            //                                            .scaleEffect(self.pulsate ? 1.3 : 0.9, anchor: .center)
-//                                            .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
+                                        //                                            .opacity(self.pulsate ? 1 : 0.6)
+                                        //                                            .scaleEffect(self.pulsate ? 1.3 : 0.9, anchor: .center)
+                                        //                                            .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
                                     })
                                         .padding(.trailing, 10)
                                         .padding(.top, 14)
@@ -416,7 +432,7 @@ struct FavoriteCard: View {
                     
                     
                 }
-
+                
                 
             }
             
@@ -451,10 +467,10 @@ struct SectionView2: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: width)
                     Text("현재 끌림을준 \n유저가 없습니다").font(Font.custom(FONT, size: 13))
-                    .foregroundColor(Color.gray)
-
+                        .foregroundColor(Color.gray)
+                    
                 }
-
+                
                 
             }else{
                 AnimatedImage(url: URL(string:self.user.userAvatar))

@@ -41,13 +41,13 @@ struct MessageSubView: View {
     @State var userID : String = ""
     @State var userNickName : String = ""
     @EnvironmentObject  var obs : observer
-
-
+    
+    
     var body: some View{
         ZStack{
             List {
                 if !messageViewModel.inboxMessages.isEmpty  {
-
+                    
                     ForEach(messageViewModel.inboxMessages, id: \.id) { inboxMessage in
                         
                         
@@ -60,12 +60,11 @@ struct MessageSubView: View {
                                     .frame(width: 50, height: 50)
                                 VStack(alignment: .leading, spacing: 5) {
                                     Text(inboxMessage.username).font(.headline).bold()
-                                    Text(inboxMessage.lastMessage).font(.subheadline).lineLimit(2)
+                                    Text(inboxMessage.lastMessage).font(.custom(FONT, size: 13)).foregroundColor(Color.black.opacity(0.7)).lineLimit(2)
                                 }
                                 Spacer()
                                 VStack(spacing: 5) {
                                     Text(timeAgoSinceDate(Date(timeIntervalSince1970: inboxMessage.date), currentDate: Date(), numericDates: true)).font(.caption).padding(.leading, 15)
-                                    //                                 Text("2").padding(8).background(Color.blue).foregroundColor(Color.white).clipShape(Circle())
                                 }
                                 
                                 
@@ -77,19 +76,19 @@ struct MessageSubView: View {
                 } else{
                     
                     ZStack{
-EmptyChattingView()
+                        EmptyChattingView()
                     }
-                
+                    
                 }
                 
             }.onDisappear {
                 
                 
             }.onAppear(){
-
+                
             }
             .blur(radius: self.$doneChatting.wrappedValue ? 5 : 0, opaque: false)
-
+            
             if self.doneChatting {
                 ZStack {
                     
@@ -149,7 +148,7 @@ EmptyChattingView()
                                     )
                                 }
                                 Button(action: {
-       
+                                    
                                     withAnimation(){
                                         self.doneChatting.toggle()
                                         
@@ -193,17 +192,9 @@ EmptyChattingView()
                     })
                 }
             }
-  
+            
         }.navigationBarTitle("").navigationBarHidden(true)
-        
-        
-        
-        
-        //        .onReceive(messageViewModel.$inboxMessages, perform: { _ in
-        //            self.messageViewModel.loadInboxMessages()
-        //               })
-        
-        
+ 
         
     }
     private func delete(with indexSet: IndexSet) {

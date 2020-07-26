@@ -50,6 +50,11 @@ struct NotificationView: View {
                                         MatchedActivityRow(activity: activity)
                                         
                                         
+                                        
+                                    }else if activity.type == "intro"{
+                                        WelcomeActivityRow(activity: activity)
+                                        
+                                        
                                     }
                                     
                                     
@@ -137,6 +142,30 @@ struct MatchedActivityRow: View {
             VStack(alignment: .leading, spacing: 5) {
                 Text(activity.username + "[연결됨]").font(.subheadline).bold()
                 Text(activity.typeDescription).font(.caption).font(Font.custom(FONT, size: 15))
+            }
+            Spacer()
+            Text(timeAgoSinceDate(Date(timeIntervalSince1970: activity.date), currentDate: Date(), numericDates: true)).font(.caption).foregroundColor(.gray)
+        }
+    }
+}
+
+
+struct  WelcomeActivityRow: View {
+    var activity: Activity
+    var body: some View {
+        HStack {
+            
+            Image("Gleem_3D")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .clipShape(Circle()).frame(width: 40, height: 40)
+//            ZStack{
+//                LottieView(filename: "welcome").frame(width: 40, height: 40)
+//
+//            }
+            VStack(alignment: .leading, spacing: 5) {
+                Text("Welcome").font(.subheadline).bold()
+                Text(activity.typeDescription).font(.caption).font(Font.custom(FONT, size: 13))
             }
             Spacer()
             Text(timeAgoSinceDate(Date(timeIntervalSince1970: activity.date), currentDate: Date(), numericDates: true)).font(.caption).foregroundColor(.gray)

@@ -12,7 +12,8 @@ import SDWebImageSwiftUI
 struct MyStaticView: View {
     //    var user : User
     @EnvironmentObject  var obs : observer
-    
+    @State var vote : Vote?
+
     @State var totalNum : Int = 0
     @State var voteData:[Double] = []
     @State var voteNum:[Int] = []
@@ -45,7 +46,7 @@ struct MyStaticView: View {
     @ObservedObject var chartViewModel = ChartViewModel()
     func loadChartData(){
         self.chartViewModel.loadChartData(userId: User.currentUser()!.id) { (vote) in
-            
+            self.vote = vote
             if vote.attrNames.count == 0 {
                 self.noVotePic = true
                 self.voteData = [0,0,0,0,0]
@@ -234,7 +235,7 @@ struct MyStaticView: View {
                         
                         HStack{
                             
-                            Text(MY_STAT_RADAR).fontWeight(.heavy).font(Font.custom(FONT, size: 20)).foregroundColor(APP_THEME_COLOR)
+                            Text(MY_STAT_RADAR).fontWeight(.heavy).font(Font.custom(FONT, size: 18)).foregroundColor(APP_THEME_COLOR)
                             Text(" - " + VOTENUM_SOFAR +  String(self.totalNum)).fontWeight(.heavy).font(Font.custom(FONT, size: 17)).foregroundColor(APP_THEME_COLOR)
 
                             Spacer(minLength: 0)
@@ -251,7 +252,7 @@ struct MyStaticView: View {
                                 ZStack{
                                     
                                     //                                    LottieView(filename: "fireworks")
-                                    ChartView(data: self.$voteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height/2.4)  .padding(.top, -20).background(Color.clear).padding(.bottom, 30)
+                                    ChartView(data: self.$voteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height/2.5)  .padding(.top, -20).background(Color.clear).padding(.bottom, 30)
                                         .rotationEffect(.degrees(Double(celsius))).zIndex(1)
                                     
                                     
@@ -429,7 +430,7 @@ struct MyStaticView: View {
                     
                     HStack{
                         
-                        Text(MY_STAT_RADAR).fontWeight(.heavy).font(Font.custom(FONT, size: 20)).foregroundColor(APP_THEME_COLOR)
+                        Text(MY_STAT_RADAR).fontWeight(.heavy).font(Font.custom(FONT, size: 18)).foregroundColor(APP_THEME_COLOR)
                         Spacer(minLength: 0)
                     }
                     .padding()
@@ -475,7 +476,7 @@ struct MyStaticView: View {
             }
                 
             .sheet(isPresented: self.$showUploadView) {
-                UploadView()
+                UploadView(noVotePic: self.noVotePic, vote: self.vote!)
                 
                 
                 

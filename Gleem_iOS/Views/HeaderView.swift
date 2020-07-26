@@ -45,29 +45,32 @@ struct HeaderView: View {
             Image(APP_LOGO)
                 .resizable()
                 .scaledToFit()
-                .frame(height: 50)
+                .frame(height: 50).padding(.leading, 50)
             
-            Spacer(minLength: 50)
+            Spacer(minLength: 30)
             
             
-            LottieView(filename: "noti").frame(width: 50, height: 50)
-            
-//            Button(action: {
-//                // ACTION
-//                //        playSound(sound: "sound-click", type: "mp3")
-//
-//                self.haptics.notificationOccurred(.success)
-//                self.showNotification.toggle()
-//            }) {
-//                Image(systemName:  BELL)
-//
-//                    .font(.system(size: 24, weight: .regular))
-//            }
-//            .accentColor(Color("bell"))
-//            .sheet(isPresented: $showNotification) {
-//                //        GuideView()
-//                NotificationView()
-//            }
+            LottieView(filename: "noti").frame(width: 50, height: 50).onTapGesture {
+                self.haptics.notificationOccurred(.success)
+                self.showNotification.toggle()
+            }
+                
+                //            Button(action: {
+                //                // ACTION
+                //                //        playSound(sound: "sound-click", type: "mp3")
+                //
+                //                self.haptics.notificationOccurred(.success)
+                //                self.showNotification.toggle()
+                //            }) {
+                //                Image(systemName:  BELL)
+                //
+                //                    .font(.system(size: 24, weight: .regular))
+                //            }
+                //            .accentColor(Color("bell"))
+                .sheet(isPresented: $showNotification) {
+                    //        GuideView()
+                    NotificationView()
+            }
             
             
             Button(action: {

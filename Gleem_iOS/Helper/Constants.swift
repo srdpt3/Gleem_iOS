@@ -121,8 +121,9 @@ public let MESSAGEVIEW_TITLE = "채팅"
 //Notification
 public let ACTIVITY = "알림"
 public let LIKED_MESSAGE = "님이 끌림을 주셧습니다"
-public let MATCHED_MESSAGE = "님과 서로 연결이 되었습니다. \n채팅창에서 인사해보세요 ^^"
+public let MATCHED_MESSAGE = "축하해요~. \n채팅창에서 서로 인사해보세요 ^^"
 public let NOTIFICATION_HEADER = "최근 15일 이내 내역이 보관됩니다"
+public let WELCOME_GLEEM = "가입을 축하드려요!. \n사진을 올려서 내 첫인상을 실시간으로 확인해보세요"
 
 //Chat View
 public let TYPE_MESSAGE = "메세지를 입력해주세요"

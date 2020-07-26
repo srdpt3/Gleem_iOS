@@ -141,12 +141,12 @@ struct ExpandView: View {
                 
                 VStack(alignment: .leading,spacing: 15){
                     if(!self.isVoted){
-                        VStack(alignment: .center, spacing: 0) {
-
-                               
+                        VStack(alignment: .center, spacing: 10) {
+                            
+                            
                             
                             HStack(spacing: 10){
-                                
+                                Spacer()
                                 Text(RATING_TEXT)
                                     //                                            .font(.system(size: 20, weight: .bold))
                                     .font(.custom(FONT, size: CGFloat(BUTTON_TITLE_FONT_SIZE)))
@@ -160,15 +160,35 @@ struct ExpandView: View {
                                         .foregroundColor(.yellow)
                                 }
                                 Spacer()
-                            }.padding(.bottom, 20).padding(.leading, 20)
-                            RatingDetailView(card: user)
+                            }.padding(.bottom, 10)
+                            
+//                            .padding(.bottom, 20).padding(.leading, 35)
+                            
+                            
+                            HStack{
+                                Spacer()
+                                RatingDetailView(card: user)
+                                Spacer()
+                                
+                            }.padding(.horizontal,5)
+                            
+                            
+                            
+                            //                            HStack{
+                            //                            }.padding()
+                            //
                         }
+                        HStack{
+                            Spacer()
+                            if(!self.updateVoteImage){
+                                Text(NOVOTEIMAGE)
+                                    .font(.custom(FONT, size: CGFloat(13))).foregroundColor(Color("sleep")).padding(.horizontal)
+                            }
+                            Spacer()
+                            
+                        }.padding(.horizontal,5)
+
                         
-                        if(!self.updateVoteImage){
-                           Text(NOVOTEIMAGE)
-                                              .font(.custom(FONT, size: CGFloat(13))).foregroundColor(Color("sleep")).padding(.horizontal)
-                        }
-  
                         VStack(spacing: 6){
                             HStack(spacing : 6){
                                 AttrButtonView(isPressed: self.$buttonPressed[0],  title:user.attrNames[0])
@@ -260,7 +280,7 @@ struct ExpandView: View {
                              Spacer()
                       
                             
-                            if(self.isVoted){
+                            if(self.isVoted && self.updateVoteImage){
                                 Button(action:self.addToMyList) {
                                     Image(self.favoriteViewModel.liked == true ? "heartred" : "heartwhite").resizable().frame(width: 30, height: 30).aspectRatio(contentMode: .fit)
                                         .foregroundColor(Color.white)
