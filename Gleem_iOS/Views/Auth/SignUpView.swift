@@ -7,9 +7,14 @@
 //
 
 import SwiftUI
+
+enum ActiveAlert {
+    case first, second, third
+}
+
 struct SignUpView: View {
     @Environment(\.presentationMode) var presentationMode
-
+    
     @ObservedObject var signupViewModel = SignupViewModel()
     @State var images : [Data] = [Data()]
     @State var index = 0
@@ -22,24 +27,61 @@ struct SignUpView: View {
     @State var agree = false
     @State var gender = "male"
     @State var finishSignUp : Bool = false
-
+    @State var error : Bool = false
+    @State private var activeAlert: ActiveAlert = .first
+    //    @State var misMatchPassword : Bool = false
+    //    @State var filloutError : Bool = false
+    
     func signUp() {
-        self.showLoader.toggle()
+        //        self.showLoader.toggle()
+        if signupViewModel.imageData.isEmpty {
+            self.error = true
+            self.activeAlert = ActiveAlert.first
+            return
+            
+            
+        }
+        
+        
+        if signupViewModel.username.isEmpty || signupViewModel.email.isEmpty || signupViewModel.password.isEmpty || signupViewModel.repassword.isEmpty{
+            self.error = true
+            
+            self.activeAlert = ActiveAlert.second
+            
+            return
+            
+            
+        }
+        
+        if signupViewModel.password !=  signupViewModel.repassword{
+            self.error = true
+            
+            self.activeAlert = ActiveAlert.third
+            
+            return
+            
+            
+        }
+        
+        
         
         
         signupViewModel.signup(username: signupViewModel.username, email: signupViewModel.email, password: signupViewModel.password, imageData: signupViewModel.imageData, gender: self.gender,  completed: { (user) in
             print("SignUp \(user.email)")
-            self.showLoader.toggle()
+            //            self.showLoader.toggle()
             self.finishSignUp = true
-
+            
             self.clean()
         }) { (errorMessage) in
-
-
+            
+            
             print("Error: \(errorMessage)")
             self.signupViewModel.showAlert = true
             self.signupViewModel.errorString = errorMessage
         }
+        
+        
+        
         
         
     }
@@ -57,27 +99,27 @@ struct SignUpView: View {
     
     var body: some View {
         ZStack{
- 
+            
             VStack(spacing: 20){
                 HStack{
                     
-                    Text("프로필 사진을 등록해주세요 ").font(.custom(FONT, size: 16)).foregroundColor(Color.black.opacity(0.3))
-
-                    signupViewModel.image.resizable().aspectRatio(contentMode: .fit).frame(width: 80, height: 80).foregroundColor(APP_THEME_COLOR)
-                        .clipShape(Circle()).padding(.bottom, 10).padding(.top, 10)
-                        .onTapGesture {
-                            print("Tapped")
-                            self.signupViewModel.showImagePicker = true
+                    Text(PROFILE_UPLOAD).font(.custom(FONT, size: 16)).foregroundColor(Color.black.opacity(0.3))
+                    
+                    ZStack{
+                        LottieView(filename: "profile").frame(width: 80, height: 80)
+                            .clipShape(Circle()).padding(.bottom, 10).padding(.top, 20).zIndex(1)
+                            .onTapGesture {
+                                print("Tapped")
+                                self.signupViewModel.showImagePicker = true
+                        }
+                        .opacity( signupViewModel.imageData.count > 0 ? 0 : 1)
+                        
+                        signupViewModel.image.resizable().frame(width: 80, height: 80).foregroundColor(APP_THEME_COLOR).cornerRadius(40)
+                            .padding(.bottom, 10).padding(.top, 10)
+                        
+                        
                     }
-                  
-
-//                    VStack{
-//                        //                        Spacer()
-//                        //                        Text("성별").foregroundColor(Color.black.opacity(0.1))
-//                        Spacer()
-//                        
-//                    }
-//                    
+                    
                     
                 }
                 
@@ -94,41 +136,17 @@ struct SignUpView: View {
                     //                    PasswordTextField(password: $signupViewModel.password)
                     Text(TEXT_SIGNUP_PASSWORD_REQUIRED).font(.footnote).foregroundColor(.gray).padding([.leading])
                 }
-//                HStack{
-//
-//                    Button(action: {
-//
-//                        self.agree.toggle()
-//
-//                    }) {
-//
-//                        ZStack{
-//
-//                            Circle().fill(Color.black.opacity(0.05)).frame(width: 20, height: 20)
-//
-//                            if self.agree{
-//
-//                                Image("check").resizable().frame(width: 10, height: 10)
-//                                    .foregroundColor(Color("Color1"))
-//                            }
-//                        }
-//
-//                    }
-//
-//                    Text(TERM_AGREEMENT2).font(.caption)
-//                        .foregroundColor(Color.black.opacity(0.1))
-//
-//                    Spacer()
-//
-//                }
+                
                 HStack{
-                    Text("성별: ").font(.custom(FONT, size: 17)).foregroundColor(Color.black.opacity(0.3))
+                    //                    Spacer()
+                    Text(GENDER).font(.custom(FONT, size: 17)).foregroundColor(Color.black.opacity(0.3))
                     Topbar(selected: self.$gender).padding(.top)
-
+                    
                 }
                 Button(action: {
                     
                     self.signUp()
+                    //                    self.error = true
                 }) {
                     HStack {
                         Spacer()
@@ -138,14 +156,9 @@ struct SignUpView: View {
                     
                 }
                 .padding()
+                    
                 .modifier(SigninButtonModifier2())
-                .alert(isPresented: $signupViewModel.showAlert) {
-                    Alert(title: Text("Error"), message: Text(self.signupViewModel.errorString),  dismissButton: .default(Text("OK"), action: {
-                        self.showLoader.toggle()
-                        
-                    }))
-                }
-             
+                
                 
                 Divider()
                 Text(TEXT_SIGNUP_NOTE).font(.footnote).foregroundColor(.gray).padding().lineLimit(nil)
@@ -155,35 +168,55 @@ struct SignUpView: View {
                 .background(Color.white)
                 .cornerRadius(5)
                 .padding()
+                .alert(isPresented: self.$error) {
+                    
+                    switch activeAlert {
+                    case .first:
+                        return   Alert(title: Text("에러"), message: Text(PROFILE_UPLOAD).font(.custom(FONT, size: 17)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 17)).foregroundColor(Color("Color2")), action: {
+                            
+                        }))
+                    case .second:
+                        
+                        return   Alert(title: Text("에러"), message: Text(FILLOUT_INFO).font(.custom(FONT, size: 17)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 17)).foregroundColor(Color("Color2")), action: {
+                        }))
+                    case .third:
+                        
+                        return  Alert(title: Text("에러"), message: Text(MiMATCH_PASSWORD).font(.custom(FONT, size: 17)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 17)).foregroundColor(Color("Color2")), action: {
+                        }))
+                        
+                        
+                    }
+                    
+                    
+            }
                 
-                .sheet(isPresented: $signupViewModel.showImagePicker) {
-                    //                ImagePicker(showPicker: self.$signupViewModel.showImagePicker,  imageData: self.$signupViewModel.imageData)
-                    ImagePicker(showImagePicker: self.$signupViewModel.showImagePicker, pickedImage: self.$signupViewModel.image, imageData: self.$signupViewModel.imageData)
+            .sheet(isPresented: $signupViewModel.showImagePicker) {
+                ImagePicker(showImagePicker: self.$signupViewModel.showImagePicker, pickedImage: self.$signupViewModel.image, imageData: self.$signupViewModel.imageData)
             }
-//                .KeyboardResponsive()
-                .navigationBarTitle("")
-                .navigationBarHidden(true)
-                .edgesIgnoringSafeArea(.all)
-                .background(Color("Color-2").edgesIgnoringSafeArea(.all))
-            if self.showLoader {
-                GeometryReader{_ in
-                    
-                    Loader()
-                    
-                }.background(Color.white.edgesIgnoringSafeArea(.all))
-            }
+            .navigationBarTitle("")
+            .navigationBarHidden(true)
+            .edgesIgnoringSafeArea(.all)
+            .background(Color("Color-2").edgesIgnoringSafeArea(.all))
+            //            if self.showLoader {
+            //                GeometryReader{_ in
+            //
+            //                    Loader()
+            //
+            //                }.background(Color.white.edgesIgnoringSafeArea(.all))
+            //            }
             
         }
-           .alert(isPresented: self.$finishSignUp) {
-                            Alert(title: Text("완료"), message: Text("가입이 성공적으로 완료 되었습니다"),  dismissButton: .default(Text("OK"), action: {
-                                self.showSignupView.toggle()
-                                self.finishSignUp = false
-        //                        self.presentationMode.wrappedValue.dismiss()
+        
+        //        .alert(isPresented: self.$finishSignUp) {
+        //            Alert(title: Text("완료"), message: Text("가입이 성공적으로 완료 되었습니다"),  dismissButton: .default(Text("OK"), action: {
+        //                self.showSignupView.toggle()
+        //                self.finishSignUp = false
+        //                //                        self.presentationMode.wrappedValue.dismiss()
+        //                //
         //
-                                
-                            }))
-                        }
-  
+        //            }))
+        //        }
+        
     }
     
     
@@ -214,7 +247,7 @@ struct Topbar : View {
                     .background(self.selected == "male" ? Color.white : Color.clear)
                     .clipShape(Capsule())
             }
-//            .foregroundColor(self.selected ==  "male" ?  Color("Color1"): .gray)
+            //            .foregroundColor(self.selected ==  "male" ?  Color("Color1"): .gray)
             
             Button(action: {
                 

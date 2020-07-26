@@ -235,9 +235,16 @@ struct MyStaticView: View {
                         HStack{
                             
                             Text(MY_STAT_RADAR).fontWeight(.heavy).font(Font.custom(FONT, size: 20)).foregroundColor(APP_THEME_COLOR)
+                            Text(" - " + VOTENUM_SOFAR +  String(self.totalNum)).fontWeight(.heavy).font(Font.custom(FONT, size: 17)).foregroundColor(APP_THEME_COLOR)
+
                             Spacer(minLength: 0)
                         }
-                        .padding()
+                  
+                            
+                            .padding()
+//                        Rectangle()
+//                                              .fill(Color("Color2"))
+//                                              .frame(height: 1)
                         VStack{
                             
                             if !self.voteData.isEmpty {

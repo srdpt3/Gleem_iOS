@@ -165,7 +165,7 @@ struct ExpandView: View {
                         }
                         
                         if(!self.updateVoteImage){
-                           Text("내 이미지 투표사진을 올려야 남들이 나를 볼 수 있어요~ \n이성과 연결이 되고 싶다면 평가 사진 올리기를 먼저 해주세요~")
+                           Text(NOVOTEIMAGE)
                                               .font(.custom(FONT, size: CGFloat(13))).foregroundColor(Color("sleep")).padding(.horizontal)
                         }
   
@@ -238,27 +238,7 @@ struct ExpandView: View {
                         Spacer()
                         VStack {
                             HStack{
-                                if(self.isVoted){
-                                    
-                                    Button(action:self.addToMyList) {
-                                        Image(self.favoriteViewModel.liked == true ? "heartred" : "heartwhite").resizable().frame(width: 20, height: 20).aspectRatio(contentMode: .fit)
-                                            .foregroundColor(Color.white)
-                                            .shadow(radius: 8)
-                                              .opacity(1)
-                                            .scaleEffect( 1.8, anchor: .center)
-//                                            .scaleEffect( 1.8, anchor: .center)
-//                                             .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
-
-                                        
-                                    }
-                                        
-                                        
-                                    .buttonStyle(PlainButtonStyle())   .padding(.trailing, 25)
-                                    
-                                    
-                                    
-                                }
-                                
+      
                                 
                                 Button(action: {
                                     // ACTION
@@ -277,8 +257,30 @@ struct ExpandView: View {
                             }
                             
                             
+                             Spacer()
+                      
                             
-                            Spacer()
+                            if(self.isVoted){
+                                Button(action:self.addToMyList) {
+                                    Image(self.favoriteViewModel.liked == true ? "heartred" : "heartwhite").resizable().frame(width: 30, height: 30).aspectRatio(contentMode: .fit)
+                                        .foregroundColor(Color.white)
+                                        .shadow(radius: 8)
+                                        .opacity(1)
+                                        .scaleEffect( 1.8, anchor: .center)
+                                    //                                            .scaleEffect( 1.8, anchor: .center)
+                                    .animation(Animation.easeInOut(duration: 1.5))
+//                                        .repeatForever(autoreverses: true))
+                                    
+                                    
+                                }
+                                    
+                                    
+                                .buttonStyle(PlainButtonStyle())   .padding(.trailing, 40).padding(.top, UIScreen.main.bounds.height / 4.5)
+                                 .animation(Animation.easeInOut(duration: 1.5))
+                                
+                                
+                            }
+                             Spacer()
                         }
                     }
                 )

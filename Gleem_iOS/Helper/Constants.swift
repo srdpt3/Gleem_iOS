@@ -48,7 +48,7 @@ let TEXT_NEED_AN_ACCOUNT = "계정이 없으신가요?"
 let TEXT_SIGN_UP = "새로 가입하기"
 let TEXT_SIGN_IN = "로그인 하기"
 let TEXT_EMAIL = "이메일"
-let TEXT_USERNAME = "아이디"
+let TEXT_USERNAME = "닉네임"
 let TEXT_PASSWORD = "비밀번호"
 let TEXT_PASSWORD_REENTER = "비밀번호 다시입력"
 
@@ -57,6 +57,9 @@ let TEXT_SIGNUP_NOTE = "An account will allow you to save and access photo infor
 let TEXT_SIGNUP_PASSWORD_REQUIRED = "최소 8자리 비밀번호를 입력해주세요"
 let TERM_AGREEMENT = "I Read And Agree The Terms And Conditions"
 let TERM_AGREEMENT2 = "약관에 동의합니다"
+let PROFILE_UPLOAD = "프로필사진을 등록해주세요 "
+let MiMATCH_PASSWORD = "비밀번호가 일치 하지 않습니다"
+let FILLOUT_INFO = "정보를 다시 입력해주세요"
 
 
 
@@ -82,7 +85,15 @@ public var data = ["혐오성 음란한사진","개인정보 노출","욕설이 
 //Expanded View
 public let VOTE_SUBMIT_BUTTON = "첫인상반영하고 결과보기"
 public let RATING_TEXT = "이미지 호감도"
-public let USER_RESULT = " 님의 실시간 이미지투표 결과"
+public let USER_RESULT = " 님의 실시간 첫인상투표 결과"
+public let NOVOTEIMAGE = "내 첫인상 투표사진을 올려야 남들이 나를 볼 수 있어요~ \n이성과 연결이 되고 싶다면 평가 사진 올리기를 먼저 해주세요~"
+
+
+
+//RatingDetailView
+public let VOTENUM = "투표수:"
+public let VOTE_TIMESTAMP = "업로드된 날짜: "
+public let GENDER = "성별 :"
 
 //Chart
 public let SERIES_TITLE = "매력지수(%)"
@@ -123,13 +134,15 @@ public let CANCEL =  "취소"
 
 //Favorite
 public let SOMEONE_LIKED = "나에게 끌림을 준 카드"
-public let I_LIKED = "내가 호감있는 카드"
-public let MATCHING_CHECK_CURRENT_POINT = "상대방에게 채팅요청시 5포인트가 소모됩니다. \n현재 가진 포인트: "
+public let I_LIKED = "내가 끌림을 준 카드"
+public let MATCHING_CHECK_CURRENT_POINT = "상대방에게 채팅요청시 10포인트가 소모됩니다. \n현재 가진 포인트: "
 public let NOT_ENOUGH_POINT = "가지고계신 포인트가 부족합니다. \n필요한 포인트: " + String(POINT_USE) + "\n현재 가진 포인트: "
 
 
 //Stat
-public let MY_STAT_RADAR = "나의 첫인상 그래프(%)"
+public let MY_STAT_RADAR = "나의 첫인상 실시간 그래프(%)"
+public let VOTENUM_SOFAR = "투표수: "
+
 public let NEW_UPLOAD = "(새로운 첫인상 투표 사진 업로드는 왼쪽 프로필사진을 눌러주세요)"
 public let NEW_UPLOAD2 = "(참여하는 투표사진이 없어요, \n왼쪽 프로필사진을 눌러서 참여해주세요)"
 

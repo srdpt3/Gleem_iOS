@@ -22,6 +22,8 @@ struct ChatView: View {
     
     
     func sendTextMessage() {
+//        self.hide_keyboard()
+
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         chatViewModel.sendTextMessage(recipientId: recipientId, recipientAvatarUrl: recipientAvatarUrl, recipientUsername: recipientUsername, completed: {
             self.clean()

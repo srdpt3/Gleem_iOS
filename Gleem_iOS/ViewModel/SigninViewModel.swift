@@ -31,7 +31,7 @@ class SigninViewModel: ObservableObject {
             success = true
         } else {
             showAlert = true
-            errorString = "Please fill in all fields"
+            errorString = FILLOUT_INFO
         }
        
     }

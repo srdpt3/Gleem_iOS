@@ -14,28 +14,30 @@ import SwiftUI
 
 class SignupViewModel: ObservableObject {
     
-     var username: String = ""
-     var email: String = ""
-     var password: String = ""
-     var repassword: String = ""
-
-     var image: Image = Image(systemName: "person.fill")
-     var imageData: Data = Data()
-//     @State var gender: String = "male"
-
-     var errorString = ""
-     @Published var showImagePicker: Bool = false
-     @Published var showAlert: Bool = false
+    var username: String = ""
+    var email: String = ""
+    var password: String = ""
+    var repassword: String = ""
+    
+    //     var image: Image = Image(systemName: "person.fill")
+    var image: Image = Image(systemName: "")
+    
+    var imageData: Data = Data()
+    //     @State var gender: String = "male"
+    
+    var errorString = ""
+    @Published var showImagePicker: Bool = false
+    @Published var showAlert: Bool = false
     @Published var finishSignUp: Bool = false
-
-//    @Binding var showLoader:
-//
+    
+    //    @Binding var showLoader:
+    //
     func signup(username: String, email: String, password: String, imageData: Data, gender: String, completed: @escaping(_ user: User) -> Void,  onError: @escaping(_ errorMessage: String) -> Void) {
         if !username.isEmpty && !email.isEmpty && !password.isEmpty && !imageData.isEmpty {
+            //            self.showLoader()
             AuthService.signupUser(username: username, email: email, password: password, imageData: imageData, gender: gender, onSuccess: completed, onError: onError)
-        } else {
-            showAlert = true
-            errorString = "Please fill in all fields"
         }
+        
+        
     }
 }
