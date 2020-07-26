@@ -113,7 +113,7 @@ public let PHOTOUPLOAD = "평가받고 싶은 사진 올리기"
 public let SELECT_ATTRIBUTES = "사진에 대한 5가지 키워드를 선택해주세요"
 
 //CHAT
-public let SEND_LIKE_MESSAGE = "안녕하세요" + User.currentUser()!.username + "님께서 관심을 표현하였습니다."
+public let SEND_LIKE_MESSAGE = "안녕하세요 " + User.currentUser()!.username + "님께서 관심을 표현하였습니다."
 public let MESSAGEVIEW_TITLE = "채팅"
 
 

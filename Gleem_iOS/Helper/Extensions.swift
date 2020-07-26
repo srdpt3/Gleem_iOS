@@ -110,21 +110,28 @@ extension Decodable {
 
 
 extension Color {
-    
-    static let instagram: [Color] = [
-        Color(red: 64 / 255, green: 93 / 255, blue: 230 / 255),
-        Color(red: 88 / 255, green: 81 / 255, blue: 219 / 255),
-        Color(red: 131 / 255, green: 58 / 255, blue: 180 / 255),
-        Color(red: 193 / 255, green: 53 / 255, blue: 132 / 255),
-        Color(red: 225 / 255, green: 48 / 255, blue: 108 / 255),
-        Color(red: 253 / 255, green: 29 / 255, blue: 29 / 255),
-        Color(red: 245 / 255, green: 96 / 255, blue: 64 / 255),
-        Color(red: 247 / 255, green: 119 / 255, blue: 55 / 255),
-        Color(red: 252 / 255, green: 175 / 255, blue: 69 / 255),
-        Color(red: 255 / 255, green: 220 / 255, blue: 128 / 255),
-        Color(red: 64 / 255, green: 93 / 255, blue: 230 / 255)
-    ]
+    static let neuBackground = Color(hex: "f0f0f3")
+    static let dropShadow = Color(hex: "aeaec0").opacity(0.4)
+    static let dropLight = Color(hex: "ffffff")
+    static let offwhite = Color(red: 255/255, green: 255/255, blue: 235/255)
 }
+
+
+extension Color {
+    init(hex: String) {
+        let scanner = Scanner(string: hex)
+        scanner.scanLocation = 0
+        var rgbValue: UInt64 = 0
+        scanner.scanHexInt64(&rgbValue)
+
+        let r = (rgbValue & 0xff0000) >> 16
+        let g = (rgbValue & 0xff00) >> 8
+        let b = rgbValue & 0xff
+
+        self.init(red: Double(r) / 0xff, green: Double(g) / 0xff, blue: Double(b) / 0xff)
+    }
+}
+
 extension Dictionary {
     subscript(i:Int) -> (key: Key, value: Value) {
         get {

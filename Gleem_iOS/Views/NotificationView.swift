@@ -133,11 +133,16 @@ struct MatchedActivityRow: View {
     var activity: Activity
     var body: some View {
         HStack {
+//            
+//            Image("Gleem_3D")
+//                .resizable()
+//                .aspectRatio(contentMode: .fill)
+//                .clipShape(Circle()).frame(width: 40, height: 40)
             
-            Image("Gleem_3D")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .clipShape(Circle()).frame(width: 40, height: 40)
+            AnimatedImage(url: URL(string: activity.userAvatar))
+                 .resizable()
+                 .aspectRatio(contentMode: .fill)
+                 .clipShape(Circle()).frame(width: 40, height: 40)
             
             VStack(alignment: .leading, spacing: 5) {
                 Text(activity.username + "[연결됨]").font(.subheadline).bold()

@@ -105,49 +105,49 @@ struct UploadView: View {
                     
                 }
                 if(!self.attributeViewModel.buttonAttributes.isEmpty){
-                    VStack(spacing: 8){
-                        HStack(spacing : 2){
+                    VStack(spacing: 10){
+                        HStack(spacing : 4){
                             
                             AttrButtonView(isPressed: self.$buttonPressed[0],title:self.attributeViewModel.buttonAttributes[0])
                             AttrButtonView(isPressed: self.$buttonPressed[1],title:self.attributeViewModel.buttonAttributes[1])
                             AttrButtonView(isPressed: self.$buttonPressed[2],title:self.attributeViewModel.buttonAttributes[2])
                             
                             
-                        }.padding(.horizontal, 2)
+                        }.padding(.horizontal, 4)
                         //                    ChartView().frame(width: UIScreen.main.bounds.width, height: 300)
-                        HStack(spacing : 2){
+                        HStack(spacing : 10){
                             AttrButtonView(isPressed: self.$buttonPressed[3],title:self.attributeViewModel.buttonAttributes[3])
                             //                        Spacer()
                             AttrButtonView(isPressed: self.$buttonPressed[4],title:self.attributeViewModel.buttonAttributes[4])
                             
-                        }.padding(.horizontal, 2)
-                        HStack(spacing : 2){
+                        }.padding(.horizontal, 10)
+                        HStack(spacing : 10){
                             
                             AttrButtonView(isPressed: self.$buttonPressed[7],title:self.attributeViewModel.buttonAttributes[7])
                             //                        Spacer()
                             AttrButtonView(isPressed: self.$buttonPressed[8],title:self.attributeViewModel.buttonAttributes[8])
                             //                            AttrButtonView(isPressed: self.$buttonPressed[8],title:buttonTitle[8])
                             
-                        }.padding(.horizontal, 2)
-                        HStack(spacing : 2){
+                        }.padding(.horizontal,10)
+                        HStack(spacing : 4){
                             AttrButtonView(isPressed: self.$buttonPressed[9],title:self.attributeViewModel.buttonAttributes[9])
                             
                             AttrButtonView(isPressed: self.$buttonPressed[5],title:self.attributeViewModel.buttonAttributes[5])
                             AttrButtonView(isPressed: self.$buttonPressed[12],title:self.attributeViewModel.buttonAttributes[12])
                             
-                        }.padding(.horizontal, 2)
+                        }.padding(.horizontal, 4)
                         
-                        HStack(spacing : 2){
+                        HStack(spacing : 10){
                             AttrButtonView(isPressed: self.$buttonPressed[16],title:self.attributeViewModel.buttonAttributes[16])
                             
                             //                        Spacer()
                             //                            AttrButtonView(isPressed: self.$buttonPressed[8],title:buttonTitle[8])
                             AttrButtonView(isPressed: self.$buttonPressed[10],title:self.attributeViewModel.buttonAttributes[10])
                             
-                        }.padding(.horizontal, 2)
+                        }.padding(.horizontal, 10)
                         
                         
-                        HStack(spacing : 2){
+                        HStack(spacing : 10){
                             AttrButtonView(isPressed: self.$buttonPressed[14],title:self.attributeViewModel.buttonAttributes[14])
                             AttrButtonView(isPressed: self.$buttonPressed[15],title:self.attributeViewModel.buttonAttributes[15])
                             
@@ -155,15 +155,15 @@ struct UploadView: View {
                             //                                                AttrButtonView(isPressed: self.$buttonPressed[7],title:self.attributeViewModel.buttonAttributes[7])
                             //                            AttrButtonView(isPressed: self.$buttonPressed[8],title:buttonTitle[8])
                             
-                        }.padding(.horizontal, 2)
-                        HStack(spacing : 2){
+                        }.padding(.horizontal, 10)
+                        HStack(spacing : 4){
                             AttrButtonView(isPressed: self.$buttonPressed[13],title:self.attributeViewModel.buttonAttributes[13])
                             
                             AttrButtonView(isPressed: self.$buttonPressed[11],title:self.attributeViewModel.buttonAttributes[11])
                             AttrButtonView(isPressed: self.$buttonPressed[6],title:self.attributeViewModel.buttonAttributes[6])
 
                             
-                        }.padding(.horizontal, 2)
+                        }.padding(.horizontal, 4)
                         
                         //                        HStack(alignment: .center) {
                         //

@@ -256,7 +256,7 @@ struct CardListview: View {
             
             
         }
-        
+  
         //        .alert(isPresented: $showAlert) {
         //            Alert(
         //                title: Text("테스트"),

@@ -62,27 +62,7 @@ struct RadioButtons : View {
             }
             
             HStack{
-                
-                //                Spacer()
-                //                Button(action: {
-                //
-                //                    self.show.toggle()
-                //
-                //
-                //                }) {
-                //
-                //                    Text(CACEL_BLOCK_BUTTON).padding(.vertical).padding(.horizontal,10).foregroundColor(.white)
-                //
-                //                }
-                //                .background(
-                //
-                //
-                //                        LinearGradient(gradient: .init(colors: [Color("Color"),Color("Color1")]), startPoint: .leading, endPoint: .trailing)
-                //
-                ////                        LinearGradient(gradient: .init(colors: [Color.black.opacity(0.2),Color.black.opacity(0.2)]), startPoint: .leading, endPoint: .trailing)
-                //
-                //                )   .clipShape(Capsule())
-                //                    .disabled(self.selected != "" ? false : true)
+
                 
                 Spacer()
                 

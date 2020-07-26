@@ -132,19 +132,24 @@ struct MyStaticView: View {
                             Spacer()
                             
                             HStack(alignment: .top){
-                               
+                                
                                 ZStack{
-                                    AnimatedImage(url: URL(string: self.votePiclocation)!).resizable().frame(width: 100, height: 100).cornerRadius(50).padding(.trailing, 10)
+                                    AnimatedImage(url: URL(string: self.votePiclocation)!).resizable().frame(width: 100, height: 100).cornerRadius(50)
+                                        .background(Color("Color-2"))
                                         
                                         .onTapGesture {
                                             self.haptics.notificationOccurred(.success)
                                             
                                             self.showUploadView.toggle()
                                     }
-                                    Circle().stroke(APP_THEME_COLOR, lineWidth: 5).frame(width: 110, height: 110).cornerRadius(55).padding(.trailing, 10)
-                                     Spacer()
+                                    .cornerRadius(50)
+                                        
+                                    .shadow(color: Color.black.opacity(0.3), radius: 5, x: 5, y: 5)
+                                    .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+//                                    Circle().stroke(APP_THEME_COLOR, lineWidth: 5).frame(width: 110, height: 110).cornerRadius(55).padding(.trailing, 10)
+                                    Spacer()
                                     
-                                }
+                                }.padding(.trailing, 10)
                                 
                                 VStack(alignment: .leading, spacing: 10){
                                     

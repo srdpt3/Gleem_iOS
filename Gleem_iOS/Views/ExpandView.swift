@@ -86,7 +86,9 @@ struct ExpandView: View {
             }else{
                 
                 // Add to the list
-                self.favoriteViewModel.addToMyList(user: user)
+                if(self.updateVoteImage){
+                    self.favoriteViewModel.addToMyList(user: user)
+                }
             }
             self.favoriteViewModel.liked.toggle()
             
@@ -189,8 +191,8 @@ struct ExpandView: View {
                         }.padding(.horizontal,5)
 
                         
-                        VStack(spacing: 6){
-                            HStack(spacing : 6){
+                        VStack(spacing: 10){
+                            HStack(spacing : 8){
                                 AttrButtonView(isPressed: self.$buttonPressed[0],  title:user.attrNames[0])
                                 AttrButtonView(isPressed: self.$buttonPressed[1], title:user.attrNames[1])
                                 AttrButtonView(isPressed: self.$buttonPressed[2], title:user.attrNames[2])
@@ -280,7 +282,7 @@ struct ExpandView: View {
                              Spacer()
                       
                             
-                            if(self.isVoted && self.updateVoteImage){
+                            if(self.isVoted ){
                                 Button(action:self.addToMyList) {
                                     Image(self.favoriteViewModel.liked == true ? "heartred" : "heartwhite").resizable().frame(width: 30, height: 30).aspectRatio(contentMode: .fit)
                                         .foregroundColor(Color.white)
