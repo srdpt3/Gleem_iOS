@@ -11,14 +11,20 @@ import SDWebImageSwiftUI
 
 struct MainCardView: View, Identifiable {
   // MARK: - PROPERTIES
-  
+  @Environment(\.horizontalSizeClass) var sizeClass
+   @Environment(\.verticalSizeClass) var verticalSizeClass: UserInterfaceSizeClass?
+
   let id = UUID()
   var user: ActiveVote
   
   var body: some View {
 //    Image(honeymoon.image)
     AnimatedImage(url: URL(string:self.user.imageLocation))
-        .resizable().frame(height: 550)
+//        .resizable().frame(height: UIScreen.main.bounds.height / 1.7)
+        .resizable().aspectRatio(contentMode: .fill)
+        .frame(width: UIScreen.main.bounds.width - 10 , height:  UIScreen.main.bounds.height * 0.66)
+        .scaledToFill()
+ .clipped()
       .cornerRadius(24)
 //      .scaledToFit()
         .frame(minWidth: 0, maxWidth: .infinity)
@@ -49,9 +55,16 @@ struct MainCardView: View, Identifiable {
 //              Capsule().fill(Color.white)
 //            )
         }
-        .frame(minWidth: 300)
-        .padding(.bottom, 50),
+//        .frame(width: UIScreen.main.bounds.height < 896.0 ?  300 : 311)
+        .padding(.bottom, 20),
         alignment: .bottom
-      )
+    ).onAppear{
+        print( UIScreen.main.bounds.height)
+        print( UIScreen.main.bounds.width)
+
+        print( UIScreen.main.bounds.height < 896.0 ?  "477" : "550")
+        print( UIScreen.main.bounds.height < 896.0 ?  "282" : "311")
+
+    }
   }
 }

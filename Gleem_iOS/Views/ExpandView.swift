@@ -10,8 +10,10 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct ExpandView: View {
-
+    
     var user : ActiveVote
+    @Environment(\.horizontalSizeClass) var sizeClass
+    
     @State var updateVoteImage : Bool = false
     @Binding var show : Bool
     @Binding var isVoted: Bool
@@ -19,13 +21,15 @@ struct ExpandView: View {
     @State var voteData:[Double] = []
     //    @State var voteData = [Int.random(in: 0 ..< 100),Int.random(in: 0 ..< 100),Int.random(in: 0 ..< 100),Int.random(in: 0 ..< 100),Int.random(in: 0 ..< 100)]
     @State var ymax = 100
-
+    @State var windowHeightDeno = 1.65
     @State var buttonPressed = [false,false,false,false,false]
     var selectedButton = [String]()
     
     @ObservedObject private var voteViewModel = VoteViewModel()
     @ObservedObject private var chartViewModel = ChartViewModel()
     @ObservedObject  private var favoriteViewModel = FavoriteViewModel()
+    @EnvironmentObject  var obs : observer
+
     @State private var pulsate: Bool = false
     @Environment(\.presentationMode) var presentationMode
     let haptics = UINotificationFeedbackGenerator()
@@ -52,7 +56,8 @@ struct ExpandView: View {
                 let attr3 = (Double(vote.attr3) / Double(vote.numVote) * 100).roundToDecimal(0)
                 let attr4 = (Double(vote.attr4) / Double(vote.numVote) * 100).roundToDecimal(0)
                 let attr5 = (Double(vote.attr5) / Double(vote.numVote) * 100).roundToDecimal(0)
-                
+                self.voteData = [attr1, attr2, attr3, attr4, attr5]
+
                 if(attr1 > 80 ||  attr2 > 80  || attr3 > 80  || attr4 > 80  || attr5 > 80 ){
                     self.ymax  = 100
                 }else if(attr1 > 70 ||  attr2 > 70  || attr3 > 70  || attr4 > 70  || attr5 > 70 ){
@@ -71,7 +76,6 @@ struct ExpandView: View {
                     self.ymax = 20
                 }
                 
-                self.voteData = [attr1, attr2, attr3, attr4, attr5]
                 //
             }
             
@@ -113,17 +117,19 @@ struct ExpandView: View {
             GeometryReader{reader in
                 
                 // Type 2 Parollax....
-                if reader.frame(in: .global).minY > -460 {
+                if reader.frame(in: .global).minY > -UIScreen.main.bounds.height * 0.55 {
                     ZStack(alignment: .topTrailing) {
                         AnimatedImage(url: URL(string: self.user.imageLocation))
                             .resizable()
+                            .aspectRatio(contentMode: .fill)
                             //                            .aspectRatio(contentMode: .fit)
                             // moving View Up....
-                            .offset(y: -reader.frame(in: .global).minY)
+                            //                            .offset(y: -reader.frame(in: .global).minY)
                             // going to add parallax effect....
-                            .frame(width: UIScreen.main.bounds.width, height:  reader.frame(in: .global).minY > 0 ? reader.frame(in: .global).minY + 460 : 460)
-                            .scaledToFit()
-
+                            .frame(width: UIScreen.main.bounds.width, height:  reader.frame(in: .global).minY > 0 ? reader.frame(in: .global).minY +  UIScreen.main.bounds.height * 0.55: UIScreen.main.bounds.height * 0.55)
+                            .scaledToFill()
+                            .clipped()
+                        
                     }
                     .background(Color.black.opacity(0.06)).edgesIgnoringSafeArea(.top)
                         
@@ -134,191 +140,208 @@ struct ExpandView: View {
                 
                 
                 
-            }
-                // default frame...
-                .frame(height: 460)
+            }  // default frame...
+                .frame(height: UIScreen.main.bounds.height / CGFloat(self.windowHeightDeno))
             //                            .clipShape(CustomShape(corner: .bottomLeft, radii: 30))
             //                            .background(Color.black.opacity(0.5).edgesIgnoringSafeArea(.top)
-            Group {
-                
-                VStack(alignment: .leading,spacing: 15){
-                    if(!self.isVoted){
-                        VStack(alignment: .center, spacing: 10) {
-                            
-                            
-                            
-                            HStack(spacing: 10){
+            
+            VStack{
+                Group {
+                    
+                    VStack(alignment: .leading,spacing: 15){
+                        if(!self.buttonPressed[0] && !self.buttonPressed[1] && !self.buttonPressed[2] && !self.buttonPressed[3] && !self.buttonPressed[4]){
+                            VStack(alignment: .center, spacing: 10) {
+                                
                                 Spacer()
-                                Text(RATING_TEXT)
-                                    //                                            .font(.system(size: 20, weight: .bold))
-                                    .font(.custom(FONT, size: CGFloat(BUTTON_TITLE_FONT_SIZE)))
-                                    
-                                    .foregroundColor(APP_THEME_COLOR)
                                 
                                 
-                                ForEach(1...5,id: \ .self){_ in
+                                HStack(spacing: 10){
+                                    Spacer()
+                                    Text(RATING_TEXT)
+                                        //                                            .font(.system(size: 20, weight: .bold))
+                                        .font(.custom(FONT, size: CGFloat(BUTTON_TITLE_FONT_SIZE)))
+                                        
+                                        .foregroundColor(APP_THEME_COLOR)
                                     
-                                    Image(systemName: "star.fill")
-                                        .foregroundColor(.yellow)
-                                }
-                                Spacer()
-                            }.padding(.bottom, 10)
-                            
-//                            .padding(.bottom, 20).padding(.leading, 35)
-                            
-                            
+                                    
+                                    ForEach(1...5,id: \ .self){_ in
+                                        
+                                        Image(systemName: "star.fill")
+                                            .foregroundColor(.yellow)
+                                    }
+                                    Spacer()
+                                }.padding(.bottom, 10)
+                                
+                                //                            .padding(.bottom, 20).padding(.leading, 35)
+                                
+                                
+                                HStack{
+                                    Spacer()
+                                    RatingDetailView(card: user)
+                                    Spacer()
+                                    
+                                }.padding(.horizontal,5)
+                                
+                                
+                                
+                                //                            HStack{
+                                //                            }.padding()
+                                //
+                            }
                             HStack{
                                 Spacer()
-                                RatingDetailView(card: user)
+                                if(!self.updateVoteImage){
+                                    Text(NOVOTEIMAGE)
+                                        .font(.custom(FONT, size: CGFloat(13))).foregroundColor(Color("sleep")).padding(.horizontal)
+                                }
                                 Spacer()
                                 
                             }.padding(.horizontal,5)
                             
                             
-                            
-                            //                            HStack{
-                            //                            }.padding()
-                            //
-                        }
-                        HStack{
-                            Spacer()
-                            if(!self.updateVoteImage){
-                                Text(NOVOTEIMAGE)
-                                    .font(.custom(FONT, size: CGFloat(13))).foregroundColor(Color("sleep")).padding(.horizontal)
-                            }
-                            Spacer()
-                            
-                        }.padding(.horizontal,5)
-
-                        
-                        VStack(spacing: 10){
-                            HStack(spacing : 8){
-                                AttrButtonView(isPressed: self.$buttonPressed[0],  title:user.attrNames[0])
-                                AttrButtonView(isPressed: self.$buttonPressed[1], title:user.attrNames[1])
-                                AttrButtonView(isPressed: self.$buttonPressed[2], title:user.attrNames[2])
+                            VStack(alignment: .leading, spacing: 12){
+                                
+                                HStack(spacing : 8){
+                                    Spacer()
+                                    AttrButtonView(isPressed: self.$buttonPressed[0],  title:user.attrNames[0])
+                                    AttrButtonView(isPressed: self.$buttonPressed[1], title:user.attrNames[1])
+                                    AttrButtonView(isPressed: self.$buttonPressed[2], title:user.attrNames[2])
+                                    Spacer()
+                                    
+                                }.padding(.horizontal, 2)
+                                HStack(spacing : 8){
+                                    Spacer()
+                                    AttrButtonView(isPressed: self.$buttonPressed[3], title:user.attrNames[3])
+                                    AttrButtonView(isPressed: self.$buttonPressed[4], title:user.attrNames[4])
+                                    Spacer()
+                                    
+                                }.padding(.horizontal, 2)
                                 
                                 
-                            }.padding(.horizontal, 5)
-                            HStack(spacing : 6){
-                                AttrButtonView(isPressed: self.$buttonPressed[3], title:user.attrNames[3])
-                                AttrButtonView(isPressed: self.$buttonPressed[4], title:user.attrNames[4])
+                                //                                Button(action:  {
+                                //                                    self.persist()
+                                //                                    withAnimation{
+                                //                                        self.isVoted.toggle()
+                                //
+                                //                                    }
+                                //
+                                //                                }) {
+                                //                                    Text(VOTE_SUBMIT_BUTTON.uppercased())
+                                //                                        //                                             .font(.system(.subheadline, design: .rounded))
+                                //                                        .font(.custom(FONT, size: CGFloat(BUTTON_TITLE_FONT_SIZE)))
+                                //
+                                //                                        .fontWeight(.heavy)
+                                //                                        .padding(.horizontal, 50)
+                                //                                        .padding(.vertical, 15).foregroundColor( Color("Color5"))
+                                //                                        .background(
+                                //                                            Capsule().stroke( APP_THEME_COLOR, lineWidth: 2)
+                                //                                    )
+                                //                                }   // Disabling button by verifying all images...
+                                //                                    .opacity(self.checkAttrSelected() ? 1 : 0.35)
+                                //                                    .disabled(self.checkAttrSelected() ? false : true).padding(.top, 10)
                                 Spacer()
-                                
-                            }.padding(.horizontal, 20)
+                            }
                             
-                            
-                            Button(action:  {
-                                self.persist()
-                                withAnimation{
-                                    self.isVoted.toggle()
+                        }
+                        else{
+                            VStack(alignment: .center, spacing: 0) {
+                                if !self.voteData.isEmpty {
                                     
+                                    ZStack{
+                                        Text(self.user.username + USER_RESULT.uppercased()).font(.custom(FONT, size: CGFloat(15))).padding().foregroundColor(APP_THEME_COLOR).offset(y: 20)
+                                        
+                                    }.zIndex(1)
+                                    
+                                    ChartView(data: self.$voteData, totalNum: self.$ymax, categories: self.user.attrNames)
+                                        .frame(height: (UIScreen.main.bounds.height) / 3)
+                                    
+                                } else {
+                                    LoadingView(isLoading: self.chartViewModel.isLoading, error: self.chartViewModel.error) {
+                                        self.loadChartData()
+                                    }
                                 }
+                            }  .onAppear{
+                                self.windowHeightDeno = 2
+                                self.loadChartData()
                                 
-                            }) {
-                                Text(VOTE_SUBMIT_BUTTON.uppercased())
-                                    //                                             .font(.system(.subheadline, design: .rounded))
-                                    .font(.custom(FONT, size: CGFloat(BUTTON_TITLE_FONT_SIZE)))
-                                    
-                                    .fontWeight(.heavy)
-                                    .padding(.horizontal, 50)
-                                    .padding(.vertical, 15).foregroundColor( Color("Color5"))
-                                    .background(
-                                        Capsule().stroke( APP_THEME_COLOR, lineWidth: 2)
-                                )
-                            }   // Disabling button by verifying all images...
-                                .opacity(self.checkAttrSelected() ? 1 : 0.35)
-                                .disabled(self.checkAttrSelected() ? false : true).padding(.top, 10)
+                            }.animation(.spring())
+                            .cornerRadius(20)
+                            //                            .offset(y: -100)
+                            
+                        }
+                    }    .overlay(
+                        HStack {
                             Spacer()
-                        }
-                        
-                    }else{
-                        VStack(alignment: .center, spacing: 0) {
-                            if !self.voteData.isEmpty {
+                            VStack {
                                 
-                                ZStack{
-                                    Text(self.user.username + USER_RESULT.uppercased()).font(.custom(FONT, size: CGFloat(15))).padding().foregroundColor(APP_THEME_COLOR).offset(y: 20)
+                                if(self.buttonPressed[0] || self.buttonPressed[1] || self.buttonPressed[2] || self.buttonPressed[3] || self.buttonPressed[4]) {
                                     
-                                }.zIndex(1)
-                                
-                                ChartView(data: self.$voteData, totalNum: self.$ymax, categories: self.user.attrNames)
-                                    .frame(height: (UIScreen.main.bounds.height) / 2.5)
-                                
-                            } else {
-                                LoadingView(isLoading: self.chartViewModel.isLoading, error: self.chartViewModel.error) {
-                                    self.loadChartData()
-                                }
-                            }
-                        }  .onAppear{
-                            self.loadChartData()
-                        }
-                        .cornerRadius(20)
-                        .offset(y: -60)
-                        
-                    }
-                }    .overlay(
-                    HStack {
-                        Spacer()
-                        VStack {
-                            HStack{
-      
-                                
-                                Button(action: {
-                                    // ACTION
-                                    self.haptics.notificationOccurred(.success)
+                                    HStack{
+                                        
+                                        
+                                        Button(action: {
+                                            // ACTION
+                                            self.haptics.notificationOccurred(.success)
+                                            self.isVoted = true
+                                            self.obs.moveCards()
+
+                                            self.presentationMode.wrappedValue.dismiss()
+                                        }, label: {
+                                            Image(systemName: "xmark.circle.fill")
+                                                .foregroundColor(Color.white)
+                                                .shadow(radius: 10)
+                                                .opacity( 1 )
+                                                .scaleEffect( 2.0, anchor: .center)
+                                            //                                    .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
+                                        })
+                                            .padding(.trailing, 20).buttonStyle(PlainButtonStyle()).padding(.top, 30)
+                                    }
                                     
-                                    self.presentationMode.wrappedValue.dismiss()
-                                }, label: {
-                                    Image(systemName: "xmark.circle.fill")
-                                        .foregroundColor(Color.white)
-                                        .shadow(radius: 8)
-                                        .opacity( 1 )
-                                        .scaleEffect( 2.0, anchor: .center)
-                                    //                                    .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
-                                })
-                                    .padding(.trailing, 25)   .buttonStyle(PlainButtonStyle())
-                            }
-                            
-                            
-                             Spacer()
-                      
-                            
-                            if(self.isVoted ){
-                                Button(action:self.addToMyList) {
-                                    Image(self.favoriteViewModel.liked == true ? "heartred" : "heartwhite").resizable().frame(width: 30, height: 30).aspectRatio(contentMode: .fit)
-                                        .foregroundColor(Color.white)
-                                        .shadow(radius: 8)
-                                        .opacity(1)
-                                        .scaleEffect( 1.8, anchor: .center)
-                                    //                                            .scaleEffect( 1.8, anchor: .center)
+                                    
+                                    Spacer()
+                                    
+                                    Button(action:self.addToMyList) {
+                                        Image(self.favoriteViewModel.liked == true ? "heartred" : "heartwhite").resizable().frame(width: 30, height: 30).aspectRatio(contentMode: .fit)
+                                            .foregroundColor(Color.white)
+                                            .shadow(radius: 8)
+                                            .opacity(1)
+                                            .scaleEffect( 1.8, anchor: .center)
+                                            //                                            .scaleEffect( 1.8, anchor: .center)
+                                            .animation(Animation.easeInOut(duration: 1.5))
+                                        //                                        .repeatForever(autoreverses: true))
+                                        
+                                        
+                                    }
+                                        
+                                        
+                                    .buttonStyle(PlainButtonStyle())   .padding(.trailing, 30).padding(.top, UIScreen.main.bounds.height / 4.5)
                                     .animation(Animation.easeInOut(duration: 1.5))
-//                                        .repeatForever(autoreverses: true))
                                     
                                     
                                 }
-                                    
-                                    
-                                .buttonStyle(PlainButtonStyle())   .padding(.trailing, 40).padding(.top, UIScreen.main.bounds.height / 4.5)
-                                 .animation(Animation.easeInOut(duration: 1.5))
-                                
-                                
+                                Spacer()
                             }
-                             Spacer()
                         }
-                    }
-                )
-                    .padding(.top, 35)
-                    .background(Color.white)
-                    .cornerRadius(20)
-                    .offset(y: -80)
-                
-                
+                    )
+                        //                    .padding(.top, 35)
+                        .background(Color.white)
+                        .cornerRadius(20)
+                    
+                    
+                }
             }
+            
             
         })
             .edgesIgnoringSafeArea(.all)
             .background(Color.white.edgesIgnoringSafeArea(.all))
             .onAppear{
                 self.favoriteViewModel.checkLiked(id: self.user.id)
+        }.onDisappear{
+//            withAnimation{
+//                //                         self.showVotingScreen.toggle()
+//                self.obs.moveCards()
+//            }
         }
         
     }

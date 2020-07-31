@@ -45,9 +45,9 @@ struct HeaderView: View {
             Image(APP_LOGO)
                 .resizable()
                 .scaledToFit()
-                .frame(height: 50).padding(.leading, 50)
+                .frame(height: 40).padding(.leading, 40)
             
-            Spacer(minLength: 30)
+            Spacer(minLength: 20)
             
             
             LottieView(filename: "noti").frame(width: 50, height: 50).onTapGesture {
@@ -89,6 +89,6 @@ struct HeaderView: View {
             
             
         }
-        .padding()
+        .padding(.horizontal)
     }
 }

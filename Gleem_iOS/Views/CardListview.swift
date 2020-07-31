@@ -87,80 +87,82 @@ struct CardListview: View {
                     .opacity(dragState.isDragging ? 0.0 : 1.0)
                     .animation(.default)
                 
-                Spacer()
+//                Spacer()
                 ZStack{
                     
                     
                     if(!self.obs.users.isEmpty){
                         ForEach(self.obs.cardViews) { cardView in
                             cardView.zIndex(self.isTopCard(cardView: cardView) ? 1 : 0)
-                                .overlay(
-                                    ZStack {
-                                        // X-MARK SYMBOL
-                                        //                              Image(systemName: "x.circle")
-                                        //                                .modifier(SymbolModifier())
-                                        //                                .opacity(self.dragState.translation.width < -self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
-                                        //
-                                        // HEART SYMBOL
-                                        
-                                        if(self.isVoted){
-                                            Image(systemName: "heart.circle")
-                                                .modifier(SymbolModifier())
-                                                .opacity(self.dragState.translation.width > self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
-                                        }else{
-                                            Text("사진 첫인상 투표를 \n먼저해주세요 ㅠㅠ").foregroundColor(Color.white)
-                                                .font(.custom(FONT, size: CGFloat(25)))
-                                                .opacity(self.dragState.translation.width > self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
-                                        }
-                                        
-                                    }
-                            )
+//                                .overlay(
+//                                    ZStack {
+//                                        // X-MARK SYMBOL
+//                                        //                              Image(systemName: "x.circle")
+//                                        //                                .modifier(SymbolModifier())
+//                                        //                                .opacity(self.dragState.translation.width < -self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
+//                                        //
+//                                        // HEART SYMBOL
+//
+//                                        if(self.isVoted){
+//                                            Image(systemName: "heart.circle")
+//                                                .modifier(SymbolModifier())
+//                                                .opacity(self.dragState.translation.width > self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
+//                                        }else{
+//                                            Text("사진 첫인상 투표를 \n먼저해주세요 ㅠㅠ").foregroundColor(Color.white)
+//                                                .font(.custom(FONT, size: CGFloat(25)))
+//                                                .opacity(self.dragState.translation.width > self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
+//                                        }
+//
+//                                    }
+//                            )
                                 .offset(x: self.isTopCard(cardView: cardView) ?  self.dragState.translation.width : 0, y: self.isTopCard(cardView: cardView) ?  self.dragState.translation.height : 0)
                                 .scaleEffect(self.dragState.isDragging && self.isTopCard(cardView: cardView) ? 0.85 : 1.0)
                                 .rotationEffect(Angle(degrees: self.isTopCard(cardView: cardView) ? Double(self.dragState.translation.width / 12) : 0))
-                                .animation(.interpolatingSpring(stiffness: 120, damping: 120))
-                                .gesture(LongPressGesture(minimumDuration: 0.01)
-                                    .sequenced(before: DragGesture())
-                                    .updating(self.$dragState, body: { (value, state, transaction) in
-                                        switch value {
-                                        case .first(true):
-                                            state = .pressing
-                                        case .second(true, let drag):
-                                            state = .dragging(translation: drag?.translation ?? .zero)
-                                        default:
-                                            break
-                                        }
-                                    })
-                                    .onChanged({ (value) in
-                                        guard case .second(true, let drag?) = value else {
-                                            return
-                                        }
-                                        
-                                        if drag.translation.width < -self.dragAreaThreshold {
-                                            self.cardRemovalTransition = .leadingBottom
-                                        }
-                                        
-                                        if drag.translation.width > self.dragAreaThreshold {
-                                            self.cardRemovalTransition = .trailingBottom
-                                        }
-                                    })
-                                    .onEnded({ (value) in
-                                        guard case .second(true, let drag?) = value else {
-                                            return
-                                        }
-                                        if drag.translation.width > self.dragAreaThreshold {
-                                            //                                if drag.translation.width < -self.dragAreaThreshold || drag.translation.width > self.dragAreaThreshold {
-                                            //                                playSound(sound: "sound-rise", type: "mp3")
-                                            //                                self.moveCards()
-                                            if(self.isVoted){
-                                                self.obs.moveCards()
-                                                self.isVoted = false
-                                                
-                                                
-                                            }
-                                        }
-                                    })
-                            )
+                                .animation(.interpolatingSpring(stiffness: 150, damping: 130))
+//                                .animation(.easeInOut(duration: 3))
+                            
+                            //                                .gesture(LongPressGesture(minimumDuration: 0.01)
+                            //                                    .sequenced(before: DragGesture())
+                            //                                    .updating(self.$dragState, body: { (value, state, transaction) in
+                            //                                        switch value {
+                            //                                        case .first(true):
+                            //                                            state = .pressing
+                            //                                        case .second(true, let drag):
+                            //                                            state = .dragging(translation: drag?.translation ?? .zero)
+                            //                                        default:
+                            //                                            break
+                            //                                        }
+                            //                                    })
+                            //                                    .onChanged({ (value) in
+                            //                                        guard case .second(true, let drag?) = value else {
+                            //                                            return
+                            //                                        }
+                            //
+                            //                                        if drag.translation.width < -self.dragAreaThreshold {
+                            //                                            self.cardRemovalTransition = .leadingBottom
+                            //                                        }
+                            //
+                            //                                        if drag.translation.width > self.dragAreaThreshold {
+                            //                                            self.cardRemovalTransition = .trailingBottom
+                            //                                        }
+                            //                                    })
+                            //                                    .onEnded({ (value) in
+                            //                                        guard case .second(true, let drag?) = value else {
+                            //                                            return
+                            //                                        }
+                            //                                        if drag.translation.width > self.dragAreaThreshold {
+                            //                                            //                                if drag.translation.width < -self.dragAreaThreshold || drag.translation.width > self.dragAreaThreshold {
+                            //                                            //                                playSound(sound: "sound-rise", type: "mp3")
+                            //                                            //                                self.moveCards()
+                            //                                            if(self.isVoted){
+                            //                                                self.obs.moveCards()
+                            //                                                self.isVoted = false
+                            //
+                            //
+                            //                                            }
+                            //                                        }
+                            //                                    })
+                            //                            )
                         }
                         .overlay(
                             HStack {
@@ -204,13 +206,14 @@ struct CardListview: View {
                     //                        }.edgesIgnoringSafeArea(.all).zIndex(1)
                     //                    .background(Color(UIColor.label.withAlphaComponent(self.showFlag ? 0.2 : 0))
                     
-                }.padding(.horizontal)
+                    }.padding(.horizontal)
                 
                 Spacer()
                 if(!self.obs.users.isEmpty){
                     FooterView(isVoted: $isVoted, showVotingScreen: $showVotingScreen)
                         .opacity(dragState.isDragging ? 0.0 : 1.0)
                         .animation(.easeInOut).opacity(self.obs.isLoading == true ? 0 : 1)
+
                 }
                 
                 Spacer()
@@ -218,7 +221,7 @@ struct CardListview: View {
                 
             }.navigationBarHidden(true).navigationBarTitle("")
                 .onAppear{
-
+                
             }
             
             VStack{
@@ -255,8 +258,9 @@ struct CardListview: View {
             }
             
             
+        }.onAppear{
         }
-  
+        
         //        .alert(isPresented: $showAlert) {
         //            Alert(
         //                title: Text("테스트"),

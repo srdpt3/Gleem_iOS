@@ -10,6 +10,7 @@ import SwiftUI
 
 struct AttrButtonView: View {
     @Binding  var isPressed: Bool
+
     //    @Binding var buttonSelected:Bool
     var title : String
     var body: some View {
@@ -34,7 +35,7 @@ struct NeumorphicButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .padding(15).padding(.horizontal, 5)
+            .padding(12).padding(.horizontal, 5)
             .background(
                 ZStack {
                     //                    RoundedRectangle(cornerRadius: 10, style: .continuous)
@@ -51,7 +52,9 @@ struct NeumorphicButtonStyle: ButtonStyle {
             .animation(.spring())
             .background(Color("Color-2"))
             .cornerRadius(15)
-            .shadow(color: Color.black.opacity(self.isPressed ? 0.1: 0.3), radius: 5, x: 5, y: 5)
+//            .shadow(color: Color.black.opacity(self.isPressed ? 0.1: 0.3), radius: 5, x: 5, y: 5)
+            .shadow(color: Color.black.opacity(self.isPressed ? 0.1: 0.3), radius: 1, x: 1, y: 1)
+
             .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
             
             .font(.custom(FONT, size: 18))

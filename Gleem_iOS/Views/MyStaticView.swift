@@ -13,7 +13,7 @@ struct MyStaticView: View {
     //    var user : User
     @EnvironmentObject  var obs : observer
     @State var vote : Vote?
-
+    
     @State var totalNum : Int = 0
     @State var voteData:[Double] = []
     @State var voteNum:[Int] = []
@@ -72,7 +72,8 @@ struct MyStaticView: View {
                     let attr4 = (Double(vote.attr4) / Double(vote.numVote) * 100).roundToDecimal(0)
                     let attr5 = (Double(vote.attr5) / Double(vote.numVote) * 100).roundToDecimal(0)
                     
-                    
+                    self.voteData = [attr1, attr2, attr3, attr4, attr5]
+
                     if(attr1 > 80 ||  attr2 > 80  || attr3 > 80  || attr4 > 80  || attr5 > 80 ){
                         self.ymax  = 100
                     }else if(attr1 > 70 ||  attr2 > 70  || attr3 > 70  || attr4 > 70  || attr5 > 70 ){
@@ -91,8 +92,13 @@ struct MyStaticView: View {
                         self.ymax = 20
                     }
                     
+       //                    if(self.voteData.max()! < 98.0 ){
+                    //                        self.ymax = Int(self.voteData.max()!) + 2
+                    //
+                    //                    }else{
+//                                             self.ymax = Int(self.voteData.max()!)
+                    //                    }
                     
-                    self.voteData = [attr1, attr2, attr3, attr4, attr5]
                     //
                     //                    self.voteData.append((Double(vote.attr1) / Double(vote.numVote) * 100).roundToDecimal(0))
                     //                    self.voteData.append((Double(vote.attr2) / Double(vote.numVote) * 100).roundToDecimal(0))
@@ -146,7 +152,7 @@ struct MyStaticView: View {
                                         
                                     .shadow(color: Color.black.opacity(0.3), radius: 5, x: 5, y: 5)
                                     .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
-//                                    Circle().stroke(APP_THEME_COLOR, lineWidth: 5).frame(width: 110, height: 110).cornerRadius(55).padding(.trailing, 10)
+                                    //                                    Circle().stroke(APP_THEME_COLOR, lineWidth: 5).frame(width: 110, height: 110).cornerRadius(55).padding(.trailing, 10)
                                     Spacer()
                                     
                                 }.padding(.trailing, 10)
@@ -214,6 +220,8 @@ struct MyStaticView: View {
                                                 .fill(LinearGradient(gradient: .init(colors:  self.empty_color), startPoint: .top, endPoint: .bottom))
                                                 // max height = 200
                                                 .frame(height:  150 ).animation(.linear)
+                                                .shadow(color: Color.black.opacity(0.3), radius: 5, x: 5, y: 5)
+                                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
                                         }
                                         .frame(height: UIScreen.main.bounds.width / 2.55).padding(.bottom, 10).padding(.horizontal, 2)
                                     }else{
@@ -226,6 +234,8 @@ struct MyStaticView: View {
                                                 .fill(LinearGradient(gradient: .init(colors:  self.colors[index]), startPoint: .top, endPoint: .bottom))
                                                 // max height = 200
                                                 .frame(height:  self.getHeight(value: CGFloat(work))).animation(.linear)
+                                                .shadow(color: Color.black.opacity(0.3), radius: 5, x: 5, y: 5)
+                                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
                                         }
                                         .frame(height: UIScreen.main.bounds.width / 2.55).padding(.bottom, 10).padding(.horizontal, 2)
                                     }
@@ -241,16 +251,20 @@ struct MyStaticView: View {
                         HStack{
                             
                             Text(MY_STAT_RADAR).fontWeight(.heavy).font(Font.custom(FONT, size: 18)).foregroundColor(APP_THEME_COLOR)
+                                .shadow(color: Color.black.opacity(0.3), radius: 5, x: 5, y: 5)
+                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
                             Text(" - " + VOTENUM_SOFAR +  String(self.totalNum)).fontWeight(.heavy).font(Font.custom(FONT, size: 17)).foregroundColor(APP_THEME_COLOR)
-
+                                .shadow(color: Color.black.opacity(0.3), radius: 5, x: 5, y: 5)
+                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+                            
                             Spacer(minLength: 0)
                         }
-                  
                             
-                            .padding()
-//                        Rectangle()
-//                                              .fill(Color("Color2"))
-//                                              .frame(height: 1)
+                            
+                        .padding()
+                        //                        Rectangle()
+                        //                                              .fill(Color("Color2"))
+                        //                                              .frame(height: 1)
                         VStack{
                             
                             if !self.voteData.isEmpty {

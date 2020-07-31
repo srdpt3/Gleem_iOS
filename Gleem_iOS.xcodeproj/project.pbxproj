@@ -82,6 +82,8 @@
 		118BAC2A24CC9C1E00989F47 /* profile.json in Resources */ = {isa = PBXBuildFile; fileRef = 118BAC2924CC9C1D00989F47 /* profile.json */; };
 		118BAC2C24CCC02B00989F47 /* femaie.json in Resources */ = {isa = PBXBuildFile; fileRef = 118BAC2B24CCC02500989F47 /* femaie.json */; };
 		118BAC2E24CD3DD100989F47 /* welcome.json in Resources */ = {isa = PBXBuildFile; fileRef = 118BAC2D24CD3DD000989F47 /* welcome.json */; };
+		11982E7024CFA60C00DC57E2 /* CreditCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11982E6F24CFA60C00DC57E2 /* CreditCard.swift */; };
+		11982E7224CFA63600DC57E2 /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11982E7124CFA63600DC57E2 /* PaymentView.swift */; };
 		11B5ECE324BB7D920055700B /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5ECE224BB7D920055700B /* Chat.swift */; };
 		11B5ECE524BB7DA50055700B /* InboxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5ECE424BB7DA50055700B /* InboxMessage.swift */; };
 		11B5ECEF24BB802E0055700B /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5ECEE24BB802D0055700B /* UserViewModel.swift */; };
@@ -218,6 +220,8 @@
 		118BAC2924CC9C1D00989F47 /* profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = profile.json; sourceTree = "<group>"; };
 		118BAC2B24CCC02500989F47 /* femaie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = femaie.json; sourceTree = "<group>"; };
 		118BAC2D24CD3DD000989F47 /* welcome.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = welcome.json; sourceTree = "<group>"; };
+		11982E6F24CFA60C00DC57E2 /* CreditCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCard.swift; sourceTree = "<group>"; };
+		11982E7124CFA63600DC57E2 /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
 		11B5ECE224BB7D920055700B /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		11B5ECE424BB7DA50055700B /* InboxMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessage.swift; sourceTree = "<group>"; };
 		11B5ECEE24BB802D0055700B /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
@@ -398,6 +402,7 @@
 		11783EB924B53D1900EEFE80 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				11982E6E24CFA5EC00DC57E2 /* PayMent */,
 				11B5ECFD24BB9F5B0055700B /* Auth */,
 				11B5ECFC24BB9F480055700B /* Chat */,
 				11783EF824B57DFC00EEFE80 /* CardViewMain */,
@@ -485,6 +490,15 @@
 				11143D2624C242320082E48F /* heart.json */,
 			);
 			path = "Lottie Json";
+			sourceTree = "<group>";
+		};
+		11982E6E24CFA5EC00DC57E2 /* PayMent */ = {
+			isa = PBXGroup;
+			children = (
+				11982E6F24CFA60C00DC57E2 /* CreditCard.swift */,
+				11982E7124CFA63600DC57E2 /* PaymentView.swift */,
+			);
+			path = PayMent;
 			sourceTree = "<group>";
 		};
 		11B5ECFC24BB9F480055700B /* Chat */ = {
@@ -838,6 +852,7 @@
 				11783EE024B53DD900EEFE80 /* Constants.swift in Sources */,
 				11783E7124B53BA500EEFE80 /* Gleem_iOS.xcdatamodeld in Sources */,
 				1153A78724B966AE00CE3574 /* SignupViewModel.swift in Sources */,
+				11982E7024CFA60C00DC57E2 /* CreditCard.swift in Sources */,
 				11783EB124B53CEC00EEFE80 /* UploadViewModel.swift in Sources */,
 				11B5ED0324BCC3690055700B /* ProfileView.swift in Sources */,
 				11783EFE24B6293A00EEFE80 /* BlurView.swift in Sources */,
@@ -845,6 +860,7 @@
 				11B5ECE524BB7DA50055700B /* InboxMessage.swift in Sources */,
 				11B5ED0B24BD35C50055700B /* NotificationView.swift in Sources */,
 				11783EC924B53D1A00EEFE80 /* ChartView.swift in Sources */,
+				11982E7224CFA63600DC57E2 /* PaymentView.swift in Sources */,
 				11783EEA24B53DD900EEFE80 /* LoadingView.swift in Sources */,
 				11783EF124B53E5000EEFE80 /* FavoriteUser.swift in Sources */,
 				11783EE724B53DD900EEFE80 /* Utils.swift in Sources */,

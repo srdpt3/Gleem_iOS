@@ -202,7 +202,7 @@ struct UploadView: View {
                         }else{
                             self.uploadPicture()
                             self.haptics.notificationOccurred(.success)
-
+                            
                         }
                         
                     }) {
@@ -210,10 +210,12 @@ struct UploadView: View {
                         Text("올리기")  .font(.custom(FONT, size: 20))
                             .fontWeight(.bold)
                             .foregroundColor(.white)
-                            .padding(.vertical, 8)
+                            .padding(.vertical, 15)
                             .padding(.horizontal, 60)
                             .background(APP_THEME_COLOR)
                             .clipShape(Capsule())
+                            .shadow(color: Color.black.opacity(0.3), radius: 5, x: 5, y: 5)
+                            .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
                     }
                     .padding(.top, 5)
                         // Disabling button by verifying all images...

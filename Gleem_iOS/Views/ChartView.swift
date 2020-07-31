@@ -107,54 +107,54 @@ struct ChartView: UIViewRepresentable {
     //    ]
     func updateUIView(_ uiView: AAChartView, context:  UIViewRepresentableContext<Self>) {
         
-        let aaChartModel = AAChartModel()
-            .chartType(areaType)
-            .title("")
-            .legendEnabled(false)
-            .dataLabelsEnabled(true)
-            
-            //            .xAxisVisible(true)
-            .animationType(animationType)
-            .colorsTheme([hexColor])
-            //            .colorsTheme(gradientColorArr as [Any])
-            .touchEventEnabled(true)
-            
-            
-            .markerRadius(2)
-            .borderRadius(10)
-            .polar(true)
-            .axesTextColor(AAColor.rgbaColor(117, 122, 249, 1))
-
-            //            .axesTextColor("Red")
-            //            .xAxisGridLineWidth(30)
-            
-            .yAxisGridLineWidth(4)
-            .categories(categories).dataLabelsFontSize(15)
-            .dataLabelsFontWeight(AAChartFontWeightType.bold)
-            //            .marginRight(5)
-            //            .marginLeft(5)
-            .marginBottom(50)
-            .backgroundColor(Color.black.opacity(0.06))
-            //            .titleFontWeight(AAChartFontWeightType)
-            .series([
-                AASeriesElement().name(SERIES_TITLE)
-                    .data([data[0],data[1],data[2],data[3],data[4]]),
-                
-                
-            ])
-            .yAxisMax(Float(totalNum))
-            .yAxisVisible(true)
-        //        uiView.
-        //        uiView.aa_updateChart(options: aaChartModel, redraw: true)
+        //        let aaChartModel = AAChartModel()
+        //            .chartType(areaType)
+        //            .title("")
+        //            .legendEnabled(false)
+        //            .dataLabelsEnabled(true)
+        //            
+        //            //            .xAxisVisible(true)
+        //            .animationType(animationType)
+        //            .colorsTheme([hexColor])
+        //            //            .colorsTheme(gradientColorArr as [Any])
+        //            .touchEventEnabled(true)
+        //            
+        //            
+        //            .markerRadius(2)
+        //            .borderRadius(10)
+        //            .polar(true)
+        //            .axesTextColor(AAColor.rgbaColor(117, 122, 249, 1))
         //
+        //            //            .axesTextColor("Red")
+        //            //            .xAxisGridLineWidth(30)
+        //            
+        //            .yAxisGridLineWidth(4)
+        //            .categories(categories).dataLabelsFontSize(15)
+        //            .dataLabelsFontWeight(AAChartFontWeightType.bold)
+        //            //            .marginRight(5)
+        //            //            .marginLeft(5)
+        //            .marginBottom(50)
+        //            .backgroundColor(Color.black.opacity(0.06))
+        //            //            .titleFontWeight(AAChartFontWeightType)
+        //            .series([
+        //                AASeriesElement().name(SERIES_TITLE)
+        //                    .data([data[0],data[1],data[2],data[3],data[4]]),
+        //                
+        //                
+        //            ])
+        //            .yAxisMax(Float(totalNum))
+        //            .yAxisVisible(true)
+        //        //        uiView.
+        //        //        uiView.aa_updateChart(options: aaChartModel, redraw: true)
+        //        //
+        //        
+        //        uiView.aa_refreshChartWholeContentWithChartModel(aaChartModel)
         
-        uiView.aa_refreshChartWholeContentWithChartModel(aaChartModel)
-        
-        //        uiView.aa_onlyRefreshTheChartDataWithChartModelSeries([
-        //            AASeriesElement().name(SERIES_TITLE)
-        //                .data([data[0],data[1],data[2],data[3],data[4]]),
-        //
-        //        ])
+        uiView.aa_onlyRefreshTheChartDataWithChartModelSeries([
+            AASeriesElement().name(SERIES_TITLE)
+                .data([data[0],data[1],data[2],data[3],data[4]]),
+            
+        ])
         //        uiView.aa_onlyRefreshTheChartDataWithChartModelSeries([["data": [data[0],data[1],data[2],data[3],data[4]] as AnyObject]])
         
     }
@@ -174,7 +174,7 @@ struct ChartView: UIViewRepresentable {
             .touchEventEnabled(true)
             
             
-            .markerRadius(2)
+            .markerRadius(1)
             .borderRadius(10)
             .polar(true)
             .axesTextColor(AAColor.rgbaColor(117, 122, 249, 1))
@@ -201,6 +201,7 @@ struct ChartView: UIViewRepresentable {
         
         
         aaChartView.aa_drawChartWithChartModel(aaChartModel)
+        
         return aaChartView
     }
 }
