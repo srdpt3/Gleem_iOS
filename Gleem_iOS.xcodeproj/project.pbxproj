@@ -110,6 +110,7 @@
 		11B5ED2A24BE20F20055700B /* FlagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5ED2924BE20F20055700B /* FlagView.swift */; };
 		11B5ED2E24BEAC170055700B /* Flag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5ED2D24BEAC170055700B /* Flag.swift */; };
 		11B5ED3024BEAE2E0055700B /* FlagApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5ED2F24BEAE2E0055700B /* FlagApi.swift */; };
+		11CCBECA24D51D72005C99A0 /* plus.json in Resources */ = {isa = PBXBuildFile; fileRef = 11CCBEC924D51D72005C99A0 /* plus.json */; };
 		11FA744E24B7FACC008009A1 /* GuideComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FA744C24B7FACB008009A1 /* GuideComponent.swift */; };
 		11FA744F24B7FACC008009A1 /* HeaderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FA744D24B7FACB008009A1 /* HeaderComponent.swift */; };
 		11FA745424B7FAF5008009A1 /* TitleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FA745124B7FAF4008009A1 /* TitleModifier.swift */; };
@@ -249,6 +250,7 @@
 		11B5ED2924BE20F20055700B /* FlagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagView.swift; sourceTree = "<group>"; };
 		11B5ED2D24BEAC170055700B /* Flag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flag.swift; sourceTree = "<group>"; };
 		11B5ED2F24BEAE2E0055700B /* FlagApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagApi.swift; sourceTree = "<group>"; };
+		11CCBEC924D51D72005C99A0 /* plus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = plus.json; sourceTree = "<group>"; };
 		11FA744C24B7FACB008009A1 /* GuideComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideComponent.swift; sourceTree = "<group>"; };
 		11FA744D24B7FACB008009A1 /* HeaderComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderComponent.swift; sourceTree = "<group>"; };
 		11FA745124B7FAF4008009A1 /* TitleModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleModifier.swift; sourceTree = "<group>"; };
@@ -477,6 +479,7 @@
 		118BAC1C24CB6BB500989F47 /* Lottie Json */ = {
 			isa = PBXGroup;
 			children = (
+				11CCBEC924D51D72005C99A0 /* plus.json */,
 				118BAC2924CC9C1D00989F47 /* profile.json */,
 				118BAC2B24CCC02500989F47 /* femaie.json */,
 				118BAC2D24CD3DD000989F47 /* welcome.json */,
@@ -697,6 +700,7 @@
 				11B5ED0D24BDF9A10055700B /* CookieRun Regular.ttf in Resources */,
 				118BAC2224CBA92700989F47 /* no-chat.json in Resources */,
 				118BAC2E24CD3DD100989F47 /* welcome.json in Resources */,
+				11CCBECA24D51D72005C99A0 /* plus.json in Resources */,
 				11783E7B24B53BA900EEFE80 /* LaunchScreen.storyboard in Resources */,
 				11143D3324C25ED60082E48F /* radar.json in Resources */,
 				118BAC1B24CB6BA900989F47 /* break-heart.json in Resources */,

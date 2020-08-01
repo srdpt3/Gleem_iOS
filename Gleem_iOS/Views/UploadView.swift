@@ -27,7 +27,7 @@ struct UploadView: View {
     @State var buttonPressed = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
     @State  var buttonTitle = [String]()
     let haptics = UINotificationFeedbackGenerator()
-
+    
     @ObservedObject var attributeViewModel = AttributeViewModel()
     @ObservedObject var uploadViewModel = UploadViewModel()
     
@@ -62,65 +62,106 @@ struct UploadView: View {
                     Spacer()
                     Text(PHOTOUPLOAD).font(Font.custom(FONT, size: 25)).foregroundColor(APP_THEME_COLOR).multilineTextAlignment(.leading).lineLimit(2)
                     Spacer()
-
+                    
                 }
                 .padding(.top, 25)
                 
                 HStack(spacing: 15){
                     
-                    Button(action: {
+                    ZStack{
                         
-                        self.index = 0
-                        self.imagePicker.toggle()
-                        self.haptics.notificationOccurred(.success)
-
                         
-                    }) {
                         
-                        ZStack{
+                        if self.images[0].count == 0{
                             
-                            if self.images[0].count == 0{
-                                
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color("Color-2"))
-                                
-                                Image(systemName: "plus")
-                                    .font(.system(size: 24, weight: .bold)).foregroundColor(APP_THEME_COLOR)
+                            LottieView(filename: "plus").frame(width: 100, height: 100)
+                                .clipShape(Circle()).padding(.bottom, 10).padding(.top, 10).zIndex(1)
+                                .onTapGesture {
+                                    print("Tapped")
+                                    self.index = 0
+                                    self.haptics.notificationOccurred(.success)
+                                    
+                                    self.imagePicker.toggle()
                             }
-                            else{
-                                
-                                Image(uiImage: UIImage(data: self.images[0])!)
-                                    .resizable()
-                                    .renderingMode(.original)
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 160, height: 160)
-                                    .cornerRadius(10)
-                            }
+                            .opacity(self.images[0].count > 0 ? 0 : 1)
                         }
-                            // Fixed Height...
-                        .frame(width: 160, height: 160)
+                        else{
+                            
+                            Image(uiImage: UIImage(data: self.images[0])!)
+                                .resizable()
+                                .renderingMode(.original)
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 150, height: 150)
+                                .cornerRadius(10)
+                            
+                        }
+                        //                        Image(uiImage: UIImage(data: self.images[0])!)
+                        //                                                          .resizable()
+                        //                                                          .renderingMode(.original)
+                        //                                                          .aspectRatio(contentMode: .fill)
+                        //                                                          .frame(width: 160, height: 160)
+                        //                                                          .cornerRadius(10)
                         
-                        Text(SELECT_ATTRIBUTES).font(Font.custom(FONT, size: 14)).foregroundColor(Color.gray)
-                    }
+                        //                           signupViewModel.image.resizable().frame(width: 80, height: 80).foregroundColor(APP_THEME_COLOR).cornerRadius(40)
+                        //                               .padding(.bottom, 10).padding(.top, 10)
+                        //
+                        
+                    }                         .frame(width: 150, height: 150)
+                    Text(SELECT_ATTRIBUTES).font(Font.custom(FONT, size: 14)).foregroundColor(Color.gray)
+                    //
+                    //                    Button(action: {
+                    //
+                    //                        self.index = 0
+                    //                        self.imagePicker.toggle()
+                    //                        self.haptics.notificationOccurred(.success)
+                    //
+                    //
+                    //                    }) {
+                    //
+                    //                        ZStack{
+                    //
+                    //                            if self.images[0].count == 0{
+                    //
+                    //                                RoundedRectangle(cornerRadius: 10)
+                    //                                    .fill(Color("Color-2"))
+                    //
+                    //                                Image(systemName: "plus")
+                    //                                    .font(.system(size: 24, weight: .bold)).foregroundColor(APP_THEME_COLOR)
+                    //                            }
+                    //                            else{
+                    //
+                    //                                Image(uiImage: UIImage(data: self.images[0])!)
+                    //                                    .resizable()
+                    //                                    .renderingMode(.original)
+                    //                                    .aspectRatio(contentMode: .fill)
+                    //                                    .frame(width: 160, height: 160)
+                    //                                    .cornerRadius(10)
+                    //                            }
+                    //                        }
+                    //                            // Fixed Height...
+                    //                        .frame(width: 160, height: 160)
+                    //
+                    //                        Text(SELECT_ATTRIBUTES).font(Font.custom(FONT, size: 14)).foregroundColor(Color.gray)
+                    //                    }
                     
                 }
                 if(!self.attributeViewModel.buttonAttributes.isEmpty){
-                    VStack(spacing: 10){
-                        HStack(spacing : 4){
+                    VStack(alignment: .leading, spacing: 10){
+                        HStack(spacing : 10){
                             
                             AttrButtonView(isPressed: self.$buttonPressed[0],title:self.attributeViewModel.buttonAttributes[0])
                             AttrButtonView(isPressed: self.$buttonPressed[1],title:self.attributeViewModel.buttonAttributes[1])
                             AttrButtonView(isPressed: self.$buttonPressed[2],title:self.attributeViewModel.buttonAttributes[2])
                             
                             
-                        }.padding(.horizontal, 4)
+                        }.padding(.horizontal, 3)
                         //                    ChartView().frame(width: UIScreen.main.bounds.width, height: 300)
                         HStack(spacing : 10){
                             AttrButtonView(isPressed: self.$buttonPressed[3],title:self.attributeViewModel.buttonAttributes[3])
                             //                        Spacer()
                             AttrButtonView(isPressed: self.$buttonPressed[4],title:self.attributeViewModel.buttonAttributes[4])
                             
-                        }.padding(.horizontal, 10)
+                        }.padding(.horizontal, 3)
                         HStack(spacing : 10){
                             
                             AttrButtonView(isPressed: self.$buttonPressed[7],title:self.attributeViewModel.buttonAttributes[7])
@@ -128,14 +169,14 @@ struct UploadView: View {
                             AttrButtonView(isPressed: self.$buttonPressed[8],title:self.attributeViewModel.buttonAttributes[8])
                             //                            AttrButtonView(isPressed: self.$buttonPressed[8],title:buttonTitle[8])
                             
-                        }.padding(.horizontal,10)
-                        HStack(spacing : 4){
+                        }.padding(.horizontal,3)
+                        HStack(spacing : 10){
                             AttrButtonView(isPressed: self.$buttonPressed[9],title:self.attributeViewModel.buttonAttributes[9])
                             
                             AttrButtonView(isPressed: self.$buttonPressed[5],title:self.attributeViewModel.buttonAttributes[5])
                             AttrButtonView(isPressed: self.$buttonPressed[12],title:self.attributeViewModel.buttonAttributes[12])
                             
-                        }.padding(.horizontal, 4)
+                        }.padding(.horizontal, 3)
                         
                         HStack(spacing : 10){
                             AttrButtonView(isPressed: self.$buttonPressed[16],title:self.attributeViewModel.buttonAttributes[16])
@@ -144,7 +185,7 @@ struct UploadView: View {
                             //                            AttrButtonView(isPressed: self.$buttonPressed[8],title:buttonTitle[8])
                             AttrButtonView(isPressed: self.$buttonPressed[10],title:self.attributeViewModel.buttonAttributes[10])
                             
-                        }.padding(.horizontal, 10)
+                        }.padding(.horizontal, 3)
                         
                         
                         HStack(spacing : 10){
@@ -155,15 +196,15 @@ struct UploadView: View {
                             //                                                AttrButtonView(isPressed: self.$buttonPressed[7],title:self.attributeViewModel.buttonAttributes[7])
                             //                            AttrButtonView(isPressed: self.$buttonPressed[8],title:buttonTitle[8])
                             
-                        }.padding(.horizontal, 10)
-                        HStack(spacing : 4){
+                        }.padding(.horizontal, 3)
+                        HStack(spacing : 10){
                             AttrButtonView(isPressed: self.$buttonPressed[13],title:self.attributeViewModel.buttonAttributes[13])
                             
                             AttrButtonView(isPressed: self.$buttonPressed[11],title:self.attributeViewModel.buttonAttributes[11])
                             AttrButtonView(isPressed: self.$buttonPressed[6],title:self.attributeViewModel.buttonAttributes[6])
-
                             
-                        }.padding(.horizontal, 4)
+                            
+                        }.padding(.horizontal, 3)
                         
                         //                        HStack(alignment: .center) {
                         //
@@ -217,7 +258,7 @@ struct UploadView: View {
                             .shadow(color: Color.black.opacity(0.3), radius: 5, x: 5, y: 5)
                             .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
                     }
-                    .padding(.top, 5)
+                    .padding(.bottom, 15)
                         // Disabling button by verifying all images...
                         .opacity(self.verifyImages() ? 1 : 0.35)
                         .disabled(self.verifyImages() ? false : true)

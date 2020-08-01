@@ -73,7 +73,7 @@ struct MyStaticView: View {
                     let attr5 = (Double(vote.attr5) / Double(vote.numVote) * 100).roundToDecimal(0)
                     
                     self.voteData = [attr1, attr2, attr3, attr4, attr5]
-
+                    
                     if(attr1 > 80 ||  attr2 > 80  || attr3 > 80  || attr4 > 80  || attr5 > 80 ){
                         self.ymax  = 100
                     }else if(attr1 > 70 ||  attr2 > 70  || attr3 > 70  || attr4 > 70  || attr5 > 70 ){
@@ -92,11 +92,11 @@ struct MyStaticView: View {
                         self.ymax = 20
                     }
                     
-       //                    if(self.voteData.max()! < 98.0 ){
+                    //                    if(self.voteData.max()! < 98.0 ){
                     //                        self.ymax = Int(self.voteData.max()!) + 2
                     //
                     //                    }else{
-//                                             self.ymax = Int(self.voteData.max()!)
+                    //                                             self.ymax = Int(self.voteData.max()!)
                     //                    }
                     
                     //
@@ -150,7 +150,7 @@ struct MyStaticView: View {
                                     }
                                     .cornerRadius(50)
                                         
-                                    .shadow(color: Color.black.opacity(0.3), radius: 5, x: 5, y: 5)
+                                    .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 2)
                                     .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
                                     //                                    Circle().stroke(APP_THEME_COLOR, lineWidth: 5).frame(width: 110, height: 110).cornerRadius(55).padding(.trailing, 10)
                                     Spacer()
@@ -185,24 +185,45 @@ struct MyStaticView: View {
                         
                         HStack(spacing: 5){
                             
-                            
-                            ZStack{
-                                VStack{
+                            //                            ZStack{
+                            VStack{
+                                Spacer()
+                                VStack(spacing : 5){
                                     
-                                    ZStack{
-                                        //                                        LoadingView2(filename: "heart")
-                                        LottieView(filename: "heart")
-                                            .frame(width: 80, height: 100)
-                                    }
+                                    
+                                    
+                                    Spacer()
+                                    Text(VOTENUM_SOFAR).fontWeight(.heavy).font(Font.custom(FONT, size: 15)).foregroundColor(Color.white)
+                                        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 5, y: 5)
+                                    Text(String(self.totalNum)).fontWeight(.heavy).font(Font.custom(FONT, size: 15)).foregroundColor(Color.white)
+                                        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 5, y: 5)
+                                    
+                                    //                                    ZStack{
+                                    //                                        //                                        LoadingView2(filename: "heart")
+                                    //                                        LottieView(filename: "heart")
+                                    //                                            .frame(width: 80, height: 100)
+                                    //                                    }
+                                    Spacer()
                                     
                                 }
-                                
-                                
-                                
+                                .padding(.top, 10)
+                                    //                            .frame(width: 100, height: 100).padding(.horizontal)
+                                    .padding(.vertical)
+                                    .frame(width: (UIScreen.main.bounds.width / 3) - 30, height: 100 )
+                                    .background(Color("Color2"))
+                                    .cornerRadius(12).padding(.leading, 10).padding(.bottom, 15)
+                                    .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 2)
+                                    .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+                                Text("").fontWeight(.heavy).font(Font.custom(FONT, size: 12)).foregroundColor(.gray).multilineTextAlignment(.leading).lineLimit(2)
                             }
-                            .padding().padding(.top, -20)
                             
                             
+                            
+                            //                            }
+                            //                            .padding().padding(.top, -20)
+                            
+                            
+                            Spacer()
                             
                             
                             ForEach(Array(self.voteData.enumerated()), id: \.offset) { index, work in
@@ -220,8 +241,8 @@ struct MyStaticView: View {
                                                 .fill(LinearGradient(gradient: .init(colors:  self.empty_color), startPoint: .top, endPoint: .bottom))
                                                 // max height = 200
                                                 .frame(height:  150 ).animation(.linear)
-                                                .shadow(color: Color.black.opacity(0.3), radius: 5, x: 5, y: 5)
-                                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+                                            //                                                .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 2)
+                                            //                                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
                                         }
                                         .frame(height: UIScreen.main.bounds.width / 2.55).padding(.bottom, 10).padding(.horizontal, 2)
                                     }else{
@@ -234,7 +255,7 @@ struct MyStaticView: View {
                                                 .fill(LinearGradient(gradient: .init(colors:  self.colors[index]), startPoint: .top, endPoint: .bottom))
                                                 // max height = 200
                                                 .frame(height:  self.getHeight(value: CGFloat(work))).animation(.linear)
-                                                .shadow(color: Color.black.opacity(0.3), radius: 5, x: 5, y: 5)
+                                                .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 2)
                                                 .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
                                         }
                                         .frame(height: UIScreen.main.bounds.width / 2.55).padding(.bottom, 10).padding(.horizontal, 2)
@@ -245,6 +266,8 @@ struct MyStaticView: View {
                                     
                                 }
                             }
+                            Spacer()
+                            
                         }.padding(.horizontal,5)
                         
                         
@@ -253,9 +276,9 @@ struct MyStaticView: View {
                             Text(MY_STAT_RADAR).fontWeight(.heavy).font(Font.custom(FONT, size: 18)).foregroundColor(APP_THEME_COLOR)
                                 .shadow(color: Color.black.opacity(0.3), radius: 5, x: 5, y: 5)
                                 .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
-                            Text(" - " + VOTENUM_SOFAR +  String(self.totalNum)).fontWeight(.heavy).font(Font.custom(FONT, size: 17)).foregroundColor(APP_THEME_COLOR)
-                                .shadow(color: Color.black.opacity(0.3), radius: 5, x: 5, y: 5)
-                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+                            //                            Text(" - " + VOTENUM_SOFAR +  String(self.totalNum)).fontWeight(.heavy).font(Font.custom(FONT, size: 17)).foregroundColor(APP_THEME_COLOR)
+                            //                                .shadow(color: Color.black.opacity(0.3), radius: 5, x: 5, y: 5)
+                            //                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
                             
                             Spacer(minLength: 0)
                         }
@@ -388,25 +411,36 @@ struct MyStaticView: View {
                     
                     HStack(spacing: 5){
                         
-                        
-                        ZStack{
-                            VStack{
+                        VStack{
+                            Spacer()
+                            VStack(spacing : 5){
                                 
-                                ZStack{
-                                    //                                        LoadingView2(filename: "heart")
-                                    LottieView(filename: "heart")
-                                        .frame(width: 80, height: 100)
-                                }
+                                
+                                
+                                Spacer()
+                                Text(VOTENUM_SOFAR).fontWeight(.heavy).font(Font.custom(FONT, size: 15)).foregroundColor(Color.white)
+                                    .shadow(color: Color.black.opacity(0.1), radius: 5, x: 5, y: 5)
+                                Text("0").fontWeight(.heavy).font(Font.custom(FONT, size: 15)).foregroundColor(Color.white)
+                                    .shadow(color: Color.black.opacity(0.1), radius: 5, x: 5, y: 5)
+                                
+                                //                                    ZStack{
+                                //                                        //                                        LoadingView2(filename: "heart")
+                                //                                        LottieView(filename: "heart")
+                                //                                            .frame(width: 80, height: 100)
+                                //                                    }
+                                Spacer()
                                 
                             }
-                            
-                            
-                            
+                            .padding(.top, 10)
+                                //                            .frame(width: 100, height: 100).padding(.horizontal)
+                                .padding(.vertical)
+                                .frame(width: (UIScreen.main.bounds.width / 3) - 30, height: 100 )
+                                .background(Color("Color2"))
+                                .cornerRadius(12).padding(.leading, 10).padding(.bottom, 15)
+                                .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 2)
+                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+                            Text("").fontWeight(.heavy).font(Font.custom(FONT, size: 12)).foregroundColor(.gray).multilineTextAlignment(.leading).lineLimit(2)
                         }
-                        .padding().padding(.top, -20)
-                        
-                        
-                        
                         
                         ForEach(Array(self.voteData.enumerated()), id: \.offset) { index, work in
                             

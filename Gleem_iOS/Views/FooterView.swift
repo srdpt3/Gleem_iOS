@@ -72,12 +72,14 @@ struct voteButtonView : View {
                     //                        .padding(.vertical, 15)
                     .accentColor(APP_THEME_COLOR)
                 
-            } .background(Color("Color-2")).frame(height: self.height)
+            } .background(Color("Color-3")).frame(height: self.height)
                 .animation(.spring())
-                .background(Color("Color-2"))
+                .background(Color.white)
                 .cornerRadius(15)
-                .shadow(color: Color.black.opacity(0.3), radius: 1, x: 1, y: 1)
-                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+//                .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
+                .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 5)
+
+//                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
                 //
                 //                .frame(maxWidth: .infinity,
                 //                       maxHeight: .infinity)
@@ -142,10 +144,12 @@ struct ArrowView : View {
                 //                                    .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
             })
                 .animation(.spring())
-                .background(Color("Color-2")).frame(width: self.height, height: self.height)
+                .background(Color("Color-3")).frame(width: self.height, height: self.height)
                 .cornerRadius(self.height / 2)
-                .shadow(color: Color.black.opacity(0.3), radius: 1, x: 1, y: 1)
-                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+                .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 5)
+
+//                .shadow(color: Color.black.opacity(0.3), radius: 1, x: 1, y: 1)
+//                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
             
 //            Text("다음카드 보기")
 //                .font(.custom(FONT, size: 14))

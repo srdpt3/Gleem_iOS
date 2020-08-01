@@ -294,7 +294,7 @@ struct ExpandView: View {
                                                 .scaleEffect( 2.0, anchor: .center)
                                             //                                    .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
                                         })
-                                            .padding(.trailing, 20).buttonStyle(PlainButtonStyle()).padding(.top, 30)
+                                            .padding(.trailing, 15).buttonStyle(PlainButtonStyle()).padding(.top, 30)
                                     }
                                     
                                     

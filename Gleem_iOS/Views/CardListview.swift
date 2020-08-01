@@ -179,10 +179,10 @@ struct CardListview: View {
                                             .foregroundColor(Color.white)
                                             .shadow(radius: 5)
                                             //                                            .opacity(self.pulsate ? 1 : 0.6)
-                                            //                                            .scaleEffect(self.pulsate ? 1.3 : 0.9, anchor: .center)
+                                            .scaleEffect(1.2, anchor: .center)
                                             .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
                                     })
-                                        .padding(.trailing, 20)
+                                        .padding(.trailing, 10)
                                         .padding(.top, 24)
                                     
                                     Spacer()
