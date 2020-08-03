@@ -17,7 +17,7 @@ class  AttributeViewModel: ObservableObject {
     func loadAttributes() {
         self.buttonAttributes.removeAll()
         Ref.FIRESTORE_COLLECTION_ATTRIBUTE.getDocuments { (snapshot, error) in
-            
+            self.buttonAttributes.removeAll()
             guard let snap = snapshot else {
                 print("Error fetching data")
                 self.error = (error as! NSError)

@@ -135,15 +135,18 @@ class FavoriteViewModel: ObservableObject {
             
             while (self.favoriteUsers.count < 15){
                 let activeUser = ActiveVote(attr1: 0, attr2: 0, attr3: 0, attr4: 0, attr5: 0, attrNames: [], numVote: 0, createdDate: 0, lastModifiedDate: 0, id: "", email: "", imageLocation: "", username: "", age: "", sex: "")
-//                guard let decoderPost = try? activeUser.init(fromDictionary: dict) else {return}
-
                 
-                 self.favoriteUsers.append(activeUser)
+                
+                self.favoriteUsers.append(activeUser)
             }
-
+            if (self.favoriteUsers.count > 15 && self.favoriteUsers.count % 3 != 0){
+                let activeUser = ActiveVote(attr1: 0, attr2: 0, attr3: 0, attr4: 0, attr5: 0, attrNames: [], numVote: 0, createdDate: 0, lastModifiedDate: 0, id: "", email: "", imageLocation: "", username: "", age: "", sex: "")
+                self.favoriteUsers.append(activeUser)
+            }
+            
         }
         
-//        self.splitted = self.favoriteUsers.chunked(3)
+        //        self.splitted = self.favoriteUsers.chunked(3)
 
 
     }

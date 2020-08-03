@@ -18,7 +18,7 @@ class VoteViewModel: ObservableObject {
         @Published var votedCards = [String]()
     @Published var isLoading = false
     var updatedValueDict = ["attr1":0 , "attr2":0, "attr3":0, "attr4":0, "attr5":0]
-    
+ 
     
     
     func getNumVoted(){
@@ -69,6 +69,16 @@ class VoteViewModel: ObservableObject {
         guard let dict = try? myVote.toDictionary() else {return}
         batch.setData(dict, forDocument: myVoteRef)
         
+        
+        let someoneVoteObject = Activity(activityId: User.currentUser()!.id, type: "voted", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: User.currentUser()!.profileImageUrl, message: "", date: Date().timeIntervalSince1970)
+        guard let someOneVotedDict = try? someoneVoteObject.toDictionary() else { return }
+        
+        
+        print("voted")
+        let someOneVoteRef  = Ref.FIRESTORE_COLLECTION_WHO_VOTED_USERID(userId: id)
+        batch.setData(someOneVotedDict, forDocument: someOneVoteRef)
+        
+        
         batch.commit() { err in
             if let err = err {
                 print("Error writing batch \(err)")
@@ -81,6 +91,10 @@ class VoteViewModel: ObservableObject {
         
         
     }
+
+    
+    
+    
     
     func checkVoted(id: String) {
         

@@ -28,7 +28,7 @@ class ChatViewModel: ObservableObject {
     var recipientId = ""
     var listener: ListenerRegistration!
 
-    
+  
     func loadChatMessages() {
         self.chatArray = []
         self.isLoading = true

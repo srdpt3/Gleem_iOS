@@ -183,7 +183,7 @@ struct ChartView: UIViewRepresentable {
             //            .xAxisGridLineWidth(30)
             
             .yAxisGridLineWidth(4)
-            .categories(categories).dataLabelsFontSize(15)
+            .categories(categories).dataLabelsFontSize(12)
             .dataLabelsFontWeight(AAChartFontWeightType.bold)
             //            .marginRight(5)
             //            .marginLeft(5)

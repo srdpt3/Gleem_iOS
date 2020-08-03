@@ -141,8 +141,10 @@ public let NOT_ENOUGH_POINT = "가지고계신 포인트가 부족합니다. \n�
 
 
 //Stat
-public let MY_STAT_RADAR = "나의 첫인상 실시간 그래프(%)"
+public let MY_STAT_RADAR = "나의 첫인상 실시간 결과(%)"
 public let VOTENUM_SOFAR = "받은 투표수"
+public let RECENT_VOTE = "나를 투표한 최근유저"
+public let NO_VOTED_USER = "아직 투표한 유저가 없습니다"
 
 public let NEW_UPLOAD = "(새로운 첫인상 투표 사진 업로드는 왼쪽 프로필사진을 눌러주세요)"
 public let NEW_UPLOAD2 = "(참여하는 투표사진이 없어요, \n왼쪽 프로필사진을 눌러서 참여해주세요)"
@@ -251,6 +253,11 @@ class Ref {
     static var FIRESTORE_COLLECTION_MYVOTE = FIRESTORE_ROOT.collection("myvote")
     static func FIRESTORE_COLLECTION_MYVOTE_USERID(userId: String) -> DocumentReference {
         return FIRESTORE_COLLECTION_MYVOTE.document(User.currentUser()!.id).collection("voted").document(userId)
+    }
+    
+    static var FIRESTORE_COLLECTION_WHO_VOTED = FIRESTORE_ROOT.collection("someone_voted")
+    static func FIRESTORE_COLLECTION_WHO_VOTED_USERID(userId: String) -> DocumentReference {
+        return FIRESTORE_COLLECTION_WHO_VOTED.document(userId).collection("voted").document(User.currentUser()!.id)
     }
     
     

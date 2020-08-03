@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Foundation
 
 class ChartViewModel: ObservableObject {
     @Published var isLoading = false
@@ -15,35 +16,40 @@ class ChartViewModel: ObservableObject {
     
     //    @Published var voteData : [Int]?
     
+    @Published var someOneVoted = [Activity]()
+
+//    var listener: ListenerRegistration!
     
-    
-    //    func loadChartData(userId: String) {
-    //        Ref.FIRESTORE_COLLECTION_VOTE.getDocuments { (snapshot, error) in
-    //            print("asdfasdf")
-    //            guard let snap = snapshot else {
-    //                print("Error fetching data")
-    //                return
-    //            }
-    //            //            var data : Vote?
-    //            for document in snap.documents {
-    //
-    //                if(document.documentID == userId){
-    //                    let dict = document.data()
-    //                    guard let decoderPost = try? Vote.init(fromDictionary: dict) else {return}
-    //                    self.voteData?.append(decoderPost.attr1)
-    //                    self.voteData?.append(decoderPost.attr2)
-    //                    self.voteData?.append(decoderPost.attr3)
-    //                    self.voteData?.append(decoderPost.attr4)
-    //                    self.voteData?.append(decoderPost.attr5)
-    //
-    //                    //                        print(decoderPost)
-    //                }
-    //
-    //            }
-    //
-    //        }
-    //    }
-    
+    func loadSomeoneVoted() {
+        isLoading = true
+        self.someOneVoted.removeAll()
+        Ref.FIRESTORE_COLLECTION_WHO_VOTED.document(User.currentUser()!.id).collection("voted").order(by: "date", descending: true).addSnapshotListener({ (querySnapshot, error) in
+            guard let snapshot = querySnapshot else {
+                return
+            }
+            
+            snapshot.documentChanges.forEach { (documentChange) in
+                
+                switch documentChange.type {
+                case .added:
+                    //                    var activityArray = [Activity]()
+                    print("type: added")
+                    let dict = documentChange.document.data()
+                    guard let decoderActivity = try? Activity.init(fromDictionary: dict) else {return}
+                    self.someOneVoted.append(decoderActivity)
+                case .modified:
+                    print("type: modified")
+                case .removed:
+                    print("type: removed")
+                }
+                
+            }
+
+            
+        })
+        
+        
+    }
     
     func loadChartData(userId: String, onSuccess: @escaping(_ data: Vote) -> Void) {
         

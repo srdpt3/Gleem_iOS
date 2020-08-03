@@ -5,7 +5,6 @@
 //  Created by Dustin yang on 7/1/20.
 //  Copyright © 2020 Dustin yang. All rights reserved.
 //
-
 import SwiftUI
 struct UploadView: View {
     
@@ -53,6 +52,13 @@ struct UploadView: View {
         }
         return false
     }
+    
+    
+//    init(){
+//
+//    }
+    
+    
     var body: some View {
         
         ZStack{
@@ -106,7 +112,7 @@ struct UploadView: View {
                         //                               .padding(.bottom, 10).padding(.top, 10)
                         //
                         
-                    }                         .frame(width: 150, height: 150)
+                    } .frame(width: 150, height: 150)
                     Text(SELECT_ATTRIBUTES).font(Font.custom(FONT, size: 14)).foregroundColor(Color.gray)
                     //
                     //                    Button(action: {
@@ -265,12 +271,14 @@ struct UploadView: View {
                     
                     
                     Spacer()
-                }else{
-                    
+                }
+                
+                else{
+
                     LoadingView(isLoading: self.attributeViewModel.isLoading, error: self.attributeViewModel.error) {
                         self.attributeViewModel.loadAttributes()
                     }
-                    
+
                 }
                 
             }
@@ -336,6 +344,4 @@ public struct CustomStyle : TextFieldStyle {
     }
     
 }
-
-
 

@@ -5,7 +5,6 @@
 //  Created by Dustin yang on 6/30/20.
 //  Copyright © 2020 Dustin yang. All rights reserved.
 //
-
 import SwiftUI
 
 struct AttrButtonView: View {
@@ -27,7 +26,6 @@ struct AttrButtonView: View {
 //        "TEST")
 //    }
 //}
-
 
 struct NeumorphicButtonStyle: ButtonStyle {
     var bgColor: Color

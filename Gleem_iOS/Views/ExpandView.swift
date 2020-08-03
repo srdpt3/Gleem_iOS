@@ -38,8 +38,16 @@ struct ExpandView: View {
     
     
     func persist() {
-        //                                     self.topRatedState.loadMovies(with: .topRated)
-        self.voteViewModel.persist(id: user.id, buttonPressed: self.buttonPressed, buttonTitle:self.user.attrNames)
+        
+//        withAnimation{
+//            self.isVoted = true
+//
+//
+//        }
+//
+//        self.isVoted = true
+//        self.obs.moveCards()
+       self.voteViewModel.persist(id: user.id, buttonPressed: self.buttonPressed, buttonTitle:self.user.attrNames)
         self.loadChartData()
     }
     
@@ -203,16 +211,45 @@ struct ExpandView: View {
                                 
                                 HStack(spacing : 8){
                                     Spacer()
-                                    AttrButtonView(isPressed: self.$buttonPressed[0],  title:user.attrNames[0])
-                                    AttrButtonView(isPressed: self.$buttonPressed[1], title:user.attrNames[1])
-                                    AttrButtonView(isPressed: self.$buttonPressed[2], title:user.attrNames[2])
+
+                                    Button(user.attrNames[0], action: {
+                                        self.buttonPressed[0].toggle()
+                                        self.persist()
+                                        //            self.buttonSelected.toggle()
+                                    }).buttonStyle(NeumorphicButtonStyle(bgColor: Color("Color-2"), isPressed:  self.$buttonPressed[0]))
+                                    
+                                    
+                                    Button(user.attrNames[1], action: {
+                                        self.buttonPressed[1].toggle()
+                                        self.persist()
+
+                                        //            self.buttonSelected.toggle()
+                                    }).buttonStyle(NeumorphicButtonStyle(bgColor: Color("Color-2"), isPressed:  self.$buttonPressed[1]))
+                                    
+                                    Button(user.attrNames[2], action: {
+                                        self.buttonPressed[2].toggle()
+                                        self.persist()
+
+                                        //            self.buttonSelected.toggle()
+                                    }).buttonStyle(NeumorphicButtonStyle(bgColor: Color("Color-2"), isPressed:  self.$buttonPressed[2]))
+     
                                     Spacer()
                                     
                                 }.padding(.horizontal, 2)
                                 HStack(spacing : 8){
                                     Spacer()
-                                    AttrButtonView(isPressed: self.$buttonPressed[3], title:user.attrNames[3])
-                                    AttrButtonView(isPressed: self.$buttonPressed[4], title:user.attrNames[4])
+                                    Button(user.attrNames[3], action: {
+                                        self.buttonPressed[3].toggle()
+                                        self.persist()
+
+                                    }).buttonStyle(NeumorphicButtonStyle(bgColor: Color("Color-2"), isPressed:  self.$buttonPressed[3]))
+                                    
+                                    
+                                    Button(user.attrNames[4], action: {
+                                        self.buttonPressed[4].toggle()
+                                        self.persist()
+                                    }).buttonStyle(NeumorphicButtonStyle(bgColor: Color("Color-2"), isPressed:  self.$buttonPressed[4]))
+                                    
                                     Spacer()
                                     
                                 }.padding(.horizontal, 2)

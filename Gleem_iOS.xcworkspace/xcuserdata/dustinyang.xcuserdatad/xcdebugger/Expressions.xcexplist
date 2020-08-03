@@ -28,15 +28,23 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in ChartViewModel.loadChartData(userId:onSuccess:):(null)">
+         contextName = "closure #1 in MessageSubView.delete(with:):MessagesView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "document.data()">
+               value = "$0">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in NotificationView.body.getter:NotificationView.swift">
+         contextName = "closure #1 in ChartViewModel.loadChartData(userId:onSuccess:):ChartViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "querySnapshot!.documentID ">
+            </PersistentString>
+            <PersistentString
+               value = "document.documentID">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "closure #6 in closure #1 in closure #1 in SignUpView.body.getter:SignUpView.swift">
@@ -101,35 +109,43 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #1 in AttributeViewModel.loadAttributes():AttributeViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.buttonAttributes">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in UploadView.body.getter:UploadView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.attributeViewModel.buttonAttributes">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in NotificationView.body.getter:NotificationView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in ChartViewModel.loadChartData(userId:onSuccess:):(null)">
+         <PersistentStrings>
+            <PersistentString
+               value = "document.data()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in FavoriteViewModel.loadFavoriteUsers():FavoriteViewModel.swift">
          <PersistentStrings>
             <PersistentString
-               value = "dict">
+               value = " ActiveVote.init(fromDictionary: dict)">
             </PersistentString>
             <PersistentString
                value = "snapshot!.documents">
             </PersistentString>
             <PersistentString
-               value = " ActiveVote.init(fromDictionary: dict)">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in MessageSubView.delete(with:):MessagesView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "$0">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in ChartViewModel.loadChartData(userId:onSuccess:):ChartViewModel.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "querySnapshot!.documentID ">
-            </PersistentString>
-            <PersistentString
-               value = "document.documentID">
+               value = "dict">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
