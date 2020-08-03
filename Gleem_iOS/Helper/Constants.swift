@@ -143,7 +143,7 @@ public let NOT_ENOUGH_POINT = "가지고계신 포인트가 부족합니다. \n�
 //Stat
 public let MY_STAT_RADAR = "나의 첫인상 실시간 결과(%)"
 public let VOTENUM_SOFAR = "받은 투표수"
-public let RECENT_VOTE = "나를 투표한 최근유저"
+public let RECENT_VOTE = "최근 나를 투표한 유저"
 public let NO_VOTED_USER = "아직 투표한 유저가 없습니다"
 
 public let NEW_UPLOAD = "(새로운 첫인상 투표 사진 업로드는 왼쪽 프로필사진을 눌러주세요)"

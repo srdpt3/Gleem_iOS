@@ -12,9 +12,9 @@ import SDWebImageSwiftUI
 struct MyStaticView: View {
     //    var user : User
     @EnvironmentObject  var obs : observer
-
+    
     @ObservedObject private var chartViewModel = ChartViewModel()
-//    @ObservedObject private var VoteViewModel = VoteViewModel()
+    //    @ObservedObject private var VoteViewModel = VoteViewModel()
     
     @State var vote : Vote?
     
@@ -46,8 +46,10 @@ struct MyStaticView: View {
     @State var buttonPressed = [false,false,false,false,false]
     
     var selectedButton = [String]()
-
-
+    
+    init(){
+        self.chartViewModel.loadSomeoneVoted()
+    }
     
     
     func loadChartData(){
@@ -105,7 +107,7 @@ struct MyStaticView: View {
                     //                    }else{
                     //                                             self.ymax = Int(self.voteData.max()!)
                     //                    }
-
+                    
                 }
                 
                 self.voteNum.append(vote.attr1)
@@ -185,13 +187,65 @@ struct MyStaticView: View {
                                 Spacer()
                                 
                             }
-                            .padding(.horizontal, 5).animation(.spring())
+                            .padding(.horizontal, 5)
                         }
                         .background(Color.white.edgesIgnoringSafeArea(.top))
                         .cornerRadius(10)
                         .padding(.horizontal, 5)
                         
+                        
+                        // GET  a List of users who voted me
+                        
                         VStack{
+                            
+                            
+                            if !self.chartViewModel.someOneVoted.isEmpty {
+                                VStack(alignment: .leading){
+                                    
+                                    Text(RECENT_VOTE).fontWeight(.heavy).font(Font.custom(FONT, size: 18)).foregroundColor(APP_THEME_COLOR)
+                                        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
+                                    Spacer(minLength: 0)
+                                    ScrollView(.horizontal, showsIndicators: false) {
+                                        HStack() {
+                                            
+                                            ForEach(self.chartViewModel.someOneVoted, id: \.activityId){ user in
+                                                
+                                                
+                                                SomeoneVotedView(user: user)
+                                                
+//                                                AnimatedImage(url: URL(string:user.userAvatar)).resizable().frame(width: 60, height: 60).cornerRadius(30).padding(.leading, -15)
+//                                                    .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
+                                                //                                                    .onTapGesture {
+                                                //                                                        self.showUploadView.toggle()
+                                                //                                                }
+                                            }
+                                            
+                                        }.padding(.leading, 15)
+                                        
+                                        
+                                    }
+                                }
+                                
+                                
+                                
+                            }
+                                
+                            else{
+                                
+                                Spacer()
+                                EmptyView()
+                                LoadingView(isLoading: self.chartViewModel.isLoading, error: self.chartViewModel.error) {
+                                    self.chartViewModel.loadSomeoneVoted()
+                                }
+                                Spacer()
+                                
+                            }
+                            
+                        } .padding(.top,5).padding(.horizontal)
+                        
+                        
+                        
+                        Group{
                             HStack(spacing: 5){
                                 
                                 VStack{
@@ -252,7 +306,7 @@ struct MyStaticView: View {
                                             .frame(height: UIScreen.main.bounds.width / 2.55).padding(.bottom, 10).padding(.horizontal, 2)
                                         }else{
                                             VStack{
-                                                
+                          
                                                 Spacer(minLength: 0)
                                                 
                                                 
@@ -274,73 +328,48 @@ struct MyStaticView: View {
                                 Spacer()
                                 
                             }.padding(.horizontal,5)
-                            HStack{
+                            
+                            VStack{
                                 
-                                Text(RECENT_VOTE).fontWeight(.heavy).font(Font.custom(FONT, size: 18)).foregroundColor(APP_THEME_COLOR)
-                                    .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
-                                Spacer(minLength: 0)
-                                
-                            }.padding(.horizontal)
-                            
-                            
-                            // GET  a List of users who voted me
-                            
-                            HStack{
-                                if !self.chartViewModel.someOneVoted.isEmpty {
-                                    ForEach(self.chartViewModel.someOneVoted, id: \.activityId){ user in
+                                if !self.voteData.isEmpty {
+                                    
+                                    
+                                    HStack{
                                         
-                                        AnimatedImage(url: URL(string:user.userAvatar)).resizable().frame(width: 60, height: 60).cornerRadius(30).padding(.leading, -10)
+                                        Text(MY_STAT_RADAR).fontWeight(.heavy).font(Font.custom(FONT, size: 18)).foregroundColor(APP_THEME_COLOR)
                                             .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
-                                            .onTapGesture {
-                                                self.showUploadView.toggle()
-                                        }
+                                        
+                                        //                            Text(" - " + VOTENUM_SOFAR +  String(self.totalNum)).fontWeight(.heavy).font(Font.custom(FONT, size: 17)).foregroundColor(APP_THEME_COLOR)
+                                        //                                .shadow(color: Color.black.opacity(0.3), radius: 5, x: 5, y: 5)
+                                        //                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+                                        Spacer(minLength: 0)
                                     }
-                                }else{
+                                        
+                                        
+                                    .padding()
                                     
-                                    Spacer()
-                                    EmptyView()
+                                    ZStack{
+                                        
+                                        //                                    LottieView(filename: "fireworks")
+                                        ChartView(data: self.$voteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width - 10 , height: UIScreen.main.bounds.height/2.8).background(Color.clear).padding(.bottom, 20).padding(.top, -50)
+                                        //                                        .zIndex(1)
+                                        
+                                        
+                                        LottieView(filename: "radar-motion").frame(width: 300  , height: 300).padding(.bottom, 30)
+                                        
+                                    }
+                                    
+                                    
+                                }
+                                else {
                                     LoadingView(isLoading: self.chartViewModel.isLoading, error: self.chartViewModel.error) {
-                                        self.chartViewModel.loadSomeoneVoted()
+                                        self.loadChartData()
+                                        
                                     }
-                                    Spacer()
-                                    
                                 }
-                                
-                            } .padding(.top,5).padding(.horizontal)
-                        }
-                        
-                        
-                        
-                        HStack{
-                            
-                            Text(MY_STAT_RADAR).fontWeight(.heavy).font(Font.custom(FONT, size: 18)).foregroundColor(APP_THEME_COLOR)
-                                .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
-                            Spacer(minLength: 0)
-                        }
-                            
-                            
-                        .padding()
-
-                        VStack{
-                            
-                            if !self.voteData.isEmpty {
-                                ZStack{
-                                    
-                                    //                                    LottieView(filename: "fireworks")
-                                    ChartView(data: self.$voteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width - 10 , height: UIScreen.main.bounds.height/2.8).background(Color.clear).padding(.bottom, 20).padding(.top, -50)
-                                    //                                        .zIndex(1)
-                                    LottieView(filename: "radar-motion").frame(width: 300  , height: 300).padding(.bottom, 30)
-                                }.animation(.spring())
-                                
-                                
                             }
-                            else {
-                                LoadingView(isLoading: self.chartViewModel.isLoading, error: self.chartViewModel.error) {
-                                    self.loadChartData()
-                                    
-                                }
-                            } 
                         }
+                        
                         
                         VStack(spacing: 32){
                             
@@ -413,8 +442,7 @@ struct MyStaticView: View {
                         .shadow(color: Color.white.opacity(0.2), radius: 10, x: 0, y: 0)
                         
                     }
-                }
-                else{
+                }else{
                     VStack(alignment: .leading, spacing: 15) {
                         Spacer()
                         
@@ -446,6 +474,9 @@ struct MyStaticView: View {
                         VStack{
                             Spacer()
                             VStack(spacing : 5){
+                                
+                                
+                                
                                 Spacer()
                                 Text(VOTENUM_SOFAR).fontWeight(.heavy).font(Font.custom(FONT, size: 15)).foregroundColor(Color.white)
                                     .shadow(color: Color.black.opacity(0.1), radius: 5, x: 5, y: 5)
@@ -575,10 +606,10 @@ struct MyStaticView: View {
                 
                 
                 
-            }.onAppear{
-                self.chartViewModel.loadSomeoneVoted()
-
             }
+            //            .onAppear{
+            //                self.chartViewModel.loadSomeoneVoted()
+            //            }
             
             
             
@@ -670,3 +701,24 @@ extension UIColor {
     }
 }
 
+
+struct SomeoneVotedView: View {
+    var user: Activity
+    var height: CGFloat = 60
+    var body: some View {
+        VStack {
+            
+            
+            if(user.userAvatar == ""){
+                Image("Gleem_3D").resizable().aspectRatio(contentMode: .fill).frame(width: height, height: height).cornerRadius(height / 2).padding(.leading, -15)
+            }else{
+                AnimatedImage(url: URL(string:user.userAvatar)).resizable().aspectRatio(contentMode: .fill).frame(width: height, height: height).cornerRadius(height / 2).padding(.leading, -15)
+                    .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
+                
+            }
+            
+            
+        }
+        
+    }
+}

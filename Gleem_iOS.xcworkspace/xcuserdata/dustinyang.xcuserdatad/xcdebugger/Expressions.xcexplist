@@ -47,6 +47,20 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #2 in closure #1 in closure #1 in closure #1 in MyStaticView.body.getter:MyStaticView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.chartViewModel">
+            </PersistentString>
+            <PersistentString
+               value = "chartViewModel.someOneVoted">
+            </PersistentString>
+            <PersistentString
+               value = "self.chartViewModel.someOneVoted">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #6 in closure #1 in closure #1 in SignUpView.body.getter:SignUpView.swift">
          <PersistentStrings>
             <PersistentString
@@ -123,6 +137,9 @@
                value = "self.attributeViewModel.buttonAttributes">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in SomeoneVotedView.body.getter:MyStaticView.swift">
       </ContextState>
       <ContextState
          contextName = "closure #1 in NotificationView.body.getter:NotificationView.swift">

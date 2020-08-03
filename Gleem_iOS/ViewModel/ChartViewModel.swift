@@ -18,12 +18,12 @@ class ChartViewModel: ObservableObject {
     
     @Published var someOneVoted = [Activity]()
 
-//    var listener: ListenerRegistration!
+    //    var listener: ListenerRegistration!
     
     func loadSomeoneVoted() {
         isLoading = true
         self.someOneVoted.removeAll()
-        Ref.FIRESTORE_COLLECTION_WHO_VOTED.document(User.currentUser()!.id).collection("voted").order(by: "date", descending: true).addSnapshotListener({ (querySnapshot, error) in
+        Ref.FIRESTORE_COLLECTION_WHO_VOTED.document(User.currentUser()!.id).collection("voted").order(by: "date", descending: true).limit(to: 7).addSnapshotListener({ (querySnapshot, error) in
             guard let snapshot = querySnapshot else {
                 return
             }
@@ -36,6 +36,12 @@ class ChartViewModel: ObservableObject {
                     print("type: added")
                     let dict = documentChange.document.data()
                     guard let decoderActivity = try? Activity.init(fromDictionary: dict) else {return}
+                    
+//
+                    if(self.someOneVoted.count == 1 && self.someOneVoted[0].userAvatar == ""){
+                        self.someOneVoted.removeAll()
+                    }
+                    
                     self.someOneVoted.append(decoderActivity)
                 case .modified:
                     print("type: modified")
@@ -44,7 +50,10 @@ class ChartViewModel: ObservableObject {
                 }
                 
             }
-
+            if (self.someOneVoted.isEmpty){
+                let activity = Activity(activityId: "", type: "", username: "", userId: "", userAvatar: "", message: "", date: 0)
+                self.someOneVoted.append(activity)
+            }
             
         })
         

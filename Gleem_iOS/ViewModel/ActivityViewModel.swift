@@ -37,13 +37,18 @@ class ActivityViewModel: ObservableObject {
                     if(decoderActivity.type == "like"){
                         self.send()
                     }
+                    
+                    if(self.someOneLiked.count == 1 && self.someOneLiked[0].userAvatar == ""){
+                        self.someOneLiked.removeAll()
+                    }
+                    
                     self.someOneLiked.append(decoderActivity)
                 case .modified:
                     print("type: modified")
                 case .removed:
                     print("type: removed")
                 }
-
+                
             }
             
             if (self.someOneLiked.isEmpty){
@@ -103,3 +108,4 @@ class ActivityViewModel: ObservableObject {
     }
     
 }
+
