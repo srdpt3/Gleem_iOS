@@ -126,9 +126,9 @@
             filePath = "Gleem_iOS/ViewModel/SignupViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "signup(username:email:password:imageData:gender:completed:onError:)"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "signup(username:email:password:age:gender:completed:onError:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -142,8 +142,8 @@
             filePath = "Gleem_iOS/Views/CardListview.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "224"
-            endingLineNumber = "224"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>

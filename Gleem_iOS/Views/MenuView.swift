@@ -17,16 +17,17 @@ struct MenuView: View {
             VStack(spacing: 16) {
                 HStack{
                     Spacer()
-                    Text(String(User.currentUser()!.username))
+                    Text(String(User.currentUser()!.username)).font(Font.custom(FONT, size: 18))
                     Text("-")
-                    Text(PROFILE_COMPLETE).font(Font.custom(FONT, size: 20))
-                                    
+                    Text((User.currentUser()!.profileImageUrl == "" ? "70" : "100") + PROFILE_COMPLETE).font(Font.custom(FONT, size: 18))
+                    
                     Spacer()
                     
                 }
                 
                 Color.white
-                    .frame(width: 71, height: 6)
+//                    APP_THEME_COLOR
+                    .frame(width: User.currentUser()!.profileImageUrl == "" ? 71 : 130, height: 6)
                     .cornerRadius(3)
                     .frame(width: 110, height: 6, alignment: .leading)
                     .background(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)).opacity(0.08))
@@ -37,7 +38,7 @@ struct MenuView: View {
                     .cornerRadius(12)
                 
                 
-//                MenuRow(title: PROFILE, icon: "person" , index : 0)
+                //                MenuRow(title: PROFILE, icon: "person" , index : 0)
                 MenuRow(title: ACCOUNT, icon: "gear" , index : 0)
                 MenuRow(title: BILLING, icon: "creditcard" , index : 1)
                 MenuRow(title:  User.currentUser() != nil ? LOGOUT : LOGIN, icon: "person.crop.circle" , index : 2)
@@ -49,11 +50,27 @@ struct MenuView: View {
             .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
             .padding(.horizontal, 30)
             .overlay(
-                AnimatedImage(url: URL(string: User.currentUser()!.profileImageUrl)!).resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 60, height: 60)
-                    .clipShape(Circle())
-                    .offset(y: -150)
+                
+                ZStack{
+                    if(User.currentUser()!.profileImageUrl == ""){
+                        
+                        Image("Gleem_3D").resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 60, height: 60)
+                        .clipShape(Circle())
+                        .offset(y: -150)
+                        
+                    }else{
+                        
+            
+                        AnimatedImage(url: URL(string: User.currentUser()!.profileImageUrl)!).resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 60, height: 60)
+                            .clipShape(Circle())
+                            .offset(y: -150)
+                 
+                    }
+                }
                 
                 
             )

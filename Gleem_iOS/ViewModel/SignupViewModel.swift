@@ -18,7 +18,8 @@ class SignupViewModel: ObservableObject {
     var email: String = ""
     var password: String = ""
     var repassword: String = ""
-    
+    var age: String = ""
+
     //     var image: Image = Image(systemName: "person.fill")
     var image: Image = Image(systemName: "")
     
@@ -32,10 +33,10 @@ class SignupViewModel: ObservableObject {
     
     //    @Binding var showLoader:
     //
-    func signup(username: String, email: String, password: String, imageData: Data, gender: String, completed: @escaping(_ user: User) -> Void,  onError: @escaping(_ errorMessage: String) -> Void) {
-        if !username.isEmpty && !email.isEmpty && !password.isEmpty && !imageData.isEmpty {
+    func signup(username: String, email: String, password: String, age: String, gender: String, completed: @escaping(_ user: User) -> Void,  onError: @escaping(_ errorMessage: String) -> Void) {
+        if !username.isEmpty && !email.isEmpty && !password.isEmpty && !age.isEmpty {
             //            self.showLoader()
-            AuthService.signupUser(username: username, email: email, password: password, imageData: imageData, gender: gender, onSuccess: completed, onError: onError)
+            AuthService.signupUser(username: username, email: email, password: password, age: age, gender: gender, onSuccess: completed, onError: onError)
         }
         
         

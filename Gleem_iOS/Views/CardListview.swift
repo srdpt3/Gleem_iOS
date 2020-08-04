@@ -119,6 +119,7 @@ struct CardListview: View {
                                 .scaleEffect(self.dragState.isDragging && self.isTopCard(cardView: cardView) ? 0.85 : 1.0)
                                 .rotationEffect(Angle(degrees: self.isTopCard(cardView: cardView) ? Double(self.dragState.translation.width / 12) : 0))
                                 .animation(.interpolatingSpring(stiffness: 150, damping: 130))
+//                              .animation(Animation.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0))
 //                                .animation(.easeInOut(duration: 3))
                             
                             //                                .gesture(LongPressGesture(minimumDuration: 0.01)
@@ -190,22 +191,28 @@ struct CardListview: View {
                             }
                         )
                     }else{
-                        LoadingView(isLoading: self.obs.isLoading, error: self.obs.error) {
-                            self.obs.getNumVoted()
-                            
-                        }
+                        VStack {
+                            Spacer()
+                            EmptyView()
+                            LoadingView(isLoading: self.obs.isLoading, error: self.obs.error) {
+                                self.obs.getNumVoted()
+                            }            .animation(Animation.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0))   
+                        
+                        Spacer()
                     }
                     
-                    //                    ZStack{
-                    //
-                    //                        Spacer()
-                    //
-                    //                        RadioButtons(selected: self.$selectedFlag,show: self.$showFlag)
-                    //                            .offset(y: self.showFlag ? (UIApplication.shared.windows.last?.safeAreaInsets.bottom)! + 15 : UIScreen.main.bounds.height)
-                    //
-                    //                        }.edgesIgnoringSafeArea(.all).zIndex(1)
-                    //                    .background(Color(UIColor.label.withAlphaComponent(self.showFlag ? 0.2 : 0))
-                    
+                }
+                
+                //                    ZStack{
+                //
+                //                        Spacer()
+                //
+                //                        RadioButtons(selected: self.$selectedFlag,show: self.$showFlag)
+                //                            .offset(y: self.showFlag ? (UIApplication.shared.windows.last?.safeAreaInsets.bottom)! + 15 : UIScreen.main.bounds.height)
+                //
+                //                        }.edgesIgnoringSafeArea(.all).zIndex(1)
+                //                    .background(Color(UIColor.label.withAlphaComponent(self.showFlag ? 0.2 : 0))
+                
                     }.padding(.horizontal)
                 
                 Spacer()

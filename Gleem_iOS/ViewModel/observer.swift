@@ -212,9 +212,12 @@ class observer : ObservableObject{
     func reload(){
         
         self.isLoading = true
+        let whereField = User.currentUser()!.sex == "female" ? "male" : "female"
         
-        
-        Ref.FIRESTORE_COLLECTION_ACTIVE_VOTE.order(by: "createdDate",descending: true).getDocuments { (snap, err) in
+        Ref.FIRESTORE_COLLECTION_ACTIVE_VOTE.whereField("sex", isEqualTo: whereField )
+            .limit(to: 50)
+//            .order(by: "createdDate",descending: true)
+            .getDocuments { (snap, err) in
             self.users.removeAll()
             
             if err != nil{
@@ -230,15 +233,18 @@ class observer : ObservableObject{
                     
                     let dict = i.data()
                     guard let decoderPost = try? ActiveVote.init(fromDictionary: dict) else {return}
-                                    if(User.currentUser()!.sex != decoderPost.sex ){
-                        self.users.append(decoderPost)
-                        print("Added")
-
-                   }
+                    
+                    self.users.append(decoderPost)
+//                                       print("Added")
+//
+//                                    if(User.currentUser()!.sex != decoderPost.sex ){
+//
+//
+//                   }
                 
-                    if self.votedCards.contains(id) {
-                        print("contained " +  id)
-                    }
+//                    if self.votedCards.contains(id) {
+//                        print("contained " +  id)
+//                    }
                     
                     
                     //                    else{

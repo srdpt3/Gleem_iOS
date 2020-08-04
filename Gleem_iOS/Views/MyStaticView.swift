@@ -203,8 +203,8 @@ struct MyStaticView: View {
                                 VStack(alignment: .leading){
                                     
                                     Text(RECENT_VOTE).fontWeight(.heavy).font(Font.custom(FONT, size: 18)).foregroundColor(APP_THEME_COLOR)
-                                        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
-                                    Spacer(minLength: 0)
+                                        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5).padding(.bottom, 5)
+                                    //                                    Spacer(minLength: 0)
                                     ScrollView(.horizontal, showsIndicators: false) {
                                         HStack() {
                                             
@@ -213,8 +213,8 @@ struct MyStaticView: View {
                                                 
                                                 SomeoneVotedView(user: user)
                                                 
-//                                                AnimatedImage(url: URL(string:user.userAvatar)).resizable().frame(width: 60, height: 60).cornerRadius(30).padding(.leading, -15)
-//                                                    .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
+                                                //                                                AnimatedImage(url: URL(string:user.userAvatar)).resizable().frame(width: 60, height: 60).cornerRadius(30).padding(.leading, -15)
+                                                //                                                    .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
                                                 //                                                    .onTapGesture {
                                                 //                                                        self.showUploadView.toggle()
                                                 //                                                }
@@ -241,7 +241,7 @@ struct MyStaticView: View {
                                 
                             }
                             
-                        } .padding(.top,5).padding(.horizontal)
+                        } .padding(.top,5).padding(.horizontal).padding(.vertical, 5)
                         
                         
                         
@@ -306,7 +306,7 @@ struct MyStaticView: View {
                                             .frame(height: UIScreen.main.bounds.width / 2.55).padding(.bottom, 10).padding(.horizontal, 2)
                                         }else{
                                             VStack{
-                          
+                                                
                                                 Spacer(minLength: 0)
                                                 
                                                 
@@ -351,7 +351,7 @@ struct MyStaticView: View {
                                     ZStack{
                                         
                                         //                                    LottieView(filename: "fireworks")
-                                        ChartView(data: self.$voteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width - 10 , height: UIScreen.main.bounds.height/2.8).background(Color.clear).padding(.bottom, 20).padding(.top, -50)
+                                        ChartView(data: self.$voteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width - 10 , height: UIScreen.main.bounds.height/2.8).background(Color.clear).padding(.bottom, 20).padding(.top, -60)
                                         //                                        .zIndex(1)
                                         
                                         
@@ -604,13 +604,8 @@ struct MyStaticView: View {
             .sheet(isPresented: self.$showUploadView) {
                 UploadView(noVotePic: self.noVotePic, vote: self.vote!)
                 
-                
-                
             }
-            //            .onAppear{
-            //                self.chartViewModel.loadSomeoneVoted()
-            //            }
-            
+
             
             
         }
@@ -713,7 +708,7 @@ struct SomeoneVotedView: View {
                 Image("Gleem_3D").resizable().aspectRatio(contentMode: .fill).frame(width: height, height: height).cornerRadius(height / 2).padding(.leading, -15)
             }else{
                 AnimatedImage(url: URL(string:user.userAvatar)).resizable().aspectRatio(contentMode: .fill).frame(width: height, height: height).cornerRadius(height / 2).padding(.leading, -15)
-                    .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
+                    .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5).animation(.spring())
                 
             }
             

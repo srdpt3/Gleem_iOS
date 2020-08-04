@@ -31,12 +31,31 @@ struct Profile : View {
     @Binding var profile_show : Bool
 
     
- 
+    
     var body : some View{
         
         ZStack{
             
-            AnimatedImage(url: URL(string: User.currentUser()!.profileImageUrl)!).resizable().frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/1.5, alignment: .center).edgesIgnoringSafeArea(.all).scaledToFit()
+            ZStack{
+                if(User.currentUser()!.profileImageUrl != ""){
+                    
+                    AnimatedImage(url: URL(string: User.currentUser()!.profileImageUrl)!).resizable().frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/1.5, alignment: .center).edgesIgnoringSafeArea(.all).scaledToFit()
+                    
+                    
+                }else{
+                    VStack{
+                        Text(NOVOTEIMAGE)
+                            .font(.custom(FONT, size: CGFloat(13))).foregroundColor(Color("sleep")).padding(.horizontal)
+                        Image("Gleem_3D").resizable().scaledToFit().frame(width: UIScreen.main.bounds.width / 2 , height: UIScreen.main.bounds.height/3, alignment: .center).edgesIgnoringSafeArea(.all)
+                        
+                    }
+                    
+                    
+                    
+                    
+                }
+            }
+            
             
             VStack{
                 
@@ -72,6 +91,7 @@ struct Profile : View {
                                 
                                 Text(User.currentUser()!.username).font(Font.custom(FONT, size: 20))
                                 Text("나이: " + User.currentUser()!.age).font(Font.custom(FONT, size: 15))
+                                
                             }
                             
                             Spacer()

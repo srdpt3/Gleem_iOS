@@ -51,6 +51,9 @@ let TEXT_EMAIL = "이메일"
 let TEXT_USERNAME = "닉네임"
 let TEXT_PASSWORD = "비밀번호"
 let TEXT_PASSWORD_REENTER = "비밀번호 다시입력"
+let AGE = "나이대 선택 "
+
+
 
 let TEXT_SIGNIN_SUBHEADLINE = "실시간 내가 올린 사진 평가받고, 원하는 이성이랑 매칭"
 let TEXT_SIGNUP_NOTE = "An account will allow you to save and access photo information across devices. You can delete your account at any time and your information will not be shared."
@@ -93,19 +96,21 @@ public let NOVOTEIMAGE = "내 첫인상 투표사진을 올려야 남들이 나�
 //RatingDetailView
 public let VOTENUM = "투표수:"
 public let VOTE_TIMESTAMP = "업로드된 날짜: "
-public let GENDER = "성별 :"
+public let GENDER = "성별:"
 
 //Chart
 public let SERIES_TITLE = "매력지수(%)"
 
 
 //Menu
-public let PROFILE_COMPLETE = "70% 완료"
+public let PROFILE_COMPLETE = "% 완료"
 public let ACCOUNT = "계정"
 public let PROFILE = "프로필"
 public let BILLING = "포인트 충전"
 public let LOGIN = "로그인"
 public let LOGOUT = "로그아웃"
+//public let NOVOTEIMAGE2 = "내 첫인상 투표사진을 올려야 남들이 나를 볼 수 있어요~ \n이성과 연결이 되고 싶다면 평가 사진 올리기를 먼저 해주세요~"
+
 
 
 // Upload voting picture
@@ -143,7 +148,7 @@ public let NOT_ENOUGH_POINT = "가지고계신 포인트가 부족합니다. \n�
 //Stat
 public let MY_STAT_RADAR = "나의 첫인상 실시간 결과(%)"
 public let VOTENUM_SOFAR = "받은 투표수"
-public let RECENT_VOTE = "최근 나를 투표한 유저"
+public let RECENT_VOTE = "최근 나를 투표한 이성"
 public let NO_VOTED_USER = "아직 투표한 유저가 없습니다"
 
 public let NEW_UPLOAD = "(새로운 첫인상 투표 사진 업로드는 왼쪽 프로필사진을 눌러주세요)"

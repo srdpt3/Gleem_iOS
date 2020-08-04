@@ -301,8 +301,9 @@ struct ExpandView: View {
                                 self.windowHeightDeno = 2
                                 self.loadChartData()
                                 
-                            }.animation(.spring())
-                            .cornerRadius(20)
+                            }  .animation(Animation.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0))  
+                                
+                                .cornerRadius(20)
                             //                            .offset(y: -100)
                             
                         }

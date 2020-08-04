@@ -34,16 +34,16 @@ struct SignUpView: View {
     
     func signUp() {
         //        self.showLoader.toggle()
-        if signupViewModel.imageData.isEmpty {
-            self.error = true
-            self.activeAlert = ActiveAlert.first
-            return
-            
-            
-        }
+        //        if signupViewModel.imageData.isEmpty {
+        //            self.error = true
+        //            self.activeAlert = ActiveAlert.first
+        //            return
+        //
+        //
+        //        }
         
-        
-        if signupViewModel.username.isEmpty || signupViewModel.email.isEmpty || signupViewModel.password.isEmpty || signupViewModel.repassword.isEmpty{
+        print( signupViewModel.age)
+        if signupViewModel.username.isEmpty || signupViewModel.email.isEmpty || signupViewModel.password.isEmpty || signupViewModel.repassword.isEmpty ||  signupViewModel.age == ""{
             self.error = true
             
             self.activeAlert = ActiveAlert.second
@@ -66,7 +66,7 @@ struct SignUpView: View {
         
         
         
-        signupViewModel.signup(username: signupViewModel.username, email: signupViewModel.email, password: signupViewModel.password, imageData: signupViewModel.imageData, gender: self.gender,  completed: { (user) in
+        signupViewModel.signup(username: signupViewModel.username, email: signupViewModel.email, password: signupViewModel.password, age: signupViewModel.age, gender: self.gender,  completed: { (user) in
             print("SignUp \(user.email)")
             //            self.showLoader.toggle()
             self.finishSignUp = true
@@ -93,6 +93,7 @@ struct SignUpView: View {
         self.signupViewModel.email = ""
         self.signupViewModel.password = ""
         self.signupViewModel.repassword = ""
+        
         //         @Binding var show : Bool
         
     }
@@ -101,27 +102,27 @@ struct SignUpView: View {
         ZStack{
             
             VStack(spacing: 20){
-                HStack{
-                    
-                    Text(PROFILE_UPLOAD).font(.custom(FONT, size: 16)).foregroundColor(Color.black.opacity(0.3))
-                    
-                    ZStack{
-                        LottieView(filename: "profile").frame(width: 80, height: 80)
-                            .clipShape(Circle()).padding(.bottom, 10).padding(.top, 20).zIndex(1)
-                            .onTapGesture {
-                                print("Tapped")
-                                self.signupViewModel.showImagePicker = true
-                        }
-                        .opacity( signupViewModel.imageData.count > 0 ? 0 : 1)
-                        
-                        signupViewModel.image.resizable().frame(width: 80, height: 80).foregroundColor(APP_THEME_COLOR).cornerRadius(40)
-                            .padding(.bottom, 10).padding(.top, 10)
-                        
-                        
-                    }
-                    
-                    
-                }
+                //                HStack{
+                //
+                //                    Text(PROFILE_UPLOAD).font(.custom(FONT, size: 16)).foregroundColor(Color.black.opacity(0.3))
+                //
+                //                    ZStack{
+                //                        LottieView(filename: "profile").frame(width: 80, height: 80)
+                //                            .clipShape(Circle()).padding(.bottom, 10).padding(.top, 20).zIndex(1)
+                //                            .onTapGesture {
+                //                                print("Tapped")
+                //                                self.signupViewModel.showImagePicker = true
+                //                        }
+                //                        .opacity( signupViewModel.imageData.count > 0 ? 0 : 1)
+                //
+                //                        signupViewModel.image.resizable().frame(width: 80, height: 80).foregroundColor(APP_THEME_COLOR).cornerRadius(40)
+                //                            .padding(.bottom, 10).padding(.top, 10)
+                //
+                //
+                //                    }
+                //
+                //
+                //                }
                 
                 
                 //                UsernameTextField(username: $signupViewModel.username)
@@ -138,11 +139,22 @@ struct SignUpView: View {
                 }
                 
                 HStack{
-                    //                    Spacer()
-                    Text(GENDER).font(.custom(FONT, size: 17)).foregroundColor(Color.black.opacity(0.3))
-                    Topbar(selected: self.$gender).padding(.top)
+                    //
                     
-                }
+                    //                    Text().font(.custom(FONT, size: 16)).foregroundColor(Color.black.opacity(0.3))
+                    
+                    DropDown(age: $signupViewModel.age).padding(.top)
+                    Spacer()
+                    Group{
+                        Text(GENDER).font(.custom(FONT, size: 16)).foregroundColor(Color.black.opacity(0.3)).padding(.top)
+                        Topbar(selected: self.$gender).padding(.top)
+                    }
+                    
+                    
+                    
+                    
+                }.padding(.vertical)
+                
                 Button(action: {
                     
                     self.signUp()
@@ -234,7 +246,10 @@ struct Topbar : View {
             
             Button(action: {
                 
-                self.selected = "male"
+                withAnimation{
+                    self.selected = "male"
+                    
+                }
                 print("male")
                 
             }) {
@@ -245,13 +260,16 @@ struct Topbar : View {
                     .padding(.vertical,6)
                     .padding(.horizontal,15)
                     .background(self.selected == "male" ? Color.white : Color.clear)
-                    .clipShape(Capsule())
+                    .clipShape(Capsule()).animation(.default)
             }
             //            .foregroundColor(self.selected ==  "male" ?  Color("Color1"): .gray)
             
             Button(action: {
                 
-                self.selected = "female"
+                withAnimation{
+                    self.selected = "female"
+                    
+                }
                 print("female")
                 
                 
@@ -263,13 +281,102 @@ struct Topbar : View {
                     .padding(.vertical,6)
                     .padding(.horizontal,15)
                     .background(self.selected == "female" ? Color.white : Color.clear)
-                    .clipShape(Capsule())
+                    .clipShape(Capsule()).animation(.default)
             }
             .foregroundColor(self.selected == "female" ? Color("myvote") : .gray)
             
         }.padding(8)
             .background(Color("Color-2"))
+            //            .background(LinearGradient(gradient: .init(colors:   [Color("Color5"),Color("Color11")]), startPoint: .top, endPoint: .bottom))
+            
             .clipShape(Capsule())
             .animation(.default)
     }
+}
+
+
+
+struct DropDown: View {
+    @Binding var age : String
+    @State var expand = false
+    var body: some View{
+        VStack(alignment: .leading, spacing: 18, content: {
+            
+            HStack{
+                Text(age == "" ? AGE: age).foregroundColor(APP_THEME_COLOR).font(.custom(FONT, size: 15))
+                Image(systemName: expand ?  "chevron.up" :  "chevron.down").resizable().frame(width: 10, height: 10).foregroundColor(Color("Color2"))
+            }.onTapGesture {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                self.expand.toggle()
+            }
+            if(expand){
+                
+                Button(action: {
+                    self.age = "10대 후반"
+                    self.expand.toggle()
+                }){
+                    Text("10대 후반").font(.custom(FONT, size: 16))
+                }.foregroundColor(APP_THEME_COLOR)
+                
+                Button(action: {
+                    self.age = "20대 초반"
+                    self.expand.toggle()
+                }){
+                    Text("20대 초반").font(.custom(FONT, size: 16))
+                }.foregroundColor(APP_THEME_COLOR)
+                Button(action: {
+                    self.age = "20대 중후반"
+                    
+                    self.expand.toggle()
+                }){
+                    Text("20대 중후반").font(.custom(FONT, size: 16))
+                }.foregroundColor(APP_THEME_COLOR)
+                
+                Button(action: {
+                    self.age = "30대 초반"
+                    
+                    self.expand.toggle()
+                }){
+                    Text("30대 초반").font(.custom(FONT, size: 16))
+                    
+                }.foregroundColor(APP_THEME_COLOR)
+                
+                Button(action: {
+                    self.age = "30대 중후반"
+                    self.expand.toggle()
+                }){
+                    Text("30대 중후반").font(.custom(FONT, size: 16))
+                }.foregroundColor(APP_THEME_COLOR)
+                
+                
+                
+                Button(action: {
+                    self.age = "40대 초반"
+                    
+                    self.expand.toggle()
+                }){
+                    Text("40대 초반").font(.custom(FONT, size: 16))
+                }.foregroundColor(APP_THEME_COLOR)
+                
+                
+                Button(action: {
+                    self.age = "40대 중후반"
+                    
+                    self.expand.toggle()
+                }){
+                    Text("40대 중후반").font(.custom(FONT, size: 16))
+                }.foregroundColor(APP_THEME_COLOR)
+                
+            }
+            
+            
+            
+            
+        })
+            .padding()
+            .background(Color("Color-2"))
+            //            .background(LinearGradient(gradient: .init(colors:   [Color("Color5"),Color("Color11")]), startPoint: .top, endPoint: .bottom))
+            .cornerRadius(20)
+            .animation(Animation.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0))    }
+    
 }
