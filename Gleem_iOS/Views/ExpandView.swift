@@ -29,25 +29,26 @@ struct ExpandView: View {
     @ObservedObject private var chartViewModel = ChartViewModel()
     @ObservedObject  private var favoriteViewModel = FavoriteViewModel()
     @EnvironmentObject  var obs : observer
-
+    
     @State private var pulsate: Bool = false
     @Environment(\.presentationMode) var presentationMode
     let haptics = UINotificationFeedbackGenerator()
+    @State var showHeart : Bool = false
     
     //    @State var buttonSelected: Bool = false
     
     
     func persist() {
         
-//        withAnimation{
-//            self.isVoted = true
-//
-//
-//        }
-//
-//        self.isVoted = true
-//        self.obs.moveCards()
-       self.voteViewModel.persist(id: user.id, buttonPressed: self.buttonPressed, buttonTitle:self.user.attrNames)
+        //        withAnimation{
+        //            self.isVoted = true
+        //
+        //
+        //        }
+        //
+        //        self.isVoted = true
+        //        self.obs.moveCards()
+        self.voteViewModel.persist(id: user.id, buttonPressed: self.buttonPressed, buttonTitle:self.user.attrNames)
         self.loadChartData()
     }
     
@@ -65,7 +66,7 @@ struct ExpandView: View {
                 let attr4 = (Double(vote.attr4) / Double(vote.numVote) * 100).roundToDecimal(0)
                 let attr5 = (Double(vote.attr5) / Double(vote.numVote) * 100).roundToDecimal(0)
                 self.voteData = [attr1, attr2, attr3, attr4, attr5]
-
+                
                 if(attr1 > 80 ||  attr2 > 80  || attr3 > 80  || attr4 > 80  || attr5 > 80 ){
                     self.ymax  = 100
                 }else if(attr1 > 70 ||  attr2 > 70  || attr3 > 70  || attr4 > 70  || attr5 > 70 ){
@@ -211,7 +212,7 @@ struct ExpandView: View {
                                 
                                 HStack(spacing : 8){
                                     Spacer()
-
+                                    
                                     Button(user.attrNames[0], action: {
                                         self.buttonPressed[0].toggle()
                                         self.persist()
@@ -222,17 +223,17 @@ struct ExpandView: View {
                                     Button(user.attrNames[1], action: {
                                         self.buttonPressed[1].toggle()
                                         self.persist()
-
+                                        
                                         //            self.buttonSelected.toggle()
                                     }).buttonStyle(NeumorphicButtonStyle(bgColor: Color("Color-2"), isPressed:  self.$buttonPressed[1]))
                                     
                                     Button(user.attrNames[2], action: {
                                         self.buttonPressed[2].toggle()
                                         self.persist()
-
+                                        
                                         //            self.buttonSelected.toggle()
                                     }).buttonStyle(NeumorphicButtonStyle(bgColor: Color("Color-2"), isPressed:  self.$buttonPressed[2]))
-     
+                                    
                                     Spacer()
                                     
                                 }.padding(.horizontal, 2)
@@ -241,7 +242,7 @@ struct ExpandView: View {
                                     Button(user.attrNames[3], action: {
                                         self.buttonPressed[3].toggle()
                                         self.persist()
-
+                                        
                                     }).buttonStyle(NeumorphicButtonStyle(bgColor: Color("Color-2"), isPressed:  self.$buttonPressed[3]))
                                     
                                     
@@ -307,7 +308,7 @@ struct ExpandView: View {
                             //                            .offset(y: -100)
                             
                         }
-                    }    .overlay(
+                    }.overlay(
                         HStack {
                             Spacer()
                             VStack {
@@ -322,15 +323,15 @@ struct ExpandView: View {
                                             self.haptics.notificationOccurred(.success)
                                             self.isVoted = true
                                             self.obs.moveCards()
-
+                                            
                                             self.presentationMode.wrappedValue.dismiss()
                                         }, label: {
                                             Image(systemName: "xmark.circle.fill")
                                                 .foregroundColor(Color.white)
                                                 .shadow(radius: 10)
                                                 .opacity( 1 )
-                                                .scaleEffect( 2.0, anchor: .center)
-                                            //                                    .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
+                                                .scaleEffect(1.8 , anchor: .center)
+                                            //                                               .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
                                         })
                                             .padding(.trailing, 15).buttonStyle(PlainButtonStyle()).padding(.top, 30)
                                     }
@@ -339,22 +340,36 @@ struct ExpandView: View {
                                     Spacer()
                                     
                                     Button(action:self.addToMyList) {
-                                        Image(self.favoriteViewModel.liked == true ? "heartred" : "heartwhite").resizable().frame(width: 30, height: 30).aspectRatio(contentMode: .fit)
+                                        //
+                                        //                                                            ZStack{
+                                        //                                                                LottieView(filename: "heart_beat").frame(width: 80, height: 80)
+                                        //                                                                    .clipShape(Circle()).padding(.bottom, 10).padding(.top, 20).zIndex(1)
+                                        //                                                                    .onTapGesture {
+                                        //                                                                        print("Tapped")
+                                        //                                                                        self.signupViewModel.showImagePicker = true
+                                        //                                                                }
+                                        
+                                        
+                                        
+                                        Image(self.favoriteViewModel.liked == true ? "full-heart" : "empty-heart").resizable().frame(width: 30, height: 30).aspectRatio(contentMode: .fit)
                                             .foregroundColor(Color.white)
-                                            .shadow(radius: 8)
+//                                            .shadow(radius: 8)
                                             .opacity(1)
-                                            .scaleEffect( 1.8, anchor: .center)
+                                            .scaleEffect(self.showHeart ? 1.9 : 1.2, anchor: .center).onAppear{
+                                                self.showHeart.toggle()
+                                        }
+                                            
                                             //                                            .scaleEffect( 1.8, anchor: .center)
-                                            .animation(Animation.easeInOut(duration: 1.5))
+                                            //                                            .scaleEffect( 1.8, anchor: .center)
                                         //                                        .repeatForever(autoreverses: true))
                                         
                                         
                                     }
                                         
                                         
-                                    .buttonStyle(PlainButtonStyle())   .padding(.trailing, 30).padding(.top, UIScreen.main.bounds.height / 4.5)
-                                    .animation(Animation.easeInOut(duration: 1.5))
-                                    
+                                    .buttonStyle(PlainButtonStyle()).padding(.trailing, 30).padding(.top, UIScreen.main.bounds.height / 3.7)
+                                    .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
+
                                     
                                 }
                                 Spacer()
@@ -376,10 +391,10 @@ struct ExpandView: View {
             .onAppear{
                 self.favoriteViewModel.checkLiked(id: self.user.id)
         }.onDisappear{
-//            withAnimation{
-//                //                         self.showVotingScreen.toggle()
-//                self.obs.moveCards()
-//            }
+            //            withAnimation{
+            //                //                         self.showVotingScreen.toggle()
+            //                self.obs.moveCards()
+            //            }
         }
         
     }

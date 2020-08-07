@@ -17,11 +17,14 @@ class ActivityViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var activityArray = [Activity]()
     @Published var someOneLiked = [Activity]()
+    @Published var someOneLiked_id = [String]()
 
     var listener: ListenerRegistration!
     
     func loadSomeOneLike() {
         isLoading = true
+        someOneLiked.removeAll()
+        someOneLiked_id.removeAll()
         listener = Ref.FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID(userId: User.currentUser()!.id).collection("liked").order(by: "date", descending: true).addSnapshotListener({ (querySnapshot, error) in
             guard let snapshot = querySnapshot else {
                 return
@@ -40,9 +43,13 @@ class ActivityViewModel: ObservableObject {
                     
                     if(self.someOneLiked.count == 1 && self.someOneLiked[0].userAvatar == ""){
                         self.someOneLiked.removeAll()
+                        self.someOneLiked_id.removeAll()
+
                     }
                     
                     self.someOneLiked.append(decoderActivity)
+                    self.someOneLiked_id.append(decoderActivity.userId)
+
                 case .modified:
                     print("type: modified")
                 case .removed:

@@ -191,15 +191,16 @@ struct CardListview: View {
                             }
                         )
                     }else{
-                        VStack {
-                            Spacer()
-                            EmptyView()
+//                        VStack {
+//                            Spacer()
+//                            EmptyView()
                             LoadingView(isLoading: self.obs.isLoading, error: self.obs.error) {
                                 self.obs.getNumVoted()
-                            }            .animation(Animation.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0))   
+                            }
+//                            .animation(Animation.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0))   
                         
-                        Spacer()
-                    }
+//                        Spacer()
+//                    }
                     
                 }
                 

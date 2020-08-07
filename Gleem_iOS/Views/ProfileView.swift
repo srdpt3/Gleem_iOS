@@ -39,7 +39,7 @@ struct Profile : View {
             ZStack{
                 if(User.currentUser()!.profileImageUrl != ""){
                     
-                    AnimatedImage(url: URL(string: User.currentUser()!.profileImageUrl)!).resizable().frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/1.5, alignment: .center).edgesIgnoringSafeArea(.all).scaledToFit()
+                    AnimatedImage(url: URL(string: User.currentUser()!.profileImageUrl)!).resizable().aspectRatio(contentMode: .fill).frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/1.5, alignment: .center).edgesIgnoringSafeArea(.all)
                     
                     
                 }else{

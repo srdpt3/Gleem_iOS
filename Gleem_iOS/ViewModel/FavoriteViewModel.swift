@@ -13,6 +13,8 @@ class FavoriteViewModel: ObservableObject {
     @Published var liked : Bool = false
 
     @Published var favoriteUsers = [ActiveVote]()
+    @Published var favoriteUsers_ids = [String]()
+
     @Published var error: NSError?
     @Published var isLoading = false
     
@@ -118,6 +120,7 @@ class FavoriteViewModel: ObservableObject {
     func loadFavoriteUsers() {
         isLoading = true
         favoriteUsers.removeAll()
+        favoriteUsers_ids.removeAll()
         Ref.FIRESTORE_GET_LIKED_USERID_COLLECTION(userId: User.currentUser()!.id).getDocuments { (snapshot, error) in
             if(error != nil){
                 print((error?.localizedDescription)!)
@@ -130,6 +133,7 @@ class FavoriteViewModel: ObservableObject {
                 guard let decoderPost = try? ActiveVote.init(fromDictionary: dict) else {return}
                 
                 self.favoriteUsers.append(decoderPost)
+                self.favoriteUsers_ids.append(decoderPost.id)
             }
             self.isLoading = false
             

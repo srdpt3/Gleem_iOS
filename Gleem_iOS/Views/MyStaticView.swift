@@ -1,10 +1,3 @@
-//
-//  MyStaticView.swift
-//  Gleem_Dating
-//
-//  Created by Dustin yang on 7/3/20.
-//  Copyright © 2020 Dustin yang. All rights reserved.
-//
 
 import SwiftUI
 import SDWebImageSwiftUI
@@ -131,317 +124,307 @@ struct MyStaticView: View {
     }
     
     var body: some View {
-        ZStack{
+        VStack{
+            if !self.voteData.isEmpty && !self.noVotePic {
+                VStack(alignment: .leading, spacing: 5) {
+                    HStack(alignment: .top){
+                        
+                        ZStack(alignment: .bottomTrailing){
+                            
+                            
+                            
+                            AnimatedImage(url: URL(string: self.votePiclocation)!).resizable().frame(width: 80, height: 80).cornerRadius(40)
+                                .background(Color("Color-2"))
+                                
+                                .onTapGesture {
+                                    self.haptics.notificationOccurred(.success)
+                                    
+                                    self.showUploadView.toggle()
+                                    
+                                    
+                            }
+                            .cornerRadius(50)
+                                
+                            .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 2)
+                            //                                    Circle().stroke(APP_THEME_COLOR, lineWidth: 5).frame(width: 110, height: 110).cornerRadius(55).padding(.trailing, 10)
+                            //                                    Spacer()
+                            Image(systemName: "plus")
+                                .resizable()
+                                .frame(width: 10, height: 10)
+                                .padding(6)
+                                .background(Color("background2"))
+                                .clipShape(Circle()).foregroundColor(Color.white)
+                                .offset(x: 5)
+                        }.padding(.trailing, 4)
+                        
+                        VStack(alignment: .leading, spacing: 5){
+                            
+                            Text(timeAgoSinceDate(Date(timeIntervalSince1970: self.date ), currentDate: Date(), numericDates: true) + "에 참여하였습니다.").font(Font.custom(FONT, size: 13)).multilineTextAlignment(.leading).lineLimit(2)
+                                .foregroundColor(.gray)
+                            Text(self.uploadMsg).font(Font.custom(FONT, size: 13)).multilineTextAlignment(.leading).lineLimit(2)
+                                .foregroundColor(.gray)
+                            if(self.totalNum == 0){
+                                Text(NO_DATA).font(Font.custom(FONT, size: 12)).multilineTextAlignment(.leading).lineLimit(2)
+                                    .foregroundColor(.gray)
+                            }else{
+                                Spacer(minLength: 0)
+                            }
+                            Spacer()
+                        }.padding(.top, 15)
+                        
+                        Spacer()
+                        
+                    }
+                    .padding(.leading, 10)
+                    Spacer()
+                    
+                }
+                .background(Color.white.edgesIgnoringSafeArea(.top))
+                .cornerRadius(10)
+                .padding(.horizontal, 5)
+                .frame(height: UIScreen.main.bounds.height / 8)
+            }
+            // GET  a List of users who voted me
+            
+            VStack{
+                
+                
+                if !self.chartViewModel.someOneVoted.isEmpty {
+                    VStack(alignment: .leading){
+                        
+                        Text(RECENT_VOTE).fontWeight(.heavy).font(Font.custom(FONT, size: 18)).foregroundColor(APP_THEME_COLOR)
+                            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5).padding(.bottom, 5)
+                        //                                    Spacer(minLength: 0)
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack() {
+                                
+                                ForEach(self.chartViewModel.someOneVoted, id: \.activityId){ user in
+                                    
+                                    
+                                    SomeoneVotedView(user: user)
+                                }
+                                
+                            }.padding(.leading, 15)
+                            
+                            
+                        }
+                    }
+                    
+                    
+                    
+                }
+                    
+                else{
+                    
+                    Spacer()
+                    EmptyView()
+                    LoadingView(isLoading: self.chartViewModel.isLoading, error: self.chartViewModel.error) {
+                        self.chartViewModel.loadSomeoneVoted()
+                    }
+                    Spacer()
+                    
+                }
+                
+            } .padding(.top,5).padding(.horizontal).padding(.vertical, 5)
+            
+            
             ScrollView(.vertical, showsIndicators: true) {
                 
                 if !self.voteData.isEmpty && !self.noVotePic {
+                    HStack{
+                        
+                        Text(MY_STAT_RADAR).fontWeight(.heavy).font(Font.custom(FONT, size: 18)).foregroundColor(APP_THEME_COLOR)
+                            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
+                        
+                        //                            Text(" - " + VOTENUM_SOFAR +  String(self.totalNum)).fontWeight(.heavy).font(Font.custom(FONT, size: 17)).foregroundColor(APP_THEME_COLOR)
+                        //                                .shadow(color: Color.black.opacity(0.3), radius: 5, x: 5, y: 5)
+                        //                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+                        Spacer(minLength: 0)
+                    } .padding(.horizontal).padding(.vertical,10)
                     
-                    VStack{
-                        VStack(alignment: .leading, spacing: 10) {
+                    
+                    HStack(alignment: .top,spacing: 5){
+                        
+                        VStack{
+                            Spacer()
                             
-                            HStack(alignment: .top){
+                            VStack(alignment: .center, spacing: 5) {
                                 
-                                ZStack(alignment: .bottomTrailing){
-                                    
-                                    
-                                    
-                                    AnimatedImage(url: URL(string: self.votePiclocation)!).resizable().frame(width: 80, height: 80).cornerRadius(40)
-                                        .background(Color("Color-2"))
-                                        
-                                        .onTapGesture {
-                                            self.haptics.notificationOccurred(.success)
-                                            
-                                            self.showUploadView.toggle()
-                                            
-                                            
-                                    }
-                                    .cornerRadius(50)
-                                        
-                                    .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 2)
-                                    //                                    Circle().stroke(APP_THEME_COLOR, lineWidth: 5).frame(width: 110, height: 110).cornerRadius(55).padding(.trailing, 10)
-                                    //                                    Spacer()
-                                    Image(systemName: "plus")
-                                        .resizable()
-                                        .frame(width: 10, height: 10)
-                                        .padding(6)
-                                        .background(Color("background2"))
-                                        .clipShape(Circle()).foregroundColor(Color.white)
-                                        .offset(x: 5)
-                                }.padding(.trailing, 4)
                                 
-                                VStack(alignment: .leading, spacing: 10){
-                                    
-                                    Text(timeAgoSinceDate(Date(timeIntervalSince1970: self.date ), currentDate: Date(), numericDates: true) + "에 참여하였습니다.").font(Font.custom(FONT, size: 13)).multilineTextAlignment(.leading).lineLimit(2)
-                                        .foregroundColor(.gray)
-                                    Text(self.uploadMsg).font(Font.custom(FONT, size: 13)).multilineTextAlignment(.leading).lineLimit(2)
-                                        .foregroundColor(.gray)
-                                    if(self.totalNum == 0){
-                                        Text(NO_DATA).font(Font.custom(FONT, size: 12)).multilineTextAlignment(.leading).lineLimit(2)
-                                            .foregroundColor(.gray)
-                                    }else{
-                                        Spacer(minLength: 0)
-                                    }
-                                    
-                                }.padding(.top, 15)
                                 
+                                Spacer()
+                                Text(VOTENUM_SOFAR).fontWeight(.heavy).font(Font.custom(FONT, size: 15)).foregroundColor(Color.white)
+                                    .shadow(color: Color.black.opacity(0.1), radius: 5, x: 5, y: 5)
+                                Text(String(self.totalNum)).fontWeight(.heavy).font(Font.custom(FONT, size: 15)).foregroundColor(Color.white)
+                                    .shadow(color: Color.black.opacity(0.1), radius: 5, x: 5, y: 5)
+                                
+                                //                                    ZStack{
+                                //                                        //                                        LoadingView2(filename: "heart")
+                                //                                        LottieView(filename: "heart")
+                                //                                            .frame(width: 80, height: 100)
+                                //                                    }
                                 Spacer()
                                 
                             }
-                            .padding(.horizontal, 5)
+                                //                                .padding(.top, 5)
+                                //                            .frame(width: 100, height: 100).padding(.horizontal)
+                                .padding(.vertical)
+                                .frame(width: (UIScreen.main.bounds.width / 3) - 30, height: 100 )
+                                .background(Color("Color2"))
+                                .cornerRadius(12).padding(.leading, 10).padding(.bottom, 15)
+                                .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 2)
+                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+                            Spacer()
+                            Text("").fontWeight(.heavy).font(Font.custom(FONT, size: 12)).foregroundColor(.gray).multilineTextAlignment(.leading).lineLimit(2)
+                        } .frame(height: UIScreen.main.bounds.width / 2.55).padding(.bottom, 5).padding(.horizontal, 2)
+                        
+                        
+                        
+                        
+                        //                            }
+                        //                            .padding().padding(.top, -20)
+                        
+                        ForEach(Array(self.voteData.enumerated()), id: \.offset) { index, work in
+                            VStack{
+                                if(work == 0){
+                                    VStack{
+                                        
+                                        Spacer(minLength: 0)
+                                        
+                                        
+                                        RoundedShape()
+                                            .fill(LinearGradient(gradient: .init(colors:  self.empty_color), startPoint: .top, endPoint: .bottom))
+                                            // max height = 200
+                                            .frame(height:  100 ).animation(.linear)
+                                        //                                                .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 2)
+                                        //                                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+                                    }
+                                    .frame(height: UIScreen.main.bounds.width / 2.55).padding(.bottom, 10).padding(.horizontal, 2)
+                                }else{
+                                    VStack{
+                                        
+                                        Spacer(minLength: 0)
+                                        
+                                        
+                                        RoundedShape()
+                                            .fill(LinearGradient(gradient: .init(colors:  self.colors[index]), startPoint: .top, endPoint: .bottom))
+                                            // max height = 200
+                                            .frame(height:  self.getHeight(value: CGFloat(work))).animation(.linear)
+                                            .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 2)
+                                            .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+                                    }
+                                    .frame(height: UIScreen.main.bounds.width / 3.5).padding(.bottom, 5).padding(.horizontal, 2)
+                                }
+                                
+                                
+                                Text(self.buttonTitle[index]).fontWeight(.heavy).font(Font.custom(FONT, size: 12)).foregroundColor(.gray).multilineTextAlignment(.leading).lineLimit(1)
+                                Spacer()
+                            }
                         }
-                        .background(Color.white.edgesIgnoringSafeArea(.top))
-                        .cornerRadius(10)
-                        .padding(.horizontal, 5)
+                        Spacer()
                         
-                        
-                        // GET  a List of users who voted me
+                    }.padding(.horizontal,5)
+                    Group{
                         
                         VStack{
                             
-                            
-                            if !self.chartViewModel.someOneVoted.isEmpty {
-                                VStack(alignment: .leading){
+                            if !self.voteData.isEmpty {
+                                
+                                
+
+                                
+                                ZStack{
                                     
-                                    Text(RECENT_VOTE).fontWeight(.heavy).font(Font.custom(FONT, size: 18)).foregroundColor(APP_THEME_COLOR)
-                                        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5).padding(.bottom, 5)
-                                    //                                    Spacer(minLength: 0)
-                                    ScrollView(.horizontal, showsIndicators: false) {
-                                        HStack() {
-                                            
-                                            ForEach(self.chartViewModel.someOneVoted, id: \.activityId){ user in
-                                                
-                                                
-                                                SomeoneVotedView(user: user)
-                                                
-                                                //                                                AnimatedImage(url: URL(string:user.userAvatar)).resizable().frame(width: 60, height: 60).cornerRadius(30).padding(.leading, -15)
-                                                //                                                    .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
-                                                //                                                    .onTapGesture {
-                                                //                                                        self.showUploadView.toggle()
-                                                //                                                }
-                                            }
-                                            
-                                        }.padding(.leading, 15)
-                                        
-                                        
-                                    }
+                                    //                                    LottieView(filename: "fireworks")
+                                    ChartView(data: self.$voteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width - 10 , height: UIScreen.main.bounds.height/2.8).background(Color.clear).padding(.bottom, 20).padding(.top, -60)
+                                    //                                        .zIndex(1)
+                                    
+                                    
+                                    LottieView(filename: "radar-motion").frame(width: 300  , height: 300)
+                                        .padding(.bottom, 50)
+                                    
                                 }
                                 
                                 
-                                
                             }
-                                
-                            else{
-                                
-                                Spacer()
-                                EmptyView()
+                            else {
                                 LoadingView(isLoading: self.chartViewModel.isLoading, error: self.chartViewModel.error) {
-                                    self.chartViewModel.loadSomeoneVoted()
-                                }
-                                Spacer()
-                                
-                            }
-                            
-                        } .padding(.top,5).padding(.horizontal).padding(.vertical, 5)
-                        
-                        
-                        
-                        Group{
-                            HStack(spacing: 5){
-                                
-                                VStack{
-                                    Spacer()
-                                    VStack(spacing : 5){
-                                        
-                                        
-                                        
-                                        Spacer()
-                                        Text(VOTENUM_SOFAR).fontWeight(.heavy).font(Font.custom(FONT, size: 15)).foregroundColor(Color.white)
-                                            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 5, y: 5)
-                                        Text(String(self.totalNum)).fontWeight(.heavy).font(Font.custom(FONT, size: 15)).foregroundColor(Color.white)
-                                            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 5, y: 5)
-                                        
-                                        //                                    ZStack{
-                                        //                                        //                                        LoadingView2(filename: "heart")
-                                        //                                        LottieView(filename: "heart")
-                                        //                                            .frame(width: 80, height: 100)
-                                        //                                    }
-                                        Spacer()
-                                        
-                                    }
-                                        //                                .padding(.top, 5)
-                                        //                            .frame(width: 100, height: 100).padding(.horizontal)
-                                        .padding(.vertical)
-                                        .frame(width: (UIScreen.main.bounds.width / 3) - 30, height: 100 )
-                                        .background(Color("Color2"))
-                                        .cornerRadius(12).padding(.leading, 10).padding(.bottom, 15)
-                                        .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 2)
-                                        .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
-                                    Text("").fontWeight(.heavy).font(Font.custom(FONT, size: 12)).foregroundColor(.gray).multilineTextAlignment(.leading).lineLimit(2)
-                                }
-                                
-                                
-                                
-                                //                            }
-                                //                            .padding().padding(.top, -20)
-                                
-                                
-                                Spacer()
-                                
-                                
-                                ForEach(Array(self.voteData.enumerated()), id: \.offset) { index, work in
-                                    VStack{
-                                        if(work == 0){
-                                            VStack{
-                                                
-                                                Spacer(minLength: 0)
-                                                
-                                                
-                                                RoundedShape()
-                                                    .fill(LinearGradient(gradient: .init(colors:  self.empty_color), startPoint: .top, endPoint: .bottom))
-                                                    // max height = 200
-                                                    .frame(height:  120 ).animation(.linear)
-                                                //                                                .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 2)
-                                                //                                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
-                                            }
-                                            .frame(height: UIScreen.main.bounds.width / 2.55).padding(.bottom, 10).padding(.horizontal, 2)
-                                        }else{
-                                            VStack{
-                                                
-                                                Spacer(minLength: 0)
-                                                
-                                                
-                                                RoundedShape()
-                                                    .fill(LinearGradient(gradient: .init(colors:  self.colors[index]), startPoint: .top, endPoint: .bottom))
-                                                    // max height = 200
-                                                    .frame(height:  self.getHeight(value: CGFloat(work))).animation(.linear)
-                                                    .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 2)
-                                                    .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
-                                            }
-                                            .frame(height: UIScreen.main.bounds.width / 3.5).padding(.bottom, 10).padding(.horizontal, 2)
-                                        }
-                                        
-                                        Spacer()
-                                        Text(self.buttonTitle[index]).fontWeight(.heavy).font(Font.custom(FONT, size: 12)).foregroundColor(.gray).multilineTextAlignment(.leading).lineLimit(2)
-                                        
-                                    }
-                                }
-                                Spacer()
-                                
-                            }.padding(.horizontal,5)
-                            
-                            VStack{
-                                
-                                if !self.voteData.isEmpty {
+                                    self.loadChartData()
                                     
-                                    
-                                    HStack{
-                                        
-                                        Text(MY_STAT_RADAR).fontWeight(.heavy).font(Font.custom(FONT, size: 18)).foregroundColor(APP_THEME_COLOR)
-                                            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
-                                        
-                                        //                            Text(" - " + VOTENUM_SOFAR +  String(self.totalNum)).fontWeight(.heavy).font(Font.custom(FONT, size: 17)).foregroundColor(APP_THEME_COLOR)
-                                        //                                .shadow(color: Color.black.opacity(0.3), radius: 5, x: 5, y: 5)
-                                        //                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
-                                        Spacer(minLength: 0)
-                                    }
-                                        
-                                        
-                                    .padding()
-                                    
-                                    ZStack{
-                                        
-                                        //                                    LottieView(filename: "fireworks")
-                                        ChartView(data: self.$voteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width - 10 , height: UIScreen.main.bounds.height/2.8).background(Color.clear).padding(.bottom, 20).padding(.top, -60)
-                                        //                                        .zIndex(1)
-                                        
-                                        
-                                        LottieView(filename: "radar-motion").frame(width: 300  , height: 300).padding(.bottom, 30)
-                                        
-                                    }
-                                    
-                                    
-                                }
-                                else {
-                                    LoadingView(isLoading: self.chartViewModel.isLoading, error: self.chartViewModel.error) {
-                                        self.loadChartData()
-                                        
-                                    }
                                 }
                             }
                         }
+                    }
+                    
+                    VStack(spacing: 32){
                         
                         
-                        VStack(spacing: 32){
-                            
-                            
-                            
-                            HStack{
-                                VStack(spacing: 15){
-                                    Text("나의 투표 포인트").fontWeight(.heavy).font(Font.custom(FONT, size: 20)).foregroundColor(APP_THEME_COLOR)
-                                    
-                                    Spacer(minLength: 0)
-                                    ZStack{
-                                        
-                                        Circle()
-                                            .trim(from: 0, to: 1)
-                                            .stroke(Color("myvote").opacity(0.05), lineWidth: 10)
-                                            .frame(width: (UIScreen.main.bounds.width - 150) / 2, height: (UIScreen.main.bounds.width - 150) / 2)
-                                        
-                                        Circle()
-                                            .trim(from: 0, to: (CGFloat(self.numberIVoted % 20) / 100))
-                                            .stroke(Color("myvote"), style: StrokeStyle(lineWidth: 10, lineCap: .round))
-                                            .frame(width: (UIScreen.main.bounds.width - 150) / 2, height: (UIScreen.main.bounds.width - 150) / 2)
-                                            .animation(.spring())
-                                        
-                                        Text(String(describing: CGFloat(self.numberIVoted % 20)) + "%")
-                                            .font(.system(size: 22))
-                                            .fontWeight(.bold)
-                                            .foregroundColor(Color("myvote"))
-                                            .rotationEffect(.init(degrees: 90))
-                                        
-                                    }
-                                    .rotationEffect(.init(degrees: -90))
-                                    .animation(.spring())
-                                    
-                                }
+                        
+                        HStack{
+                            VStack(spacing: 15){
+                                Text("나의 투표 포인트").fontWeight(.heavy).font(Font.custom(FONT, size: 20)).foregroundColor(APP_THEME_COLOR)
+                                
                                 Spacer(minLength: 0)
-                                VStack(spacing: 15){
-                                    Text("내 인기율").fontWeight(.heavy).font(Font.custom(FONT, size: 20)).foregroundColor(APP_THEME_COLOR)
+                                ZStack{
                                     
-                                    Spacer(minLength: 0)
-                                    ZStack{
-                                        
-                                        Circle()
-                                            .trim(from: 0, to: 1)
-                                            .stroke(Color("receivedVote").opacity(0.05), lineWidth: 10)
-                                            .frame(width: (UIScreen.main.bounds.width - 140) / 2, height: (UIScreen.main.bounds.width - 140) / 2)
-                                        
-                                        Circle()
-                                            .trim(from: 0, to: (CGFloat(self.totalNum % 100) / 100))
-                                            .stroke(Color("receivedVote"), style: StrokeStyle(lineWidth: 10, lineCap: .round))
-                                            .frame(width: (UIScreen.main.bounds.width - 140) / 2, height: (UIScreen.main.bounds.width - 140) / 2)
-                                            .animation(.spring())
-                                        Text(String(describing: CGFloat(self.totalNum % 100)) + "%")
-                                            .font(.system(size: 22))
-                                            .fontWeight(.bold)
-                                            .foregroundColor(Color("receivedVote"))
-                                            .rotationEffect(.init(degrees: 90))
-                                        
-                                    }
-                                    .rotationEffect(.init(degrees: -90))
-                                    .animation(.spring())
+                                    Circle()
+                                        .trim(from: 0, to: 1)
+                                        .stroke(Color("myvote").opacity(0.05), lineWidth: 10)
+                                        .frame(width: (UIScreen.main.bounds.width - 150) / 2, height: (UIScreen.main.bounds.width - 150) / 2)
+                                    
+                                    Circle()
+                                        .trim(from: 0, to: (CGFloat(self.numberIVoted % 20) / 100))
+                                        .stroke(Color("myvote"), style: StrokeStyle(lineWidth: 10, lineCap: .round))
+                                        .frame(width: (UIScreen.main.bounds.width - 150) / 2, height: (UIScreen.main.bounds.width - 150) / 2)
+                                        .animation(.spring())
+                                    
+                                    Text(String(describing: CGFloat(self.numberIVoted % 20)) + "%")
+                                        .font(.system(size: 22))
+                                        .fontWeight(.bold)
+                                        .foregroundColor(Color("myvote"))
+                                        .rotationEffect(.init(degrees: 90))
                                     
                                 }
+                                .rotationEffect(.init(degrees: -90))
+                                .animation(.spring())
+                                
+                            }
+                            Spacer(minLength: 0)
+                            VStack(spacing: 15){
+                                Text("내 인기율").fontWeight(.heavy).font(Font.custom(FONT, size: 20)).foregroundColor(APP_THEME_COLOR)
+                                
+                                Spacer(minLength: 0)
+                                ZStack{
+                                    
+                                    Circle()
+                                        .trim(from: 0, to: 1)
+                                        .stroke(Color("receivedVote").opacity(0.05), lineWidth: 10)
+                                        .frame(width: (UIScreen.main.bounds.width - 140) / 2, height: (UIScreen.main.bounds.width - 140) / 2)
+                                    
+                                    Circle()
+                                        .trim(from: 0, to: (CGFloat(self.totalNum % 100) / 100))
+                                        .stroke(Color("receivedVote"), style: StrokeStyle(lineWidth: 10, lineCap: .round))
+                                        .frame(width: (UIScreen.main.bounds.width - 140) / 2, height: (UIScreen.main.bounds.width - 140) / 2)
+                                        .animation(.spring())
+                                    Text(String(describing: CGFloat(self.totalNum % 100)) + "%")
+                                        .font(.system(size: 22))
+                                        .fontWeight(.bold)
+                                        .foregroundColor(Color("receivedVote"))
+                                        .rotationEffect(.init(degrees: 90))
+                                    
+                                }
+                                .rotationEffect(.init(degrees: -90))
+                                .animation(.spring())
                                 
                             }
                             
                         }
-                        .padding()                        .padding(.horizontal, 10)
-                        .background(Color.white.opacity(0.06))
-                        .cornerRadius(15)
-                        .shadow(color: Color.white.opacity(0.2), radius: 10, x: 0, y: 0)
                         
                     }
+                    .padding()                        .padding(.horizontal, 10)
+                    .background(Color.white.opacity(0.06))
+                    .cornerRadius(15)
+                    .shadow(color: Color.white.opacity(0.2), radius: 10, x: 0, y: 0)
                 }else{
                     VStack(alignment: .leading, spacing: 15) {
                         Spacer()
@@ -565,7 +548,8 @@ struct MyStaticView: View {
                             ZStack{
                                 
                                 //                                    LottieView(filename: "fireworks")
-                                ChartView(data: self.$voteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width - 10 , height: UIScreen.main.bounds.height/2.8).background(Color.clear).padding(.bottom, 20).padding(.top, -50)
+                                ChartView(data: self.$voteData, totalNum: self.$ymax, categories: self.buttonTitle)
+                                    .frame(width: UIScreen.main.bounds.width - 10 , height: UIScreen.main.bounds.height/3).background(Color.clear).padding(.bottom, 20).padding(.top, -60)
                                 //                                        .zIndex(1)
                                 
                                 
@@ -605,7 +589,7 @@ struct MyStaticView: View {
                 UploadView(noVotePic: self.noVotePic, vote: self.vote!)
                 
             }
-
+            
             
             
         }
@@ -650,7 +634,7 @@ struct MyStaticView: View {
         // the value in minutes....
         // 24 hrs in min = 1440
         
-        let hrs = CGFloat(value ) 
+        let hrs = CGFloat(value )
         
         return hrs
     }

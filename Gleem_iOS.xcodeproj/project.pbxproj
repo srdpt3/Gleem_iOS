@@ -73,15 +73,15 @@
 		11783EFE24B6293A00EEFE80 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783EFD24B6293A00EEFE80 /* BlurView.swift */; };
 		11783F0824B6A44500EEFE80 /* SuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783F0724B6A44500EEFE80 /* SuccessView.swift */; };
 		11783F0A24B6A4DD00EEFE80 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783F0924B6A4DD00EEFE80 /* LottieView.swift */; };
+		1181FF2F24DCBF3500ED5865 /* heart_beat.json in Resources */ = {isa = PBXBuildFile; fileRef = 1181FF2E24DCBF3100ED5865 /* heart_beat.json */; };
+		1181FF3124DCE2DF00ED5865 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1181FF3024DCE2DF00ED5865 /* MultilineTextField.swift */; };
 		118BAC1B24CB6BA900989F47 /* break-heart.json in Resources */ = {isa = PBXBuildFile; fileRef = 118BAC1A24CB6BA800989F47 /* break-heart.json */; };
 		118BAC1E24CB7D1B00989F47 /* KeyboardObserving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118BAC1D24CB7D1B00989F47 /* KeyboardObserving.swift */; };
 		118BAC2024CB9BEA00989F47 /* EmptyChattingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118BAC1F24CB9BEA00989F47 /* EmptyChattingView.swift */; };
 		118BAC2224CBA92700989F47 /* no-chat.json in Resources */ = {isa = PBXBuildFile; fileRef = 118BAC2124CBA92700989F47 /* no-chat.json */; };
 		118BAC2424CBD94A00989F47 /* no-chat2.json in Resources */ = {isa = PBXBuildFile; fileRef = 118BAC2324CBD94800989F47 /* no-chat2.json */; };
 		118BAC2824CBDD6A00989F47 /* noti.json in Resources */ = {isa = PBXBuildFile; fileRef = 118BAC2724CBDD6A00989F47 /* noti.json */; };
-		118BAC2A24CC9C1E00989F47 /* profile.json in Resources */ = {isa = PBXBuildFile; fileRef = 118BAC2924CC9C1D00989F47 /* profile.json */; };
 		118BAC2C24CCC02B00989F47 /* femaie.json in Resources */ = {isa = PBXBuildFile; fileRef = 118BAC2B24CCC02500989F47 /* femaie.json */; };
-		118BAC2E24CD3DD100989F47 /* welcome.json in Resources */ = {isa = PBXBuildFile; fileRef = 118BAC2D24CD3DD000989F47 /* welcome.json */; };
 		11982E7024CFA60C00DC57E2 /* CreditCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11982E6F24CFA60C00DC57E2 /* CreditCard.swift */; };
 		11982E7224CFA63600DC57E2 /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11982E7124CFA63600DC57E2 /* PaymentView.swift */; };
 		11B5ECE324BB7D920055700B /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5ECE224BB7D920055700B /* Chat.swift */; };
@@ -212,15 +212,15 @@
 		11783EFD24B6293A00EEFE80 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		11783F0724B6A44500EEFE80 /* SuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessView.swift; sourceTree = "<group>"; };
 		11783F0924B6A4DD00EEFE80 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		1181FF2E24DCBF3100ED5865 /* heart_beat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heart_beat.json; sourceTree = "<group>"; };
+		1181FF3024DCE2DF00ED5865 /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
 		118BAC1A24CB6BA800989F47 /* break-heart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "break-heart.json"; sourceTree = "<group>"; };
 		118BAC1D24CB7D1B00989F47 /* KeyboardObserving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserving.swift; sourceTree = "<group>"; };
 		118BAC1F24CB9BEA00989F47 /* EmptyChattingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyChattingView.swift; sourceTree = "<group>"; };
 		118BAC2124CBA92700989F47 /* no-chat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "no-chat.json"; sourceTree = "<group>"; };
 		118BAC2324CBD94800989F47 /* no-chat2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "no-chat2.json"; sourceTree = "<group>"; };
 		118BAC2724CBDD6A00989F47 /* noti.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = noti.json; sourceTree = "<group>"; };
-		118BAC2924CC9C1D00989F47 /* profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = profile.json; sourceTree = "<group>"; };
 		118BAC2B24CCC02500989F47 /* femaie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = femaie.json; sourceTree = "<group>"; };
-		118BAC2D24CD3DD000989F47 /* welcome.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = welcome.json; sourceTree = "<group>"; };
 		11982E6F24CFA60C00DC57E2 /* CreditCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCard.swift; sourceTree = "<group>"; };
 		11982E7124CFA63600DC57E2 /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
 		11B5ECE224BB7D920055700B /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
@@ -443,6 +443,7 @@
 				11783F0924B6A4DD00EEFE80 /* LottieView.swift */,
 				1153A7A824BA023F00CE3574 /* CustomController.swift */,
 				118BAC1D24CB7D1B00989F47 /* KeyboardObserving.swift */,
+				1181FF3024DCE2DF00ED5865 /* MultilineTextField.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -479,10 +480,9 @@
 		118BAC1C24CB6BB500989F47 /* Lottie Json */ = {
 			isa = PBXGroup;
 			children = (
+				1181FF2E24DCBF3100ED5865 /* heart_beat.json */,
 				11CCBEC924D51D72005C99A0 /* plus.json */,
-				118BAC2924CC9C1D00989F47 /* profile.json */,
 				118BAC2B24CCC02500989F47 /* femaie.json */,
-				118BAC2D24CD3DD000989F47 /* welcome.json */,
 				118BAC2124CBA92700989F47 /* no-chat.json */,
 				11143D3424C268920082E48F /* radar-motion.json */,
 				118BAC2324CBD94800989F47 /* no-chat2.json */,
@@ -695,16 +695,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				118BAC2A24CC9C1E00989F47 /* profile.json in Resources */,
 				11783EF724B53F4700EEFE80 /* GoogleService-Info.plist in Resources */,
 				11B5ED0D24BDF9A10055700B /* CookieRun Regular.ttf in Resources */,
 				118BAC2224CBA92700989F47 /* no-chat.json in Resources */,
-				118BAC2E24CD3DD100989F47 /* welcome.json in Resources */,
 				11CCBECA24D51D72005C99A0 /* plus.json in Resources */,
 				11783E7B24B53BA900EEFE80 /* LaunchScreen.storyboard in Resources */,
 				11143D3324C25ED60082E48F /* radar.json in Resources */,
 				118BAC1B24CB6BA900989F47 /* break-heart.json in Resources */,
 				118BAC2824CBDD6A00989F47 /* noti.json in Resources */,
+				1181FF2F24DCBF3500ED5865 /* heart_beat.json in Resources */,
 				11B5ED1124BDFB6D0055700B /* JSDongkang-Regular.ttf in Resources */,
 				11143D2824C242330082E48F /* heart.json in Resources */,
 				118BAC2C24CCC02B00989F47 /* femaie.json in Resources */,
@@ -855,6 +854,7 @@
 				1153A7A924BA023F00CE3574 /* CustomController.swift in Sources */,
 				11783EE024B53DD900EEFE80 /* Constants.swift in Sources */,
 				11783E7124B53BA500EEFE80 /* Gleem_iOS.xcdatamodeld in Sources */,
+				1181FF3124DCE2DF00ED5865 /* MultilineTextField.swift in Sources */,
 				1153A78724B966AE00CE3574 /* SignupViewModel.swift in Sources */,
 				11982E7024CFA60C00DC57E2 /* CreditCard.swift in Sources */,
 				11783EB124B53CEC00EEFE80 /* UploadViewModel.swift in Sources */,
