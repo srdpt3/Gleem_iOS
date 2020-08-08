@@ -24,7 +24,7 @@ struct CardListview: View {
     @State var viewState = CGSize.zero
     @State private var pulsate: Bool = false
     
-    
+    @State var reloading : Bool = false
     @State var selectedFlag = ""
     @State var showFlag = false
     //    @State var cardViews: [MainCardView] = {
@@ -191,18 +191,42 @@ struct CardListview: View {
                             }
                         )
                     }else{
-//                        VStack {
-//                            Spacer()
-//                            EmptyView()
-                            LoadingView(isLoading: self.obs.isLoading, error: self.obs.error) {
-                                self.obs.getNumVoted()
-                            }
-//                            .animation(Animation.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0))
                         
-//                        Spacer()
-//                    }
-                    
-                }
+                        VStack{
+                            Spacer()
+                            
+                            
+                            Image("Gleem_3D").resizable().scaledToFit().frame(width: UIScreen.main.bounds.width / 3 , height: UIScreen.main.bounds.height / 3)
+                                .scaleEffect(self.reloading ? 1.1 : 1, anchor: .center).onAppear{
+                                    self.reloading.toggle()
+                            }
+                            .animation(Animation.spring(response: 0.7, dampingFraction: 1.0, blendDuration: 1.0).repeatForever(autoreverses: true))
+                            
+                            Text(NO_NEW_CARD)
+                                .font(.custom(FONT, size: CGFloat(15))).foregroundColor(APP_THEME_COLOR).multilineTextAlignment(.center).lineLimit(2).padding(.horizontal)
+                            Spacer()
+                            LoadingView(isLoading: self.obs.isLoading, error: self.obs.error) {
+                                self.obs.getNewCards()
+                            }
+                            
+                        }
+                        
+                        
+                        
+                    }
+                    //                    else{
+                    ////                        VStack {
+                    ////                            Spacer()
+                    ////                            EmptyView()
+                    //                            LoadingView(isLoading: self.obs.isLoading, error: self.obs.error) {
+                    //                                self.obs.getNewCards()
+                    //                            }
+                    ////                            .animation(Animation.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0))
+//
+////                        Spacer()
+////                    }
+//
+//                }
                 
                 //                    ZStack{
                 //

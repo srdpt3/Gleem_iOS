@@ -27,7 +27,7 @@ class FavoriteViewModel: ObservableObject {
         guard let dict = try? user.toDictionary() else {return}
         let batch = Ref.FIRESTORE_ROOT.batch()
         
-        let likeRef = Ref.FIRESTORE_COLLECTION_LIKED_USERID(userId: user.id)
+        let likeRef = Ref.FIRESTORE_COLLECTION_LIKED_USERID(userId: User.currentUser()!.id,  userId2: user.id)
         batch.setData(dict, forDocument: likeRef)
         
         if User.currentUser()!.id != user.id {
@@ -75,7 +75,7 @@ class FavoriteViewModel: ObservableObject {
     
     func checkLiked2(id: String) -> Bool {
         var result : Bool = false
-        Ref.FIRESTORE_COLLECTION_LIKED_USERID(userId: id).getDocument { (document, error) in
+        Ref.FIRESTORE_COLLECTION_LIKED_USERID(userId: User.currentUser()!.id,  userId2: id).getDocument { (document, error) in
             if let doc = document, doc.exists {
                 result = true
             } else {
@@ -87,7 +87,7 @@ class FavoriteViewModel: ObservableObject {
     
     func checkLiked(id: String) {
         
-        Ref.FIRESTORE_COLLECTION_LIKED_USERID(userId: id).getDocument { (document, error) in
+        Ref.FIRESTORE_COLLECTION_LIKED_USERID(userId: User.currentUser()!.id,  userId2: id).getDocument { (document, error) in
             if let doc = document, doc.exists {
                 self.liked = true
             } else {
@@ -98,7 +98,7 @@ class FavoriteViewModel: ObservableObject {
     
     
     func removeFromList(id : String){
-        Ref.FIRESTORE_COLLECTION_LIKED_USERID(userId: id).getDocument { (document, error) in
+        Ref.FIRESTORE_COLLECTION_LIKED_USERID(userId: User.currentUser()!.id,  userId2: id).getDocument { (document, error) in
             if let doc = document, doc.exists {
                 doc.reference.delete()
                 print("Removed sucessfully from liked : \(id) ")

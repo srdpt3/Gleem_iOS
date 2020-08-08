@@ -19,6 +19,8 @@ class observer : ObservableObject{
 
     @Published var last = 0
     @Published var isLoading = false
+    @Published var isVoteLoading = false
+
     @Published var error: NSError?
     @Published var cardViews = [MainCardView]()
     
@@ -30,8 +32,8 @@ class observer : ObservableObject{
     
     var handle: AuthStateDidChangeListenerHandle?
     
-    func getNumVoted(){
- 
+    func getNewCards(){
+        self.isVoteLoading = true
         Ref.FIRESTORE_COLLECTION_MYVOTE.document(Auth.auth().currentUser!.uid).collection("voted").getDocuments { (snap, error) in
             self.votedCards.removeAll()
             if error != nil {
@@ -46,9 +48,13 @@ class observer : ObservableObject{
                 }
                 
             }
-
+            print("voted count \(self.votedCards)")
+            self.isVoteLoading = false
             
-            self.reload()
+            if(!self.isVoteLoading && !self.votedCards.isEmpty){
+                print("vote finished")
+                self.reload()
+            }
         }
     }
     
@@ -80,7 +86,13 @@ class observer : ObservableObject{
 
                     }
                 }
-                self.getNumVoted()
+                self.getNewCards()
+                
+//                if(!self.isVoteLoading && !self.votedCards.isEmpty){
+//                    print("vote finished")
+//                    self.reload()
+//                }
+                
                 self.isLoggedIn = true
             } else {
                 print("isLoogedIn is false")
@@ -96,7 +108,7 @@ class observer : ObservableObject{
         
         
         if(self.users.count == 1 &&  index == 1){
-            self.getNumVoted()
+           self.getNewCards()
 
         }
             
@@ -109,7 +121,7 @@ class observer : ObservableObject{
             if(self.index > self.users.count ){
                 print("reload")
                 
-                self.getNumVoted()
+               self.getNewCards()
                 self.index = 2
             }else{
                 
@@ -215,7 +227,7 @@ class observer : ObservableObject{
         let whereField = User.currentUser()!.sex == "female" ? "male" : "female"
         
         Ref.FIRESTORE_COLLECTION_ACTIVE_VOTE.whereField("sex", isEqualTo: whereField )
-            .limit(to: 50)
+            .limit(to: 30)
 //            .order(by: "createdDate",descending: true)
             .getDocuments { (snap, err) in
             self.users.removeAll()
@@ -234,32 +246,26 @@ class observer : ObservableObject{
                     let dict = i.data()
                     guard let decoderPost = try? ActiveVote.init(fromDictionary: dict) else {return}
                     
-                    self.users.append(decoderPost)
-//                                       print("Added")
-//
-//                                    if(User.currentUser()!.sex != decoderPost.sex ){
-//
-//
-//                   }
-                
-//                    if self.votedCards.contains(id) {
-//                        print("contained " +  id)
-//                    }
-                    
-                    
-                    //                    else{
-                    //                        let dict = i.data()
-                    //                        guard let decoderPost = try? ActiveVote.init(fromDictionary: dict) else {return}
-                    //                        self.users.append(decoderPost)
-                    //                    }
+                    if self.votedCards.contains(id) {
+                        print("contained " +  id)
+                    }
+                        
+                        
+                    else{
+                        let dict = i.data()
+                        guard let decoderPost = try? ActiveVote.init(fromDictionary: dict) else {return}
+                        self.users.append(decoderPost)
+                    }
                     
                     
                     
                 }
                 
-            }
-            print("self.users.count \(self.users.count)")
-            self.isLoading = false
+                }
+                print("self.users.count \(self.users.count)")
+                
+                
+             self.isLoading = false
             self.totalCount = self.users.count
             self.last = 0
             self.createCardView()

@@ -19,19 +19,22 @@ struct ChatView: View {
     var recipientUsername = ""
     
     @State var leftRoom : Bool = false
+    @State var numChat : Int = 0
     
     
     func sendTextMessage() {
-//        self.hide_keyboard()
-
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-        chatViewModel.sendTextMessage(recipientId: recipientId, recipientAvatarUrl: recipientAvatarUrl, recipientUsername: recipientUsername, completed: {
-            self.clean()
-        }) { (errorMessage) in
-            self.chatViewModel.showAlert = true
-            self.chatViewModel.errorString = errorMessage
-            self.clean()
+        //        self.hide_keyboard()
+        if(self.chatViewModel.chatArray.count < 5){
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            chatViewModel.sendTextMessage(recipientId: recipientId, recipientAvatarUrl: recipientAvatarUrl, recipientUsername: recipientUsername, completed: {
+                self.clean()
+            }) { (errorMessage) in
+                self.chatViewModel.showAlert = true
+                self.chatViewModel.errorString = errorMessage
+                self.clean()
+            }
         }
+        
     }
     
     func sendPhoto() {
@@ -60,8 +63,12 @@ struct ChatView: View {
             APP_THEME_COLOR.edgesIgnoringSafeArea(.top)
             //            Spacer(minLength: 100)
             VStack(spacing: 0){
-                chatTopview(recipientAvatarUrl: recipientAvatarUrl, recipientUsername: recipientUsername)
+                
+                chatTopview(recipientAvatarUrl: recipientAvatarUrl, recipientUsername: recipientUsername, chatArray: self.$chatViewModel.chatArray)
+                //                Text(CHAT_LIMIT_NOTIFICATION).foregroundColor(Color.white).font(Font.custom(FONT, size: 13)).frame(width: 180)
+                
                 GeometryReader{_ in
+                    
                     ScrollView(.vertical, showsIndicators: false) {
                         
                         if !self.chatViewModel.chatArray.isEmpty {
@@ -129,6 +136,7 @@ struct ChatView: View {
         .onAppear {
             self.chatViewModel.recipientId = self.recipientId
             self.chatViewModel.loadChatMessages()
+            self.numChat = self.chatViewModel.chatArray.count
             
         }
         .onDisappear {
@@ -155,26 +163,28 @@ struct TextMessageRow: View {
     var body: some View {
         HStack {
             if chat.isCurrentUser {
-                Spacer()
+                Spacer(minLength: 50)
+                
                 Text(chat.textMessage).multilineTextAlignment(.leading).lineLimit(3)
                     .padding()
                     .background(APP_THEME_COLOR)
                     
                     .clipShape(msgTail(mymsg: false))
-                    .foregroundColor(.white).padding(.trailing, 15)     .font(.system(size: 15))
+                    .foregroundColor(.white).padding(.trailing, 10)     .font(.system(size: 15))
                 
                 
             } else {
                 Text(chat.textMessage).multilineTextAlignment(.leading).lineLimit(3)
                     .padding()
                     .background(Color(red: 237/255, green: 237/255, blue: 237/255))
-                    .clipShape(msgTail(mymsg: true)).padding(.leading, 15)     .font(.system(size: 15))
-                Spacer()
+                    .clipShape(msgTail(mymsg: true)).padding(.leading, 10)     .font(.system(size: 15))
+                Spacer(minLength: 50)
+                
                 
             }
             
         }
-        .padding(chat.isCurrentUser ? .leading : .trailing, 55)
+        .padding(chat.isCurrentUser ? .leading : .trailing, 15)
         .padding(.vertical,5)
     }
 }
@@ -221,48 +231,55 @@ struct PhotoMessageRow: View {
 
 struct chatTopview : View {
     
-    //    @EnvironmentObject var data : msgDatas
+    @EnvironmentObject var obs : observer
     var recipientAvatarUrl = ""
     var recipientUsername = ""
-    //    @Binding var showChatView: Bool
+    @Binding var chatArray: [Chat]
     
     @Environment(\.presentationMode) var presentation
     
     var body : some View{
         
-        ZStack{
+        //        ZStack{
+        
+        HStack(alignment: .center,   spacing : 10){
             
-            HStack(spacing : 10){
+            Button(action: {
                 
-                Button(action: {
-                    
-                    self.presentation.wrappedValue.dismiss()
-                    //                    self.showChatView = false
-                    
-                }) {
-                    
-                    Image(systemName: "control").font(.title).rotationEffect(.init(degrees: -90)).padding()
-                }
+                self.presentation.wrappedValue.dismiss()
+                //                    self.showChatView = false
                 
-                Spacer()
+            }) {
                 
-                VStack(spacing: 5){
-                    
-                    AnimatedImage(url: URL(string: recipientAvatarUrl)).resizable().frame(width: 45, height: 45).clipShape(Circle())
-                    
-                    Text(recipientUsername).fontWeight(.heavy)
-                    
-                }
-                .offset(x: -10)
-                
-                Spacer()
-                
-                
-                
-            }.foregroundColor(.white)
-                .padding()
+                Image(systemName: "control").font(.title).rotationEffect(.init(degrees: -90)).padding()
+            }.padding(.leading,15)
             
-        }
+            Spacer(minLength:  60)
+            
+            VStack(alignment: .center,  spacing: 5){
+                
+                AnimatedImage(url: URL(string: recipientAvatarUrl)).resizable().frame(width: 40, height: 40).clipShape(Circle())
+                
+                Text(recipientUsername).font(Font.custom(FONT, size: 16)).multilineTextAlignment(.leading).lineLimit(1)
+                //                   Text(CHAT_LIMIT_NOTIFICATION).foregroundColor(Color.white).font(Font.custom(FONT, size: 13)).frame(width: 150).padding(.horizontal)
+                
+            }
+            
+            Spacer(minLength:  55)
+            
+            VStack(alignment: .leading,  spacing: 5){
+                
+                Text(String(self.chatArray.count) + " / 30" ) .foregroundColor(Color.white).font(Font.custom(FONT, size: 14))
+            }.padding(.trailing,15)
+            
+            
+            //                Text(recipientUsername).fontWeight(.heavy)
+            
+            //                Spacer()
+        }.foregroundColor(.white)
+        //                .padding()
+        
+        //        }
         
     }
 }

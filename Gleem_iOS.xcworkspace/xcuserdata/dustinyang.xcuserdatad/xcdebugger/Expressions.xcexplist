@@ -227,5 +227,13 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "closure #1 in observer.listenAuthenticationState():observer.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.votedCards">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>

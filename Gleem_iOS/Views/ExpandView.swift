@@ -181,22 +181,14 @@ struct ExpandView: View {
                                     }
                                     Spacer()
                                 }.padding(.bottom, 10)
-                                
-                                //                            .padding(.bottom, 20).padding(.leading, 35)
-                                
-                                
+   
                                 HStack{
                                     Spacer()
                                     RatingDetailView(card: user)
                                     Spacer()
                                     
                                 }.padding(.horizontal,5)
-                                
-                                
-                                
-                                //                            HStack{
-                                //                            }.padding()
-                                //
+              
                             }
                             HStack{
                                 Spacer()
@@ -256,28 +248,6 @@ struct ExpandView: View {
                                     
                                 }.padding(.horizontal, 2)
                                 
-                                
-                                //                                Button(action:  {
-                                //                                    self.persist()
-                                //                                    withAnimation{
-                                //                                        self.isVoted.toggle()
-                                //
-                                //                                    }
-                                //
-                                //                                }) {
-                                //                                    Text(VOTE_SUBMIT_BUTTON.uppercased())
-                                //                                        //                                             .font(.system(.subheadline, design: .rounded))
-                                //                                        .font(.custom(FONT, size: CGFloat(BUTTON_TITLE_FONT_SIZE)))
-                                //
-                                //                                        .fontWeight(.heavy)
-                                //                                        .padding(.horizontal, 50)
-                                //                                        .padding(.vertical, 15).foregroundColor( Color("Color5"))
-                                //                                        .background(
-                                //                                            Capsule().stroke( APP_THEME_COLOR, lineWidth: 2)
-                                //                                    )
-                                //                                }   // Disabling button by verifying all images...
-                                //                                    .opacity(self.checkAttrSelected() ? 1 : 0.35)
-                                //                                    .disabled(self.checkAttrSelected() ? false : true).padding(.top, 10)
                                 Spacer()
                             }
                             

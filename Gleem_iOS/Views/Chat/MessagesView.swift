@@ -254,7 +254,7 @@ struct Rounded : Shape {
     
     func path(in rect: CGRect) -> Path {
         
-        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: .topLeft, cornerRadii: CGSize(width: 55, height: 55))
+        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: .topLeft, cornerRadii: CGSize(width: 45, height: 45))
         return Path(path.cgPath)
     }
 }

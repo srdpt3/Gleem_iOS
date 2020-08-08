@@ -18,7 +18,7 @@ struct LoadingView: View {
             if isLoading {
                 HStack {
                     Spacer()
-                    Loader()
+//                    Loader()
                     Spacer()
                 }
             } else if error != nil {

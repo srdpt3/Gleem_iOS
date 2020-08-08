@@ -44,10 +44,22 @@ class MatchingApi{
         let activityRef2  = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: User.currentUser()!.id).collection("activity").document(activityId2)
         batch.setData(activityDict2, forDocument: activityRef2)
         print("Batch FIRESTORE_COLLECTION_ACTIVITY_USERID.")
-
+        
         let someOnelikedRef =  Ref.FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID(userId:User.currentUser()!.id).collection("liked").document(user.userId)
         
         batch.deleteDocument(someOnelikedRef)
+        let someOnelikedRef2 =  Ref.FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID(userId:user.userId).collection("liked").document(User.currentUser()!.id)
+        
+        batch.deleteDocument(someOnelikedRef2)
+        
+        
+        //Delete from both I liked and oppoent's liked tables
+        let iLikedRef =  Ref.FIRESTORE_COLLECTION_LIKED_USERID(userId:User.currentUser()!.id, userId2: user.userId)
+        batch.deleteDocument(iLikedRef)
+        let iLikedRef2 =  Ref.FIRESTORE_COLLECTION_LIKED_USERID(userId:user.userId, userId2: User.currentUser()!.id)
+        batch.deleteDocument(iLikedRef2)
+        
+        
         //        //
         //        //
         //        let ilikedRef =  Ref.FIRESTORE_COLLECTION_LIKED_USERID(userId: User.currentUser()!.id).collection("liked").document(user.userId)

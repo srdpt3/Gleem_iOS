@@ -29,8 +29,8 @@ class StorageService {
                         if error == nil {
                             Ref.FIRESTORE_COLLECTION_CHATROOM(senderId: recipientId, recipientId: senderId).document(messageId).setData(dict)
                             
-                            let inboxMessage1 = InboxMessage(lastMessage: "PHOTO", username: recipientUsername, type: "PHOTO", date: Date().timeIntervalSince1970, userId: recipientId, avatarUrl: recipientAvatarUrl)
-                            let inboxMessage2 = InboxMessage(lastMessage: "PHOTO", username: senderUsername, type: "PHOTO", date: Date().timeIntervalSince1970, userId: senderId, avatarUrl: senderAvatarUrl)
+                            let inboxMessage1 = InboxMessage(lastMessage: "사진", username: recipientUsername, type: "PHOTO", date: Date().timeIntervalSince1970, userId: recipientId, avatarUrl: recipientAvatarUrl)
+                            let inboxMessage2 = InboxMessage(lastMessage: "사진", username: senderUsername, type: "PHOTO", date: Date().timeIntervalSince1970, userId: senderId, avatarUrl: senderAvatarUrl)
                             
                             guard let inboxDict1 = try? inboxMessage1.toDictionary() else { return }
                             guard let inboxDict2 = try? inboxMessage2.toDictionary() else { return }
