@@ -23,6 +23,7 @@ struct ExpandView: View {
     @State var ymax = 100
     @State var windowHeightDeno = 1.65
     @State var buttonPressed = [false,false,false,false,false]
+    @State var needMoveCard: Bool = true
     var selectedButton = [String]()
     
     @ObservedObject private var voteViewModel = VoteViewModel()
@@ -322,7 +323,10 @@ struct ExpandView: View {
                                             // ACTION
                                             self.haptics.notificationOccurred(.success)
                                             self.isVoted = true
-                                            self.obs.moveCards()
+                                            
+                                            if(self.needMoveCard){
+                                                self.obs.moveCards()
+                                            }
                                             
                                             self.presentationMode.wrappedValue.dismiss()
                                         }, label: {

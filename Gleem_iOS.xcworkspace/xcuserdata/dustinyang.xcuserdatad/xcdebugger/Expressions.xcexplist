@@ -3,19 +3,43 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "closure #1 in closure #2 in closure #2 in closure #1 in closure #1 in closure #1 in MyStaticView.body.getter:MyStaticView.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in ChatViewModel.leaveRoom(recipientId:):ChatViewModel.swift">
+         contextName = "closure #2 in closure #1 in closure #1 in closure #1 in MyStaticView.body.getter:MyStaticView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "document">
+               value = "self.chartViewModel">
             </PersistentString>
             <PersistentString
-               value = "document!.exists">
+               value = "chartViewModel.someOneVoted">
             </PersistentString>
             <PersistentString
-               value = "doc.reference">
+               value = "self.chartViewModel.someOneVoted">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #3 in closure #1 in FooterView.body.getter:FooterView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.obs.last">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in AttributeViewModel.loadAttributes():AttributeViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.buttonAttributes">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #2 in closure #1 in ExpandView.body.getter:ExpandView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.obs">
+            </PersistentString>
+            <PersistentString
+               value = "self.obs.updateVoteImage">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -28,10 +52,58 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #1 in ChartViewModel.loadChartData(userId:onSuccess:):(null)">
+         <PersistentStrings>
+            <PersistentString
+               value = "document.data()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in FavoriteViewModel.loadFavoriteUsers():FavoriteViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.lastDoc ">
+            </PersistentString>
+            <PersistentString
+               value = "lastDoc ">
+            </PersistentString>
+            <PersistentString
+               value = "self.lastDoc">
+            </PersistentString>
+            <PersistentString
+               value = "snapshot!.documents">
+            </PersistentString>
+            <PersistentString
+               value = "dict">
+            </PersistentString>
+            <PersistentString
+               value = " ActiveVote.init(fromDictionary: dict)">
+            </PersistentString>
+            <PersistentString
+               value = "snapshot!.documents.last">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in MessageSubView.delete(with:):MessagesView.swift">
          <PersistentStrings>
             <PersistentString
                value = "$0">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #1 in closure #2 in closure #1 in MainSubViewFavorite.body.getter:FavoriteView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.favoriteViewModel.favoriteUsers.chunked(3).count">
+            </PersistentString>
+            <PersistentString
+               value = "self.favoriteViewModel.favoriteUsers">
+            </PersistentString>
+            <PersistentString
+               value = "index">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -47,20 +119,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #2 in closure #1 in closure #1 in closure #1 in MyStaticView.body.getter:MyStaticView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.chartViewModel">
-            </PersistentString>
-            <PersistentString
-               value = "chartViewModel.someOneVoted">
-            </PersistentString>
-            <PersistentString
-               value = "self.chartViewModel.someOneVoted">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "closure #6 in closure #1 in closure #1 in SignUpView.body.getter:SignUpView.swift">
          <PersistentStrings>
             <PersistentString
@@ -69,20 +127,7 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #3 in closure #1 in FooterView.body.getter:FooterView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.obs.last">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in closure #1 in closure #1 in closure #2 in closure #1 in MainSubViewFavorite.body.getter:FavoriteView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "index">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "closure #1 in closure #2 in closure #2 in closure #1 in closure #1 in closure #1 in MyStaticView.body.getter:MyStaticView.swift">
       </ContextState>
       <ContextState
          contextName = "closure #1 in ActivityViewModel.loadActivities():ActivityViewModel.swift">
@@ -93,15 +138,15 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in closure #2 in closure #1 in ExpandView.body.getter:ExpandView.swift">
+         contextName = "closure #1 in closure #1 in UploadView.body.getter:UploadView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.obs">
-            </PersistentString>
-            <PersistentString
-               value = "self.obs.updateVoteImage">
+               value = "self.attributeViewModel.buttonAttributes">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in SomeoneVotedView.body.getter:MyStaticView.swift">
       </ContextState>
       <ContextState
          contextName = "closure #4 in closure #1 in closure #1 in SignUpView.body.getter:SignUpView.swift">
@@ -123,46 +168,62 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in AttributeViewModel.loadAttributes():AttributeViewModel.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.buttonAttributes">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in closure #1 in UploadView.body.getter:UploadView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.attributeViewModel.buttonAttributes">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in SomeoneVotedView.body.getter:MyStaticView.swift">
-      </ContextState>
-      <ContextState
          contextName = "closure #1 in NotificationView.body.getter:NotificationView.swift">
       </ContextState>
       <ContextState
-         contextName = "closure #1 in ChartViewModel.loadChartData(userId:onSuccess:):(null)">
+         contextName = "closure #1 in closure #1 in closure #1 in closure #1 in closure #2 in closure #1 in MainSubViewFavorite.body.getter:FavoriteView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "document.data()">
+               value = "self.favoriteViewModel.favoriteUsers.last!.id">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in FavoriteViewModel.loadFavoriteUsers():FavoriteViewModel.swift">
+         contextName = "closure #1 in ChatViewModel.leaveRoom(recipientId:):ChatViewModel.swift">
          <PersistentStrings>
             <PersistentString
-               value = " ActiveVote.init(fromDictionary: dict)">
+               value = "document">
             </PersistentString>
             <PersistentString
-               value = "snapshot!.documents">
+               value = "document!.exists">
             </PersistentString>
             <PersistentString
-               value = "dict">
+               value = "doc.reference">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in FavoriteViewModel.updateFavoriteUsers():FavoriteViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.lastDoc">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #2 in closure #1 in MainSubViewFavorite.body.getter:FavoriteView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.users.chunked(3)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #2 in closure #1 in MainSubViewFavorite.body.getter:FavoriteView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.users.chunked(3).count">
+            </PersistentString>
+            <PersistentString
+               value = "self.favoriteViewModel.favoriteUsers">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in FavoriteViewModel.updateFavoriteUsers():FavoriteViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.favoriteUsers">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

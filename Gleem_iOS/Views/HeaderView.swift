@@ -27,7 +27,7 @@ struct HeaderView: View {
                 self.showInfoView.toggle()
             }) {
                 Image(systemName: "info.circle")
-                    .font(.system(size: 24, weight: .regular))
+                    .font(.system(size: 24, weight: .regular)).foregroundColor(APP_THEME_COLOR)
             } .onTapGesture {
                 self.showInfoView = true
             }
@@ -84,7 +84,7 @@ struct HeaderView: View {
                 }
             }) {
                 Image("menu").resizable().frame(width: 20, height: 20)
-                    .font(.system(size: 24, weight: .regular))
+                    .font(.system(size: 24, weight: .regular)).foregroundColor(APP_THEME_COLOR)
             }.buttonStyle(PlainButtonStyle())
             
             
