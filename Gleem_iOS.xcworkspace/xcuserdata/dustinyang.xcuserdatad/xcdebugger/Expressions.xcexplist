@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "closure #1 in closure #1 in closure #1 in closure #1 in MyStaticView.body.getter:MyStaticView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "votePiclocation">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #2 in closure #1 in closure #1 in closure #1 in MyStaticView.body.getter:MyStaticView.swift">
          <PersistentStrings>
             <PersistentString
@@ -111,10 +119,21 @@
          contextName = "closure #1 in ChartViewModel.loadChartData(userId:onSuccess:):ChartViewModel.swift">
          <PersistentStrings>
             <PersistentString
+               value = "document.data()!">
+            </PersistentString>
+            <PersistentString
                value = "querySnapshot!.documentID ">
             </PersistentString>
             <PersistentString
                value = "document.documentID">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in observer.checkUserUploadVote():observer.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "User.currentUser()!.id">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

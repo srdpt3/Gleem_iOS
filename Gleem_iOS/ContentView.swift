@@ -30,6 +30,7 @@ struct subMainView : View {
                     }
                     else if self.index == 1{
                         MyStaticView().animation(.spring())
+//                         .environmentObject(self.obs)
                     }
                     else if self.index == 2{
                         FavoriteView().animation(.spring())

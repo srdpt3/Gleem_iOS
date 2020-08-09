@@ -75,6 +75,7 @@
 		11783F0A24B6A4DD00EEFE80 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783F0924B6A4DD00EEFE80 /* LottieView.swift */; };
 		1181FF2F24DCBF3500ED5865 /* heart_beat.json in Resources */ = {isa = PBXBuildFile; fileRef = 1181FF2E24DCBF3100ED5865 /* heart_beat.json */; };
 		1181FF3124DCE2DF00ED5865 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1181FF3024DCE2DF00ED5865 /* MultilineTextField.swift */; };
+		1181FF3324DF548000ED5865 /* profile.json in Resources */ = {isa = PBXBuildFile; fileRef = 1181FF3224DF547F00ED5865 /* profile.json */; };
 		118BAC1B24CB6BA900989F47 /* break-heart.json in Resources */ = {isa = PBXBuildFile; fileRef = 118BAC1A24CB6BA800989F47 /* break-heart.json */; };
 		118BAC1E24CB7D1B00989F47 /* KeyboardObserving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118BAC1D24CB7D1B00989F47 /* KeyboardObserving.swift */; };
 		118BAC2024CB9BEA00989F47 /* EmptyChattingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118BAC1F24CB9BEA00989F47 /* EmptyChattingView.swift */; };
@@ -214,6 +215,7 @@
 		11783F0924B6A4DD00EEFE80 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		1181FF2E24DCBF3100ED5865 /* heart_beat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heart_beat.json; sourceTree = "<group>"; };
 		1181FF3024DCE2DF00ED5865 /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
+		1181FF3224DF547F00ED5865 /* profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = profile.json; sourceTree = "<group>"; };
 		118BAC1A24CB6BA800989F47 /* break-heart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "break-heart.json"; sourceTree = "<group>"; };
 		118BAC1D24CB7D1B00989F47 /* KeyboardObserving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserving.swift; sourceTree = "<group>"; };
 		118BAC1F24CB9BEA00989F47 /* EmptyChattingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyChattingView.swift; sourceTree = "<group>"; };
@@ -484,6 +486,7 @@
 				11CCBEC924D51D72005C99A0 /* plus.json */,
 				118BAC2B24CCC02500989F47 /* femaie.json */,
 				118BAC2124CBA92700989F47 /* no-chat.json */,
+				1181FF3224DF547F00ED5865 /* profile.json */,
 				11143D3424C268920082E48F /* radar-motion.json */,
 				118BAC2324CBD94800989F47 /* no-chat2.json */,
 				118BAC2724CBDD6A00989F47 /* noti.json */,
@@ -698,6 +701,7 @@
 				11783EF724B53F4700EEFE80 /* GoogleService-Info.plist in Resources */,
 				11B5ED0D24BDF9A10055700B /* CookieRun Regular.ttf in Resources */,
 				118BAC2224CBA92700989F47 /* no-chat.json in Resources */,
+				1181FF3324DF548000ED5865 /* profile.json in Resources */,
 				11CCBECA24D51D72005C99A0 /* plus.json in Resources */,
 				11783E7B24B53BA900EEFE80 /* LaunchScreen.storyboard in Resources */,
 				11143D3324C25ED60082E48F /* radar.json in Resources */,

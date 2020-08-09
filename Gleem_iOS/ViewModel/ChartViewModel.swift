@@ -5,7 +5,6 @@
 //  Created by Dustin yang on 7/2/20.
 //  Copyright © 2020 Dustin yang. All rights reserved.
 //
-
 import SwiftUI
 import Foundation
 
@@ -32,7 +31,6 @@ class ChartViewModel: ObservableObject {
 //    @Published var date : Double = 0
 //
 //    @State var ymax : Int = 100
-
     
     
     
@@ -113,7 +111,6 @@ class ChartViewModel: ObservableObject {
 //
 //        }
 //    }
-
     func loadSomeoneVoted() {
         isLoading = true
         self.someOneVoted.removeAll()
@@ -155,7 +152,7 @@ class ChartViewModel: ObservableObject {
     }
     
     func loadChartData(userId: String, onSuccess: @escaping(_ data: Vote) -> Void) {
-        
+        isLoading = true
         Ref.FIRESTORE_COLLECTION_ACTIVE_VOTE_USERID(userId: userId).addSnapshotListener { (querySnapshot, error) in
             guard let document = querySnapshot else {
                 print("No documents")
@@ -181,12 +178,12 @@ class ChartViewModel: ObservableObject {
                 data = Vote(attr1: attr1, attr2: attr2, attr3: attr3, attr4: attr4, attr5: attr5, attrNames: attrNames, numVote: numVote, createdDate: createdDate, lastModifiedDate: lastModifiedDate, imageLocation: imageLocation)
                 
  
-                self.isLoading = false
                 
             }else{
                 data = Vote(attr1: 0, attr2: 0, attr3: 0, attr4: 0, attr5: 0, attrNames: [], numVote: 0, createdDate: 0, lastModifiedDate: 0, imageLocation : User.currentUser()!.profileImageUrl)
             }
-            
+            self.isLoading = false
+
             onSuccess(data!)
             
             
