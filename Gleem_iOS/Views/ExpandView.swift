@@ -25,7 +25,8 @@ struct ExpandView: View {
     @State var buttonPressed = [false,false,false,false,false]
     @State var needMoveCard: Bool = true
     var selectedButton = [String]()
-    
+    @State var buttonTitle : [String] = ["없음", "없음","없음", "없음", "없음"]
+
     @ObservedObject private var voteViewModel = VoteViewModel()
     @ObservedObject private var chartViewModel = ChartViewModel()
     @ObservedObject  private var favoriteViewModel = FavoriteViewModel()
@@ -84,9 +85,7 @@ struct ExpandView: View {
                     self.ymax  = 30
                 }else{
                     self.ymax = 20
-                }
-                
-                //
+                }                //
             }
             
             
@@ -305,7 +304,6 @@ struct ExpandView: View {
                                                 .shadow(radius: 10)
                                                 .opacity( 1 )
                                                 .scaleEffect(1.8 , anchor: .center)
-                                            //                                               .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
                                         })
                                             .padding(.trailing, 15).buttonStyle(PlainButtonStyle()).padding(.top, 30)
                                     }

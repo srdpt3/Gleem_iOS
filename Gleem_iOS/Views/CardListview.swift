@@ -181,7 +181,7 @@ struct CardListview: View {
                                             .shadow(radius: 5)
                                             //                                            .opacity(self.pulsate ? 1 : 0.6)
                                             .scaleEffect(1.2, anchor: .center)
-                                            .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
+//                                            .animation(Animation.easeOut(duration: 1.5).repeatForever(autoreverses: true))
                                     })
                                         .padding(.trailing, 10)
                                         .padding(.top, 24)
@@ -192,24 +192,29 @@ struct CardListview: View {
                         )
                     }else{
                         
-                        VStack{
-                            Spacer()
-                            
-                            
-                            Image("Gleem_3D").resizable().scaledToFit().frame(width: UIScreen.main.bounds.width / 3 , height: UIScreen.main.bounds.height / 3)
-                                .scaleEffect(self.reloading ? 1.1 : 1, anchor: .center).onAppear{
-                                    self.reloading.toggle()
+                        if(!self.obs.isVoteLoading){
+                            VStack{
+                                         Spacer()
+                                         
+                                         
+                                         Image("Gleem_3D").resizable().scaledToFit().frame(width: UIScreen.main.bounds.width / 3 , height: UIScreen.main.bounds.height / 3)
+                                             .scaleEffect(self.reloading ? 1.1 : 1, anchor: .center).onAppear{
+                                                 self.reloading.toggle()
+                                         }
+                                         .animation(Animation.spring(response: 0.7, dampingFraction: 1.0, blendDuration: 1.0).repeatForever(autoreverses: true))
+                                         
+                                         Text(NO_NEW_CARD)
+                                             .font(.custom(FONT, size: CGFloat(15))).foregroundColor(APP_THEME_COLOR).multilineTextAlignment(.center).lineLimit(2).padding(.horizontal)
+                                         Spacer()
+//                                         LoadingView(isLoading: self.obs.isLoading, error: self.obs.error) {
+//                                             self.obs.getNewCards()
+//                                         }
+                                         
+                            }.animation(.default).onAppear{
+                                 self.obs.getNewCards()
                             }
-                            .animation(Animation.spring(response: 0.7, dampingFraction: 1.0, blendDuration: 1.0).repeatForever(autoreverses: true))
-                            
-                            Text(NO_NEW_CARD)
-                                .font(.custom(FONT, size: CGFloat(15))).foregroundColor(APP_THEME_COLOR).multilineTextAlignment(.center).lineLimit(2).padding(.horizontal)
-                            Spacer()
-                            LoadingView(isLoading: self.obs.isLoading, error: self.obs.error) {
-                                self.obs.getNewCards()
-                            }
-                            
                         }
+         
                         
                         
                         

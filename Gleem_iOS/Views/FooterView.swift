@@ -127,21 +127,7 @@ struct ArrowView : View {
                     .shadow(radius: 8)
                     .opacity( 1 )
                     .scaleEffect( 1.0, anchor: .center)
-                
-                //
-                //                                   Text("다음카드로")
-                //                                                   .font(.custom(FONT, size: 14))
-                //                                                   .font(.system(.subheadline, design: .rounded))
-                //                                                   .fontWeight(.heavy)
-                //                       //                            .padding(.horizontal, 30)
-                //                       //                            .padding(.vertical, 15)
-                //                                                   .accentColor(APP_THEME_COLOR)
-                
-                
-                //                .frame(maxWidth: .infinity,
-                //                       maxHeight: .infinity)
-                
-                //                                    .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
+  
             })
                 .animation(.spring())
                 .background(Color("Color-3")).frame(width: self.height, height: self.height)
