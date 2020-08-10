@@ -26,7 +26,7 @@ struct MenuView: View {
                 }
                 
                 Color.white
-//                    APP_THEME_COLOR
+                    //                    APP_THEME_COLOR
                     .frame(width: User.currentUser()!.profileImageUrl == "" ? 71 : 130, height: 6)
                     .cornerRadius(3)
                     .frame(width: 110, height: 6, alignment: .leading)
@@ -55,20 +55,20 @@ struct MenuView: View {
                     if(User.currentUser()!.profileImageUrl == ""){
                         
                         Image("Gleem_3D").resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 60, height: 60)
-                        .clipShape(Circle())
-                        .offset(y: -150)
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 60, height: 60)
+                            .clipShape(Circle())
+                            .offset(y: -150)
                         
                     }else{
                         
-            
+                        
                         AnimatedImage(url: URL(string: User.currentUser()!.profileImageUrl)!).resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 60, height: 60)
                             .clipShape(Circle())
                             .offset(y: -150)
-                 
+                        
                     }
                 }
                 
@@ -95,7 +95,6 @@ struct MenuRow: View {
     @State var profile_show : Bool = false
     @State var account_show : Bool = false
     @State var payment_show : Bool = false
-    //    @State var show : Bool = false
     
     var body: some View {
         Button(action: {
@@ -103,10 +102,16 @@ struct MenuRow: View {
             if self.index == 0 {
                 
                 withAnimation{
-                    self.profile_show.toggle()
+                    self.show.toggle()
                 }
             }
             
+            if self.index == 1 {
+                
+                withAnimation{
+                    self.show.toggle()
+                }
+            }
             
             if self.index == 2 {
                 self.obs.logout()
@@ -125,10 +130,17 @@ struct MenuRow: View {
             }
         }.buttonStyle(PlainButtonStyle())
             
-            .sheet(isPresented: self.$profile_show) {
-                ProfileView(profile_show: self.$profile_show).animation(.spring())
+        .sheet(isPresented: self.$show) {
+            if(self.index  == 0){
+                ProfileView(profile_show: self.$show).animation(.spring())
+
+            }else if(self.index  == 1){
+                PaymentView().animation(.spring())
+            }
         }
-        
+//        .sheet(isPresented: self.$payment_show) {
+//            PaymentView().animation(.spring())
+//        }
         
         
         

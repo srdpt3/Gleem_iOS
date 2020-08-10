@@ -34,6 +34,8 @@ class observer : ObservableObject{
     
     func getNewCards(){
         self.isVoteLoading = true
+        self.checkUserUploadVote()
+
         Ref.FIRESTORE_COLLECTION_MYVOTE.document(Auth.auth().currentUser!.uid).collection("voted").getDocuments { (snap, error) in
             self.votedCards.removeAll()
             if error != nil {
@@ -51,7 +53,7 @@ class observer : ObservableObject{
             print("voted count \(self.votedCards)")
             self.isVoteLoading = false
             
-            if(!self.isVoteLoading && !self.votedCards.isEmpty){
+            if(!self.isVoteLoading && (!self.votedCards.isEmpty || !self.updateVoteImage)){
                 print("vote finished")
                 self.reload()
             }
@@ -269,7 +271,6 @@ class observer : ObservableObject{
             self.totalCount = self.users.count
             self.last = 0
             self.createCardView()
-            self.checkUserUploadVote()
         }
         
     }

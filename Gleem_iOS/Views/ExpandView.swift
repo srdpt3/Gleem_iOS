@@ -174,7 +174,6 @@ struct ExpandView: View {
                                     
                                     
                                     ForEach(1...5,id: \ .self){_ in
-                                        
                                         Image(systemName: "star.fill")
                                             .foregroundColor(.yellow)
                                     }

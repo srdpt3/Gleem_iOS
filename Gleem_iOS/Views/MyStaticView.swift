@@ -35,7 +35,10 @@ struct MyStaticView: View {
     
     var empty_color = [Color("Color-2").opacity(0.2),Color("Color-2").opacity(0.2)]
     
-    @State var showUploadView = false
+    
+    @State var index : Int = 0
+
+    @State var showView = false
     @State var buttonPressed = [false,false,false,false,false]
     
     var selectedButton = [String]()
@@ -60,7 +63,7 @@ struct MyStaticView: View {
             }else{
                 
                 self.uploadMsg = NEW_UPLOAD
-                
+                self.noVotePic = false
                 self.obs.updateVoteImage = true
                 self.voteData.removeAll()
                 self.voteNum.removeAll()
@@ -140,7 +143,8 @@ struct MyStaticView: View {
                                 .onTapGesture {
                                     self.haptics.notificationOccurred(.success)
                                     
-                                    self.showUploadView.toggle()
+                                    self.showView.toggle()
+                                    self.index = 0
                                     
                                     
                             }
@@ -174,6 +178,26 @@ struct MyStaticView: View {
                         
                         Spacer()
                         
+//                        NavigationLink(destination: FavoriteView()) {
+//                                                                    //                                            EmptyView()
+//                                                                    CommentActivityRow(activity: activity)
+//
+//                            }
+                        
+                        
+                        Button(action: {
+                            // ACTION
+                            //        playSound(sound: "sound-click", type: "mp3")
+                            self.haptics.notificationOccurred(.success)
+                           self.showView.toggle()
+                             self.index  = 1
+                        }) {
+                            Image("time-machine").resizable()
+                                .frame(width: 30, height: 30)
+                                .font(.system(size: 24, weight: .regular))
+                        }.onTapGesture {
+                            //                            self.showInfoView = true
+                        }.accentColor(APP_THEME_COLOR).buttonStyle(PlainButtonStyle()).padding(.trailing,10)
                     }
                     .padding(.leading, 10)
                     Spacer()
@@ -196,7 +220,8 @@ struct MyStaticView: View {
                                     .clipShape(Circle()).zIndex(1)
                                     .onTapGesture {
                                         print("Tapped")
-                                        self.showUploadView.toggle()
+                                        self.showView.toggle()
+                                        self.index  = 0
                                 }
                                 
                                 
@@ -214,16 +239,18 @@ struct MyStaticView: View {
                         
                         
                         
+                        if(!self.obs.updateVoteImage){
+                            VStack(alignment: .leading, spacing: 15){
+                                
+                                Text(self.uploadMsg).font(Font.custom(FONT, size: 14.5)).multilineTextAlignment(.leading).lineLimit(2)
+                                    .foregroundColor(Color("sleep"))
+                                Spacer(minLength: 0)
+                                
+                            }.padding(.top, 15)
+                        }
                         
                         
                         
-                        VStack(alignment: .leading, spacing: 15){
-                            
-                            Text(self.uploadMsg).font(Font.custom(FONT, size: 14.5)).multilineTextAlignment(.leading).lineLimit(2)
-                                .foregroundColor(Color("sleep"))
-                            Spacer(minLength: 0)
-                            
-                        }.padding(.top, 15)
                         
                         Spacer()
                         
@@ -296,7 +323,7 @@ struct MyStaticView: View {
                         
                         Text(MY_STAT_RADAR).fontWeight(.heavy).font(Font.custom(FONT, size: 18)).foregroundColor(APP_THEME_COLOR)
                             .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
-    
+                        
                         Spacer(minLength: 0)
                     } .padding(.horizontal).padding(.vertical,8)
                     
@@ -324,16 +351,16 @@ struct MyStaticView: View {
                                 Spacer()
                                 
                             }
-                                .padding(.vertical)
-                                .frame(width: (UIScreen.main.bounds.width / 3) - 30, height: 100 )
-                                .background(Color("Color2"))
-                                .cornerRadius(12).padding(.leading, 10).padding(.bottom, 15)
-                                .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 2)
-                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
-
+                            .padding(.vertical)
+                            .frame(width: (UIScreen.main.bounds.width / 3) - 30, height: 100 )
+                            .background(Color("Color2"))
+                            .cornerRadius(12).padding(.leading, 10).padding(.bottom, 15)
+                            .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 2)
+                            .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+                            
                             Text("").fontWeight(.heavy).font(Font.custom(FONT, size:12)).foregroundColor(.gray).multilineTextAlignment(.leading).lineLimit(2)
                             Spacer()
-
+                            
                         }
                         .frame(height: UIScreen.main.bounds.width / 2.55).padding(.bottom, 2).padding(.horizontal, 2)
                         .padding(.top, UIScreen.main.bounds.height < 896.0 ? 0 : 3)
@@ -413,7 +440,7 @@ struct MyStaticView: View {
                     }
                     
                     VStack(spacing: 32){
-
+                        
                         
                         HStack{
                             VStack(spacing: 15){
@@ -564,11 +591,20 @@ struct MyStaticView: View {
             }
                 
                 
-            .sheet(isPresented: self.$showUploadView) {
-                UploadView(noVotePic: self.noVotePic, vote: self.vote!)
+            .sheet(isPresented: self.$showView) {
+                if(self.index == 0) {
+                    UploadView(noVotePic: self.$noVotePic, vote: self.vote!)
+
+                }else{
+                     HistoryView()
+                }
+                
+                
+                
                 
             }
             
+          
             
             
         }

@@ -14,6 +14,8 @@ struct PaymentView: View {
     @State private var flipped: Bool = false
     
     @State private var name: String = ""
+    @State private var number: String = ""
+
     @State private var expires: String = ""
     @State private var cvv: String = ""
     
@@ -26,7 +28,7 @@ struct PaymentView: View {
                         if self.flipped {
                             CreditCardBack(cvv: self.cvv)
                         } else {
-                            CreditCardFront(name: self.name, expires: self.expires)
+                            CreditCardFront(name: self.name, number: self.number, expires: self.expires)
                         }
                     }
                 }.rotation3DEffect(
@@ -45,6 +47,10 @@ struct PaymentView: View {
             TextField("Name", text: $name)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding([.top,.leading,.trailing])
+            
+            TextField("Card Number", text: $number)
+                       .textFieldStyle(RoundedBorderTextFieldStyle())
+                       .padding([.top,.leading,.trailing])
             
             TextField("Expiration", text: $expires)
                

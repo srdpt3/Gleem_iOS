@@ -27,9 +27,9 @@ struct ProfileView: View {
 
 struct Profile : View {
     @ObservedObject var voteViewModel = VoteViewModel()
-
+    
     @Binding var profile_show : Bool
-
+    
     
     
     var body : some View{
@@ -38,9 +38,7 @@ struct Profile : View {
             
             ZStack{
                 if(User.currentUser()!.profileImageUrl != ""){
-                    
                     AnimatedImage(url: URL(string: User.currentUser()!.profileImageUrl)!).resizable().aspectRatio(contentMode: .fill).frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/1.5, alignment: .center).edgesIgnoringSafeArea(.all)
-                    
                     
                 }else{
                     VStack{
@@ -61,20 +59,20 @@ struct Profile : View {
                 
                 HStack{
                     
-//                    Button(action: {
-//
-//                    }) {
-//
-//                        Image("menu").renderingMode(.original).resizable().frame(width: 20, height: 20)
-//                    }
+                    //                    Button(action: {
+                    //
+                    //                    }) {
+                    //
+                    //                        Image("menu").renderingMode(.original).resizable().frame(width: 20, height: 20)
+                    //                    }
                     
                     Spacer()
-
+                    
                     Button(action: {
                         self.profile_show.toggle()
-
+                        
                     }) {
-
+                        
                         Image("close").renderingMode(.original).resizable().frame(width: 20, height: 20)
                     }
                 }
@@ -126,50 +124,50 @@ struct Profile : View {
                         }) {
                             
                             Image(User.currentUser()!.sex ==  "male" ? "male" : "female").renderingMode(.original).resizable()
-                            .frame(width: 20, height: 20)
-                            .padding(20)
-                            .background(Color.white)
-                            .clipShape(Circle())
+                                .frame(width: 20, height: 20)
+                                .padding(20)
+                                .background(Color.white)
+                                .clipShape(Circle())
                         }
                         
                         Circle().stroke(Color.yellow, lineWidth: 5).frame(width: 70, height: 70)
                         
                     }.offset(y: -35)
                     
-//                    HStack{
-//
-////                        Button(action: {
-////
-////                        }) {
-////
-////                            Image("heart").renderingMode(.original).resizable()
-////                                .frame(width: 25, height: 20)
-////                                .padding()
-////                                .background(Color.white)
-////                                .clipShape(Circle())
-////                        }
-//
-//                        Spacer()
-//
-//                        Button(action: {
-//
-//                        }) {
-//
-//                            Image(User.currentUser()!.sex ==  "male" ? "male" : "female").renderingMode(.original).resizable()
-//                                .frame(width: 25, height: 25)
-//                                .padding()
-//                                .background(Color.white)
-//                                .clipShape(Circle())
-//                        }
-//                        }.offset(y: -25)
-//                        .padding(.horizontal,35)
+                    //                    HStack{
+                    //
+                    ////                        Button(action: {
+                    ////
+                    ////                        }) {
+                    ////
+                    ////                            Image("heart").renderingMode(.original).resizable()
+                    ////                                .frame(width: 25, height: 20)
+                    ////                                .padding()
+                    ////                                .background(Color.white)
+                    ////                                .clipShape(Circle())
+                    ////                        }
+                    //
+                    //                        Spacer()
+                    //
+                    //                        Button(action: {
+                    //
+                    //                        }) {
+                    //
+                    //                            Image(User.currentUser()!.sex ==  "male" ? "male" : "female").renderingMode(.original).resizable()
+                    //                                .frame(width: 25, height: 25)
+                    //                                .padding()
+                    //                                .background(Color.white)
+                    //                                .clipShape(Circle())
+                    //                        }
+                    //                        }.offset(y: -25)
+                    //                        .padding(.horizontal,35)
                 }
                 
             }.padding()
         }.onAppear{
             self.voteViewModel.getNumVoted()
         }
-  
+        
     }
 }
 
@@ -178,7 +176,7 @@ struct BottomShape : Shape {
     func path(in rect: CGRect) -> Path {
         
         return Path{path in
-
+            
             path.move(to: CGPoint(x: 0, y: 0))
             path.addLine(to: CGPoint(x: 0, y: rect.height))
             path.addLine(to: CGPoint(x: rect.width, y: rect.height))

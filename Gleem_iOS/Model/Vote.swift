@@ -9,7 +9,7 @@
 import SwiftUI
 
 import Foundation
-struct Vote: Encodable, Decodable {
+struct Vote: Encodable, Decodable , Hashable{
     var attr1 : Int
     var attr2: Int
     var attr3: Int

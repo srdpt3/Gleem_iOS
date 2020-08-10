@@ -62,7 +62,7 @@ class StorageService {
             storageAvatarRef.downloadURL { (url, error) in
                 if let metaImageUrl = url?.absoluteString {
                     
-//                    guard let dict = try? myVote.toDictionary() else {return}
+                    //                    guard let dict = try? myVote.toDictionary() else {return}
                     
                     let user = User.currentUser()
                     //                    let user =  User(id: userId, email: "test@gmail.com", profileImageUrl:  metaImageUrl, username: "test", age: "30", sex:"male",    swipe:0, degree: 0)
@@ -81,6 +81,15 @@ class StorageService {
                         }
                     }
                     
+                    
+                    
+                    Ref.FIRESTORE_COLLECTION_PENDING_VOTE_USERID(userId:userId).setData(finalDict) { (error) in
+                        if error != nil {
+                            print(error!.localizedDescription)
+                            return
+                            
+                        }
+                    }
                     
                     
                 }
@@ -162,9 +171,9 @@ class StorageService {
                         }
                     }
                     let firestoreUserId = Ref.FIRESTORE_DOCUMENT_USERID(userId: userId)
-
+                    
                     batch.setData(dict, forDocument: firestoreUserId)
-
+                    
                     
                     let activityId = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: userId).collection("activity").document().documentID
                     let activityObject = Activity(activityId: activityId, type: "intro", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: metaImageUrl, message: "", date: Date().timeIntervalSince1970)
@@ -184,13 +193,13 @@ class StorageService {
                     //                        guard let decoderUser = try? User.init(fromDictionary: dict) else {return}
                     //                        print(decoderUser.username)
                     
-//                    firestoreUserId.setData() { (error) in
-//                        if error != nil {
-//                            onError(error!.localizedDescription)
-//                            return
-//                        }
-//                        onSuccess(user)
-//                    }
+                    //                    firestoreUserId.setData() { (error) in
+                    //                        if error != nil {
+                    //                            onError(error!.localizedDescription)
+                    //                            return
+                    //                        }
+                    //                        onSuccess(user)
+                    //                    }
                     
                     batch.commit() { err in
                         if let err = err {

@@ -11,7 +11,7 @@ struct UploadView: View {
     // intializing Four Image cards...
     @Environment(\.presentationMode) var presentationMode
     
-    var noVotePic : Bool
+    @Binding var noVotePic : Bool
     var vote : Vote
     @State var image: Image = Image("profilepic")
     
@@ -29,6 +29,7 @@ struct UploadView: View {
     
     @ObservedObject var attributeViewModel = AttributeViewModel()
     @ObservedObject var uploadViewModel = UploadViewModel()
+    @ObservedObject var historyViewModel = HistoryViewModel()
     
     func clean() {
         self.buttonPressed = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
@@ -101,54 +102,11 @@ struct UploadView: View {
                                 .cornerRadius(10)
                             
                         }
-                        //                        Image(uiImage: UIImage(data: self.images[0])!)
-                        //                                                          .resizable()
-                        //                                                          .renderingMode(.original)
-                        //                                                          .aspectRatio(contentMode: .fill)
-                        //                                                          .frame(width: 160, height: 160)
-                        //                                                          .cornerRadius(10)
-                        
-                        //                           signupViewModel.image.resizable().frame(width: 80, height: 80).foregroundColor(APP_THEME_COLOR).cornerRadius(40)
-                        //                               .padding(.bottom, 10).padding(.top, 10)
-                        //
+   
                         
                     } .frame(width: 150, height: 150)
                     Text(SELECT_ATTRIBUTES).font(Font.custom(FONT, size: 14)).foregroundColor(Color.gray)
-                    //
-                    //                    Button(action: {
-                    //
-                    //                        self.index = 0
-                    //                        self.imagePicker.toggle()
-                    //                        self.haptics.notificationOccurred(.success)
-                    //
-                    //
-                    //                    }) {
-                    //
-                    //                        ZStack{
-                    //
-                    //                            if self.images[0].count == 0{
-                    //
-                    //                                RoundedRectangle(cornerRadius: 10)
-                    //                                    .fill(Color("Color-2"))
-                    //
-                    //                                Image(systemName: "plus")
-                    //                                    .font(.system(size: 24, weight: .bold)).foregroundColor(APP_THEME_COLOR)
-                    //                            }
-                    //                            else{
-                    //
-                    //                                Image(uiImage: UIImage(data: self.images[0])!)
-                    //                                    .resizable()
-                    //                                    .renderingMode(.original)
-                    //                                    .aspectRatio(contentMode: .fill)
-                    //                                    .frame(width: 160, height: 160)
-                    //                                    .cornerRadius(10)
-                    //                            }
-                    //                        }
-                    //                            // Fixed Height...
-                    //                        .frame(width: 160, height: 160)
-                    //
-                    //                        Text(SELECT_ATTRIBUTES).font(Font.custom(FONT, size: 14)).foregroundColor(Color.gray)
-                    //                    }
+
                     
                 }
                 if(!self.attributeViewModel.buttonAttributes.isEmpty){
@@ -299,15 +257,25 @@ struct UploadView: View {
                 //                self.showAlert.toggle()
                 
             }))
+        }.onAppear{
+            print(self.noVotePic)
+            print(self.vote)
         }
+    
         
     }
     
     
     func uploadPicture(){
         uploadViewModel.uploadVote(buttonPressed: buttonPressed, buttonTitle: self.buttonTitle, imageData: self.images[0])
+        
+     
         self.clean()
         self.presentationMode.wrappedValue.dismiss()
+        if(!self.noVotePic){
+            historyViewModel.persistPastVoteData(vote: self.vote)
+
+        }
         
     }
     

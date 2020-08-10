@@ -21,7 +21,45 @@ struct CreditCard<Content>: View where Content: View {
 struct CreditCardFront: View {
     
     let name: String
+    let number : String
+
     let expires: String
+    enum CardType {
+        case visa
+        case masterCard
+        case unknown
+
+//        ...
+//
+//        var segmentGroupings: [Int] {...}
+//        var cvvLength: Int {...}
+//
+//
+//        func isValid(_ accountNumber: String) -> Bool {...}
+//        func isPrefixValid(_ accountNumber: String) -> Bool {...}
+    }
+    
+    
+    func getCardType() -> CardType{
+        if number.hasPrefix("6011") || number.hasPrefix("65") {
+            return CardType.masterCard
+        }
+        else if number.hasPrefix("622") {
+            // If the number has a prefix in the range 622126-622925, it's Discover
+            let prefixLength = 6;
+            if (number.count >= prefixLength) {
+                let prefixIndex = number.index(number.startIndex, offsetBy: prefixLength)
+                let sixDigitPrefixString = number.substring(to: prefixIndex)
+                let sixDigitPrefixInt = Int(sixDigitPrefixString)!
+                if sixDigitPrefixInt >= 622126 && sixDigitPrefixInt <= 622925 {
+                    return CardType.masterCard;
+                }
+            }
+//            return .unknown
+        }
+        
+        return .unknown
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -32,16 +70,16 @@ struct CreditCardFront: View {
             
                 Spacer()
                 
-                Text("VISA")
+                Text(self.getCardType() == CardType.masterCard ? "MASTER" : "")
                     .foregroundColor(Color.white)
-                    .font(.system(size: 24))
+                    .font(.system(size: 15))
                     .fontWeight(.bold)
             
             }
             
             Spacer()
             
-            Text("**** **** **** 2864")
+            Text(number)
                 .foregroundColor(Color.white)
                 .font(.system(size: 32))
             
@@ -121,8 +159,8 @@ struct CreditCardBack: View {
 }
 
 
-struct CreditCard_Previews: PreviewProvider {
-    static var previews: some View {
-        CreditCard<CreditCardFront>(content: { CreditCardFront(name: "Mohammad Azam", expires: "02/06") })
-    }
-}
+//struct CreditCard_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CreditCard<CreditCardFront>(content: { CreditCardFront(name: "Mohammad Azam", expires: "02/06") })
+//    }
+//}

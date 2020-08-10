@@ -263,6 +263,17 @@ class Ref {
         return FIRESTORE_COLLECTION_ACTIVE_VOTE.document(userId)
     }
     
+    static var FIRESTORE_COLLECTION_PENDING_VOTE = FIRESTORE_ROOT.collection("pending_vote")
+    static func FIRESTORE_COLLECTION_PENDING_VOTE_USERID(userId: String) -> DocumentReference {
+        return FIRESTORE_COLLECTION_PENDING_VOTE.document(userId)
+    }
+    
+    static var FIRESTORE_COLLECTION_HISTORIC_VOTE_DATA = FIRESTORE_ROOT.collection("vote_image_history")
+    static func FIRESTORE_COLLECTION_HISTORIC_VOTE_DATA_USERID(voteId: String) -> DocumentReference {
+        return FIRESTORE_COLLECTION_HISTORIC_VOTE_DATA.document(User.currentUser()!.id).collection("past_vote").document(voteId)
+    }
+    
+    
     static var FIRESTORE_COLLECTION_MYVOTE = FIRESTORE_ROOT.collection("myvote")
     static func FIRESTORE_COLLECTION_MYVOTE_USERID(userId: String) -> DocumentReference {
         return FIRESTORE_COLLECTION_MYVOTE.document(User.currentUser()!.id).collection("voted").document(userId)
