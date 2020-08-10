@@ -598,10 +598,7 @@ struct MyStaticView: View {
                 }else{
                      HistoryView()
                 }
-                
-                
-                
-                
+
             }
             
           
