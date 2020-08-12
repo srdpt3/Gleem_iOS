@@ -435,11 +435,6 @@ struct MyStaticView: View {
                             }
                         }
                     }
-                  VStack{
-                                   
-                                          BannerAdView(bannerId: "ca-app-pub-3940256099942544/2934735716").frame(width: UIScreen.main.bounds.width, height: 70)
-                                   
-                               }
 //                    VStack(spacing: 32){
 //
 //

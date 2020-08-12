@@ -11,7 +11,7 @@ import GoogleMobileAds
 
 struct BannerAdView: UIViewRepresentable {
     var bannerId : String
-    let banner = GADBannerView(adSize: kGADAdSizeBanner)
+    let banner = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
     
     func makeCoordinator() -> Coordinator   {
         Coordinator(self)
