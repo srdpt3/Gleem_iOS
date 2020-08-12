@@ -20,7 +20,7 @@ class FavoriteViewModel: ObservableObject {
     @Published var isLoading = false
     @State var time = Timer.publish(every: 0.1, on: .main, in: .tracking).autoconnect()
     @Published var lastDoc : QueryDocumentSnapshot!
-//    var splitted: [[User]] = []
+    //    var splitted: [[User]] = []
     
     func addToMyList(user: ActiveVote) {
         
@@ -146,7 +146,7 @@ class FavoriteViewModel: ObservableObject {
             while (self.favoriteUsers.count % 3 != 0){
                 let activeUser = ActiveVote(attr1: 0, attr2: 0, attr3: 0, attr4: 0, attr5: 0, attrNames: [], numVote: 0, createdDate: 0, lastModifiedDate: 0, id: "", email: "", imageLocation: "", username: "", age: "", sex: "")
                 self.favoriteUsers.append(activeUser)
-
+                
             }
             
             
@@ -154,7 +154,7 @@ class FavoriteViewModel: ObservableObject {
             
             
         }
-                
+        
         
     }
     
@@ -164,46 +164,46 @@ class FavoriteViewModel: ObservableObject {
         //        favoriteUsers.removeAll()
         //        favoriteUsers_ids.removeAll()
         if self.lastDoc != nil{
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                
+                print(self.favoriteUsers.count)
+                
+                Ref.FIRESTORE_GET_LIKED_USERID_COLLECTION(userId: User.currentUser()!.id).order(by: "createdDate",descending: false).start(afterDocument: self.lastDoc).limit(to: 9).getDocuments { (snapshot, error) in
+                    if(error != nil){
+                        print((error?.localizedDescription)!)
+                        //                self.error = (error?.localizedDescription as! NSError)
+                    }
+                    self.favoriteUsers.removeLast()
+                    for document in snapshot!.documents {
                         
-                        print(self.favoriteUsers.count)
+                        let dict = document.data()
+                        guard let decoderPost = try? ActiveVote.init(fromDictionary: dict) else {return}
                         
-                        Ref.FIRESTORE_GET_LIKED_USERID_COLLECTION(userId: User.currentUser()!.id).order(by: "createdDate",descending: false).start(afterDocument: self.lastDoc).limit(to: 9).getDocuments { (snapshot, error) in
-                            if(error != nil){
-                                print((error?.localizedDescription)!)
-                                //                self.error = (error?.localizedDescription as! NSError)
-                            }
-                            self.favoriteUsers.removeLast()
-                            for document in snapshot!.documents {
-                                
-                                let dict = document.data()
-                                guard let decoderPost = try? ActiveVote.init(fromDictionary: dict) else {return}
-                                
-                                self.favoriteUsers.append(decoderPost)
-                                self.favoriteUsers_ids.append(decoderPost.id)
-                            }
-                            self.isLoading = false
-            
-                            if (self.favoriteUsers.isEmpty){
-                                while (self.favoriteUsers.count < 12){
-                                    let activeUser = ActiveVote(attr1: 0, attr2: 0, attr3: 0, attr4: 0, attr5: 0, attrNames: [], numVote: 0, createdDate: 0, lastModifiedDate: 0, id: "", email: "", imageLocation: "", username: "", age: "", sex: "")
-                                    self.favoriteUsers.append(activeUser)
-                                }
-            
-                            }else{
-                                while (self.favoriteUsers.count % 3 != 0){
-                                    let activeUser = ActiveVote(attr1: 0, attr2: 0, attr3: 0, attr4: 0, attr5: 0, attrNames: [], numVote: 0, createdDate: 0, lastModifiedDate: 0, id: "", email: "", imageLocation: "", username: "", age: "", sex: "")
-                                    self.favoriteUsers.append(activeUser)
-                                }
-                            }
-                            print("final \(self.favoriteUsers.count)")
-
-                            self.lastDoc = snapshot!.documents.last
-
+                        self.favoriteUsers.append(decoderPost)
+                        self.favoriteUsers_ids.append(decoderPost.id)
+                    }
+                    self.isLoading = false
+                    
+                    if (self.favoriteUsers.isEmpty){
+                        while (self.favoriteUsers.count < 12){
+                            let activeUser = ActiveVote(attr1: 0, attr2: 0, attr3: 0, attr4: 0, attr5: 0, attrNames: [], numVote: 0, createdDate: 0, lastModifiedDate: 0, id: "", email: "", imageLocation: "", username: "", age: "", sex: "")
+                            self.favoriteUsers.append(activeUser)
+                        }
+                        
+                    }else{
+                        while (self.favoriteUsers.count % 3 != 0){
+                            let activeUser = ActiveVote(attr1: 0, attr2: 0, attr3: 0, attr4: 0, attr5: 0, attrNames: [], numVote: 0, createdDate: 0, lastModifiedDate: 0, id: "", email: "", imageLocation: "", username: "", age: "", sex: "")
+                            self.favoriteUsers.append(activeUser)
                         }
                     }
+                    print("final \(self.favoriteUsers.count)")
+                    
+                    self.lastDoc = snapshot!.documents.last
+                    
+                }
+            }
         }
-
+        
         
         
         

@@ -16,6 +16,7 @@ target 'Gleem_iOS' do
   pod 'Firebase/Messaging'
   pod 'GeoFire'
   pod 'AAInfographics'
+  pod 'Google-Mobile-Ads-SDK'
 pod 'lottie-ios'
 
   # Pods for Gleem_iOS

@@ -86,7 +86,7 @@ struct CardListview: View {
                 HeaderView(showProfile: self.$showProfile, showInfoView: self.$showInfo)
                     .opacity(dragState.isDragging ? 0.0 : 1.0)
                     .animation(.default)
-                
+             
 //                Spacer()
                 ZStack{
                     

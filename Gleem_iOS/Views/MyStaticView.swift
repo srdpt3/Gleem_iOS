@@ -435,51 +435,55 @@ struct MyStaticView: View {
                             }
                         }
                     }
-                    
+                  VStack{
+                                   
+                                          BannerAdView(bannerId: "ca-app-pub-3940256099942544/2934735716").frame(width: UIScreen.main.bounds.width, height: 70)
+                                   
+                               }
 //                    VStack(spacing: 32){
-//                        
-//                        
+//
+//
 //                        HStack{
 //                            VStack(spacing: 15){
 //                                Text("나의 투표 포인트").fontWeight(.heavy).font(Font.custom(FONT, size: 20)).foregroundColor(APP_THEME_COLOR)
-//                                
+//
 //                                Spacer(minLength: 0)
 //                                ZStack{
-//                                    
+//
 //                                    Circle()
 //                                        .trim(from: 0, to: 1)
 //                                        .stroke(Color("myvote").opacity(0.05), lineWidth: 10)
 //                                        .frame(width: (UIScreen.main.bounds.width - 150) / 2, height: (UIScreen.main.bounds.width - 150) / 2)
-//                                    
+//
 //                                    Circle()
 //                                        .trim(from: 0, to: (CGFloat(self.numberIVoted % 20) / 100))
 //                                        .stroke(Color("myvote"), style: StrokeStyle(lineWidth: 10, lineCap: .round))
 //                                        .frame(width: (UIScreen.main.bounds.width - 150) / 2, height: (UIScreen.main.bounds.width - 150) / 2)
 //                                        .animation(.spring())
-//                                    
+//
 //                                    Text(String(describing: CGFloat(self.numberIVoted % 20)) + "%")
 //                                        .font(.system(size: 22))
 //                                        .fontWeight(.bold)
 //                                        .foregroundColor(Color("myvote"))
 //                                        .rotationEffect(.init(degrees: 90))
-//                                    
+//
 //                                }
 //                                .rotationEffect(.init(degrees: -90))
 //                                .animation(.spring())
-//                                
+//
 //                            }
 //                            Spacer(minLength: 0)
 //                            VStack(spacing: 15){
 //                                Text("내 인기율").fontWeight(.heavy).font(Font.custom(FONT, size: 20)).foregroundColor(APP_THEME_COLOR)
-//                                
+//
 //                                Spacer(minLength: 0)
 //                                ZStack{
-//                                    
+//
 //                                    Circle()
 //                                        .trim(from: 0, to: 1)
 //                                        .stroke(Color("receivedVote").opacity(0.05), lineWidth: 10)
 //                                        .frame(width: (UIScreen.main.bounds.width - 140) / 2, height: (UIScreen.main.bounds.width - 140) / 2)
-//                                    
+//
 //                                    Circle()
 //                                        .trim(from: 0, to: (CGFloat(self.totalNum % 100) / 100))
 //                                        .stroke(Color("receivedVote"), style: StrokeStyle(lineWidth: 10, lineCap: .round))
@@ -490,15 +494,15 @@ struct MyStaticView: View {
 //                                        .fontWeight(.bold)
 //                                        .foregroundColor(Color("receivedVote"))
 //                                        .rotationEffect(.init(degrees: 90))
-//                                    
+//
 //                                }
 //                                .rotationEffect(.init(degrees: -90))
 //                                .animation(.spring())
-//                                
+//
 //                            }
-//                            
+//
 //                        }
-//                        
+//
 //                    }
 //                    .padding()                        .padding(.horizontal, 10)
 //                    .background(Color.white.opacity(0.06))
@@ -573,7 +577,11 @@ struct MyStaticView: View {
                     
                     
                 }
-                
+                VStack{
+                    
+                           BannerAdView(bannerId: "ca-app-pub-3940256099942544/2934735716").frame(width: UIScreen.main.bounds.width, height: 70)
+                    
+                }
                 
                 
             }

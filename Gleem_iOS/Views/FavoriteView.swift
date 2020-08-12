@@ -62,10 +62,10 @@ struct FavoriteHome : View {
         
         VStack(spacing: 10){
             
-            
             GeometryReader{geo in
                 VStack{
-                    
+                     BannerAdView(bannerId: "ca-app-pub-3940256099942544/2934735716").frame(width: UIScreen.main.bounds.width, height: 60)
+
                     if !self.activityViewModel.someOneLiked.isEmpty {
                         HStack{
                             Text(SOMEONE_LIKED).fontWeight(.heavy).font(Font.custom(FONT, size: 20))
