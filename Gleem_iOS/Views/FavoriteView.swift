@@ -70,7 +70,7 @@ struct FavoriteHome : View {
                         HStack{
                             Text(SOMEONE_LIKED).fontWeight(.heavy).font(Font.custom(FONT, size: 20))
                                 .foregroundColor(APP_THEME_COLOR)
-                                .shadow(color: Color.black.opacity(0.3), radius: 5, x: 0, y: 5)
+                                .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 5)
                             //                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
                             Spacer()
                             Button(action: {
@@ -92,7 +92,7 @@ struct FavoriteHome : View {
                             //                            })
                             //                             Spacer()
                         }
-                        .padding(.horizontal)
+                        .padding(.horizontal).padding(.top, 5)
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 10) {
                                 

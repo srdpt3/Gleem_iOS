@@ -213,31 +213,35 @@ struct topView : View {
     
     var body : some View{
         
-        VStack{
-            
-            HStack(spacing: 15){
-                
-                Text(MESSAGEVIEW_TITLE).fontWeight(.heavy).font(.system(size: 23))
-                
-                Spacer()
-                //
-                //                                Button(action: {
-                //
-                //                                }) {
-                //
-                //                                    Image(systemName: "magnifyingglass").resizable().frame(width: 20, height: 20)
-                //                                }
-                //
-                //                                Button(action: {
-                //
-                //                                }) {
-                //
-                //                                    Image("menu").resizable().frame(width: 20, height: 20)
-                //                                }
-                
-            }
-            .foregroundColor(Color.white)
-            .padding()
+        VStack(alignment: .center){
+            Spacer()
+            Image("gleem_Face")
+                         .resizable()
+                         .scaledToFit()
+                         .frame(height: 40)
+//            HStack(spacing: 15){
+//                
+//                Text(MESSAGEVIEW_TITLE).fontWeight(.heavy).font(.system(size: 23))
+//                
+//                Spacer()
+//                //
+//                //                                Button(action: {
+//                //
+//                //                                }) {
+//                //
+//                //                                    Image(systemName: "magnifyingglass").resizable().frame(width: 20, height: 20)
+//                //                                }
+//                //
+//                //                                Button(action: {
+//                //
+//                //                                }) {
+//                //
+//                //                                    Image("menu").resizable().frame(width: 20, height: 20)
+//                //                                }
+//                
+//            }
+//            .foregroundColor(Color.white)
+//            .padding()
             Text(NOTIFICATION_HEADER).font(Font.custom(FONT, size: 13)).foregroundColor(Color.white)
             
             GeometryReader{_ in

@@ -37,7 +37,7 @@ struct MyStaticView: View {
     
     
     @State var index : Int = 0
-
+    
     @State var showView = false
     @State var buttonPressed = [false,false,false,false,false]
     
@@ -178,19 +178,19 @@ struct MyStaticView: View {
                         
                         Spacer()
                         
-//                        NavigationLink(destination: FavoriteView()) {
-//                                                                    //                                            EmptyView()
-//                                                                    CommentActivityRow(activity: activity)
-//
-//                            }
+                        //                        NavigationLink(destination: FavoriteView()) {
+                        //                                                                    //                                            EmptyView()
+                        //                                                                    CommentActivityRow(activity: activity)
+                        //
+                        //                            }
                         
                         
                         Button(action: {
                             // ACTION
                             //        playSound(sound: "sound-click", type: "mp3")
                             self.haptics.notificationOccurred(.success)
-                           self.showView.toggle()
-                             self.index  = 1
+                            self.showView.toggle()
+                            self.index  = 1
                         }) {
                             Image("time-machine").resizable()
                                 .frame(width: 30, height: 30)
@@ -223,10 +223,7 @@ struct MyStaticView: View {
                                         self.showView.toggle()
                                         self.index  = 0
                                 }
-                                
-                                
-                                
-                                
+
                             }
                             Image(systemName: "plus")
                                 .resizable()
@@ -300,7 +297,7 @@ struct MyStaticView: View {
                         //                                    Spacer(minLength: 0)
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack() {
-                                Image("Gleem_3D").resizable().aspectRatio(contentMode: .fill).frame(width: 60, height: 60).cornerRadius(60 / 2).padding(.leading, -15)
+                                Image("person").resizable().aspectRatio(contentMode: .fill).frame(width: 60, height: 60).cornerRadius(60 / 2).padding(.leading, -15)
                             }.padding(.leading, 15)
                             
                             
@@ -439,74 +436,74 @@ struct MyStaticView: View {
                         }
                     }
                     
-                    VStack(spacing: 32){
-                        
-                        
-                        HStack{
-                            VStack(spacing: 15){
-                                Text("나의 투표 포인트").fontWeight(.heavy).font(Font.custom(FONT, size: 20)).foregroundColor(APP_THEME_COLOR)
-                                
-                                Spacer(minLength: 0)
-                                ZStack{
-                                    
-                                    Circle()
-                                        .trim(from: 0, to: 1)
-                                        .stroke(Color("myvote").opacity(0.05), lineWidth: 10)
-                                        .frame(width: (UIScreen.main.bounds.width - 150) / 2, height: (UIScreen.main.bounds.width - 150) / 2)
-                                    
-                                    Circle()
-                                        .trim(from: 0, to: (CGFloat(self.numberIVoted % 20) / 100))
-                                        .stroke(Color("myvote"), style: StrokeStyle(lineWidth: 10, lineCap: .round))
-                                        .frame(width: (UIScreen.main.bounds.width - 150) / 2, height: (UIScreen.main.bounds.width - 150) / 2)
-                                        .animation(.spring())
-                                    
-                                    Text(String(describing: CGFloat(self.numberIVoted % 20)) + "%")
-                                        .font(.system(size: 22))
-                                        .fontWeight(.bold)
-                                        .foregroundColor(Color("myvote"))
-                                        .rotationEffect(.init(degrees: 90))
-                                    
-                                }
-                                .rotationEffect(.init(degrees: -90))
-                                .animation(.spring())
-                                
-                            }
-                            Spacer(minLength: 0)
-                            VStack(spacing: 15){
-                                Text("내 인기율").fontWeight(.heavy).font(Font.custom(FONT, size: 20)).foregroundColor(APP_THEME_COLOR)
-                                
-                                Spacer(minLength: 0)
-                                ZStack{
-                                    
-                                    Circle()
-                                        .trim(from: 0, to: 1)
-                                        .stroke(Color("receivedVote").opacity(0.05), lineWidth: 10)
-                                        .frame(width: (UIScreen.main.bounds.width - 140) / 2, height: (UIScreen.main.bounds.width - 140) / 2)
-                                    
-                                    Circle()
-                                        .trim(from: 0, to: (CGFloat(self.totalNum % 100) / 100))
-                                        .stroke(Color("receivedVote"), style: StrokeStyle(lineWidth: 10, lineCap: .round))
-                                        .frame(width: (UIScreen.main.bounds.width - 140) / 2, height: (UIScreen.main.bounds.width - 140) / 2)
-                                        .animation(.spring())
-                                    Text(String(describing: CGFloat(self.totalNum % 100)) + "%")
-                                        .font(.system(size: 22))
-                                        .fontWeight(.bold)
-                                        .foregroundColor(Color("receivedVote"))
-                                        .rotationEffect(.init(degrees: 90))
-                                    
-                                }
-                                .rotationEffect(.init(degrees: -90))
-                                .animation(.spring())
-                                
-                            }
-                            
-                        }
-                        
-                    }
-                    .padding()                        .padding(.horizontal, 10)
-                    .background(Color.white.opacity(0.06))
-                    .cornerRadius(15)
-                    .shadow(color: Color.white.opacity(0.2), radius: 10, x: 0, y: 0)
+//                    VStack(spacing: 32){
+//                        
+//                        
+//                        HStack{
+//                            VStack(spacing: 15){
+//                                Text("나의 투표 포인트").fontWeight(.heavy).font(Font.custom(FONT, size: 20)).foregroundColor(APP_THEME_COLOR)
+//                                
+//                                Spacer(minLength: 0)
+//                                ZStack{
+//                                    
+//                                    Circle()
+//                                        .trim(from: 0, to: 1)
+//                                        .stroke(Color("myvote").opacity(0.05), lineWidth: 10)
+//                                        .frame(width: (UIScreen.main.bounds.width - 150) / 2, height: (UIScreen.main.bounds.width - 150) / 2)
+//                                    
+//                                    Circle()
+//                                        .trim(from: 0, to: (CGFloat(self.numberIVoted % 20) / 100))
+//                                        .stroke(Color("myvote"), style: StrokeStyle(lineWidth: 10, lineCap: .round))
+//                                        .frame(width: (UIScreen.main.bounds.width - 150) / 2, height: (UIScreen.main.bounds.width - 150) / 2)
+//                                        .animation(.spring())
+//                                    
+//                                    Text(String(describing: CGFloat(self.numberIVoted % 20)) + "%")
+//                                        .font(.system(size: 22))
+//                                        .fontWeight(.bold)
+//                                        .foregroundColor(Color("myvote"))
+//                                        .rotationEffect(.init(degrees: 90))
+//                                    
+//                                }
+//                                .rotationEffect(.init(degrees: -90))
+//                                .animation(.spring())
+//                                
+//                            }
+//                            Spacer(minLength: 0)
+//                            VStack(spacing: 15){
+//                                Text("내 인기율").fontWeight(.heavy).font(Font.custom(FONT, size: 20)).foregroundColor(APP_THEME_COLOR)
+//                                
+//                                Spacer(minLength: 0)
+//                                ZStack{
+//                                    
+//                                    Circle()
+//                                        .trim(from: 0, to: 1)
+//                                        .stroke(Color("receivedVote").opacity(0.05), lineWidth: 10)
+//                                        .frame(width: (UIScreen.main.bounds.width - 140) / 2, height: (UIScreen.main.bounds.width - 140) / 2)
+//                                    
+//                                    Circle()
+//                                        .trim(from: 0, to: (CGFloat(self.totalNum % 100) / 100))
+//                                        .stroke(Color("receivedVote"), style: StrokeStyle(lineWidth: 10, lineCap: .round))
+//                                        .frame(width: (UIScreen.main.bounds.width - 140) / 2, height: (UIScreen.main.bounds.width - 140) / 2)
+//                                        .animation(.spring())
+//                                    Text(String(describing: CGFloat(self.totalNum % 100)) + "%")
+//                                        .font(.system(size: 22))
+//                                        .fontWeight(.bold)
+//                                        .foregroundColor(Color("receivedVote"))
+//                                        .rotationEffect(.init(degrees: 90))
+//                                    
+//                                }
+//                                .rotationEffect(.init(degrees: -90))
+//                                .animation(.spring())
+//                                
+//                            }
+//                            
+//                        }
+//                        
+//                    }
+//                    .padding()                        .padding(.horizontal, 10)
+//                    .background(Color.white.opacity(0.06))
+//                    .cornerRadius(15)
+//                    .shadow(color: Color.white.opacity(0.2), radius: 10, x: 0, y: 0)
                     
                 }
                 else{
@@ -594,14 +591,14 @@ struct MyStaticView: View {
             .sheet(isPresented: self.$showView) {
                 if(self.index == 0) {
                     UploadView(noVotePic: self.$noVotePic, vote: self.vote!)
-
+                    
                 }else{
-                     HistoryView()
+                    HistoryView()
                 }
-
+                
             }
             
-          
+            
             
             
         }
@@ -700,7 +697,8 @@ struct SomeoneVotedView: View {
             
             
             if(user.userAvatar == ""){
-                Image("Gleem_3D").resizable().aspectRatio(contentMode: .fill).frame(width: height, height: height).cornerRadius(height / 2).padding(.leading, -15)
+                Image("person").resizable().aspectRatio(contentMode: .fill).frame(width: height, height: height).cornerRadius(height / 2).padding(.leading, -15)
+                    .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
             }else{
                 AnimatedImage(url: URL(string:user.userAvatar)).resizable().aspectRatio(contentMode: .fill).frame(width: height, height: height).cornerRadius(height / 2).padding(.leading, -15)
                     .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5).animation(.spring())

@@ -118,7 +118,7 @@ struct CardListview: View {
                                 .offset(x: self.isTopCard(cardView: cardView) ?  self.dragState.translation.width : 0, y: self.isTopCard(cardView: cardView) ?  self.dragState.translation.height : 0)
                                 .scaleEffect(self.dragState.isDragging && self.isTopCard(cardView: cardView) ? 0.85 : 1.0)
                                 .rotationEffect(Angle(degrees: self.isTopCard(cardView: cardView) ? Double(self.dragState.translation.width / 12) : 0))
-                                .animation(.interpolatingSpring(stiffness: 150, damping: 130))
+//                                .animation(.interpolatingSpring(stiffness: 150, damping: 130))
 //                              .animation(Animation.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0))
 //                                .animation(.easeInOut(duration: 3))
                             
@@ -192,7 +192,7 @@ struct CardListview: View {
                         )
                     }else{
                         
-                        if(!self.obs.isVoteLoading){
+                        if(!self.obs.isReloading){
                             VStack{
                                 Spacer()
                                 
@@ -203,8 +203,11 @@ struct CardListview: View {
                                 }
                                 .animation(Animation.spring(response: 0.7, dampingFraction: 1.0, blendDuration: 1.0).repeatForever(autoreverses: true))
                                 
-                                Text(NO_NEW_CARD)
-                                    .font(.custom(FONT, size: CGFloat(15))).foregroundColor(APP_THEME_COLOR).multilineTextAlignment(.center).lineLimit(2).padding(.horizontal)
+                                if(self.obs.users.isEmpty){
+                                    Text(NO_NEW_CARD)
+                                                                  .font(.custom(FONT, size: CGFloat(15))).foregroundColor(APP_THEME_COLOR).multilineTextAlignment(.center).lineLimit(2).padding(.horizontal)
+                                }
+                          
                                 Spacer()
                                 //                                         LoadingView(isLoading: self.obs.isLoading, error: self.obs.error) {
                                 //                                             self.obs.getNewCards()

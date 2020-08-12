@@ -173,13 +173,30 @@ struct ExpandView: View {
                                         .foregroundColor(APP_THEME_COLOR)
                                     
                                     
-                                    ForEach(1...5,id: \ .self){_ in
-                                        Image(systemName: "star.fill")
-                                            .foregroundColor(.yellow)
+                                    
+                                    if(Int(self.user.numVote)  > 10){
+                                        ForEach(1...5,id: \ .self){_ in
+                                            Image(systemName: "star.fill")
+                                                .foregroundColor(.yellow)
+                                        }
+                                    }else{
+//                                        let star = Int(self.user.numVote / 2)
+                                        ForEach(1...Int(self.user.numVote / 2) ,id: \ .self){_ in
+                                            Image(systemName: "star.fill")
+                                                .foregroundColor(.yellow)
+                                        }
+                                        
+                                        ForEach((Int(self.user.numVote / 2) + 1)...5 ,id: \ .self){_ in
+                                            Image(systemName: "star")
+                                                .foregroundColor(.yellow)
+                                        }
                                     }
+                                    
+                                    
+                                    
                                     Spacer()
                                 }.padding(.bottom, 10)
-   
+                                
                                 HStack{
                                     Spacer()
                                     RatingDetailView(card: user)
@@ -188,17 +205,8 @@ struct ExpandView: View {
                                 }.padding(.horizontal,5)
               
                             }
-                            HStack{
-                                Spacer()
-                                if(!self.updateVoteImage){
-                                    Text(NOVOTEIMAGE)
-                                        .font(.custom(FONT, size: CGFloat(13))).foregroundColor(Color("sleep")).padding(.horizontal)
-                                }
-                                Spacer()
-                                
-                            }.padding(.horizontal,5)
-                            
-                            
+           
+                    
                             VStack(alignment: .leading, spacing: 12){
                                 
                                 HStack(spacing : 8){

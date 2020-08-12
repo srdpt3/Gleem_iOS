@@ -19,7 +19,7 @@ struct HeaderView: View {
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        HStack {
+        HStack(alignment: .center){
             Button(action: {
                 // ACTION
                 //        playSound(sound: "sound-click", type: "mp3")

@@ -73,7 +73,7 @@ func resetDefaults() {
 }
 
 func removeDefaults(entry: String) {
-    print("SAved signInFirstTime")
+    print("removeDefaults")
     if(isKeyPresentInUserDefaults(key: entry)){
         UserDefaults.standard.removeObject(forKey: entry)
     }

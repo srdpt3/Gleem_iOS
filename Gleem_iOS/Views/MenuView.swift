@@ -39,8 +39,8 @@ struct MenuView: View {
                 
                 
                 //                MenuRow(title: PROFILE, icon: "person" , index : 0)
-                MenuRow(title: ACCOUNT, icon: "gear" , index : 0)
-                MenuRow(title: BILLING, icon: "creditcard" , index : 1)
+                MenuRow(title: PROFILE, icon: "gear" , index : 0)
+//                MenuRow(title: BILLING, icon: "creditcard" , index : 1)
                 MenuRow(title:  User.currentUser() != nil ? LOGOUT : LOGIN, icon: "person.crop.circle" , index : 2)
             }
             .frame(maxWidth: .infinity)

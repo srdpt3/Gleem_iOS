@@ -23,45 +23,37 @@ struct subMainView : View {
     @State var index = 0
     var body: some View {
         
-                VStack(spacing: 0){
-                    
-                    if self.index == 0{
-                        CardListview().animation(.spring())
-                    }
-                    else if self.index == 1{
-                        MyStaticView().animation(.spring())
-//                         .environmentObject(self.obs)
-                    }
-                    else if self.index == 2{
-                        FavoriteView().animation(.spring())
-                    }
-                    else if self.index == 3{
-                        //                    Color.black
-           
-                            
-                           MessagesView()
-                    }
-                        
-                    else{
-                        //                    Color.black
-                        MessagesView()
-                    }
-                    //                Spacer()
-                    CircleTab(index: self.$index)
-                        .background(Color.white.edgesIgnoringSafeArea(.bottom))
-                        .opacity(self.obs.isLoading == true ? 0 : 1)
-                        .opacity(self.obs.showTab == true  ? 0 : 1)
-                    
-                    
-                    
-                    //                        .offset(y:self.obs.showTab == true ? 50 : 0 )
-                    
-                    
-                    
-                    
-                }
-          
+        VStack(spacing: 0){
             
+            if self.index == 0{
+                CardListview()
+            }
+            else if self.index == 1{
+                MyStaticView()
+                //                         .environmentObject(self.obs)
+            }
+            else if self.index == 2{
+                FavoriteView()
+            }
+            else if self.index == 3{
+                MessagesView()
+            }
+            //                Spacer()
+            CircleTab(index: self.$index)
+                .background(Color.white.edgesIgnoringSafeArea(.bottom))
+                .opacity(self.obs.isLoading == true ? 0 : 1)
+                .opacity(self.obs.showTab == true  ? 0 : 1)
+            
+            
+            
+            //                        .offset(y:self.obs.showTab == true ? 50 : 0 )
+            
+            
+            
+            
+        }
+        
+        
     }
     
 }

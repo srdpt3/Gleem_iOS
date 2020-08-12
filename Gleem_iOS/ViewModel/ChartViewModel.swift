@@ -141,6 +141,9 @@ class ChartViewModel: ObservableObject {
                 }
                 
             }
+            
+            
+            
             if (self.someOneVoted.isEmpty){
                 let activity = Activity(activityId: "", type: "", username: "", userId: "", userAvatar: "", message: "", date: 0)
                 self.someOneVoted.append(activity)

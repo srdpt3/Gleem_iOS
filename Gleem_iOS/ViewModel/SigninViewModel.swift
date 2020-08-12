@@ -35,4 +35,11 @@ class SigninViewModel: ObservableObject {
         }
        
     }
+    
+    func resetPasswordFor(email: String, completion: @escaping (_ error: Error?) -> Void) {
+         
+         Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+             completion(error)
+         }
+     }
 }

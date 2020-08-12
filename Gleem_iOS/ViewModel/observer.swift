@@ -16,11 +16,17 @@ class observer : ObservableObject{
     @Published var totalCount = 0
     @Published var showTab : Bool = false
     @Published var gender : String = ""
-
+    
     @Published var last = 0
     @Published var isLoading = false
-    @Published var isVoteLoading = false
+    @Published var isInBoxLoading = false
 
+    @Published var isVoteLoading = false
+    @Published var isReloading = false
+
+    
+    
+    
     @Published var error: NSError?
     @Published var cardViews = [MainCardView]()
     
@@ -34,8 +40,7 @@ class observer : ObservableObject{
     
     func getNewCards(){
         self.isVoteLoading = true
-        self.checkUserUploadVote()
-
+        
         Ref.FIRESTORE_COLLECTION_MYVOTE.document(Auth.auth().currentUser!.uid).collection("voted").getDocuments { (snap, error) in
             self.votedCards.removeAll()
             if error != nil {
@@ -53,10 +58,10 @@ class observer : ObservableObject{
             print("voted count \(self.votedCards)")
             self.isVoteLoading = false
             
-            if(!self.isVoteLoading && (!self.votedCards.isEmpty || !self.updateVoteImage)){
-                print("vote finished")
-                self.reload()
-            }
+            
+            print("vote finished")
+            self.reload()
+            
         }
     }
     
@@ -74,7 +79,8 @@ class observer : ObservableObject{
     }
     
     func listenAuthenticationState() {
-        resetDefaults()
+        self.checkUserUploadVote()
+
         handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
             if let user = user {
                 print("listenAuthenticationState \(user.uid)")
@@ -84,16 +90,16 @@ class observer : ObservableObject{
                         //                        guard let decoderUser = try? User.init(fromDictionary: dict) else {return}
                         guard let decoderUser = try? User.init(_dictionary: dict as NSDictionary) else {return}
                         saveUserLocally(mUserDictionary: dict as NSDictionary)
-
-
+                        
+                        
                     }
                 }
                 self.getNewCards()
                 
-//                if(!self.isVoteLoading && !self.votedCards.isEmpty){
-//                    print("vote finished")
-//                    self.reload()
-//                }
+                //                if(!self.isVoteLoading && !self.votedCards.isEmpty){
+                //                    print("vote finished")
+                //                    self.reload()
+                //                }
                 
                 self.isLoggedIn = true
             } else {
@@ -110,10 +116,10 @@ class observer : ObservableObject{
         
         
         if(self.users.count == 1 &&  index == 1){
-           self.getNewCards()
-
-        }
+            self.getNewCards()
             
+        }
+        
         if(self.users.count == 2 &&  index == 2){
             self.index += 1
             self.last += 1
@@ -123,7 +129,7 @@ class observer : ObservableObject{
             if(self.index > self.users.count ){
                 print("reload")
                 
-               self.getNewCards()
+                self.getNewCards()
                 self.index = 2
             }else{
                 
@@ -139,17 +145,21 @@ class observer : ObservableObject{
         
     }
     
+    func resetCache(){
+        resetDefaults()
+        URLCache.shared.removeAllCachedResponses()
+    }
+    
     func logout() {
         
         do {
             cardViews.removeAll()
             users.removeAll()
-            
+            resetCache()
             try Auth.auth().signOut()
             
             
-            resetDefaults()
-            URLCache.shared.removeAllCachedResponses()
+            
             
             //            unbind()
         } catch  {
@@ -169,108 +179,114 @@ class observer : ObservableObject{
     }
     
     @Published var inboxMessages: [InboxMessage] = [InboxMessage]()
-      // let objectWillChange = ObservableObjectPublisher()
-
-      var listener: ListenerRegistration!
-      
+    // let objectWillChange = ObservableObjectPublisher()
     
-      
-      func loadInboxMessages() {
-          self.isLoading = true
-          self.inboxMessages = []
-          
-          Api.Chat.getInboxMessages(onSuccess: { (inboxMessages) in
-              if self.inboxMessages.isEmpty {
-                  self.inboxMessages = inboxMessages
-              }
-          }, onError: { (errorMessage) in
-              
-          }, newInboxMessage: { (inboxMessage) in
-              if !self.inboxMessages.isEmpty {
-                  self.inboxMessages.append(inboxMessage)
-              }
-              
-              
-              
-          }) { (listener) in
-              self.listener = listener
-          }
-          //       defer {
-          //            objectWillChange.send()
-          //        }
-          self.isLoading = false
-      }
-      
+    var listener: ListenerRegistration!
+    
+    
+    
+    func loadInboxMessages() {
+        self.isInBoxLoading = true
+        self.inboxMessages = []
+        
+        Api.Chat.getInboxMessages(onSuccess: { (inboxMessages) in
+            if self.inboxMessages.isEmpty {
+                self.inboxMessages = inboxMessages
+            }
+        }, onError: { (errorMessage) in
+            
+        }, newInboxMessage: { (inboxMessage) in
+            if !self.inboxMessages.isEmpty {
+                self.inboxMessages.append(inboxMessage)
+            }
+            
+            
+            
+        }) { (listener) in
+            self.listener = listener
+        }
+        //       defer {
+        //            objectWillChange.send()
+        //        }
+        self.isInBoxLoading = false
+    }
+    
     
     
     
     func createCardView(){
         self.cardViews.removeAll()
-        var indexRange = 0
         
-        if(self.totalCount <= 2 && self.totalCount > 0){
-            indexRange = self.totalCount
-        }else if self.totalCount > 2 {
-            indexRange = 2
+        //Filtering
+        if(!votedCards.isEmpty && !users.isEmpty){
+            
+            for index in (0..<users.count).reversed() {
+                let u = users[index]
+                if votedCards.contains(u.id){
+                    users.remove(at: index)
+                    print("contained  \(u.id)")
+                }
+                
+            }
+            
+            print("filtered User : \(users.count)")
+            
         }
         
-        for index in 0..<indexRange {
-            cardViews.append(MainCardView(user: users[index]))
+        if(!users.isEmpty){
+            var indexRange = 0
+                  
+            if(self.users.count <= 2 && self.users.count > 0){
+                      indexRange = self.users.count
+                  }else if self.users.count > 2 {
+                      indexRange = 2
+                  }
+                  
+                  for index in 0..<indexRange {
+                      cardViews.append(MainCardView(user: users[index]))
+                  }
+                  self.index = self.cardViews.count
+                  
+                  print("reload \( self.index )")
         }
-        self.index = self.cardViews.count
-        
-        print("reload \( self.index )")
+      
     }
     
     
     func reload(){
         
-        self.isLoading = true
+        self.isReloading = true
         let whereField = User.currentUser()!.sex == "female" ? "male" : "female"
         
         Ref.FIRESTORE_COLLECTION_ACTIVE_VOTE.whereField("sex", isEqualTo: whereField )
             .limit(to: 30)
-//            .order(by: "createdDate",descending: true)
+            //            .order(by: "createdDate",descending: true)
             .getDocuments { (snap, err) in
-            self.users.removeAll()
-            
-            if err != nil{
-                print((err?.localizedDescription)!)
-                self.error = (err?.localizedDescription as! NSError)
-                return
-            }
-            
-            for i in snap!.documents{
+                self.users.removeAll()
                 
-                let id = i.documentID
-                if(id != Auth.auth().currentUser?.uid){
+                if err != nil{
+                    print((err?.localizedDescription)!)
+                    self.error = (err?.localizedDescription as! NSError)
+                    return
+                }
+                
+                for i in snap!.documents{
                     
-                    let dict = i.data()
-                    guard let decoderPost = try? ActiveVote.init(fromDictionary: dict) else {return}
-                    
-                    if self.votedCards.contains(id) {
-                        print("contained " +  id)
-                    }
+                    let id = i.documentID
+                    if(id != Auth.auth().currentUser?.uid){
                         
-                        
-                    else{
                         let dict = i.data()
                         guard let decoderPost = try? ActiveVote.init(fromDictionary: dict) else {return}
                         self.users.append(decoderPost)
                     }
                     
-                    
-                    
-                }
-                
                 }
                 print("self.users.count \(self.users.count)")
                 
                 
-             self.isLoading = false
-            self.totalCount = self.users.count
-            self.last = 0
-            self.createCardView()
+                self.isReloading = false
+                self.last = 0
+                self.createCardView()
         }
         
     }

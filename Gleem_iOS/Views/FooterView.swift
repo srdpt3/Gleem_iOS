@@ -61,15 +61,15 @@ struct voteButtonView : View {
                     self.error = true
                 }else{
                     self.haptics.notificationOccurred(.success)
-                                 
-                                 //                self.fireworkController.addFirework(sparks: 10)
-                                 withAnimation{
-                                     self.showVotingScreen.toggle()
-                                 }
+                    
+                    //                self.fireworkController.addFirework(sparks: 10)
+                    withAnimation{
+                        self.showVotingScreen.toggle()
+                    }
                 }
                 
                 
-             
+                
             }) {
                 Text(BUTTONNAME)
                     //                    .font(.custom("CookieRun Regular", size: 18))
@@ -103,7 +103,7 @@ struct voteButtonView : View {
             }
             
         }.alert(isPresented: self.$error) {
-            return Alert(title: Text("투표 사진을 먼저 등록해주세요"), message: Text(NOVOTEIMAGE).font(.custom(FONT, size: 17)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 15)).foregroundColor(APP_THEME_COLOR), action: {
+            return Alert(title: Text("투표 사진을 먼저 등록해주세요").font(.custom(FONT, size: CGFloat(UIScreen.main.bounds.height < 896.0 ? BUTTON_TITLE_FONT_SIZE : 15))), message: Text(NOVOTEIMAGE).font(.custom(FONT, size: 12)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 15)).foregroundColor(APP_THEME_COLOR), action: {
             }))
             
             
@@ -118,18 +118,30 @@ struct ArrowView : View {
     let haptics = UINotificationFeedbackGenerator()
     @EnvironmentObject  var obs : observer
     var height: CGFloat
+    @State var error : Bool = false
     
     var body: some View{
         Group{
             Button(action: {
                 // ACTION
-                self.haptics.notificationOccurred(.success)
                 
-                //                self.fireworkController.addFirework(sparks: 10)
-                withAnimation{
-                    //                         self.showVotingScreen.toggle()
-                    self.obs.moveCards()
+                if(!self.obs.updateVoteImage){
+                    self.error = true
+                    
+                }else{
+                    
+                    self.haptics.notificationOccurred(.success)
+                    
+                    
+                    
+                    //                self.fireworkController.addFirework(sparks: 10)
+                    withAnimation{
+                        //                         self.showVotingScreen.toggle()
+                        self.obs.moveCards()
+                    }
                 }
+                
+                
             }, label: {
                 
                 
@@ -158,6 +170,14 @@ struct ArrowView : View {
             //                //                            .padding(.horizontal, 30)
             //                //                            .padding(.vertical, 15)
             //                .accentColor(APP_THEME_COLOR)
+        }
+        .alert(isPresented: self.$error) {
+            return Alert(title: Text("투표 사진을 먼저 등록해주세요"), message: Text(NOVOTEIMAGE).font(.custom(FONT, size: 14)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 15)).foregroundColor(APP_THEME_COLOR), action: {
+            }))
+            
+            
+            
+            
         }
     }
     

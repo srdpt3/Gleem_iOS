@@ -111,7 +111,7 @@ public let SERIES_TITLE = "매력지수(%)"
 //Menu
 public let PROFILE_COMPLETE = "% 완료"
 public let ACCOUNT = "계정"
-public let PROFILE = "프로필"
+public let PROFILE = "내 계정"
 public let BILLING = "포인트 충전"
 public let LOGIN = "로그인"
 public let LOGOUT = "로그아웃"

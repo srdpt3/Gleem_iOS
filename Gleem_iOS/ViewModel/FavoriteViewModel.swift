@@ -138,27 +138,23 @@ class FavoriteViewModel: ObservableObject {
                 self.favoriteUsers_ids.append(decoderPost.id)
             }
             self.isLoading = false
+            while (self.favoriteUsers.count < 12){
+                let activeUser = ActiveVote(attr1: 0, attr2: 0, attr3: 0, attr4: 0, attr5: 0, attrNames: [], numVote: 0, createdDate: 0, lastModifiedDate: 0, id: "", email: "", imageLocation: "", username: "", age: "", sex: "")
+                self.favoriteUsers.append(activeUser)
+            }
             
-            if (self.favoriteUsers.isEmpty){
-                while (self.favoriteUsers.count < 12){
-                    let activeUser = ActiveVote(attr1: 0, attr2: 0, attr3: 0, attr4: 0, attr5: 0, attrNames: [], numVote: 0, createdDate: 0, lastModifiedDate: 0, id: "", email: "", imageLocation: "", username: "", age: "", sex: "")
-                    self.favoriteUsers.append(activeUser)
-                }
-            }else{
-                while (self.favoriteUsers.count % 3 != 0){
-                    let activeUser = ActiveVote(attr1: 0, attr2: 0, attr3: 0, attr4: 0, attr5: 0, attrNames: [], numVote: 0, createdDate: 0, lastModifiedDate: 0, id: "", email: "", imageLocation: "", username: "", age: "", sex: "")
-                    self.favoriteUsers.append(activeUser)
-                }
-
+            while (self.favoriteUsers.count % 3 != 0){
+                let activeUser = ActiveVote(attr1: 0, attr2: 0, attr3: 0, attr4: 0, attr5: 0, attrNames: [], numVote: 0, createdDate: 0, lastModifiedDate: 0, id: "", email: "", imageLocation: "", username: "", age: "", sex: "")
+                self.favoriteUsers.append(activeUser)
 
             }
-          self.lastDoc = snapshot!.documents.last
-
+            
+            
+            self.lastDoc = snapshot!.documents.last
+            
             
         }
-        
-        //        self.splitted = self.favoriteUsers.chunked(3)
-        
+                
         
     }
     
