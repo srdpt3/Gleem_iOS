@@ -70,7 +70,7 @@ class VoteViewModel: ObservableObject {
         batch.setData(dict, forDocument: myVoteRef)
         
         
-        let someoneVoteObject = Activity(activityId: User.currentUser()!.id, type: "voted", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: User.currentUser()!.profileImageUrl, message: "", date: Date().timeIntervalSince1970)
+        let someoneVoteObject = Activity(activityId: User.currentUser()!.id, type: "voted", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: User.currentUser()!.profileImageUrl, message: "", date: Date().timeIntervalSince1970, read: false)
         guard let someOneVotedDict = try? someoneVoteObject.toDictionary() else { return }
         
         

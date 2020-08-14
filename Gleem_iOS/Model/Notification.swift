@@ -18,7 +18,8 @@ struct Activity: Encodable, Decodable {
     var userAvatar: String
     var message: String
     var date: Double
-    
+    var read: Bool
+
     var typeDescription: String {
         var output = ""
         switch type {

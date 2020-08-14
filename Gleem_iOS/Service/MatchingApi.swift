@@ -27,7 +27,7 @@ class MatchingApi{
         
         // Activity
         let activityId = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: user.userId).collection("activity").document().documentID
-        let activityObject = Activity(activityId: activityId, type: "match", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: User.currentUser()!.profileImageUrl, message: "", date: Date().timeIntervalSince1970)
+        let activityObject = Activity(activityId: activityId, type: "match", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: User.currentUser()!.profileImageUrl, message: "", date: Date().timeIntervalSince1970, read: false)
         guard let activityDict = try? activityObject.toDictionary() else { return }
         
         
@@ -37,7 +37,7 @@ class MatchingApi{
         
         
         let activityId2 = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: User.currentUser()!.id).collection("activity").document().documentID
-        let activityObject2 = Activity(activityId: activityId, type: "match", username: user.username, userId: user.userId, userAvatar: user.userAvatar, message: "", date: Date().timeIntervalSince1970)
+        let activityObject2 = Activity(activityId: activityId, type: "match", username: user.username, userId: user.userId, userAvatar: user.userAvatar, message: "", date: Date().timeIntervalSince1970, read: false)
         guard let activityDict2 = try? activityObject2.toDictionary() else { return }
         
         

@@ -33,7 +33,7 @@ class FavoriteViewModel: ObservableObject {
         if User.currentUser()!.id != user.id {
             
             //            let someoneLikeId = Ref.FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID(userId: user.id).collection("liked").document().documentID
-            let someoneLikeObject = Activity(activityId: User.currentUser()!.id, type: "like", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: User.currentUser()!.profileImageUrl, message: "", date: Date().timeIntervalSince1970)
+            let someoneLikeObject = Activity(activityId: User.currentUser()!.id, type: "like", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: User.currentUser()!.profileImageUrl, message: "", date: Date().timeIntervalSince1970, read: false)
             guard let activityDict = try? someoneLikeObject.toDictionary() else { return }
             
             
@@ -44,7 +44,7 @@ class FavoriteViewModel: ObservableObject {
             
             
             //            let activityId = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: user.id).collection("activity").document().documentID
-            let activityObject = Activity(activityId: User.currentUser()!.id, type: "like", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: User.currentUser()!.profileImageUrl, message: "", date: Date().timeIntervalSince1970)
+            let activityObject = Activity(activityId: User.currentUser()!.id, type: "like", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: User.currentUser()!.profileImageUrl, message: "", date: Date().timeIntervalSince1970, read: false)
             guard let activityDict2 = try? activityObject.toDictionary() else { return }
             
             

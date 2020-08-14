@@ -14,13 +14,13 @@
          contextName = "closure #1 in observer.getNewCards():observer.swift">
          <PersistentStrings>
             <PersistentString
+               value = "self.isVoteLoading">
+            </PersistentString>
+            <PersistentString
                value = "self.votedCards.isEmpty">
             </PersistentString>
             <PersistentString
                value = "self.updateVoteImage">
-            </PersistentString>
-            <PersistentString
-               value = "self.isVoteLoading">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -109,10 +109,24 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #1 in closure #1 in ActivityViewModel.loadSomeOneLike():ActivityViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "dict">
+            </PersistentString>
+            <PersistentString
+               value = "documentChange.document.data()">
+            </PersistentString>
+            <PersistentString
+               value = "decoderActivity">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in FavoriteViewModel.loadFavoriteUsers():FavoriteViewModel.swift">
          <PersistentStrings>
             <PersistentString
-               value = " ActiveVote.init(fromDictionary: dict)">
+               value = "dict">
             </PersistentString>
             <PersistentString
                value = "lastDoc ">
@@ -127,10 +141,10 @@
                value = "snapshot!.documents.last">
             </PersistentString>
             <PersistentString
-               value = "self.lastDoc ">
+               value = " ActiveVote.init(fromDictionary: dict)">
             </PersistentString>
             <PersistentString
-               value = "dict">
+               value = "self.lastDoc ">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -208,10 +222,10 @@
          contextName = "ExpandView.persist():ExpandView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.buttonPressed">
+               value = "self.user.attrNames">
             </PersistentString>
             <PersistentString
-               value = "self.user.attrNames">
+               value = "self.buttonPressed">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
