@@ -17,7 +17,8 @@ struct HeaderView: View {
     @State var viewState = CGSize.zero
     let haptics = UINotificationFeedbackGenerator()
     @Environment(\.presentationMode) var presentationMode
-    
+    @EnvironmentObject  var obs : observer
+
     var body: some View {
         HStack(alignment: .center){
             Button(action: {
@@ -69,7 +70,7 @@ struct HeaderView: View {
                 //            .accentColor(Color("bell"))
                 .sheet(isPresented: $showNotification) {
                     //        GuideView()
-                    NotificationView()
+                    NotificationView().environmentObject(self.obs)
             }
             
             

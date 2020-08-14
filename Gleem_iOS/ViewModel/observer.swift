@@ -24,7 +24,8 @@ class observer : ObservableObject{
     @Published var isVoteLoading = false
     @Published var isReloading = false
     
-    
+    @Published var activityArray = [Activity]()
+
     
     
     @Published var error: NSError?
@@ -40,7 +41,8 @@ class observer : ObservableObject{
     
     func getNewCards(){
         self.isVoteLoading = true
-        
+        self.loadActivities()
+
         Ref.FIRESTORE_COLLECTION_MYVOTE.document(Auth.auth().currentUser!.uid).collection("voted").getDocuments { (snap, error) in
             self.votedCards.removeAll()
             if error != nil {
@@ -94,6 +96,7 @@ class observer : ObservableObject{
                         
                     }
                 }
+
                 self.getNewCards()
                 
                 //                if(!self.isVoteLoading && !self.votedCards.isEmpty){
@@ -255,7 +258,7 @@ class observer : ObservableObject{
     
     
     func reload(){
-        DispatchQueue.main.async {
+//        DispatchQueue.main.async {
             self.isReloading = true
             let whereField = User.currentUser()!.sex == "female" ? "male" : "female"
             
@@ -290,16 +293,76 @@ class observer : ObservableObject{
                     self.createCardView()
             }
             
-            
-            
-        }
+
+
         
         
     }
     
+    func loadActivities() {
+//        isLoading = true
+        listener = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: User.currentUser()!.id).collection("activity").order(by: "date", descending: true).addSnapshotListener({ (querySnapshot, error) in
+            guard let snapshot = querySnapshot else {
+                return
+            }
+            
+            snapshot.documentChanges.forEach { (documentChange) in
+                switch documentChange.type {
+                case .added:
+                    //                    var activityArray = [Activity]()
+                    print("type: added")
+                    //                    self.send()
+                    
+                    let dict = documentChange.document.data()
+                    guard let decoderActivity = try? Activity.init(fromDictionary: dict) else {return}
+                    
+                    if(!decoderActivity.read) {
+                        if(decoderActivity.type == "like"){
+                            //                        self.send()
+                            self.setNotification(msg:"누군가 나에게 끌림을 주었습니다")
+                        }else   if(decoderActivity.type == "match"){
+                            //                        self.send()
+                            self.setNotification(msg:"축하해요! 이성과 연결이 되었습니다. \n채팅을 시작해보세요")
+                        }
+                        self.updateRead(docId: decoderActivity.activityId)
+
+                    }
+                    
+                    
+                    
+                    self.activityArray.append(decoderActivity)
+                case .modified:
+                    print("type: modified")
+                case .removed:
+                    print("type: removed")
+                }
+                
+            }
+            
+        })
+        
+        
+    }
     
-    
-    
+    func setNotification(msg: String){
+         let manager = LocalNotificationManager()
+         //        manager.requestPermission()
+         manager.addNotification(title: msg)
+         manager.scheduleNotifications()
+     }
+     
+    func  updateRead(docId : String){
+        let firestoreUserId = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: User.currentUser()!.id).collection("activity").document(docId)
+        firestoreUserId.updateData([
+            "read": true
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+    }
 }
 
 

@@ -11,13 +11,14 @@ import SwiftUI
 import SDWebImageSwiftUI
 struct NotificationView: View {
     
-    @ObservedObject private var activityViewModel = ActivityViewModel()
-    
+//    @ObservedObject private var activityViewModel = ActivityViewModel()
+    @EnvironmentObject  var obs : observer
+
     
     
     
     init() {
-        self.activityViewModel.loadActivities()
+//        self.activityViewModel.loadActivities()
     }
     var body: some View {
         
@@ -32,8 +33,8 @@ struct NotificationView: View {
                     }
                     Divider()
                     List{
-                        if !self.activityViewModel.activityArray.isEmpty {
-                            ForEach(self.activityViewModel.activityArray, id: \.activityId) { activity in
+                        if !self.obs.activityArray.isEmpty {
+                            ForEach(self.obs.activityArray, id: \.activityId) { activity in
                                 HStack {
                                     
                                     if activity.type == "like" {
@@ -75,14 +76,15 @@ struct NotificationView: View {
                 
             }
             .navigationBarTitle(Text(ACTIVITY).font(Font.custom(FONT, size: 20)).foregroundColor(APP_THEME_COLOR)
-, displayMode: .inline).onAppear {
-                  self.activityViewModel.loadActivities()
+, displayMode: .inline)
+                .onAppear {
+//                  self.activityViewModel.loadActivities()
              }
             .onDisappear {
-                 if self.activityViewModel.listener != nil {
-                     self.activityViewModel.listener.remove()
-
-                 }
+//                 if self.activityViewModel.listener != nil {
+//                     self.activityViewModel.listener.remove()
+//
+//                 }
               }
             
         }

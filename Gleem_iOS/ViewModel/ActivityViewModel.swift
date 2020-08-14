@@ -47,14 +47,7 @@ class ActivityViewModel: ObservableObject {
                     self.someOneLiked.append(decoderActivity)
                     self.someOneLiked_id.append(decoderActivity.userId)
                     
-                    if(!decoderActivity.read) {
-                        if(decoderActivity.type == "like"){
-                            //                        self.send()
-                            self.setNotification(msg:"누군가 나에게 끌림을 주었습니다")
-                            self.updateRead(docId: decoderActivity.activityId)
-                        }
-                        
-                    }
+         
                     
                 case .modified:
                     print("type: modified")
@@ -76,53 +69,42 @@ class ActivityViewModel: ObservableObject {
         
         
     }
-    func  updateRead(docId : String){
-        let firestoreUserId = Ref.FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID(userId: User.currentUser()!.id).collection("liked").document(docId)
-        firestoreUserId.updateData([
-            "read": true
-        ]) { err in
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                print("Document successfully updated")
-            }
-        }
-    }
+
     
-    func loadActivities() {
-        isLoading = true
-        listener = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: User.currentUser()!.id).collection("activity").order(by: "date", descending: true).addSnapshotListener({ (querySnapshot, error) in
-            guard let snapshot = querySnapshot else {
-                return
-            }
-            
-            snapshot.documentChanges.forEach { (documentChange) in
-                switch documentChange.type {
-                case .added:
-                    //                    var activityArray = [Activity]()
-                    print("type: added")
-                    //                    self.send()
-                    
-                    let dict = documentChange.document.data()
-                    guard let decoderActivity = try? Activity.init(fromDictionary: dict) else {return}
-                    
-                    
-                    
-                    
-                    
-                    self.activityArray.append(decoderActivity)
-                case .modified:
-                    print("type: modified")
-                case .removed:
-                    print("type: removed")
-                }
-                
-            }
-            
-        })
-        
-        
-    }
+//    func loadActivities() {
+//        isLoading = true
+//        listener = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: User.currentUser()!.id).collection("activity").order(by: "date", descending: true).addSnapshotListener({ (querySnapshot, error) in
+//            guard let snapshot = querySnapshot else {
+//                return
+//            }
+//            
+//            snapshot.documentChanges.forEach { (documentChange) in
+//                switch documentChange.type {
+//                case .added:
+//                    //                    var activityArray = [Activity]()
+//                    print("type: added")
+//                    //                    self.send()
+//                    
+//                    let dict = documentChange.document.data()
+//                    guard let decoderActivity = try? Activity.init(fromDictionary: dict) else {return}
+//                    
+//                    
+//                    
+//                    
+//                    
+//                    self.activityArray.append(decoderActivity)
+//                case .modified:
+//                    print("type: modified")
+//                case .removed:
+//                    print("type: removed")
+//                }
+//                
+//            }
+//            
+//        })
+//        
+//        
+//    }
     //
     //    func send(){
     //     UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in
@@ -157,12 +139,6 @@ class ActivityViewModel: ObservableObject {
     //    }
     
     
-    func setNotification(msg: String){
-        let manager = LocalNotificationManager()
-        //        manager.requestPermission()
-        manager.addNotification(title: msg)
-        manager.scheduleNotifications()
-    }
-    
+ 
 }
 
