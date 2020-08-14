@@ -10,7 +10,6 @@
 import Foundation
 import SwiftUI
 import Firebase
-import UserNotifications
 
 class ActivityViewModel: ObservableObject {
     @Published var error: NSError?
@@ -37,21 +36,31 @@ class ActivityViewModel: ObservableObject {
                     print("type: added")
                     let dict = documentChange.document.data()
                     guard let decoderActivity = try? Activity.init(fromDictionary: dict) else {return}
-                    if(decoderActivity.type == "like"){
-                        self.send()
-                    }
+                    
                     
                     if(self.someOneLiked.count == 1 && self.someOneLiked[0].userAvatar == ""){
                         self.someOneLiked.removeAll()
                         self.someOneLiked_id.removeAll()
-
+                        
                     }
                     
                     self.someOneLiked.append(decoderActivity)
                     self.someOneLiked_id.append(decoderActivity.userId)
-
+                    if(decoderActivity.type == "like"){
+                        //                        self.send()
+                        self.setNotification(msg:"누군가 나에게 끌림을 주었습니다")
+                        
+                    }else if decoderActivity.type == "match" {
+                        
+                        //                        self.sendMatched()
+                        self.setNotification(msg:"축하해요! 이성과 연결이 되었네요")
+                        
+                    }
+                    
                 case .modified:
                     print("type: modified")
+                    
+                    
                 case .removed:
                     print("type: removed")
                 }
@@ -99,19 +108,45 @@ class ActivityViewModel: ObservableObject {
         
         
     }
+//
+//    func send(){
+//     UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in
+//        let content = UNMutableNotificationContent()
+//           content.title = "끌림 +1"
+//           content.body = "누군가 나에게 끌림을 주었습니다"
+//           let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+//           let req = UNNotificationRequest(identifier: "req", content: content, trigger: trigger)
+//           UNUserNotificationCenter.current().add(req, withCompletionHandler: nil)
+//        })
+//
+//        let content = UNMutableNotificationContent()
+//        content.title = "끌림 +1"
+//        content.body = "누군가 나에게 끌림을 주었습니다"
+//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+//        let req = UNNotificationRequest(identifier: "req", content: content, trigger: trigger)
+//        UNUserNotificationCenter.current().add(req, withCompletionHandler: nil)
+//    }
+//
+//
+//    func sendMatched(){
+//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.badge,.sound]) { (_, _) in
+//
+//        }
+//        let content = UNMutableNotificationContent()
+//             content.title = "매치 성공"
+//             content.body = "축하해요! 이성과 연결이 되었네요"
+//             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+//             let req = UNNotificationRequest(identifier: "req", content: content, trigger: trigger)
+//             UNUserNotificationCenter.current().add(req, withCompletionHandler: nil)
+//
+//    }
     
-    func send(){
-        print("send notification")
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.badge,.sound]) { (_, _) in
-            
-        }
-        
-        let content = UNMutableNotificationContent()
-        content.title = "끌림 +1"
-        content.body = "누군가 나에게 끌림을 주었습니다"
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-        let req = UNNotificationRequest(identifier: "req", content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(req, withCompletionHandler: nil)
+    
+    func setNotification(msg: String){
+        let manager = LocalNotificationManager()
+//        manager.requestPermission()
+        manager.addNotification(title: msg)
+        manager.scheduleNotifications()
     }
     
 }

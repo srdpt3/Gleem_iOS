@@ -21,6 +21,7 @@ let APP_THEME_COLOR = Color("Color2")
 
 let INITIAL_POINT = 500
 let POINT_USE = 10
+public let BANNER_UNIT_ID = "ca-app-pub-1790336833303238/5428347738"
 
 // Tabbar
 public let index1 = "카드"
@@ -162,10 +163,11 @@ public let NO_VOTED_USER = "아직 투표한 유저가 없습니다"
 public let NEW_UPLOAD = "(새로운 첫인상 투표 사진 업로드는 왼쪽 프로필사진을 눌러주세요)"
 public let NEW_UPLOAD2 = "(참여하는 투표사진이 없어요, \n왼쪽 프로필사진을 눌러서 참여해주세요)"
 
-public let NO_DATA = "현재 투표받은 데이터가 없습니다"
+public let NO_DATA = "투표받은 데이터가 없엉"
 //public let I_LIKED = "내가 호감있는 카드"
 
-
+//HistoryView
+public let NUM_HISTORIC_DATA = "투표가 종료된 사진들 - "
 
 class Ref {
     // Storage

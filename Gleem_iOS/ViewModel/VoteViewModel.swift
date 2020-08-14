@@ -50,12 +50,12 @@ class VoteViewModel: ObservableObject {
         //batch writing. vote multiple entries
         let batch = Ref.FIRESTORE_ROOT.batch()
         let voteRef = Ref.FIRESTORE_COLLECTION_ACTIVE_VOTE.document(id)
-        
         for (index, button) in buttonPressed.enumerated() {
             if (button){
-                print("\(index + 1). \(buttonTitle[index])")
-                updatedValueDict[updatedValueDict[index].key] = 1
-                batch.updateData([updatedValueDict[index].key : FieldValue.increment(Int64(1))], forDocument: voteRef)
+                let key = (index == 0 ? "attr1" :  (index == 1 ? "attr2" : (index == 2 ? "attr3" : (index == 3 ? "attr4" : "attr5" ) )))
+                print("\(index + 1). \(buttonTitle[index])  \(key)")
+                updatedValueDict[key] = 1
+                batch.updateData([key : FieldValue.increment(Int64(1))], forDocument: voteRef)
                 
             }
         }

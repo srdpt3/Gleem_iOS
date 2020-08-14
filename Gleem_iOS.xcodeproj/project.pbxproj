@@ -83,6 +83,7 @@
 		1181FF4024E0C4CC00ED5865 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1181FF3F24E0C4CC00ED5865 /* HistoryViewModel.swift */; };
 		1181FF4224E235D800ED5865 /* Reachabilty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1181FF4124E235D600ED5865 /* Reachabilty.swift */; };
 		1181FF4424E38B8A00ED5865 /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1181FF4324E38B8A00ED5865 /* BannerAdView.swift */; };
+		1189A19B24E621CE0042FE8D /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1189A19A24E621CE0042FE8D /* LocalNotificationManager.swift */; };
 		118BAC1B24CB6BA900989F47 /* break-heart.json in Resources */ = {isa = PBXBuildFile; fileRef = 118BAC1A24CB6BA800989F47 /* break-heart.json */; };
 		118BAC1E24CB7D1B00989F47 /* KeyboardObserving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118BAC1D24CB7D1B00989F47 /* KeyboardObserving.swift */; };
 		118BAC2024CB9BEA00989F47 /* EmptyChattingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118BAC1F24CB9BEA00989F47 /* EmptyChattingView.swift */; };
@@ -230,6 +231,7 @@
 		1181FF3F24E0C4CC00ED5865 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		1181FF4124E235D600ED5865 /* Reachabilty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachabilty.swift; sourceTree = "<group>"; };
 		1181FF4324E38B8A00ED5865 /* BannerAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
+		1189A19A24E621CE0042FE8D /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		118BAC1A24CB6BA800989F47 /* break-heart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "break-heart.json"; sourceTree = "<group>"; };
 		118BAC1D24CB7D1B00989F47 /* KeyboardObserving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserving.swift; sourceTree = "<group>"; };
 		118BAC1F24CB9BEA00989F47 /* EmptyChattingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyChattingView.swift; sourceTree = "<group>"; };
@@ -464,6 +466,7 @@
 				1181FF3024DCE2DF00ED5865 /* MultilineTextField.swift */,
 				1181FF4124E235D600ED5865 /* Reachabilty.swift */,
 				1181FF4324E38B8A00ED5865 /* BannerAdView.swift */,
+				1189A19A24E621CE0042FE8D /* LocalNotificationManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -928,6 +931,7 @@
 				11B5ED2524BE087F0055700B /* CardListview.swift in Sources */,
 				11B5ED2724BE08A90055700B /* MainCardView.swift in Sources */,
 				11783ECB24B53D1A00EEFE80 /* AttrButtonView.swift in Sources */,
+				1189A19B24E621CE0042FE8D /* LocalNotificationManager.swift in Sources */,
 				11B5ED0924BD180A0055700B /* ActivityViewModel.swift in Sources */,
 				11B5ED2A24BE20F20055700B /* FlagView.swift in Sources */,
 				11B5ED2124BE08560055700B /* InfoView.swift in Sources */,

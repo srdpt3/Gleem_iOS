@@ -14,8 +14,8 @@ import Firebase
 class ChatApi {
     func sendMessages(message: String, recipientId: String, recipientAvatarUrl: String, recipientUsername: String, onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
         guard let senderId = Auth.auth().currentUser?.uid else { return }
-        guard let senderUsername = Auth.auth().currentUser?.displayName else { return }
-        guard let senderAvatarUrl = Auth.auth().currentUser?.photoURL!.absoluteString else { return }
+        guard let senderUsername = User.currentUser()?.username else { return }
+        guard let senderAvatarUrl = User.currentUser()?.profileImageUrl else { return }
         
         let messageId = Ref.FIRESTORE_COLLECTION_CHATROOM(senderId: senderId, recipientId: recipientId).document().documentID
         let chat = Chat(messageId: messageId, textMessage: message, avatarUrl: senderAvatarUrl, photoUrl: "", senderId: senderId, username: senderUsername, date: Date().timeIntervalSince1970, type: "TEXT")
@@ -44,7 +44,7 @@ class ChatApi {
     func sendPhotoMessages(recipientId: String, recipientAvatarUrl: String, recipientUsername: String, imageData: Data, onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
         guard let senderId = Auth.auth().currentUser?.uid else { return }
         guard let senderUsername = Auth.auth().currentUser?.displayName else { return }
-        guard let senderAvatarUrl = Auth.auth().currentUser?.photoURL!.absoluteString else { return }
+        guard let senderAvatarUrl = User.currentUser()?.profileImageUrl else { return }
         
         let messageId = Ref.FIRESTORE_COLLECTION_CHATROOM(senderId: senderId, recipientId: recipientId).document().documentID
         

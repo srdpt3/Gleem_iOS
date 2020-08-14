@@ -7,7 +7,6 @@
 //
 import SwiftUI
 import SDWebImageSwiftUI
-
 struct CardListview: View {
     @EnvironmentObject  var obs : observer
     @State var showAlert: Bool = false

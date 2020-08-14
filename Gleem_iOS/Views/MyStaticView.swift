@@ -2,7 +2,11 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
-struct MyStaticView: View {
+struct MyStaticView: View , Equatable {
+    static func == (lhs: MyStaticView, rhs: MyStaticView) -> Bool {
+        return true
+    }
+    
     //    var user : User
     @EnvironmentObject  var obs : observer
     
@@ -98,12 +102,12 @@ struct MyStaticView: View {
                         self.ymax = 20
                     }
                     
-                    //                    if(self.voteData.max()! < 98.0 ){
-                    //                        self.ymax = Int(self.voteData.max()!) + 2
-                    //
-                    //                    }else{
-                    //                                             self.ymax = Int(self.voteData.max()!)
-                    //                    }
+//                                        if(self.voteData.max()! < 98.0 ){
+//                                            self.ymax = Int(self.voteData.max()!) + 2
+//
+//                                        }else{
+//                                                                 self.ymax = Int(self.voteData.max()!)
+//                                        }
                     
                 }
                 
@@ -264,34 +268,37 @@ struct MyStaticView: View {
                 
                 
             }
-            // GET  a List of users who voted me
+//            // GET  a List of users who voted me
+    
             VStack{
-                
-                
+
+
                 if !self.chartViewModel.someOneVoted.isEmpty {
                     VStack(alignment: .leading){
-                        
+
                         Text(RECENT_VOTE).fontWeight(.heavy).font(Font.custom(FONT, size: 18)).foregroundColor(APP_THEME_COLOR)
                             .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5).padding(.bottom, 5)
                         //                                    Spacer(minLength: 0)
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack() {
-                                
+
                                 ForEach(self.chartViewModel.someOneVoted, id: \.activityId){ user in
+                                    
                                     SomeoneVotedView(user: user)
+                                        .animation(Animation.easeIn(duration: 1.5))
                                 }
-                                
+
                             }.padding(.leading, 15)
-                            
-                            
+
+
                         }
                     }
-                    
-                    
-                    
+
+
+
                 }else{
                     VStack(alignment: .leading){
-                        
+
                         Text(RECENT_VOTE).fontWeight(.heavy).font(Font.custom(FONT, size: 18)).foregroundColor(APP_THEME_COLOR)
                             .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5).padding(.bottom, 5)
                         //                                    Spacer(minLength: 0)
@@ -299,19 +306,18 @@ struct MyStaticView: View {
                             HStack() {
                                 Image("person").resizable().aspectRatio(contentMode: .fill).frame(width: 60, height: 60).cornerRadius(60 / 2).padding(.leading, -15)
                             }.padding(.leading, 15)
-                            
-                            
+
+
                         }
                     }
                     LoadingView(isLoading: self.chartViewModel.isLoading, error: self.chartViewModel.error) {
                         self.chartViewModel.loadSomeoneVoted()
                     }
-                    
+
                 }
-                
-                
+
+
             } .padding(.top,5).padding(.horizontal).padding(.vertical, 5)
-            
             
             ScrollView(.vertical, showsIndicators: true) {
                 
@@ -393,9 +399,11 @@ struct MyStaticView: View {
                                         RoundedShape()
                                             .fill(LinearGradient(gradient: .init(colors:  self.colors[index]), startPoint: .top, endPoint: .bottom))
                                             // max height = 200
-                                            .frame(height:  self.getHeight(value: CGFloat(work))).animation(.linear)
-                                            .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 2)
-                                            .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+                                            .frame(height:  self.getHeight(value: CGFloat(work)))
+                                            
+                                           .animation(.linear)
+//                                            .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 2)
+//                                            .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
                                     }
                                     .frame(height: UIScreen.main.bounds.width / 3.5).padding(.bottom, 5).padding(.horizontal, 2)
                                 }
@@ -574,8 +582,9 @@ struct MyStaticView: View {
                 }
                 VStack{
                     
-                           BannerAdView(bannerId: "ca-app-pub-3940256099942544/2934735716").frame(width: UIScreen.main.bounds.width, height: 70)
-                    
+                                      BannerAdView(bannerId: BANNER_UNIT_ID)
+
+//
                 }
                 
                 
@@ -645,7 +654,7 @@ struct MyStaticView: View {
         // the value in minutes....
         // 24 hrs in min = 1440
         
-        let hrs = CGFloat(value )
+        let hrs = CGFloat(value ) * 1.0
         
         return hrs
     }

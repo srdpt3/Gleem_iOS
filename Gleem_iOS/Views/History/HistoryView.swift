@@ -19,9 +19,8 @@ struct HistoryView: View {
         VStack(spacing: 0){
             HStack{
                 
-                Text("예전 투표사진들")
+                Text(NUM_HISTORIC_DATA +  String(self.historyViewModel.historicData.count) + "개")
                     .font(Font.custom(FONT, size: 18))
-                    
                     .foregroundColor(APP_THEME_COLOR)
                 
                 Spacer(minLength: 0)
@@ -31,32 +30,7 @@ struct HistoryView: View {
                 //                .padding(.top,UIApplication.shared.windows.first?.safeAreaInsets.top)
                 .background(Color.white.shadow(color: Color.black.opacity(0.18), radius: 5, x: 0, y: 5))
                 .zIndex(0)
-            
-            
-            
-            //        VStack{
-            //            Text("예전 투표사진들").font(Font.custom(FONT, size: 18))
-            //                                              .modifier(TitleModifier())
-            //
-            //                    ScrollView(.vertical, showsIndicators: false) {
-            //
-            //                        VStack(alignment: .center, spacing: 20) {
-            //            //
-            //                            VStack(alignment: .center, spacing: 20) {
-            //                                  ForEach(recipes) { item in
-            //                                    PastVotePictureView(card: item)
-            //                                  }
-            //                                }
-            //                                .frame(maxWidth: 640)
-            //                                .padding(.horizontal)
-            //                        }
-            //
-            //                    } .edgesIgnoringSafeArea(.all)
-            //                        .padding(0)
-            //        }.padding(.top, 20)
-            
-            
-            
+  
             GeometryReader{mainView in
                 
                 ScrollView{

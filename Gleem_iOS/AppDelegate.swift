@@ -11,14 +11,21 @@ import CoreData
 import Firebase
 import GoogleMobileAds
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
-
+    func userNotificationCenter(
+         _ center: UNUserNotificationCenter,
+         willPresent notification: UNNotification,
+         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions)
+         -> Void) {
+         completionHandler([.alert, .badge, .sound])
+     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         GADMobileAds.sharedInstance().start(completionHandler: nil)
+        UNUserNotificationCenter.current().delegate = self
         return true
     }
 

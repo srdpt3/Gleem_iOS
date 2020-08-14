@@ -45,6 +45,7 @@ struct MessageSubView: View {
     
     var body: some View{
         ZStack{
+            
             List {
                 if !messageViewModel.inboxMessages.isEmpty  {
                     
@@ -80,7 +81,8 @@ struct MessageSubView: View {
                     }
                     
                 }
-                
+//                BannerAdView(bannerId: BANNER_UNIT_ID).frame(width: UIScreen.main.bounds.width, height: 60)
+
             }.onDisappear {
                 
                 
@@ -178,7 +180,7 @@ struct MessageSubView: View {
                         }
                         
                         Spacer()
-                        
+
                     }
                     .frame(minWidth: 260, idealWidth: 260, maxWidth: 300, minHeight: 140, idealHeight: 160, maxHeight: 200, alignment: .center)
                     .background(Color.white)
@@ -192,7 +194,9 @@ struct MessageSubView: View {
                     })
                 }
             }
-            
+        
+          
+
         }.navigationBarTitle("").navigationBarHidden(true)
  
         

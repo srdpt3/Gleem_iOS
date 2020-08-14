@@ -8,7 +8,6 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
-import AlertX
 
 struct FavoriteView: View {
     
@@ -64,7 +63,7 @@ struct FavoriteHome : View {
             
             GeometryReader{geo in
                 VStack{
-                     BannerAdView(bannerId: "ca-app-pub-3940256099942544/2934735716").frame(width: UIScreen.main.bounds.width, height: 60)
+                     BannerAdView(bannerId: BANNER_UNIT_ID).frame(width: UIScreen.main.bounds.width, height: 60)
 
                     if !self.activityViewModel.someOneLiked.isEmpty {
                         HStack{
@@ -138,15 +137,16 @@ struct FavoriteHome : View {
                         if !self.favoriteViewModel.favoriteUsers.isEmpty {
                             MainSubViewFavorite(title: "Favorite Votes", users: self.favoriteViewModel.favoriteUsers, mutualLikedUsers: self.activityViewModel.someOneLiked_id)
                                 .frame( height: geo.size.height / 1.5 )
-                        } else {
-                            Spacer()
-                            
-                            LoadingView(isLoading: self.favoriteViewModel.isLoading, error: self.favoriteViewModel.error) {
-                                self.favoriteViewModel.loadFavoriteUsers()
-                            }
-                            Spacer()
-                            
                         }
+//                        else {
+//                            Spacer()
+//
+//                            LoadingView(isLoading: self.favoriteViewModel.isLoading, error: self.favoriteViewModel.error) {
+//                                self.favoriteViewModel.loadFavoriteUsers()
+//                            }
+//                            Spacer()
+//
+//                        }
                     }
                     //                    .padding(.bottom, 60)
                     
@@ -424,57 +424,59 @@ struct MainSubViewFavorite: View{
 
     var body : some View{
         
-        
-        ScrollView(.vertical, showsIndicators: false) {
-            
-            HStack{
-                Text(I_LIKED).fontWeight(.heavy).font(Font.custom(FONT, size: 20)).foregroundColor(APP_THEME_COLOR)
-                    .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 5)
-                //                    .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
-                Spacer()
-                
-            }
-            .padding(.horizontal).padding(.top, 10)
-            
-            
-            VStack(spacing: 5){
-                ForEach(0..<users.chunked(3).count){index in
-                    
-                    HStack(spacing: 8){
-                        ForEach(self.users.chunked(3)[index]){i in
-                            
-                            
-                            if(i.imageLocation != ""){
-                                //                                NavigationLink(destination:   ExpandView(user: i, show: self.$show, isVoted: self.$isVoted)) {
-                                FavoriteCard(user: i, mutualLike: self.mutualLikedUsers.contains(i.id) ? true : false).onTapGesture {
-                                    withAnimation{
-                                        self.showExpandView.toggle()
-                                        self.selectedUser = i
+         GeometryReader { g in
+            ScrollView(.vertical, showsIndicators: false) {
+                 
+                 HStack{
+                     Text(I_LIKED).fontWeight(.heavy).font(Font.custom(FONT, size: 20)).foregroundColor(APP_THEME_COLOR)
+                         .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 5)
+                     //                    .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+                     Spacer()
+                     
+                 }
+                 .padding(.horizontal).padding(.top, 10)
+                 
+                 
+                 VStack(spacing: 5){
+                    ForEach(0..<self.users.chunked(3).count){index in
+                         
+                         HStack(spacing: 8){
+                             ForEach(self.users.chunked(3)[index]){i in
+                                 
+                                 
+                                 if(i.imageLocation != ""){
+                                     //                                NavigationLink(destination:   ExpandView(user: i, show: self.$show, isVoted: self.$isVoted)) {
+                                     FavoriteCard(user: i, mutualLike: self.mutualLikedUsers.contains(i.id) ? true : false).onTapGesture {
+                                         withAnimation{
+                                             self.showExpandView.toggle()
+                                             self.selectedUser = i
 
-                                    }
-                                    
-                                }
-                                
-                            }else{
-                                FavoriteCard(user: i, mutualLike: false)
-                            }
-                            
-                            
-                        }
-                        
-                    }
-                    .padding(.horizontal, 5)
-                    
-                }
-                
-                
-            }
+                                         }
+                                         
+                                     }
+                                     
+                                 }else{
+                                     FavoriteCard(user: i, mutualLike: false)
+                                 }
+                                 
+                                 
+                             }
+                             
+                         }
+                         .padding(.horizontal, 5)
+                         
+                     }
+                     
+                     
+                 }
+                 
+             }.sheet(isPresented: self.$showExpandView){
+                 ExpandView(user: self.selectedUser!, updateVoteImage: true, show: self.$show, isVoted:self.$isVoted, buttonPressed : self.buttonPressed, needMoveCard: false)
+                           
+            }.padding(.bottom, 60)
             
-        }.sheet(isPresented: self.$showExpandView){
-            ExpandView(user: self.selectedUser!, updateVoteImage: true, show: self.$show, isVoted:self.$isVoted, buttonPressed : self.buttonPressed, needMoveCard: false)
-                      
         }
-        
+ 
     }
 }
 

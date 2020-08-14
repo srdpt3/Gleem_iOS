@@ -64,9 +64,32 @@ class StorageService {
                     
                     //                    guard let dict = try? myVote.toDictionary() else {return}
                     
-                    let user = User.currentUser()
+                    
+                    let firestoreUserId = Ref.FIRESTORE_DOCUMENT_USERID(userId: User.currentUser()!.id)
+                    
+                    firestoreUserId.updateData([
+                        "profileImageUrl": metaImageUrl
+                    ]) { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            print("Document successfully updated")
+                        }
+                    }
+                    
+                    
+                    
+                    
+                    let user = User.currentUser()!
+                    
+                    let user_update = User.init(id: user.id, email: user.email, profileImageUrl: metaImageUrl, username: user.username, age: user.age, sex: user.sex, createdDate: user.createdDate, point_avail: user.point_avail)
+                    guard let dict = try? user_update.toDictionary() else {return}
+                    saveUserLocally(mUserDictionary: dict as NSDictionary)
+                    
+                    
+                    
                     //                    let user =  User(id: userId, email: "test@gmail.com", profileImageUrl:  metaImageUrl, username: "test", age: "30", sex:"male",    swipe:0, degree: 0)
-                    let data = ActiveVote(attr1: myVote.attr1, attr2: myVote.attr1, attr3: myVote.attr1, attr4: myVote.attr1, attr5: myVote.attr1, attrNames: myVote.attrNames, numVote: myVote.numVote, createdDate: myVote.createdDate, lastModifiedDate: myVote.lastModifiedDate, id: userId, email: user!.email, imageLocation: metaImageUrl, username: user!.username, age: user!.age, sex: user!.sex)
+                    let data = ActiveVote(attr1: myVote.attr1, attr2: myVote.attr1, attr3: myVote.attr1, attr4: myVote.attr1, attr5: myVote.attr1, attrNames: myVote.attrNames, numVote: myVote.numVote, createdDate: myVote.createdDate, lastModifiedDate: myVote.lastModifiedDate, id: userId, email: user.email, imageLocation: metaImageUrl, username: user.username, age: user.age, sex: user.sex)
                     
                     guard let finalDict = try? data.toDictionary() else {return}
                     

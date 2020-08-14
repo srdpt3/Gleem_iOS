@@ -20,10 +20,10 @@ class observer : ObservableObject{
     @Published var last = 0
     @Published var isLoading = false
     @Published var isInBoxLoading = false
-
+    
     @Published var isVoteLoading = false
     @Published var isReloading = false
-
+    
     
     
     
@@ -80,7 +80,7 @@ class observer : ObservableObject{
     
     func listenAuthenticationState() {
         self.checkUserUploadVote()
-
+        
         handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
             if let user = user {
                 print("listenAuthenticationState \(user.uid)")
@@ -153,6 +153,7 @@ class observer : ObservableObject{
     func logout() {
         
         do {
+            
             cardViews.removeAll()
             users.removeAll()
             resetCache()
@@ -235,59 +236,64 @@ class observer : ObservableObject{
         
         if(!users.isEmpty){
             var indexRange = 0
-                  
+            
             if(self.users.count <= 2 && self.users.count > 0){
-                      indexRange = self.users.count
-                  }else if self.users.count > 2 {
-                      indexRange = 2
-                  }
-                  
-                  for index in 0..<indexRange {
-                      cardViews.append(MainCardView(user: users[index]))
-                  }
-                  self.index = self.cardViews.count
-                  
-                  print("reload \( self.index )")
+                indexRange = self.users.count
+            }else if self.users.count > 2 {
+                indexRange = 2
+            }
+            
+            for index in 0..<indexRange {
+                cardViews.append(MainCardView(user: users[index]))
+            }
+            self.index = self.cardViews.count
+            
+            print("reload \( self.index )")
         }
-      
+        
     }
     
     
     func reload(){
-        
-        self.isReloading = true
-        let whereField = User.currentUser()!.sex == "female" ? "male" : "female"
-        
-        Ref.FIRESTORE_COLLECTION_ACTIVE_VOTE.whereField("sex", isEqualTo: whereField )
-            .limit(to: 30)
-            //            .order(by: "createdDate",descending: true)
-            .getDocuments { (snap, err) in
-                self.users.removeAll()
-                
-                if err != nil{
-                    print((err?.localizedDescription)!)
-                    self.error = (err?.localizedDescription as! NSError)
-                    return
-                }
-                
-                for i in snap!.documents{
+        DispatchQueue.main.async {
+            self.isReloading = true
+            let whereField = User.currentUser()!.sex == "female" ? "male" : "female"
+            
+            Ref.FIRESTORE_COLLECTION_ACTIVE_VOTE.whereField("sex", isEqualTo: whereField )
+                .limit(to: 30)
+                //            .order(by: "createdDate",descending: true)
+                .getDocuments { (snap, err) in
+                    self.users.removeAll()
                     
-                    let id = i.documentID
-                    if(id != Auth.auth().currentUser?.uid){
-                        
-                        let dict = i.data()
-                        guard let decoderPost = try? ActiveVote.init(fromDictionary: dict) else {return}
-                        self.users.append(decoderPost)
+                    if err != nil{
+                        print((err?.localizedDescription)!)
+                        self.error = (err?.localizedDescription as! NSError)
+                        return
                     }
                     
-                }
-                print("self.users.count \(self.users.count)")
-                
-                
-                self.isReloading = false
-                self.last = 0
-                self.createCardView()
+                    for i in snap!.documents{
+                        
+                        let id = i.documentID
+                        if(id != Auth.auth().currentUser?.uid){
+                            
+                            let dict = i.data()
+                            guard let decoderPost = try? ActiveVote.init(fromDictionary: dict) else {return}
+                            self.users.append(decoderPost)
+                        }
+                        
+                    }
+                    print("self.users.count \(self.users.count)")
+                    
+                    
+                    self.isReloading = false
+                    self.last = 0
+                    self.createCardView()
+            }
+            
+            
+            
         }
+        
         
     }
     

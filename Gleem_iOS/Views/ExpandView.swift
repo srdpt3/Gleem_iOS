@@ -174,22 +174,30 @@ struct ExpandView: View {
                                     
                                     
                                     
-                                    if(Int(self.user.numVote)  > 10){
+                                    if(Int(self.user.numVote)  >= 10){
                                         ForEach(1...5,id: \ .self){_ in
                                             Image(systemName: "star.fill")
                                                 .foregroundColor(.yellow)
                                         }
                                     }else{
-//                                        let star = Int(self.user.numVote / 2)
-                                        ForEach(1...Int(self.user.numVote / 2) ,id: \ .self){_ in
-                                            Image(systemName: "star.fill")
-                                                .foregroundColor(.yellow)
+                                        //                                        let star = Int(self.user.numVote / 2)
+                                        if(Int(self.user.numVote) > 2){
+                                            ForEach(1...Int(self.user.numVote / 2) ,id: \ .self){_ in
+                                                Image(systemName: "star.fill")
+                                                    .foregroundColor(.yellow)
+                                            }
+                                            
+                                            ForEach((Int(self.user.numVote / 2) + 1)...5 ,id: \ .self){_ in
+                                                Image(systemName: "star")
+                                                    .foregroundColor(.yellow)
+                                            }
+                                        }else{
+                                            ForEach(1...5 ,id: \ .self){_ in
+                                                Image(systemName: "star")
+                                                    .foregroundColor(.yellow)
+                                            }
                                         }
                                         
-                                        ForEach((Int(self.user.numVote / 2) + 1)...5 ,id: \ .self){_ in
-                                            Image(systemName: "star")
-                                                .foregroundColor(.yellow)
-                                        }
                                     }
                                     
                                     
