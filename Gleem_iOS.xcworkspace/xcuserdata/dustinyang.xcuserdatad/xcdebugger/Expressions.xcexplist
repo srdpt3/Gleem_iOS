@@ -14,13 +14,13 @@
          contextName = "closure #1 in observer.getNewCards():observer.swift">
          <PersistentStrings>
             <PersistentString
+               value = "self.updateVoteImage">
+            </PersistentString>
+            <PersistentString
                value = "self.isVoteLoading">
             </PersistentString>
             <PersistentString
                value = "self.votedCards.isEmpty">
-            </PersistentString>
-            <PersistentString
-               value = "self.updateVoteImage">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -112,13 +112,13 @@
          contextName = "closure #1 in closure #1 in ActivityViewModel.loadSomeOneLike():ActivityViewModel.swift">
          <PersistentStrings>
             <PersistentString
-               value = "dict">
+               value = "decoderActivity">
             </PersistentString>
             <PersistentString
                value = "documentChange.document.data()">
             </PersistentString>
             <PersistentString
-               value = "decoderActivity">
+               value = "dict">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -126,7 +126,7 @@
          contextName = "closure #1 in FavoriteViewModel.loadFavoriteUsers():FavoriteViewModel.swift">
          <PersistentStrings>
             <PersistentString
-               value = "dict">
+               value = "self.lastDoc ">
             </PersistentString>
             <PersistentString
                value = "lastDoc ">
@@ -138,13 +138,13 @@
                value = "snapshot!.documents">
             </PersistentString>
             <PersistentString
+               value = "dict">
+            </PersistentString>
+            <PersistentString
                value = "snapshot!.documents.last">
             </PersistentString>
             <PersistentString
                value = " ActiveVote.init(fromDictionary: dict)">
-            </PersistentString>
-            <PersistentString
-               value = "self.lastDoc ">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -172,6 +172,22 @@
          <PersistentStrings>
             <PersistentString
                value = "self.lastDoc">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in closure #1 in closure #1 in closure #1 in NotificationView.body.getter:NotificationView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.obs.activityArray">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in observer.loadActivities():observer.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "decoderActivity.activityId">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -222,10 +238,10 @@
          contextName = "ExpandView.persist():ExpandView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.user.attrNames">
+               value = "self.buttonPressed">
             </PersistentString>
             <PersistentString
-               value = "self.buttonPressed">
+               value = "self.user.attrNames">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

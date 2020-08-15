@@ -269,8 +269,12 @@ struct CardListview: View {
                 
                 RadioButtons(selected: self.$selectedFlag,show: self.$showFlag).offset(y: self.showFlag ? (UIApplication.shared.windows.last?.safeAreaInsets.bottom)! + 15 : UIScreen.main.bounds.height)
                     .onTapGesture {
-                        self.showFlag.toggle()
-                }
+                        withAnimation{
+                            self.showFlag.toggle()
+
+                        }
+                } .animation(Animation.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0))
+
             }.background(Color(UIColor.label.withAlphaComponent(self.showFlag ? 0.2 : 0)).edgesIgnoringSafeArea(.all))
             
             if self.showProfile{

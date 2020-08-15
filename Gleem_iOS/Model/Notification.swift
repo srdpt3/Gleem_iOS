@@ -31,6 +31,8 @@ struct Activity: Encodable, Decodable {
             output = LIKED_MESSAGE
         case "intro":
             output = WELCOME_GLEEM
+        case "match_requested":
+            output = ""
         default:
             output = ""
         }

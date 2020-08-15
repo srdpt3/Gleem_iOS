@@ -33,6 +33,8 @@ class FavoriteViewModel: ObservableObject {
         if User.currentUser()!.id != user.id {
             
             //            let someoneLikeId = Ref.FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID(userId: user.id).collection("liked").document().documentID
+   
+
             let someoneLikeObject = Activity(activityId: User.currentUser()!.id, type: "like", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: User.currentUser()!.profileImageUrl, message: "", date: Date().timeIntervalSince1970, read: false)
             guard let activityDict = try? someoneLikeObject.toDictionary() else { return }
             
@@ -40,17 +42,20 @@ class FavoriteViewModel: ObservableObject {
             let someOneLikeRef  = Ref.FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID(userId: user.id).collection("liked").document(User.currentUser()!.id)
             batch.setData(activityDict, forDocument: someOneLikeRef)
             
+            
             print("Batch FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID.")
             
             
+            
+            let activityId = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: User.currentUser()!.id).collection("activity").document().documentID
             //            let activityId = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: user.id).collection("activity").document().documentID
-            let activityObject = Activity(activityId: User.currentUser()!.id, type: "like", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: User.currentUser()!.profileImageUrl, message: "", date: Date().timeIntervalSince1970, read: false)
+            let activityObject = Activity(activityId: activityId, type: "like", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: User.currentUser()!.profileImageUrl, message: "", date: Date().timeIntervalSince1970, read: false)
             guard let activityDict2 = try? activityObject.toDictionary() else { return }
             
             
-            let activityRef  = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: user.id).collection("activity").document(User.currentUser()!.id)
+            let activityRef  = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: user.id).collection("activity").document(activityId)
             batch.setData(activityDict2, forDocument: activityRef)
-            print("Batch FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID.")
+            print("Batch FIRESTORE_COLLECTION_ACTIVITY_USERID.")
             
         }
         

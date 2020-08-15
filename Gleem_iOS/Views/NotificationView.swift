@@ -18,7 +18,7 @@ struct NotificationView: View {
     
     
     init() {
-//        self.activityViewModel.loadActivities()
+//        self.obs.loadActivities()
     }
     var body: some View {
         

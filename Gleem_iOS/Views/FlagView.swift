@@ -28,7 +28,22 @@ struct RadioButtons : View {
         
         VStack(alignment: .leading, spacing: 10) {
             
-            Text(FLAGPICTURE_TITLE).font(.custom(FONT, size: CGFloat(BUTTON_TITLE_FONT_SIZE)))       .foregroundColor(APP_THEME_COLOR)
+            HStack{
+                Text(FLAGPICTURE_TITLE).font(.custom(FONT, size: CGFloat(BUTTON_TITLE_FONT_SIZE)))       .foregroundColor(APP_THEME_COLOR)
+                Spacer()
+                Button(action: {
+                    // ACTION
+                    self.show.toggle()
+//                    self.presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(Color.white)
+                        .shadow(radius: 10)
+                        .opacity( 1 )
+                        .scaleEffect(1.5 , anchor: .center)
+                })
+            }
+//            .padding(.trailing, 15)
             Divider()
             ForEach(data,id: \.self){i in
                 
