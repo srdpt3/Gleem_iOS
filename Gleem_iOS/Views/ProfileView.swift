@@ -81,14 +81,14 @@ struct Profile : View {
                 
                 ZStack(alignment: .top) {
                     
-                    VStack{
+                    VStack(alignment: .leading, spacing: 10){
                         
                         HStack{
                             
                             VStack(alignment: .leading, spacing: 10) {
                                 
                                 Text(User.currentUser()!.username).font(Font.custom(FONT, size: 20))
-                                Text("나이: " + User.currentUser()!.age).font(Font.custom(FONT, size: 15))
+                                Text(MY_AGE + User.currentUser()!.age).font(Font.custom(FONT, size: 15))
                                 
                             }
                             
@@ -105,10 +105,12 @@ struct Profile : View {
                                 .cornerRadius(10)
                         }.padding(.top,35)
                         
-                        VStack(alignment: .center, spacing: 10){
-                            Text("보유 Gleem 포인트: " + String(User.currentUser()!.point_avail)).font(.subheadline).font(Font.custom(FONT, size: 15))
-                            Text("참여한 투표카드 갯수: " +  String(self.voteViewModel.totalVoted)).font(Font.custom(FONT, size: 15))
-                            Text("매칭된 횟수: 0").font(Font.custom(FONT, size: 15))
+                        VStack(alignment: .leading, spacing: 10){
+                            Text(NUM_GLEEM_POINT + String(User.currentUser()!.point_avail)).font(.subheadline).font(Font.custom(FONT, size: 15))
+                            Text(NUM_I_VOTED +  String(self.voteViewModel.totalVoted)).font(Font.custom(FONT, size: 15))
+                            Text(NUM_MATCHED + "0").font(Font.custom(FONT, size: 15))
+                            Text(NUM_MATCHED + "0").font(Font.custom(FONT, size: 15))
+                            
                         }.padding(.top)
                         
                         

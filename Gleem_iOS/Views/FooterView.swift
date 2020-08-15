@@ -117,6 +117,7 @@ struct voteButtonView : View {
 struct ArrowView : View {
     let haptics = UINotificationFeedbackGenerator()
     @EnvironmentObject  var obs : observer
+    @ObservedObject private var voteViewModel = VoteViewModel()
     var height: CGFloat
     @State var error : Bool = false
     
@@ -132,7 +133,7 @@ struct ArrowView : View {
                     
                     self.haptics.notificationOccurred(.success)
                     
-                    
+                    self.voteViewModel.skip(id: self.obs.users[self.obs.last].id)
                     
                     //                self.fireworkController.addFirework(sparks: 10)
                     withAnimation{

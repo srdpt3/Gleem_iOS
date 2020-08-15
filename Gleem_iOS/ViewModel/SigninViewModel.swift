@@ -26,6 +26,9 @@ class SigninViewModel: ObservableObject {
     
     func signin(email: String, password: String, completed: @escaping(_ user: User) -> Void,  onError: @escaping(_ errorMessage: String) -> Void) {
         if !email.isEmpty && !password.isEmpty {
+            
+            resetDefaults()
+                URLCache.shared.removeAllCachedResponses()
             AuthService.signInUser(email: email, password: password, onSuccess: completed, onError: onError)
             print("SigninViewModel  signin ")
             success = true

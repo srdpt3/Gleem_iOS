@@ -96,7 +96,7 @@ public var data = ["혐오성 음란한사진","개인정보 노출","욕설이 
 public let VOTE_SUBMIT_BUTTON = "투표 결과 확인하기"
 public let RATING_TEXT = "이미지 호감도"
 public let USER_RESULT = " 님의 실시간 첫인상투표 결과"
-public let NOVOTEIMAGE = "내 첫인상 투표사진을 올려야 남들이 나를 볼 수 있어요~ \n이성과 연결이 되고 싶다면 평가 사진 올리기를 먼저 해주세요~"
+public let NOVOTEIMAGE = "내 첫인상 투표사진을 올려야 남들이 \n나를 볼 수 있어요~ \n또는 이성과 연결이 되고 싶다면 평가 사진 올리기를 먼저 해주세요~"
 
 
 
@@ -168,6 +168,12 @@ public let NO_DATA = "투표받은 데이터가 없엉"
 
 //HistoryView
 public let NUM_HISTORIC_DATA = "투표가 종료된 사진들 - "
+
+//PROFILEVIEW
+public let NUM_MATCHED = "매칭된 횟수: "
+public let NUM_I_VOTED = "내가 투표한 카드 갯수: "
+public let NUM_GLEEM_POINT = "보유 Gleem 포인트: "
+public let MY_AGE = "나이: "
 
 class Ref {
     // Storage

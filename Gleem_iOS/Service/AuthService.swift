@@ -15,9 +15,7 @@ class AuthService {
     
     static func signInUser(email: String, password: String, onSuccess: @escaping(_ user: User) -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
         
-        resetDefaults()
-        URLCache.shared.removeAllCachedResponses()
-        
+    
         Auth.auth().signIn(withEmail: email, password: password) { (authData, error) in
             if error != nil {
                 print(error!.localizedDescription)

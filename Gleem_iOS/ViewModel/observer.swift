@@ -81,7 +81,6 @@ class observer : ObservableObject{
     }
     
     func listenAuthenticationState() {
-        self.checkUserUploadVote()
         
         handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
             if let user = user {
@@ -96,7 +95,8 @@ class observer : ObservableObject{
                         
                     }
                 }
-                
+                self.checkUserUploadVote()
+
                 self.getNewCards()
                 
                 //                if(!self.isVoteLoading && !self.votedCards.isEmpty){

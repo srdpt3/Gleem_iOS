@@ -582,7 +582,7 @@ struct MyStaticView: View , Equatable {
                 }
                 VStack{
                     
-                                      BannerAdView(bannerId: BANNER_UNIT_ID)
+                    BannerAdView(bannerId: BANNER_UNIT_ID).frame(height: 200)
 
 //
                 }

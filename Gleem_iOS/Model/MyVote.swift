@@ -14,13 +14,17 @@ struct MyVote: Encodable, Decodable {
     var myVotes: [String:Int]
     var attrNames: [String]
     var voteDate: Double
+    var comment: String
     
     
-    init(userId: String, myVotes: [String:Int], attrNames: [String],voteDate: Double ) {
+    
+    init(userId: String, myVotes: [String:Int], attrNames: [String],voteDate: Double,comment:String ) {
         self.userId = userId
         self.myVotes = myVotes
         self.attrNames = attrNames
         self.voteDate = voteDate
+
+        self.comment = comment
         
         
         
@@ -30,6 +34,7 @@ struct MyVote: Encodable, Decodable {
         myVotes = _dictionary["imamyVotesgeURL"] as! [String:Int]
         attrNames = _dictionary["attrNames"] as! [String]
         voteDate = _dictionary["voteDate"] as! Double
+        comment = _dictionary["comment"] as! String
         
     }
     
