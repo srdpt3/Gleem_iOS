@@ -15,50 +15,65 @@ class VoteViewModel: ObservableObject {
     @Published var voted : Bool = false
     @Published var liked : Bool = false
     @Published var totalVoted : Int = 0
-        @Published var votedCards = [String]()
+    @Published var totalSkipped : Int = 0
+    @Published var totalFlagged: Int = 0
+    
+    @Published var votedCards = [String]()
     @Published var isLoading = false
     var updatedValueDict = ["attr1":0 , "attr2":0, "attr3":0, "attr4":0, "attr5":0]
     var buttonTitle : [String] = ["없음", "없음","없음", "없음", "없음"]
-
+    
     
     
     func getNumVoted(){
+        self.totalSkipped = 0
+        self.totalSkipped = 0
+        self.totalVoted = 0
+
         Ref.FIRESTORE_COLLECTION_MYVOTE.document(User.currentUser()!.id).collection("voted").getDocuments { (snap, error) in
-            self.totalVoted = 0
             self.votedCards.removeAll()
             if error != nil {
                 print((error?.localizedDescription)!)
                 
             }
             
-            self.totalVoted = snap!.documents.count
             
             for i in snap!.documents{
+                let dict = i.data()
+                guard let decoderActivity = try? MyVote.init(fromDictionary: dict) else {return}
                 
                 let id = i.documentID
                 if(id != Auth.auth().currentUser?.uid){
-                    self.votedCards.append(id)
-                    print(id)
+                    self.votedCards.append(decoderActivity.userId)
                     
+                    if(decoderActivity.comment == "SKIPPED"){
+                        self.totalSkipped = self.totalSkipped + 1
+                        
+                    }else if(decoderActivity.comment == "FLAGGED"){
+                        self.totalFlagged = self.totalFlagged + 1
+                        
+                    }else{
+                        self.totalVoted  = self.totalVoted  + 1
+                    }
                 }
                 
             }
         }
     }
-
+    
     func skip(id: String) {
         
         //batch writing. vote multiple entries
         let batch = Ref.FIRESTORE_ROOT.batch()
-
+        
         //        let myVote = Vote(attr1: 0, attr2 : 0 , attr3 : 1 , attr4: 2, attr5: 0,attrNames:buttonTitle)
         //        guard let dict = try? myVote.toDictionary() else {return}
         let myVoteRef = Ref.FIRESTORE_COLLECTION_MYVOTE_USERID(userId: id)
-
+        
         let myVote = MyVote(userId: id, myVotes: updatedValueDict, attrNames: buttonTitle, voteDate: Date().timeIntervalSince1970, comment: "SKIPPED")
         guard let dict = try? myVote.toDictionary() else {return}
         batch.setData(dict, forDocument: myVoteRef)
-   
+        
         batch.commit() { err in
             if let err = err {
                 print("Error writing batch \(err)")
@@ -73,31 +88,31 @@ class VoteViewModel: ObservableObject {
     }
     
     
-     func flagged(id: String) {
-         
-         //batch writing. vote multiple entries
-         let batch = Ref.FIRESTORE_ROOT.batch()
-
-         //        let myVote = Vote(attr1: 0, attr2 : 0 , attr3 : 1 , attr4: 2, attr5: 0,attrNames:buttonTitle)
-         //        guard let dict = try? myVote.toDictionary() else {return}
-         let myVoteRef = Ref.FIRESTORE_COLLECTION_MYVOTE_USERID(userId: id)
-
-         let myVote = MyVote(userId: id, myVotes: updatedValueDict, attrNames: buttonTitle, voteDate: Date().timeIntervalSince1970, comment: "FLAGGED")
-         guard let dict = try? myVote.toDictionary() else {return}
-         batch.setData(dict, forDocument: myVoteRef)
-    
-         batch.commit() { err in
-             if let err = err {
-                 print("Error writing batch \(err)")
-             } else {
-                 print("Batch write succeeded.")
-                 self.isSucess = true
-             }
-         }
-         
-         
-         
-     }
+    func flagged(id: String) {
+        
+        //batch writing. vote multiple entries
+        let batch = Ref.FIRESTORE_ROOT.batch()
+        
+        //        let myVote = Vote(attr1: 0, attr2 : 0 , attr3 : 1 , attr4: 2, attr5: 0,attrNames:buttonTitle)
+        //        guard let dict = try? myVote.toDictionary() else {return}
+        let myVoteRef = Ref.FIRESTORE_COLLECTION_MYVOTE_USERID(userId: id)
+        
+        let myVote = MyVote(userId: id, myVotes: updatedValueDict, attrNames: buttonTitle, voteDate: Date().timeIntervalSince1970, comment: "FLAGGED")
+        guard let dict = try? myVote.toDictionary() else {return}
+        batch.setData(dict, forDocument: myVoteRef)
+        
+        batch.commit() { err in
+            if let err = err {
+                print("Error writing batch \(err)")
+            } else {
+                print("Batch write succeeded.")
+                self.isSucess = true
+            }
+        }
+        
+        
+        
+    }
     
     
     
@@ -120,11 +135,11 @@ class VoteViewModel: ObservableObject {
             }
         }
         batch.updateData([VOTE_NUMBER : FieldValue.increment(Int64(1))], forDocument: voteRef)
-
+        
         //        let myVote = Vote(attr1: 0, attr2 : 0 , attr3 : 1 , attr4: 2, attr5: 0,attrNames:buttonTitle)
         //        guard let dict = try? myVote.toDictionary() else {return}
         let myVoteRef = Ref.FIRESTORE_COLLECTION_MYVOTE_USERID(userId: id)
-
+        
         let myVote = MyVote(userId: id, myVotes: updatedValueDict, attrNames: buttonTitle, voteDate: Date().timeIntervalSince1970, comment: "")
         guard let dict = try? myVote.toDictionary() else {return}
         batch.setData(dict, forDocument: myVoteRef)
@@ -151,7 +166,7 @@ class VoteViewModel: ObservableObject {
         
         
     }
-
+    
     
     
     
@@ -170,7 +185,7 @@ class VoteViewModel: ObservableObject {
         
     }
     
- 
+    
     
 }
 

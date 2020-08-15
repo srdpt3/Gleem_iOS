@@ -567,17 +567,18 @@ struct SectionView2: View {
             
             
             if(self.user.userAvatar == "" ){
-                VStack{
-                    Image("Gleem_3D")
+//                VStack{
+                    Image("")
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
+                        .aspectRatio(contentMode: .fill)
                         .frame(width: width)
+                        .background(Color("Color-2"))
                         .shadow(color: Color.black.opacity(0.3), radius: 1, x: 1, y: 1)
                         .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
-                    Text("현재 끌림을준 \n유저가 없습니다").font(Font.custom(FONT, size: 13))
-                        .foregroundColor(Color.gray)
+//                    Text("현재 끌림을준 \n유저가 없습니다").font(Font.custom(FONT, size: 13))
+//                        .foregroundColor(Color.gray)
                     
-                }
+//                }
                 
                 
             }else{

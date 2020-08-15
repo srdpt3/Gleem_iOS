@@ -17,7 +17,8 @@ class MatchingViewModel: ObservableObject {
     @Published var matchArray: [Match] =  [Match]()
     @Published var error: NSError?
     @Published var isLoading = false
-    
+    @Published var totalMatched : Int = 0
+
     
     var listener: ListenerRegistration!
     
@@ -28,13 +29,34 @@ class MatchingViewModel: ObservableObject {
     }
     
     
+    func getNumMatched(){
+        self.totalMatched = 0
+
+        Ref.FIRESTORE_COLLECTION_MATCH.document(User.currentUser()!.id).collection("matched").getDocuments { (snap, error) in
+            if error != nil {
+                print((error?.localizedDescription)!)
+                
+            }
+            
+            
+            for i in snap!.documents{
+                let id = i.documentID
+                
+                
+                if(id != Auth.auth().currentUser?.uid){
+                    self.totalMatched  = self.totalMatched  + 1
+                }
+                
+            }
+        }
+    }
     
     
-     func loadMatching() {
-         isLoading = true
-         listener = Ref.FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID(userId: User.currentUser()!.id).collection("liked").order(by: "date", descending: true).addSnapshotListener({ (querySnapshot, error) in
-             guard let snapshot = querySnapshot else {
-                 return
+    func loadMatching() {
+        isLoading = true
+        listener = Ref.FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID(userId: User.currentUser()!.id).collection("liked").order(by: "date", descending: true).addSnapshotListener({ (querySnapshot, error) in
+            guard let snapshot = querySnapshot else {
+                return
              }
              
              snapshot.documentChanges.forEach { (documentChange) in

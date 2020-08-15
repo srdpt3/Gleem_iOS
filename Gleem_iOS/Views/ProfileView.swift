@@ -27,7 +27,8 @@ struct ProfileView: View {
 
 struct Profile : View {
     @ObservedObject var voteViewModel = VoteViewModel()
-    
+    @ObservedObject var matchingViewModel = MatchingViewModel()
+
     @Binding var profile_show : Bool
     
     
@@ -107,9 +108,21 @@ struct Profile : View {
                         
                         VStack(alignment: .leading, spacing: 10){
                             Text(NUM_GLEEM_POINT + String(User.currentUser()!.point_avail)).font(.subheadline).font(Font.custom(FONT, size: 15))
-                            Text(NUM_I_VOTED +  String(self.voteViewModel.totalVoted)).font(Font.custom(FONT, size: 15))
-                            Text(NUM_MATCHED + "0").font(Font.custom(FONT, size: 15))
-                            Text(NUM_MATCHED + "0").font(Font.custom(FONT, size: 15))
+                            HStack{
+                                Text(NUM_I_VOTED +  String(self.voteViewModel.totalVoted)).font(Font.custom(FONT, size: 15))
+                                Spacer()
+                                Text(NUM_MATCHED + String(self.matchingViewModel.totalMatched)).font(Font.custom(FONT, size: 15))
+                                
+                            }
+                            
+                            
+                            HStack{
+                                Text(NUM_SKIPPED + String(self.voteViewModel.totalSkipped)).font(Font.custom(FONT, size: 15))
+                                Spacer()
+                                Text(NUM_FLAGGED + String(self.voteViewModel.totalFlagged)).font(Font.custom(FONT, size: 15))
+                            }
+                            
+                            
                             
                         }.padding(.top)
                         
@@ -168,6 +181,8 @@ struct Profile : View {
             }.padding()
         }.onAppear{
             self.voteViewModel.getNumVoted()
+            self.matchingViewModel.getNumMatched()
+
         }
         
     }

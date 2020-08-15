@@ -163,7 +163,7 @@ public let NO_VOTED_USER = "아직 투표한 유저가 없습니다"
 public let NEW_UPLOAD = "(새로운 첫인상 투표 사진 업로드는 왼쪽 프로필사진을 눌러주세요)"
 public let NEW_UPLOAD2 = "(참여하는 투표사진이 없어요, \n왼쪽 프로필사진을 눌러서 참여해주세요)"
 
-public let NO_DATA = "투표받은 데이터가 없엉"
+public let NO_DATA = "투표받은 데이터가 없음"
 //public let I_LIKED = "내가 호감있는 카드"
 
 //HistoryView
@@ -171,8 +171,11 @@ public let NUM_HISTORIC_DATA = "투표가 종료된 사진들 - "
 
 //PROFILEVIEW
 public let NUM_MATCHED = "매칭된 횟수: "
-public let NUM_I_VOTED = "내가 투표한 카드 갯수: "
-public let NUM_GLEEM_POINT = "보유 Gleem 포인트: "
+public let NUM_SKIPPED = "넘긴 카드 횟수: "
+public let NUM_FLAGGED = "신고한 카드 횟수: "
+
+public let NUM_I_VOTED = "내가 투표한 카드 횟수: "
+public let NUM_GLEEM_POINT = "현재 보유한 Gleem 포인트: "
 public let MY_AGE = "나이: "
 
 class Ref {

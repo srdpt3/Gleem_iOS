@@ -112,13 +112,16 @@
          contextName = "closure #1 in closure #1 in ActivityViewModel.loadSomeOneLike():ActivityViewModel.swift">
          <PersistentStrings>
             <PersistentString
-               value = "decoderActivity">
+               value = "self.someOneLiked">
+            </PersistentString>
+            <PersistentString
+               value = "dict">
             </PersistentString>
             <PersistentString
                value = "documentChange.document.data()">
             </PersistentString>
             <PersistentString
-               value = "dict">
+               value = "decoderActivity">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
