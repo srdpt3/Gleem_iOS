@@ -25,7 +25,7 @@ struct SignUpView: View {
     @State var agree = false
     @State var gender = "male"
     @State var finishSignUp : Bool = false
-    @State var error : Bool = false
+//    @State var error : Bool = false
     @State private var activeAlert: ActiveAlert = .first
     //    @State var misMatchPassword : Bool = false
     //    @State var filloutError : Bool = false
@@ -42,9 +42,11 @@ struct SignUpView: View {
         
         print( signupViewModel.age)
         if signupViewModel.username.isEmpty || signupViewModel.email.isEmpty || signupViewModel.password.isEmpty || signupViewModel.repassword.isEmpty ||  signupViewModel.age == ""{
-            self.error = true
+            self.signupViewModel.showAlert = true
             
-            self.activeAlert = ActiveAlert.second
+            
+            self.signupViewModel.errorString = FILLOUT_INFO
+//            self.activeAlert = ActiveAlert.second
             
             return
             
@@ -52,10 +54,9 @@ struct SignUpView: View {
         }
         
         if signupViewModel.password !=  signupViewModel.repassword{
-            self.error = true
-            
-            self.activeAlert = ActiveAlert.third
-            
+            self.signupViewModel.showAlert = true
+            self.signupViewModel.errorString = MiMATCH_PASSWORD
+
             return
             
             
@@ -178,23 +179,26 @@ struct SignUpView: View {
                 .background(Color.white)
                 .cornerRadius(5)
                 .padding()
-                .alert(isPresented: self.$error) {
+                .alert(isPresented: self.$signupViewModel.showAlert) {
                     
-                    switch activeAlert {
-                    case .first:
-                        return   Alert(title: Text(ERROR), message: Text(PROFILE_UPLOAD).font(.custom(FONT, size: 17)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 17)).foregroundColor(APP_THEME_COLOR), action: {
-                            
-                        }))
-                    case .second:
-                        
-                        return   Alert(title: Text(ERROR), message: Text(FILLOUT_INFO).font(.custom(FONT, size: 17)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 17)).foregroundColor(APP_THEME_COLOR), action: {
-                        }))
-                    case .third:
-                        
-                        return  Alert(title: Text(ERROR), message: Text(MiMATCH_PASSWORD).font(.custom(FONT, size: 17)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 17)).foregroundColor(APP_THEME_COLOR), action: {
-                        }))
-                        
+                    
+                    if(self.signupViewModel.errorString == "The password must be 6 characters long or more."){
+                        self.signupViewModel.errorString = PASSWORD_MINIMUM_LENGTH_ERROR
+                    }else if (self.signupViewModel.errorString == "The email address is already in use by another account."){
+                        self.signupViewModel.errorString = ALREADY_EXIST_EMAIL
                     }
+                    
+                    return   Alert(title: Text(ERROR), message: Text(self.signupViewModel.errorString).font(.custom(FONT, size: 17)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 17)).foregroundColor(APP_THEME_COLOR), action: {
+                    }))
+                    
+                    
+                    //
+                    //                    case .third:
+                    //
+                    //                        return  Alert(title: Text(ERROR), message: Text(MiMATCH_PASSWORD).font(.custom(FONT, size: 17)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 17)).foregroundColor(APP_THEME_COLOR), action: {
+                    //                        }))
+                    //
+                    //                    }
                     
             }
                 

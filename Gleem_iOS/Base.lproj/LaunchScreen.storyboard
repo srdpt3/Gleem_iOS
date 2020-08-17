@@ -24,52 +24,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FrontYardTech @ 2020" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFN-bO-S4g">
-                                <rect key="frame" x="0.0" y="792" width="414" height="20"/>
-                                <fontDescription key="fontDescription" name="JSDongkang-Regular" family="JS Dongkang" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="첫인상의 끌림" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SO1-rf-20r">
-                                <rect key="frame" x="0.0" y="542" width="414" height="21"/>
+                                <rect key="frame" x="0.0" y="495" width="414" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="gAU-xA-xkx"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="qEx-aB-gSC"/>
+                                    <constraint firstAttribute="height" constant="21" id="Sk7-By-mNJ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="CookieRun-Regular" family="CookieRun" pointSize="23"/>
                                 <color key="textColor" name="Color2"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Gleem 3D Icon Type Black Transparent_resized" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wCG-HM-z3m">
-                                <rect key="frame" x="0.0" y="363" width="414" height="171"/>
+                                <rect key="frame" x="0.0" y="316" width="414" height="171"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="414" id="98R-qD-veK"/>
-                                    <constraint firstAttribute="height" constant="171" id="XZS-87-8WS"/>
+                                    <constraint firstAttribute="height" constant="171" id="4rs-eZ-UHZ"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FrontYardTech @ 2020" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFN-bO-S4g">
+                                <rect key="frame" x="0.0" y="817" width="414" height="20"/>
+                                <fontDescription key="fontDescription" name="JSDongkang-Regular" family="JS Dongkang" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="wCG-HM-z3m" secondAttribute="bottom" constant="328" id="0w2-la-sh3"/>
-                            <constraint firstItem="SO1-rf-20r" firstAttribute="trailing" secondItem="wCG-HM-z3m" secondAttribute="trailing" id="2fL-Us-QFv"/>
-                            <constraint firstItem="SO1-rf-20r" firstAttribute="top" secondItem="wCG-HM-z3m" secondAttribute="bottom" constant="8" id="2wT-q8-Laz"/>
-                            <constraint firstItem="wCG-HM-z3m" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="319" id="CQV-Sd-sZb"/>
-                            <constraint firstItem="SO1-rf-20r" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Lem-Y5-npK"/>
-                            <constraint firstItem="SO1-rf-20r" firstAttribute="leading" secondItem="wCG-HM-z3m" secondAttribute="leading" id="O6O-hK-oU9"/>
-                            <constraint firstItem="SO1-rf-20r" firstAttribute="top" secondItem="wCG-HM-z3m" secondAttribute="bottom" constant="8" id="USv-Ov-0Bt"/>
-                            <constraint firstItem="yFN-bO-S4g" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="VGz-iF-9eu"/>
-                            <constraint firstItem="wCG-HM-z3m" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="YCY-sV-7bP"/>
-                            <constraint firstItem="wCG-HM-z3m" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="iH6-5E-vkr"/>
-                            <constraint firstItem="SO1-rf-20r" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jTb-aK-z3q"/>
-                            <constraint firstItem="yFN-bO-S4g" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ubx-w4-dHx"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="yFN-bO-S4g" secondAttribute="bottom" constant="50" id="zpz-nZ-xbj"/>
+                            <constraint firstItem="wCG-HM-z3m" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5IZ-Jx-zFT"/>
+                            <constraint firstItem="SO1-rf-20r" firstAttribute="trailing" secondItem="yFN-bO-S4g" secondAttribute="trailing" id="8OX-VS-g0h"/>
+                            <constraint firstItem="SO1-rf-20r" firstAttribute="top" secondItem="wCG-HM-z3m" secondAttribute="bottom" constant="8" id="M0z-lF-4HY"/>
+                            <constraint firstItem="wCG-HM-z3m" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="272" id="MsN-BT-RN4"/>
+                            <constraint firstItem="wCG-HM-z3m" firstAttribute="leading" secondItem="SO1-rf-20r" secondAttribute="leading" id="bAz-as-UQG"/>
+                            <constraint firstItem="SO1-rf-20r" firstAttribute="leading" secondItem="yFN-bO-S4g" secondAttribute="leading" id="hY2-Kq-ccv"/>
+                            <constraint firstItem="wCG-HM-z3m" firstAttribute="trailing" secondItem="SO1-rf-20r" secondAttribute="trailing" id="jhq-14-vh0"/>
+                            <constraint firstItem="wCG-HM-z3m" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="p6n-gI-ZAi"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="yFN-bO-S4g" secondAttribute="bottom" constant="25" id="xBh-9j-lpa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-306" y="-15"/>
+            <point key="canvasLocation" x="-342" y="-15"/>
         </scene>
     </scenes>
     <resources>

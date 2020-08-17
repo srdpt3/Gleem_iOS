@@ -17,7 +17,7 @@ struct LoginView: View {
     @State var isAnimated = false
     @State var resetLink : Bool = false
     @State private var activeAlert: ActiveAlert = .first
-
+    
     
     
     func signIn() {
@@ -119,7 +119,7 @@ struct LoginView: View {
                             Spacer()
                             
                             Button(action: {
-//                                self.resetLink = true
+                                //                                self.resetLink = true
                                 self.signinViewModel.showAlert = true
                                 self.activeAlert = ActiveAlert.second
                                 self.reset()
@@ -203,31 +203,33 @@ struct LoginView: View {
                 
                 SignUpView(showSignupView: self.$signinViewModel.show)
         }
-         .alert(isPresented: self.$signinViewModel.showAlert) {
-                
-                switch activeAlert {
-                case .first:
-                    if(self.signinViewModel.errorString == "There is no user record corresponding to this identifier. The user may have been deleted."){
-                        self.signinViewModel.errorString = "계정이 존재하지 않거나 삭제된 이메일 계정입니다. 다시 한번확인해주세요"
-                    }
-                    
-                    return   Alert(title: Text(ERROR), message: Text(self.signinViewModel.errorString).font(.custom(FONT, size: 17)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 17)).foregroundColor(APP_THEME_COLOR), action: {
-                        
-                    }))
-                case .second:
-                    
-                     return Alert(title: Text("링크가 전송되었습니다").font(.custom(FONT, size: 15 )), message: Text("이메일을 확인해주세요").font(.custom(FONT, size: 13)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 15)).foregroundColor(APP_THEME_COLOR), action: {
-                            }))
-                case .third:
-                    
-                    return  Alert(title: Text(ERROR), message: Text("").font(.custom(FONT, size: 17)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 17)).foregroundColor(APP_THEME_COLOR), action: {
-                    }))
-                    
+        .alert(isPresented: self.$signinViewModel.showAlert) {
+            
+            switch activeAlert {
+            case .first:
+                if(self.signinViewModel.errorString == "There is no user record corresponding to this identifier. The user may have been deleted."){
+                    self.signinViewModel.errorString = NO_ACCOUNT
+                }else if(self.signinViewModel.errorString == "The password is invalid or the user does not have a password."){
+                    self.signinViewModel.errorString = MiMATCH_PASSWORD_ERROR
                 }
                 
+                return   Alert(title: Text(ERROR), message: Text(self.signinViewModel.errorString).font(.custom(FONT, size: 17)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 17)).foregroundColor(APP_THEME_COLOR), action: {
+                    
+                }))
+            case .second:
+                
+                return Alert(title: Text(SENT_LINK).font(.custom(FONT, size: 15 )), message: Text(CONFIRM_EMAIL).font(.custom(FONT, size: 13)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 15)).foregroundColor(APP_THEME_COLOR), action: {
+                }))
+            case .third:
+                
+                return  Alert(title: Text(ERROR), message: Text("").font(.custom(FONT, size: 17)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 17)).foregroundColor(APP_THEME_COLOR), action: {
+                }))
+                
+            }
+            
         }
         
- 
+        
         
     }
     func hide_keyboard()

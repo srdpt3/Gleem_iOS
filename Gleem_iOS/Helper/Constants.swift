@@ -72,8 +72,17 @@ let TERM_AGREEMENT = "I Read And Agree The Terms And Conditions"
 let TERM_AGREEMENT2 = "약관에 동의합니다"
 let PROFILE_UPLOAD = "프로필사진을 등록해주세요 "
 let MiMATCH_PASSWORD = "비밀번호가 일치 하지 않습니다"
-let FILLOUT_INFO = "정보를 다시 입력해주세요"
+let PASSWORD_MINIMUM_LENGTH_ERROR = "비밀번호를 8자 이상 입력해주세요"
+let ALREADY_EXIST_EMAIL = "이미 사용중인 계정입니다. \n다시 입력해주세요"
 
+let FILLOUT_INFO = "정보를 다시 입력해주세요"
+let SENT_LINK = "링크가 전송되었습니다"
+let CONFIRM_EMAIL = "이메일을 확인해주세요"
+
+
+//LOGIN and SIGNUP ERROR
+let MiMATCH_PASSWORD_ERROR = MiMATCH_PASSWORD + "\n다시 한번확인해주세요"
+let NO_ACCOUNT = "계정이 존재하지 않거나 삭제된 이메일 계정입니다. \n다시 한번확인해주세요"
 
 
 let IMAGE_LOGO = "logo"
