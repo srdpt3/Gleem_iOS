@@ -6,6 +6,8 @@ struct RadioButtons : View {
     @EnvironmentObject  var obs : observer
     @Binding var selected : String
     @Binding var show : Bool
+    @Binding var flagMessage : Bool
+
     var updatedValueDict = ["attr1":0 , "attr2":0, "attr3":0, "attr4":0, "attr5":0]
     var buttonTitle : [String] = ["없음", "없음","없음", "없음", "없음"]
     
@@ -37,13 +39,9 @@ struct RadioButtons : View {
             }
         }
         
-        
-        //        Api.Flag.reportCard(flag: flag)
-        
-        
-        print(flag)
         withAnimation{
             self.show.toggle()
+            self.flagMessage.toggle()
             self.obs.moveCards()
         }
         

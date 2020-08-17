@@ -11,7 +11,7 @@ import SwiftUI
 class  AttributeViewModel: ObservableObject {
     @Published var isSucess = false
     @Published var error: NSError?
-    @Published  var buttonAttributes : [String] = []
+    @Published  var buttonAttributes = [String]()
     @Published var isLoading = true
     
     func loadAttributes() {

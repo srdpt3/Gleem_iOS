@@ -145,7 +145,7 @@ struct Profile : View {
                                 .clipShape(Circle())
                         }
                         
-                        Circle().stroke(User.currentUser()!.sex ==  "male" ? Color("Color") : Color("myvote"), lineWidth: 5).frame(width: 70, height: 70)
+                        Circle().stroke(APP_THEME_COLOR, lineWidth: 5).frame(width: 70, height: 70)
                         
                     }.offset(y: -35)
                     

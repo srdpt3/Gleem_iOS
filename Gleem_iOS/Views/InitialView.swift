@@ -9,7 +9,9 @@
 
 import Foundation
 import SwiftUI
-
+enum ActiveAlert {
+    case first, second, third
+}
 struct InitialView: View {
     
 //    @EnvironmentObject var session: SessionStore

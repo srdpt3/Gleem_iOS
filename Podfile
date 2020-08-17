@@ -11,13 +11,12 @@ target 'Gleem_iOS' do
   pod 'SDWebImageSwiftUI'  
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
-  pod 'JGProgressHUD'
   pod 'ProgressHUD'
   pod 'Firebase/Messaging'
   pod 'GeoFire'
   pod 'AAInfographics'
   pod 'Google-Mobile-Ads-SDK'
-pod 'lottie-ios'
+  pod 'lottie-ios'
 
   # Pods for Gleem_iOS
 

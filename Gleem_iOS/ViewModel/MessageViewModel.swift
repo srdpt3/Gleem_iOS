@@ -16,16 +16,16 @@ import Combine
 class MessageViewModel: ObservableObject {
     
     
-    @Published var inboxMessages: [InboxMessage] = [InboxMessage]()
+    @Published var inboxMessages = [InboxMessage]()
     // let objectWillChange = ObservableObjectPublisher()
     @Published var isLoading : Bool = false
     @Published var finished : String = ""
-
+    
     var listener: ListenerRegistration!
     
     init() {
- UITableView.appearance().separatorColor = .clear
-        loadInboxMessages()
+        UITableView.appearance().separatorColor = .clear
+        
     }
     
     func loadInboxMessages() {
@@ -41,30 +41,31 @@ class MessageViewModel: ObservableObject {
         }, newInboxMessage: { (inboxMessage) in
             if !self.inboxMessages.isEmpty {
                 self.inboxMessages.append(inboxMessage)
-
+                
             }
-
-        }) { (listener) in
+            
+        })
+        { (listener) in
             self.listener = listener
         }
-//
-//          if self.inboxMessages.isEmpty {
-//            if(isKeyPresentInUserDefaults(key: "signedIn")){
-////                self.finished = "empty"
-//                removeDefaults(entry: "signedIn")
-//
-//
-//            }
-//          }else{
-//            self.finished = ""
-//        }
+        //
+        //          if self.inboxMessages.isEmpty {
+        //            if(isKeyPresentInUserDefaults(key: "signedIn")){
+        ////                self.finished = "empty"
+        //                removeDefaults(entry: "signedIn")
+        //
+        //
+        //            }
+        //          }else{
+        //            self.finished = ""
+        //        }
         
         print("loadInboxMessages finished")
         //       defer {
         //            objectWillChange.send()
         //        }
         
-    
+        
     }
     
     
@@ -130,7 +131,7 @@ class MessageViewModel: ObservableObject {
             
             LoadingView2(filename: "break-heart")
         }
-//
-
+        //
+        
     }
 }

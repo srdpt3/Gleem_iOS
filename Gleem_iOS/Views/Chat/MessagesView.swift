@@ -42,7 +42,10 @@ struct MessageSubView: View {
     @State var userNickName : String = ""
     @EnvironmentObject  var obs : observer
     
-    
+    init(){
+        self.messageViewModel.loadInboxMessages()
+
+    }
     var body: some View{
         ZStack{
             
@@ -87,7 +90,8 @@ struct MessageSubView: View {
                 
                 
             }.onAppear(){
-                
+//                self.messageViewModel.loadInboxMessages()
+
             }
             .blur(radius: self.$doneChatting.wrappedValue ? 5 : 0, opaque: false)
             

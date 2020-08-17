@@ -11,8 +11,12 @@ struct UploadView: View {
     // intializing Four Image cards...
     @Environment(\.presentationMode) var presentationMode
     
-    @Binding var noVotePic : Bool
     var vote : Vote
+    let characterLimit = 10
+    
+    @Binding var noVotePic : Bool
+    @Binding var uploadComplete : Bool
+    
     @State var image: Image = Image("profilepic")
     
     @State var images : [Data] = [Data()]
@@ -21,15 +25,21 @@ struct UploadView: View {
     @State var showProfile = false
     @State var customAttr: String = ""
     @State var showAlert : Bool = false
-    let characterLimit = 10
+    @State private var activeAlert: ActiveAlert = .first
+    
+    
     @State private var entry = ""
     @State var buttonPressed = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
     @State  var buttonTitle = [String]()
+    
     let haptics = UINotificationFeedbackGenerator()
     
     @ObservedObject var attributeViewModel = AttributeViewModel()
     @ObservedObject var uploadViewModel = UploadViewModel()
     @ObservedObject var historyViewModel = HistoryViewModel()
+    
+    
+    
     
     func clean() {
         self.buttonPressed = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
@@ -55,9 +65,9 @@ struct UploadView: View {
     }
     
     
-//    init(){
-//
-//    }
+    //    init(){
+    //
+    //    }
     
     
     var body: some View {
@@ -102,11 +112,11 @@ struct UploadView: View {
                                 .cornerRadius(10)
                             
                         }
-   
+                        
                         
                     } .frame(width: 150, height: 150)
                     Text(SELECT_ATTRIBUTES).font(Font.custom(FONT, size: 14)).foregroundColor(Color.gray)
-
+                    
                     
                 }
                 if(!self.attributeViewModel.buttonAttributes.isEmpty){
@@ -204,6 +214,8 @@ struct UploadView: View {
                         
                         if(self.checkAttrSelected()){
                             self.showAlert.toggle()
+                            self.activeAlert = ActiveAlert.first
+                            
                         }else{
                             self.uploadPicture()
                             self.haptics.notificationOccurred(.success)
@@ -231,13 +243,13 @@ struct UploadView: View {
                     Spacer()
                 }
                 
-                else{
-
-                    LoadingView(isLoading: self.attributeViewModel.isLoading, error: self.attributeViewModel.error) {
-                        self.attributeViewModel.loadAttributes()
-                    }
-
-                }
+                //                else{
+                //
+                //                    LoadingView(isLoading: self.attributeViewModel.isLoading, error: self.attributeViewModel.error) {
+                //                        self.attributeViewModel.loadAttributes()
+                //                    }
+                //
+                //                }
                 
             }
             
@@ -252,31 +264,58 @@ struct UploadView: View {
         }.padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top).onAppear{
             self.attributeViewModel.loadAttributes()
         } .alert(isPresented: self.$showAlert) {
-            Alert(title: Text("Error"), message: Text("5개의 항목을 선택해주세요"),  dismissButton: .default(Text("OK"), action: {
-                //                self.showLoader.toggle()
-                //                self.showAlert.toggle()
+            
+            
+            switch activeAlert {
+            case .first:
+                return Alert(title: Text(ERROR), message: Text(SELECT_ATTRIBUTES),  dismissButton: .default(Text("OK"), action: {
+                    
+                }))
+            case .second:
                 
-            }))
+                return Alert(title: Text(COMPLETE), message: Text(UPLOAD_SUCCESSFUL),  dismissButton: .default(Text("OK"), action: {
+                    self.clean()
+                    self.presentationMode.wrappedValue.dismiss()
+                }))
+            case .third:
+                
+                return  Alert(title: Text(ERROR), message: Text("").font(.custom(FONT, size: 17)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 17)).foregroundColor(APP_THEME_COLOR), action: {
+                }))
+                
+            }
+            
+            
+            
+            
+            
         }.onAppear{
             print(self.noVotePic)
             print(self.vote)
         }
-    
+        
         
     }
     
     
     func uploadPicture(){
         uploadViewModel.uploadVote(buttonPressed: buttonPressed, buttonTitle: self.buttonTitle, imageData: self.images[0])
-        
-     
+        self.uploadComplete = true
+
         self.clean()
         self.presentationMode.wrappedValue.dismiss()
-        if(!self.noVotePic){
-            historyViewModel.persistPastVoteData(vote: self.vote)
-
-        }
+        //
         
+        
+        
+        if(!self.noVotePic && self.vote.imageLocation != ""){
+            historyViewModel.persistPastVoteData(vote: self.vote)
+            //            if(!historyViewModel.isLoading){
+            //            }
+            
+        }
+        self.uploadComplete = true
+        //        self.showAlert.toggle()
+        //         self.activeAlert = ActiveAlert.second
     }
     
     func hide_keyboard()

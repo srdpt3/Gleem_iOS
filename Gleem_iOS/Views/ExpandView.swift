@@ -262,6 +262,7 @@ struct ExpandView: View {
                                     
                                 }.padding(.horizontal, 2)
                                 
+                                  BannerAdView(bannerId: BANNER_UNIT_ID).frame(width: UIScreen.main.bounds.width, height: 60)
                                 Spacer()
                             }
                             
@@ -271,7 +272,7 @@ struct ExpandView: View {
                                 if !self.voteData.isEmpty {
                                     
                                     ZStack{
-                                        Text(self.user.username + USER_RESULT.uppercased()).font(.custom(FONT, size: CGFloat(15))).padding().foregroundColor(APP_THEME_COLOR).offset(y: 20)
+                                        Text(self.user.username + USER_RESULT.uppercased()).font(.custom(FONT, size: CGFloat(15))).padding().foregroundColor(APP_THEME_COLOR).offset(y: 10).offset(x: -15)
                                         
                                     }.zIndex(1)
                                     

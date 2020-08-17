@@ -63,7 +63,6 @@ struct FavoriteHome : View {
             
             GeometryReader{geo in
                 VStack{
-                     BannerAdView(bannerId: BANNER_UNIT_ID).frame(width: UIScreen.main.bounds.width, height: 60)
 
                     if !self.activityViewModel.someOneLiked.isEmpty {
                         HStack{
@@ -131,7 +130,8 @@ struct FavoriteHome : View {
                     //                        }
                     //
                     //                    }
-                    
+                    BannerAdView(bannerId: BANNER_UNIT_ID).frame(width: UIScreen.main.bounds.width, height: 60)
+
                     
                     VStack(spacing: 10){
                         if !self.favoriteViewModel.favoriteUsers.isEmpty {
@@ -333,7 +333,7 @@ struct FavoriteHome : View {
                             Spacer()
                             VStack(spacing: 5) {
                                 
-                                Text("내가 끌림을 준 카드나, 끌림을 받은 \n카드들은 일주일관 보관됩니다")
+                                Text(INFO_FAVORITE)
                                     .font(Font.custom(FONT, size: 15))
                                     .multilineTextAlignment(.leading)
                                     .lineLimit(2)

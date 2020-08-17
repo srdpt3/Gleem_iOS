@@ -15,7 +15,7 @@ class HistoryViewModel: ObservableObject {
     @Published var isSucess = false
     @Published var isLoading = false
     @Published var historicData  = [Vote]()
-    
+
     //     var buttonPressed = [Bool]()
     var selectedButton = [String]()
     
@@ -33,7 +33,7 @@ class HistoryViewModel: ObservableObject {
                 
             }
             
-            self.isLoading = true
+            self.isLoading = false
         }
         
     }
@@ -58,7 +58,7 @@ class HistoryViewModel: ObservableObject {
             
         }
         
-        
+        isLoading = false
     }
     
     

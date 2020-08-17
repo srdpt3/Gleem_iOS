@@ -3,10 +3,14 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="CookieRun Regular.ttf">
+            <string>CookieRun-Regular</string>
+        </array>
         <array key="JSDongkang-Regular.ttf">
             <string>JSDongkang-Regular</string>
         </array>
@@ -26,17 +30,37 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="첫인상의 끌림" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SO1-rf-20r">
+                                <rect key="frame" x="0.0" y="542" width="414" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="gAU-xA-xkx"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="qEx-aB-gSC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="CookieRun-Regular" family="CookieRun" pointSize="23"/>
+                                <color key="textColor" name="Color2"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Gleem 3D Icon Type Black Transparent_resized" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wCG-HM-z3m">
-                                <rect key="frame" x="-6" y="348" width="414" height="201"/>
+                                <rect key="frame" x="0.0" y="363" width="414" height="171"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="414" id="98R-qD-veK"/>
+                                    <constraint firstAttribute="height" constant="171" id="XZS-87-8WS"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="wCG-HM-z3m" secondAttribute="bottom" constant="313" id="0w2-la-sh3"/>
-                            <constraint firstItem="wCG-HM-z3m" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="304" id="CQV-Sd-sZb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="wCG-HM-z3m" secondAttribute="bottom" constant="328" id="0w2-la-sh3"/>
+                            <constraint firstItem="SO1-rf-20r" firstAttribute="trailing" secondItem="wCG-HM-z3m" secondAttribute="trailing" id="2fL-Us-QFv"/>
+                            <constraint firstItem="SO1-rf-20r" firstAttribute="top" secondItem="wCG-HM-z3m" secondAttribute="bottom" constant="8" id="2wT-q8-Laz"/>
+                            <constraint firstItem="wCG-HM-z3m" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="319" id="CQV-Sd-sZb"/>
+                            <constraint firstItem="SO1-rf-20r" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Lem-Y5-npK"/>
+                            <constraint firstItem="SO1-rf-20r" firstAttribute="leading" secondItem="wCG-HM-z3m" secondAttribute="leading" id="O6O-hK-oU9"/>
+                            <constraint firstItem="SO1-rf-20r" firstAttribute="top" secondItem="wCG-HM-z3m" secondAttribute="bottom" constant="8" id="USv-Ov-0Bt"/>
                             <constraint firstItem="yFN-bO-S4g" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="VGz-iF-9eu"/>
-                            <constraint firstItem="wCG-HM-z3m" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="-6" id="YCY-sV-7bP"/>
-                            <constraint firstItem="wCG-HM-z3m" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-6" id="iH6-5E-vkr"/>
+                            <constraint firstItem="wCG-HM-z3m" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="YCY-sV-7bP"/>
+                            <constraint firstItem="wCG-HM-z3m" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="iH6-5E-vkr"/>
+                            <constraint firstItem="SO1-rf-20r" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jTb-aK-z3q"/>
                             <constraint firstItem="yFN-bO-S4g" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ubx-w4-dHx"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="yFN-bO-S4g" secondAttribute="bottom" constant="50" id="zpz-nZ-xbj"/>
                         </constraints>
@@ -45,10 +69,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-291.304347826087" y="-31.473214285714285"/>
+            <point key="canvasLocation" x="-306" y="-15"/>
         </scene>
     </scenes>
     <resources>
         <image name="Gleem 3D Icon Type Black Transparent_resized" width="677" height="378"/>
+        <namedColor name="Color2">
+            <color red="0.45899999141693115" green="0.4779999852180481" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

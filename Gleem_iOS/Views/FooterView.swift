@@ -46,7 +46,8 @@ struct voteButtonView : View {
     @Binding var isVoted: Bool
     @Binding var showVotingScreen: Bool
     @EnvironmentObject  var obs : observer
-    
+    @State var noVotePic : Bool = false
+    @State var uploadComplete : Bool = false
     var height: CGFloat
     @State var error : Bool = false
     
@@ -120,7 +121,10 @@ struct ArrowView : View {
     @ObservedObject private var voteViewModel = VoteViewModel()
     var height: CGFloat
     @State var error : Bool = false
-    
+   
+    @State var noVotePic : Bool = false
+    @State var uploadComplete : Bool = false
+    @State var showUploadView : Bool = false
     var body: some View{
         Group{
             Button(action: {
@@ -171,15 +175,34 @@ struct ArrowView : View {
             //                //                            .padding(.horizontal, 30)
             //                //                            .padding(.vertical, 15)
             //                .accentColor(APP_THEME_COLOR)
+        }  .sheet(isPresented: self.$showUploadView) {
+         
+                                               
+                         UploadView(vote: Vote(attr1: 0, attr2 : 0 , attr3 : 0 , attr4: 0, attr5: 0,attrNames:["없음", "없음","없음", "없음", "없음"], numVote: 0, createdDate: Date().timeIntervalSince1970, lastModifiedDate: Date().timeIntervalSince1970, imageLocation: ""), noVotePic: self.$noVotePic,uploadComplete: self.$uploadComplete)
+                  
         }
         .alert(isPresented: self.$error) {
-            return Alert(title: Text("투표 사진을 먼저 등록해주세요"), message: Text(NOVOTEIMAGE).font(.custom(FONT, size: 14)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 15)).foregroundColor(APP_THEME_COLOR), action: {
-            }))
+            return
+            //            Alert(title: Text("투표 사진을 먼저 등록해주세요"), message: Text(NOVOTEIMAGE).font(.custom(FONT, size: 14)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 15)).foregroundColor(APP_THEME_COLOR), action: {
+            //            }))
+            //
+            
+            Alert(title: Text("투표 사진을 먼저 등록해주세요"), message: Text(NOVOTEIMAGE), primaryButton: Alert.Button.default(Text(PHOTOUPLOAD_FROM_MAIN), action: {
+                self.showUploadView.toggle()
+            }), secondaryButton: Alert.Button.cancel(Text(CONFIRM), action: {
+                
+             
+                
+            })
+            )
+            
             
             
             
             
         }
+      
+        
     }
     
 }

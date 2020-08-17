@@ -16,7 +16,6 @@ struct Notification2 {
 }
 
 
-
 class LocalNotificationManager {
     var notifications = [Notification2]()
     
@@ -32,21 +31,6 @@ class LocalNotificationManager {
     
     func addNotification(title: String) -> Void {
         notifications.append(Notification2(id: UUID().uuidString, title: title))
-    }
-    
-    func schedule() -> Void {
-          UNUserNotificationCenter.current().getNotificationSettings { settings in
-              switch settings.authorizationStatus {
-              case .notDetermined:
-                  self.requestPermission()
-              case .authorized, .provisional:
-                  self.scheduleNotifications()
-              default:
-                  break
-                
-            }
-        }
-        
     }
     
     func scheduleNotifications() -> Void {

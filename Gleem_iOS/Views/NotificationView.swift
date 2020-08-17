@@ -78,7 +78,7 @@ struct NotificationView: View {
             .navigationBarTitle(Text(ACTIVITY).font(Font.custom(FONT, size: 20)).foregroundColor(APP_THEME_COLOR)
 , displayMode: .inline)
                 .onAppear {
-//                  self.activityViewModel.loadActivities()
+                  self.obs.loadActivities()
              }
             .onDisappear {
 //                 if self.activityViewModel.listener != nil {
@@ -88,22 +88,7 @@ struct NotificationView: View {
               }
             
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        //        .onDisappear {
-        //            if self.activityViewModel.listener != nil {
-        //                self.activityViewModel.listener.remove()
-        //
-        //            }
-        //        }
-        
+
         
     }
     

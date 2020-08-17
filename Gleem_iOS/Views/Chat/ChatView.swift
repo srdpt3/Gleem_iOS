@@ -24,7 +24,7 @@ struct ChatView: View {
     
     func sendTextMessage() {
         //        self.hide_keyboard()
-        if(self.chatViewModel.chatArray.count < 5){
+        if(self.chatViewModel.chatArray.count < 30){
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
             chatViewModel.sendTextMessage(recipientId: recipientId, recipientAvatarUrl: recipientAvatarUrl, recipientUsername: recipientUsername, completed: {
                 self.clean()

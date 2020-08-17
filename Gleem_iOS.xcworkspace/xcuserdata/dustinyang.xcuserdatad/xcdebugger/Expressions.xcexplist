@@ -14,13 +14,13 @@
          contextName = "closure #1 in observer.getNewCards():observer.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.updateVoteImage">
-            </PersistentString>
-            <PersistentString
                value = "self.isVoteLoading">
             </PersistentString>
             <PersistentString
                value = "self.votedCards.isEmpty">
+            </PersistentString>
+            <PersistentString
+               value = "self.updateVoteImage">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -129,7 +129,7 @@
          contextName = "closure #1 in FavoriteViewModel.loadFavoriteUsers():FavoriteViewModel.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.lastDoc ">
+               value = "snapshot!.documents.last">
             </PersistentString>
             <PersistentString
                value = "lastDoc ">
@@ -141,13 +141,13 @@
                value = "snapshot!.documents">
             </PersistentString>
             <PersistentString
-               value = "dict">
-            </PersistentString>
-            <PersistentString
-               value = "snapshot!.documents.last">
+               value = "self.lastDoc ">
             </PersistentString>
             <PersistentString
                value = " ActiveVote.init(fromDictionary: dict)">
+            </PersistentString>
+            <PersistentString
+               value = "dict">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -187,6 +187,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #1 in closure #1 in voteButtonView.body.getter:FooterView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.obs.updateVoteImage">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in closure #1 in observer.loadActivities():observer.swift">
          <PersistentStrings>
             <PersistentString
@@ -199,6 +207,14 @@
          <PersistentStrings>
             <PersistentString
                value = "document.data()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #4 in LoginView.body.getter:LoginView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.signinViewModel.errorString">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -307,6 +323,20 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #6 in closure #1 in MyStaticView.body.getter:MyStaticView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.uploadComplete">
+            </PersistentString>
+            <PersistentString
+               value = "uploadComplete">
+            </PersistentString>
+            <PersistentString
+               value = "self.$uploadComplete">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in closure #2 in closure #1 in ExpandView.body.getter:ExpandView.swift">
          <PersistentStrings>
             <PersistentString
@@ -365,10 +395,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "observer.reload():observer.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "User.currentUser()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in observer.reload():observer.swift">
          <PersistentStrings>
             <PersistentString
                value = " Auth.auth().currentUser?.uid">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in LoginView.signIn():LoginView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "errorMessage">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

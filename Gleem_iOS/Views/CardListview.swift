@@ -26,6 +26,7 @@ struct CardListview: View {
     @State var reloading : Bool = false
     @State var selectedFlag = ""
     @State var showFlag = false
+    @State var flagMessage = false
     //    @State var cardViews: [MainCardView] = {
     //        var views = [MainCardView]()
     //        for index in 0..<2 {
@@ -267,14 +268,24 @@ struct CardListview: View {
                 
                 Spacer()
                 
-                RadioButtons(selected: self.$selectedFlag,show: self.$showFlag).offset(y: self.showFlag ? (UIApplication.shared.windows.last?.safeAreaInsets.bottom)! + 15 : UIScreen.main.bounds.height)
+                RadioButtons(selected: self.$selectedFlag,show: self.$showFlag, flagMessage: self.$flagMessage).offset(y: self.showFlag ? (UIApplication.shared.windows.last?.safeAreaInsets.bottom)! + 15 : UIScreen.main.bounds.height)
                     .onTapGesture {
                         withAnimation{
                             self.showFlag.toggle()
-
+                            
                         }
                 } .animation(Animation.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0))
-
+                    .alert(isPresented: $flagMessage) {
+                        Alert(
+                            title: Text(BLOCKUSER),
+                            message: Text(BLOCKMSG),
+                            dismissButton: .default(Text(CONFIRM)))
+                        
+                        
+                        
+                        
+                }
+                
             }.background(Color(UIColor.label.withAlphaComponent(self.showFlag ? 0.2 : 0)).edgesIgnoringSafeArea(.all))
             
             if self.showProfile{
@@ -304,16 +315,7 @@ struct CardListview: View {
         }.onAppear{
         }
         
-        //        .alert(isPresented: $showAlert) {
-        //            Alert(
-        //                title: Text("테스트"),
-        //                message: Text("Wishing a lovely and most precious of the times together for the amazing couple."),
-        //                dismissButton: .default(Text("Happy Honeymoon!")))
-        //
-        //
-        //
-        //
-        //        }
+             
     }
     
     
@@ -334,4 +336,3 @@ extension AnyTransition {
             removal: AnyTransition.move(edge: .leading).combined(with: .move(edge: .bottom)))
     }
 }
-

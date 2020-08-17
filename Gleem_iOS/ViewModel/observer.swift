@@ -41,7 +41,6 @@ class observer : ObservableObject{
     
     func getNewCards(){
         self.isVoteLoading = true
-        self.loadActivities()
         
         Ref.FIRESTORE_COLLECTION_MYVOTE.document(Auth.auth().currentUser!.uid).collection("voted").getDocuments { (snap, error) in
             self.votedCards.removeAll()
@@ -81,23 +80,28 @@ class observer : ObservableObject{
     }
     
     func listenAuthenticationState() {
-        
         handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
             if let user = user {
+                
                 print("listenAuthenticationState \(user.uid)")
                 let firestoreUserId = Ref.FIRESTORE_DOCUMENT_USERID(userId: user.uid)
                 firestoreUserId.getDocument { (document, error) in
                     if let dict = document?.data() {
+
                         //                        guard let decoderUser = try? User.init(fromDictionary: dict) else {return}
                         guard let decoderUser = try? User.init(_dictionary: dict as NSDictionary) else {return}
                         saveUserLocally(mUserDictionary: dict as NSDictionary)
+                        self.checkUserUploadVote()
+
+                        self.loadActivities()
+                        self.getNewCards()
+                        
                         
                         
                     }
                 }
-                self.checkUserUploadVote()
-
-                self.getNewCards()
+                
+                
                 
                 //                if(!self.isVoteLoading && !self.votedCards.isEmpty){
                 //                    print("vote finished")
@@ -187,55 +191,25 @@ class observer : ObservableObject{
     
     var listener: ListenerRegistration!
     
-    
-    
-    func loadInboxMessages() {
-        self.isInBoxLoading = true
-        self.inboxMessages = []
-        
-        Api.Chat.getInboxMessages(onSuccess: { (inboxMessages) in
-            if self.inboxMessages.isEmpty {
-                self.inboxMessages = inboxMessages
-            }
-        }, onError: { (errorMessage) in
-            
-        }, newInboxMessage: { (inboxMessage) in
-            if !self.inboxMessages.isEmpty {
-                self.inboxMessages.append(inboxMessage)
-            }
-            
-            
-            
-        }) { (listener) in
-            self.listener = listener
-        }
-        //       defer {
-        //            objectWillChange.send()
-        //        }
-        self.isInBoxLoading = false
-    }
-    
-    
-    
-    
+
     func createCardView(){
         self.cardViews.removeAll()
         
         //Filtering
-        if(!votedCards.isEmpty && !users.isEmpty){
-            
-            for index in (0..<users.count).reversed() {
-                let u = users[index]
-                if votedCards.contains(u.id){
-                    users.remove(at: index)
-                    print("contained  \(u.id)")
-                }
-                
-            }
-            
-            print("filtered User : \(users.count)")
-            
-        }
+        //        if(!votedCards.isEmpty && !users.isEmpty){
+        //
+        //            for index in (0..<users.count).reversed() {
+        //                let u = users[index]
+        //                if votedCards.contains(u.id){
+        //                    users.remove(at: index)
+        //                    print("contained  \(u.id)")
+        //                }
+        //
+        //            }
+        //
+        //            print("filtered User : \(users.count)")
+        //
+        //        }
         
         if(!users.isEmpty){
             var indexRange = 0
@@ -301,12 +275,13 @@ class observer : ObservableObject{
     
     func loadActivities() {
         //        isLoading = true
-        self.activityArray.removeAll()
         
         listener = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: User.currentUser()!.id).collection("activity").order(by: "date", descending: true).addSnapshotListener({ (querySnapshot, error) in
             guard let snapshot = querySnapshot else {
                 return
             }
+            self.activityArray.removeAll()
+            
             snapshot.documentChanges.forEach { (documentChange) in
                 switch documentChange.type {
                 case .added:
@@ -323,13 +298,13 @@ class observer : ObservableObject{
                             self.setNotification(msg:"누군가 나에게 끌림을 주었습니다")
                             self.updateRead(docId: decoderActivity.activityId)
                             print("liked")
-
+                            
                         }else if(decoderActivity.type == "match"){
                             //                        self.send()
                             self.setNotification(msg:"축하해요! 이성과 연결이 되었습니다.")
                             print("matched")
                             self.updateRead(docId: decoderActivity.activityId)
-
+                            
                         }
                         
                     }
@@ -341,6 +316,25 @@ class observer : ObservableObject{
                     self.activityArray.append(decoderActivity)
                 case .modified:
                     print("type: modified")
+                    let dict = documentChange.document.data()
+                    guard let decoderActivity = try? Activity.init(fromDictionary: dict) else {return}
+                    
+                    if(!decoderActivity.read) {
+                        if(decoderActivity.type == "like"){
+                            //                        self.send()
+                            self.setNotification(msg:"누군가 나에게 끌림을 주었습니다")
+                            self.updateRead(docId: decoderActivity.activityId)
+                            print("liked")
+                            
+                        }else if(decoderActivity.type == "match"){
+                            //                        self.send()
+                            self.setNotification(msg:"축하해요! 이성과 연결이 되었습니다.")
+                            print("matched")
+                            self.updateRead(docId: decoderActivity.activityId)
+                            
+                        }
+                        
+                    }
                 case .removed:
                     print("type: removed")
                 }
@@ -354,7 +348,7 @@ class observer : ObservableObject{
     
     func setNotification(msg: String){
         let manager = LocalNotificationManager()
-        //        manager.requestPermission()
+        manager.requestPermission()
         manager.addNotification(title: msg)
         manager.scheduleNotifications()
     }

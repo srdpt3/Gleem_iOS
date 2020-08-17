@@ -8,9 +8,7 @@
 
 import SwiftUI
 
-enum ActiveAlert {
-    case first, second, third
-}
+
 
 struct SignUpView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -184,21 +182,19 @@ struct SignUpView: View {
                     
                     switch activeAlert {
                     case .first:
-                        return   Alert(title: Text("에러"), message: Text(PROFILE_UPLOAD).font(.custom(FONT, size: 17)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 17)).foregroundColor(Color("Color2")), action: {
+                        return   Alert(title: Text(ERROR), message: Text(PROFILE_UPLOAD).font(.custom(FONT, size: 17)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 17)).foregroundColor(APP_THEME_COLOR), action: {
                             
                         }))
                     case .second:
                         
-                        return   Alert(title: Text("에러"), message: Text(FILLOUT_INFO).font(.custom(FONT, size: 17)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 17)).foregroundColor(Color("Color2")), action: {
+                        return   Alert(title: Text(ERROR), message: Text(FILLOUT_INFO).font(.custom(FONT, size: 17)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 17)).foregroundColor(APP_THEME_COLOR), action: {
                         }))
                     case .third:
                         
-                        return  Alert(title: Text("에러"), message: Text(MiMATCH_PASSWORD).font(.custom(FONT, size: 17)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 17)).foregroundColor(Color("Color2")), action: {
+                        return  Alert(title: Text(ERROR), message: Text(MiMATCH_PASSWORD).font(.custom(FONT, size: 17)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 17)).foregroundColor(APP_THEME_COLOR), action: {
                         }))
                         
-                        
                     }
-                    
                     
             }
                 

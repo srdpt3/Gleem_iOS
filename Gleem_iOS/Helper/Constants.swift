@@ -34,6 +34,10 @@ public let TABBAR_FONT_SIZE = 13
 public var BELL = "bell"
 public var FONT = "JSDongkang-Regular"
 public var FONT_BOLD = "JSDongkang-Bold"
+public var FONT_COOKIE = "CookieRun Regular"
+
+
+
 public let BUTTON_TITLE_FONT_SIZE = 18
 
 //public var FONT = "CookieRun Regular"
@@ -42,6 +46,11 @@ public let VOTE_NUMBER = "numVote"
 public let CHART_Y_AXIS = 100
 
 
+
+public let CONFIRM =  "확인"
+public let CANCEL =  "취소"
+public let ERROR =  "에러"
+public let COMPLETE =  "완료"
 
 
 // Sign in and Sign up pages
@@ -85,6 +94,8 @@ public let BUTTONNAME_AFTER_VOTE  = "카드 다시보기"
 
 //FLAG
 public let BLOCKUSER = "신고해주셔서 감사합니다"
+public let BLOCKMSG = "끌림팀에서 검토 후 신속히 처리하겠습니다."
+
 public let BLOCK_BUTTON = " 신고하기"
 public let CACEL_BLOCK_BUTTON = "취소"
 public let FLAGPICTURE_TITLE = "사진을 신고합니다"
@@ -97,6 +108,7 @@ public let VOTE_SUBMIT_BUTTON = "투표 결과 확인하기"
 public let RATING_TEXT = "이미지 호감도"
 public let USER_RESULT = " 님의 실시간 첫인상투표 결과"
 public let NOVOTEIMAGE = "내 첫인상 투표사진을 올려야 남들이 \n나를 볼 수 있어요~ \n또는 이성과 연결이 되고 싶다면 평가 사진 올리기를 먼저 해주세요~"
+public let PLEASE_UPLOAD_PIC = "투표 사진을 먼저 등록해주세요"
 
 
 
@@ -122,7 +134,13 @@ public let LOGOUT = "로그아웃"
 
 // Upload voting picture
 public let PHOTOUPLOAD = "평가받고 싶은 사진 올리기"
+public let PHOTOUPLOAD_FROM_MAIN = "투표사진올리기"
+
 public let SELECT_ATTRIBUTES = "사진에 대한 5가지 키워드를 선택해주세요"
+public let UPLOAD_SUCCESSFUL = "사진등록이 완료되었습니다. \n첫인상 투표를 시작해보세요"
+public let UPLOAD_COMPLETE = "사진등록이 완료되었습니다. \n첫인상 투표를 시작해보세요"
+
+
 
 //CHAT
 public let SEND_LIKE_MESSAGE = "안녕하세요 " + User.currentUser()!.username + "님께서 관심을 표현하였습니다."
@@ -143,8 +161,8 @@ public let WELCOME_GLEEM = "가입을 축하드려요!. \n사진을 올려서 �
 public let TYPE_MESSAGE = "메세지를 입력해주세요"
 public let LEAVE_ROOM =  "채팅방 나가기"
 public let END_CHAT =  "이랑 대화를 종료합니다"
-public let CONFIRM =  "확인"
-public let CANCEL =  "취소"
+
+
 
 
 //Favorite
@@ -152,6 +170,8 @@ public let SOMEONE_LIKED = "나에게 끌림을 준 카드"
 public let I_LIKED = "내가 끌림을 준 카드"
 public let MATCHING_CHECK_CURRENT_POINT = "상대방에게 채팅요청시 10포인트가 소모됩니다. \n현재 가진 포인트: "
 public let NOT_ENOUGH_POINT = "가지고계신 포인트가 부족합니다. \n필요한 포인트: " + String(POINT_USE) + "\n현재 가진 포인트: "
+public let INFO_FAVORITE = "내가 끌림을 준 카드나, 끌림을 받은 \n카드들은 일주일간 보관됩니다"
+
 
 
 //Stat

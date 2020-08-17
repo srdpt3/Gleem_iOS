@@ -17,7 +17,7 @@ class UploadViewModel: ObservableObject {
     //     var buttonPressed = [Bool]()
     var selectedButton = [String]()
     func uploadVote(buttonPressed : [Bool], buttonTitle : [String],imageData: Data) {
-        
+        self.isLoading = true
         let date: Double = Date().timeIntervalSince1970
         let myVote = Vote(attr1: 0, attr2 : 0 , attr3 : 0 , attr4: 0, attr5: 0,attrNames:buttonTitle, numVote: 0, createdDate: date, lastModifiedDate: date, imageLocation: "")
         
@@ -37,13 +37,12 @@ class UploadViewModel: ObservableObject {
                 
                 
             }
-            
         }
         
         
-  
         
-        
+        self.isLoading = false
+
         
  
     }

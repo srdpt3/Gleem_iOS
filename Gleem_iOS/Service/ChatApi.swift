@@ -123,6 +123,7 @@ class ChatApi {
                     
                 case .modified:
                     print("type: modified")
+                    
                 case .removed:
                     print("type: removed")
                 }
