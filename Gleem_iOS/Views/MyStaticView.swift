@@ -21,7 +21,7 @@ struct MyStaticView: View , Equatable {
     let numberIVoted = 30
     @State var buttonTitle : [String] = ["없음", "없음","없음", "없음", "없음"]
     @State var date : Double = 0
-  
+    
     @State var votePiclocation : String = ""
     //    @State var voteData = [Int.random(in: 0 ..< 100),Int.random(in: 0 ..< 100),Int.random(in: 0 ..< 100),Int.random(in: 0 ..< 100),Int.random(in: 0 ..< 100)]
     @State var selected = 0
@@ -31,6 +31,7 @@ struct MyStaticView: View , Equatable {
     @State var uploadMsg : String = NEW_UPLOAD2
     @State var noVotePic : Bool = false
     @State var uploadComplete : Bool = false
+    @State private var animatingModal: Bool = false
     
     let haptics = UINotificationFeedbackGenerator()
     
@@ -224,6 +225,9 @@ struct MyStaticView: View , Equatable {
                     
                     
                 }
+                
+                
+                
             }
             else{
                 
@@ -593,6 +597,11 @@ struct MyStaticView: View , Equatable {
                     
                     
                 }
+                
+                
+                
+                
+                
                 VStack{
                     
                     BannerAdView(bannerId: BANNER_UNIT_ID).frame(height: 200)

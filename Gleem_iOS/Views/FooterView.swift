@@ -11,6 +11,7 @@ struct FooterView: View {
     // MARK: - PROPERTIES
     @Binding var isVoted: Bool
     @Binding var showVotingScreen: Bool
+    @Binding var uploadComplete : Bool
     @Environment(\.horizontalSizeClass) var sizeClass
     
     let haptics = UINotificationFeedbackGenerator()
@@ -21,23 +22,12 @@ struct FooterView: View {
             
             //            if UIScreen.main.bounds.height < 896.0{
             Spacer()
-            VStack { voteButtonView(isVoted: self.$isVoted, showVotingScreen: self.$showVotingScreen, height: UIScreen.main.bounds.height < 896.0 ? 50 : 60).offset(y: -10)}
-            VStack { ArrowView(height: UIScreen.main.bounds.height < 896.0 ? 50 : 60).offset(y: -10) }
+            VStack { voteButtonView(isVoted: self.$isVoted, showVotingScreen: self.$showVotingScreen, height: UIScreen.main.bounds.height < 896.0 ? 50 : 60, uploadComplete: self.$uploadComplete).offset(y: -10)}
+            VStack { ArrowView(height: UIScreen.main.bounds.height < 896.0 ? 50 : 60, uploadComplete: self.$uploadComplete).offset(y: -10) }
             Spacer()
-            //            } else {
-            //                 VStack { voteButtonView(isVoted: self.$isVoted, showVotingScreen: self.$showVotingScreen,  height: 100) }
-            //                 Spacer().frame(height: 0)
-            //                 VStack { ArrowView(height: 100) }
-            
-            //                Spacer()
-            //                VStack { voteButtonView(isVoted: self.$isVoted, showVotingScreen: self.$showVotingScreen, height: 70).offset(y: -10)}
-            //                VStack { ArrowView(height: 70).offset(y: -10) }
-            //                Spacer()
-            //            }
             
             
         }
-        //        .padding(10)
     }
 }
 
@@ -47,9 +37,11 @@ struct voteButtonView : View {
     @Binding var showVotingScreen: Bool
     @EnvironmentObject  var obs : observer
     @State var noVotePic : Bool = false
-    @State var uploadComplete : Bool = false
     var height: CGFloat
+    @Binding var uploadComplete : Bool
+    
     @State var error : Bool = false
+    @State var showUploadView : Bool = false
     
     
     let haptics = UINotificationFeedbackGenerator()
@@ -103,12 +95,18 @@ struct voteButtonView : View {
                     //                    .frame(width: self.show ? nil : 0, height: self.show ? nil : 0)
             }
             
-        }.alert(isPresented: self.$error) {
-            return Alert(title: Text("투표 사진을 먼저 등록해주세요").font(.custom(FONT, size: CGFloat(UIScreen.main.bounds.height < 896.0 ? BUTTON_TITLE_FONT_SIZE : 15))), message: Text(NOVOTEIMAGE).font(.custom(FONT, size: 12)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 15)).foregroundColor(APP_THEME_COLOR), action: {
-            }))
+        }
+        .alert(isPresented: self.$error) {
+            return Alert(title: Text("투표 사진을 먼저 등록해주세요"), message: Text(NOVOTEIMAGE), primaryButton: Alert.Button.default(Text(PHOTOUPLOAD_FROM_MAIN), action: {
+                self.showUploadView.toggle()
+            }), secondaryButton: Alert.Button.cancel(Text(CONFIRM), action: {})
+            )
             
+        }
             
+        .sheet(isPresented: self.$showUploadView) {
             
+            UploadView(vote: Vote(attr1: 0, attr2 : 0 , attr3 : 0 , attr4: 0, attr5: 0,attrNames:["없음", "없음","없음", "없음", "없음"], numVote: 0, createdDate: Date().timeIntervalSince1970, lastModifiedDate: Date().timeIntervalSince1970, imageLocation: ""), noVotePic: self.$noVotePic,uploadComplete: self.$uploadComplete)
             
         }
         
@@ -121,9 +119,9 @@ struct ArrowView : View {
     @ObservedObject private var voteViewModel = VoteViewModel()
     var height: CGFloat
     @State var error : Bool = false
-   
+    
     @State var noVotePic : Bool = false
-    @State var uploadComplete : Bool = false
+    @Binding var uploadComplete : Bool
     @State var showUploadView : Bool = false
     var body: some View{
         Group{
@@ -139,18 +137,14 @@ struct ArrowView : View {
                     
                     self.voteViewModel.skip(id: self.obs.users[self.obs.last].id)
                     
-                    //                self.fireworkController.addFirework(sparks: 10)
                     withAnimation{
-                        //                         self.showVotingScreen.toggle()
                         self.obs.moveCards()
                     }
                 }
                 
                 
             }, label: {
-                
-                
-                
+
                 Image(systemName: "xmark")
                     .padding(self.height / 2)
                     .accentColor(APP_THEME_COLOR)
@@ -165,33 +159,17 @@ struct ArrowView : View {
                 .cornerRadius(self.height / 2)
                 .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 5)
             
-            //                .shadow(color: Color.black.opacity(0.3), radius: 1, x: 1, y: 1)
-            //                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
-            
-            //            Text("다음카드 보기")
-            //                .font(.custom(FONT, size: 14))
-            //                .font(.system(.subheadline, design: .rounded))
-            //                .fontWeight(.heavy)
-            //                //                            .padding(.horizontal, 30)
-            //                //                            .padding(.vertical, 15)
-            //                .accentColor(APP_THEME_COLOR)
         }  .sheet(isPresented: self.$showUploadView) {
-         
-                                               
-                         UploadView(vote: Vote(attr1: 0, attr2 : 0 , attr3 : 0 , attr4: 0, attr5: 0,attrNames:["없음", "없음","없음", "없음", "없음"], numVote: 0, createdDate: Date().timeIntervalSince1970, lastModifiedDate: Date().timeIntervalSince1970, imageLocation: ""), noVotePic: self.$noVotePic,uploadComplete: self.$uploadComplete)
-                  
+            
+            UploadView(vote: Vote(attr1: 0, attr2 : 0 , attr3 : 0 , attr4: 0, attr5: 0,attrNames:["없음", "없음","없음", "없음", "없음"], numVote: 0, createdDate: Date().timeIntervalSince1970, lastModifiedDate: Date().timeIntervalSince1970, imageLocation: ""), noVotePic: self.$noVotePic,uploadComplete: self.$uploadComplete)
+            
         }
         .alert(isPresented: self.$error) {
-            return
-            //            Alert(title: Text("투표 사진을 먼저 등록해주세요"), message: Text(NOVOTEIMAGE).font(.custom(FONT, size: 14)), dismissButton: .default(Text(CONFIRM).font(.custom(FONT, size: 15)).foregroundColor(APP_THEME_COLOR), action: {
-            //            }))
-            //
-            
-            Alert(title: Text("투표 사진을 먼저 등록해주세요"), message: Text(NOVOTEIMAGE), primaryButton: Alert.Button.default(Text(PHOTOUPLOAD_FROM_MAIN), action: {
+            return Alert(title: Text("투표 사진을 먼저 등록해주세요"), message: Text(NOVOTEIMAGE), primaryButton: Alert.Button.default(Text(PHOTOUPLOAD_FROM_MAIN), action: {
                 self.showUploadView.toggle()
             }), secondaryButton: Alert.Button.cancel(Text(CONFIRM), action: {
                 
-             
+                
                 
             })
             )
@@ -201,7 +179,7 @@ struct ArrowView : View {
             
             
         }
-      
+        
         
     }
     

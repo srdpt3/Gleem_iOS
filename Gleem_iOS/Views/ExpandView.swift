@@ -26,7 +26,7 @@ struct ExpandView: View {
     @State var needMoveCard: Bool = true
     var selectedButton = [String]()
     @State var buttonTitle : [String] = ["없음", "없음","없음", "없음", "없음"]
-
+    
     @ObservedObject private var voteViewModel = VoteViewModel()
     @ObservedObject private var chartViewModel = ChartViewModel()
     @ObservedObject  private var favoriteViewModel = FavoriteViewModel()
@@ -168,7 +168,7 @@ struct ExpandView: View {
                                     Spacer()
                                     Text(RATING_TEXT)
                                         //                                            .font(.system(size: 20, weight: .bold))
-                                        .font(.custom(FONT, size: CGFloat(BUTTON_TITLE_FONT_SIZE)))
+                                        .font(.custom(FONT, size: CGFloat(UIScreen.main.bounds.height < 896.0 ? 15: 18)))
                                         
                                         .foregroundColor(APP_THEME_COLOR)
                                     
@@ -200,7 +200,12 @@ struct ExpandView: View {
                                         
                                     }
                                     
-                                    
+                                    HStack(alignment: .center, spacing: 2) {
+                                        //                                        Image("event").resizable().frame(width: 18, height: 18).foregroundColor(Color.gray)
+                                        Text(String(" / 20대 중반")).font(.custom(FONT, size: CGFloat(UIScreen.main.bounds.height < 896.0 ? 15: 18)))
+                                            
+                                            .foregroundColor(APP_THEME_COLOR)
+                                    }
                                     
                                     Spacer()
                                 }.padding(.bottom, 10)
@@ -210,62 +215,117 @@ struct ExpandView: View {
                                     RatingDetailView(card: user)
                                     Spacer()
                                     
-                                }.padding(.horizontal,5)
-              
-                            }
-           
-                    
-                            VStack(alignment: .leading, spacing: 12){
+                                }
                                 
-                                HStack(spacing : 8){
-                                    Spacer()
-                                    
-                                    Button(user.attrNames[0], action: {
-                                        self.buttonPressed[0].toggle()
-                                        self.persist()
-                                        //            self.buttonSelected.toggle()
-                                    }).buttonStyle(NeumorphicButtonStyle(bgColor: Color("Color-2"), isPressed:  self.$buttonPressed[0]))
-                                    
-                                    
-                                    Button(user.attrNames[1], action: {
-                                        self.buttonPressed[1].toggle()
-                                        self.persist()
-                                        
-                                        //            self.buttonSelected.toggle()
-                                    }).buttonStyle(NeumorphicButtonStyle(bgColor: Color("Color-2"), isPressed:  self.$buttonPressed[1]))
-                                    
-                                    Button(user.attrNames[2], action: {
-                                        self.buttonPressed[2].toggle()
-                                        self.persist()
-                                        
-                                        //            self.buttonSelected.toggle()
-                                    }).buttonStyle(NeumorphicButtonStyle(bgColor: Color("Color-2"), isPressed:  self.$buttonPressed[2]))
-                                    
-                                    Spacer()
-                                    
-                                }.padding(.horizontal, 2)
-                                HStack(spacing : 8){
-                                    Spacer()
-                                    Button(user.attrNames[3], action: {
-                                        self.buttonPressed[3].toggle()
-                                        self.persist()
-                                        
-                                    }).buttonStyle(NeumorphicButtonStyle(bgColor: Color("Color-2"), isPressed:  self.$buttonPressed[3]))
-                                    
-                                    
-                                    Button(user.attrNames[4], action: {
-                                        self.buttonPressed[4].toggle()
-                                        self.persist()
-                                    }).buttonStyle(NeumorphicButtonStyle(bgColor: Color("Color-2"), isPressed:  self.$buttonPressed[4]))
-                                    
-                                    Spacer()
-                                    
-                                }.padding(.horizontal, 2)
-                                
-                                  BannerAdView(bannerId: BANNER_UNIT_ID).frame(width: UIScreen.main.bounds.width, height: 60)
-                                Spacer()
                             }
                             
+                            
+                            VStack(alignment: .leading, spacing: 12){
+                                if(user.attrNames[0].count + user.attrNames[1].count + user.attrNames[2].count  <= 12 ){
+                                    HStack(spacing : 8){
+                                        Spacer()
+                                        
+                                        Button(user.attrNames[0], action: {
+                                            self.buttonPressed[0].toggle()
+                                            self.persist()
+                                            //            self.buttonSelected.toggle()
+                                        }).buttonStyle(NeumorphicButtonStyle(bgColor: Color("Color-2"), isPressed:  self.$buttonPressed[0]))
+                                        
+                                        
+                                        Button(user.attrNames[1], action: {
+                                            self.buttonPressed[1].toggle()
+                                            self.persist()
+                                            
+                                            //            self.buttonSelected.toggle()
+                                        }).buttonStyle(NeumorphicButtonStyle(bgColor: Color("Color-2"), isPressed:  self.$buttonPressed[1]))
+                                        
+                                        Button(user.attrNames[2], action: {
+                                            self.buttonPressed[2].toggle()
+                                            self.persist()
+                                            
+                                            //            self.buttonSelected.toggle()
+                                        }).buttonStyle(NeumorphicButtonStyle(bgColor: Color("Color-2"), isPressed:  self.$buttonPressed[2]))
+                                        
+                                        Spacer()
+                                        
+                                    }.padding(.horizontal, 5)
+                                    
+                                    HStack(spacing : 8){
+                                        Spacer()
+                                        Button(user.attrNames[3], action: {
+                                            self.buttonPressed[3].toggle()
+                                            self.persist()
+                                            
+                                        }).buttonStyle(NeumorphicButtonStyle(bgColor: Color("Color-2"), isPressed:  self.$buttonPressed[3]))
+                                        
+                                        
+                                        Button(user.attrNames[4], action: {
+                                            self.buttonPressed[4].toggle()
+                                            self.persist()
+                                        }).buttonStyle(NeumorphicButtonStyle(bgColor: Color("Color-2"), isPressed:  self.$buttonPressed[4]))
+                                        
+                                        Spacer()
+                                        
+                                    }.padding(.horizontal, 5)
+                                }else{
+                                    HStack(spacing : 8){
+                                        
+                                        Button(user.attrNames[0], action: {
+                                            self.buttonPressed[0].toggle()
+                                            self.persist()
+                                            //            self.buttonSelected.toggle()
+                                        }).buttonStyle(NeumorphicButtonStyle(bgColor: Color("Color-2"), isPressed:  self.$buttonPressed[0]))
+                                        
+                                        
+                                        Button(user.attrNames[1], action: {
+                                            self.buttonPressed[1].toggle()
+                                            self.persist()
+                                            
+                                            //            self.buttonSelected.toggle()
+                                        }).buttonStyle(NeumorphicButtonStyle(bgColor: Color("Color-2"), isPressed:  self.$buttonPressed[1]))
+                         
+                                        Spacer()
+                                        
+                                    }.padding(.horizontal, 20)
+                                    
+                                    HStack(spacing : 8){
+                                        Button(user.attrNames[2], action: {
+                                            self.buttonPressed[2].toggle()
+                                            self.persist()
+                                            
+                                        }).buttonStyle(NeumorphicButtonStyle(bgColor: Color("Color-2"), isPressed:  self.$buttonPressed[2]))
+                                        
+                                        
+                                        Button(user.attrNames[3], action: {
+                                            self.buttonPressed[3].toggle()
+                                            self.persist()
+                                        }).buttonStyle(NeumorphicButtonStyle(bgColor: Color("Color-2"), isPressed:  self.$buttonPressed[3]))
+                                        
+                                        Spacer()
+                                        
+                                    }.padding(.horizontal, 20)
+                                    
+                                    HStack(alignment: .top,spacing : 8){
+                    
+                                          
+                                  
+                                          Button(user.attrNames[4], action: {
+                                              self.buttonPressed[4].toggle()
+                                              self.persist()
+                                          }).buttonStyle(NeumorphicButtonStyle(bgColor: Color("Color-2"), isPressed:  self.$buttonPressed[4]))
+                                          
+                                          Spacer()
+                                          
+                                      }.padding(.horizontal, 20)
+                                }
+                                
+                                
+                                
+                                
+                                
+                                BannerAdView(bannerId: BANNER_UNIT_ID).frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height < 896.0 ? 70 : 90)
+                                Spacer()
+                            }
                         }
                         else{
                             VStack(alignment: .center, spacing: 0) {
@@ -328,36 +388,22 @@ struct ExpandView: View {
                                     Spacer()
                                     
                                     Button(action:self.addToMyList) {
-                                        //
-                                        //                                                            ZStack{
-                                        //                                                                LottieView(filename: "heart_beat").frame(width: 80, height: 80)
-                                        //                                                                    .clipShape(Circle()).padding(.bottom, 10).padding(.top, 20).zIndex(1)
-                                        //                                                                    .onTapGesture {
-                                        //                                                                        print("Tapped")
-                                        //                                                                        self.signupViewModel.showImagePicker = true
-                                        //                                                                }
-                                        
-                                        
+                            
                                         
                                         Image(self.favoriteViewModel.liked == true ? "full-heart" : "empty-heart").resizable().frame(width: 30, height: 30).aspectRatio(contentMode: .fit)
                                             .foregroundColor(Color.white)
-//                                            .shadow(radius: 8)
+                                            //                                            .shadow(radius: 8)
                                             .opacity(1)
                                             .scaleEffect(self.showHeart ? 1.9 : 1.2, anchor: .center).onAppear{
                                                 self.showHeart.toggle()
                                         }
-                                            
-                                            //                                            .scaleEffect( 1.8, anchor: .center)
-                                            //                                            .scaleEffect( 1.8, anchor: .center)
-                                        //                                        .repeatForever(autoreverses: true))
-                                        
-                                        
+            
                                     }
                                         
                                         
                                     .buttonStyle(PlainButtonStyle()).padding(.trailing, 30).padding(.top, UIScreen.main.bounds.height / 3.7)
                                     .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
-
+                                    
                                     
                                 }
                                 Spacer()

@@ -24,8 +24,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FrontYardTech @ 2020" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFN-bO-S4g">
+                                <rect key="frame" x="0.0" y="817" width="414" height="20"/>
+                                <fontDescription key="fontDescription" name="JSDongkang-Regular" family="JS Dongkang" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Gleem 3D Icon Type Black Transparent_resized" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wCG-HM-z3m">
+                                <rect key="frame" x="0.0" y="285" width="414" height="142"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="142" id="4rs-eZ-UHZ"/>
+                                </constraints>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="첫인상의 끌림" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SO1-rf-20r">
-                                <rect key="frame" x="0.0" y="495" width="414" height="21"/>
+                                <rect key="frame" x="0.0" y="452" width="414" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Sk7-By-mNJ"/>
                                 </constraints>
@@ -33,25 +45,13 @@
                                 <color key="textColor" name="Color2"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Gleem 3D Icon Type Black Transparent_resized" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wCG-HM-z3m">
-                                <rect key="frame" x="0.0" y="316" width="414" height="171"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="171" id="4rs-eZ-UHZ"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FrontYardTech @ 2020" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFN-bO-S4g">
-                                <rect key="frame" x="0.0" y="817" width="414" height="20"/>
-                                <fontDescription key="fontDescription" name="JSDongkang-Regular" family="JS Dongkang" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="wCG-HM-z3m" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5IZ-Jx-zFT"/>
                             <constraint firstItem="SO1-rf-20r" firstAttribute="trailing" secondItem="yFN-bO-S4g" secondAttribute="trailing" id="8OX-VS-g0h"/>
-                            <constraint firstItem="SO1-rf-20r" firstAttribute="top" secondItem="wCG-HM-z3m" secondAttribute="bottom" constant="8" id="M0z-lF-4HY"/>
-                            <constraint firstItem="wCG-HM-z3m" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="272" id="MsN-BT-RN4"/>
+                            <constraint firstItem="SO1-rf-20r" firstAttribute="top" secondItem="wCG-HM-z3m" secondAttribute="bottom" constant="25" id="M0z-lF-4HY"/>
+                            <constraint firstItem="wCG-HM-z3m" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="241" id="MsN-BT-RN4"/>
                             <constraint firstItem="wCG-HM-z3m" firstAttribute="leading" secondItem="SO1-rf-20r" secondAttribute="leading" id="bAz-as-UQG"/>
                             <constraint firstItem="SO1-rf-20r" firstAttribute="leading" secondItem="yFN-bO-S4g" secondAttribute="leading" id="hY2-Kq-ccv"/>
                             <constraint firstItem="wCG-HM-z3m" firstAttribute="trailing" secondItem="SO1-rf-20r" secondAttribute="trailing" id="jhq-14-vh0"/>
@@ -63,7 +63,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-342" y="-15"/>
+            <point key="canvasLocation" x="-342.02898550724638" y="-15.401785714285714"/>
         </scene>
     </scenes>
     <resources>

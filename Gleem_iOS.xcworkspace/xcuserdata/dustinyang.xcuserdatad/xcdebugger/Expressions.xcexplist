@@ -14,13 +14,13 @@
          contextName = "closure #1 in observer.getNewCards():observer.swift">
          <PersistentStrings>
             <PersistentString
+               value = "self.updateVoteImage">
+            </PersistentString>
+            <PersistentString
                value = "self.isVoteLoading">
             </PersistentString>
             <PersistentString
                value = "self.votedCards.isEmpty">
-            </PersistentString>
-            <PersistentString
-               value = "self.updateVoteImage">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -129,7 +129,7 @@
          contextName = "closure #1 in FavoriteViewModel.loadFavoriteUsers():FavoriteViewModel.swift">
          <PersistentStrings>
             <PersistentString
-               value = "snapshot!.documents.last">
+               value = "dict">
             </PersistentString>
             <PersistentString
                value = "lastDoc ">
@@ -141,13 +141,13 @@
                value = "snapshot!.documents">
             </PersistentString>
             <PersistentString
+               value = "snapshot!.documents.last">
+            </PersistentString>
+            <PersistentString
                value = "self.lastDoc ">
             </PersistentString>
             <PersistentString
                value = " ActiveVote.init(fromDictionary: dict)">
-            </PersistentString>
-            <PersistentString
-               value = "dict">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -167,6 +167,17 @@
          <PersistentStrings>
             <PersistentString
                value = "(Double(vote.attr1) / Double(vote.numVote) * 100)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in closure #1 in closure #1 in closure #2 in closure #1 in ExpandView.body.getter:ExpandView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "user.attrNames.sort((a,b)=&gt;b.length-a.length)[0]">
+            </PersistentString>
+            <PersistentString
+               value = "user.attrNames">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -195,10 +206,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in closure #1 in observer.loadActivities():observer.swift">
+         contextName = "closure #4 in LoginView.body.getter:LoginView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "decoderActivity.activityId">
+               value = "self.signinViewModel.errorString">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -211,10 +222,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #4 in LoginView.body.getter:LoginView.swift">
+         contextName = "closure #1 in closure #1 in observer.loadActivities():observer.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.signinViewModel.errorString">
+               value = "decoderActivity.activityId">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -257,10 +268,10 @@
          contextName = "ExpandView.persist():ExpandView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.buttonPressed">
+               value = "self.user.attrNames">
             </PersistentString>
             <PersistentString
-               value = "self.user.attrNames">
+               value = "self.buttonPressed">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -329,10 +340,10 @@
                value = "self.uploadComplete">
             </PersistentString>
             <PersistentString
-               value = "uploadComplete">
+               value = "self.$uploadComplete">
             </PersistentString>
             <PersistentString
-               value = "self.$uploadComplete">
+               value = "uploadComplete">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

@@ -27,6 +27,11 @@ struct CardListview: View {
     @State var selectedFlag = ""
     @State var showFlag = false
     @State var flagMessage = false
+    @State var uploadComplete : Bool = false
+    @State private var animatingModal: Bool = false
+    
+    let haptics = UINotificationFeedbackGenerator()
+    
     //    @State var cardViews: [MainCardView] = {
     //        var views = [MainCardView]()
     //        for index in 0..<2 {
@@ -86,41 +91,56 @@ struct CardListview: View {
                 HeaderView(showProfile: self.$showProfile, showInfoView: self.$showInfo)
                     .opacity(dragState.isDragging ? 0.0 : 1.0)
                     .animation(.default)
-             
-//                Spacer()
+                
+                //                Spacer()
                 ZStack{
                     
                     
                     if(!self.obs.users.isEmpty){
                         ForEach(self.obs.cardViews) { cardView in
-                            cardView.zIndex(self.isTopCard(cardView: cardView) ? 1 : 0)
-//                                .overlay(
-//                                    ZStack {
-//                                        // X-MARK SYMBOL
-//                                        //                              Image(systemName: "x.circle")
-//                                        //                                .modifier(SymbolModifier())
-//                                        //                                .opacity(self.dragState.translation.width < -self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
-//                                        //
-//                                        // HEART SYMBOL
-//
-//                                        if(self.isVoted){
-//                                            Image(systemName: "heart.circle")
-//                                                .modifier(SymbolModifier())
-//                                                .opacity(self.dragState.translation.width > self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
-//                                        }else{
-//                                            Text("사진 첫인상 투표를 \n먼저해주세요 ㅠㅠ").foregroundColor(Color.white)
-//                                                .font(.custom(FONT, size: CGFloat(25)))
-//                                                .opacity(self.dragState.translation.width > self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
-//                                        }
-//
-//                                    }
-//                            )
+                            cardView.zIndex(self.isTopCard(cardView: cardView) ? 1 : 0).onTapGesture {
+                                print("asdfasd")
+                                //                                self.showVotingScreen.toggle()
+                                
+                                if(self.obs.updateVoteImage){
+                                    
+                                    self.haptics.notificationOccurred(.success)
+                                    
+                                    //                self.fireworkController.addFirework(sparks: 10)
+                                    withAnimation{
+                                        self.showVotingScreen.toggle()
+                                    }
+                                }
+                                
+                                
+                            }
+                                //                                .overlay(
+                                //                                    ZStack {
+                                //                                        // X-MARK SYMBOL
+                                //                                        //                              Image(systemName: "x.circle")
+                                //                                        //                                .modifier(SymbolModifier())
+                                //                                        //                                .opacity(self.dragState.translation.width < -self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
+                                //                                        //
+                                //                                        // HEART SYMBOL
+                                //
+                                //                                        if(self.isVoted){
+                                //                                            Image(systemName: "heart.circle")
+                                //                                                .modifier(SymbolModifier())
+                                //                                                .opacity(self.dragState.translation.width > self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
+                                //                                        }else{
+                                //                                            Text("사진 첫인상 투표를 \n먼저해주세요 ㅠㅠ").foregroundColor(Color.white)
+                                //                                                .font(.custom(FONT, size: CGFloat(25)))
+                                //                                                .opacity(self.dragState.translation.width > self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
+                                //                                        }
+                                //
+                                //                                    }
+                                //                            )
                                 .offset(x: self.isTopCard(cardView: cardView) ?  self.dragState.translation.width : 0, y: self.isTopCard(cardView: cardView) ?  self.dragState.translation.height : 0)
                                 .scaleEffect(self.dragState.isDragging && self.isTopCard(cardView: cardView) ? 0.85 : 1.0)
                                 .rotationEffect(Angle(degrees: self.isTopCard(cardView: cardView) ? Double(self.dragState.translation.width / 12) : 0))
-//                                .animation(.interpolatingSpring(stiffness: 150, damping: 130))
-//                              .animation(Animation.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0))
-//                                .animation(.easeInOut(duration: 3))
+                            //                                .animation(.interpolatingSpring(stiffness: 150, damping: 130))
+                            //                              .animation(Animation.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0))
+                            //                                .animation(.easeInOut(duration: 3))
                             
                             //                                .gesture(LongPressGesture(minimumDuration: 0.01)
                             //                                    .sequenced(before: DragGesture())
@@ -181,7 +201,7 @@ struct CardListview: View {
                                             .shadow(radius: 5)
                                             //                                            .opacity(self.pulsate ? 1 : 0.6)
                                             .scaleEffect(1.2, anchor: .center)
-//                                            .animation(Animation.easeOut(duration: 1.5).repeatForever(autoreverses: true))
+                                        //                                            .animation(Animation.easeOut(duration: 1.5).repeatForever(autoreverses: true))
                                     })
                                         .padding(.trailing, 10)
                                         .padding(.top, 24)
@@ -205,16 +225,16 @@ struct CardListview: View {
                                 
                                 if(self.obs.users.isEmpty){
                                     Text(NO_NEW_CARD)
-                                                                  .font(.custom(FONT, size: CGFloat(15))).foregroundColor(APP_THEME_COLOR).multilineTextAlignment(.center).lineLimit(2).padding(.horizontal)
+                                        .font(.custom(FONT, size: CGFloat(15))).foregroundColor(APP_THEME_COLOR).multilineTextAlignment(.center).lineLimit(2).padding(.horizontal)
                                 }
-                          
+                                
                                 Spacer()
                                 //                                         LoadingView(isLoading: self.obs.isLoading, error: self.obs.error) {
                                 //                                             self.obs.getNewCards()
                                 //                                         }
                                 
                             }.animation(.default).onAppear{
-//                                self.obs.getNewCards()
+                                //                                self.obs.getNewCards()
                             }
                         }
                         
@@ -230,30 +250,39 @@ struct CardListview: View {
                     //                                self.obs.getNewCards()
                     //                            }
                     ////                            .animation(Animation.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0))
-//
-////                        Spacer()
-////                    }
-//
-//                }
-                
-                //                    ZStack{
-                //
-                //                        Spacer()
-                //
-                //                        RadioButtons(selected: self.$selectedFlag,show: self.$showFlag)
-                //                            .offset(y: self.showFlag ? (UIApplication.shared.windows.last?.safeAreaInsets.bottom)! + 15 : UIScreen.main.bounds.height)
-                //
-                //                        }.edgesIgnoringSafeArea(.all).zIndex(1)
-                //                    .background(Color(UIColor.label.withAlphaComponent(self.showFlag ? 0.2 : 0))
-                
-                    }.padding(.horizontal)
-                
+                    //
+                    ////                        Spacer()
+                    ////                    }
+                    //
+                    //                }
+                    
+                    //                    ZStack{
+                    //
+                    //                        Spacer()
+                    //
+                    //                        RadioButtons(selected: self.$selectedFlag,show: self.$showFlag)
+                    //                            .offset(y: self.showFlag ? (UIApplication.shared.windows.last?.safeAreaInsets.bottom)! + 15 : UIScreen.main.bounds.height)
+                    //
+                    //                        }.edgesIgnoringSafeArea(.all).zIndex(1)
+                    //                    .background(Color(UIColor.label.withAlphaComponent(self.showFlag ? 0.2 : 0))
+                    
+                }.padding(.horizontal)
+                    .sheet(isPresented: self.$showVotingScreen) {
+                        ExpandView(user: self.obs.users[self.obs.last], updateVoteImage: self.obs.updateVoteImage, show: self.$showVotingScreen, isVoted:self.$isVoted)
+                            .environmentObject(self.obs)
+                        
+                        //                        .animation(.spring(response: 0.5, dampingFraction: 0.7, blendDuration: 0))
+                        
+                        //                        shrinking the view in background...
+                        //                    .scaleEffect(self.show ? 1 : 0)
+                        //                    .frame(width: self.show ? nil : 0, height: self.show ? nil : 0)
+                }
                 Spacer()
                 if(!self.obs.users.isEmpty){
-                    FooterView(isVoted: $isVoted, showVotingScreen: $showVotingScreen)
+                    FooterView(isVoted: $isVoted, showVotingScreen: $showVotingScreen, uploadComplete: self.$uploadComplete)
                         .opacity(dragState.isDragging ? 0.0 : 1.0)
                         .animation(.easeInOut).opacity(self.obs.isLoading == true ? 0 : 1)
-
+                    
                 }
                 
                 Spacer()
@@ -261,7 +290,7 @@ struct CardListview: View {
                 
             }.navigationBarHidden(true).navigationBarTitle("")
                 .onAppear{
-                
+                    
             }
             
             VStack{
@@ -310,12 +339,98 @@ struct CardListview: View {
                 ).edgesIgnoringSafeArea(.all)
                 
             }
-            
+            if self.uploadComplete {
+                ZStack {
+                    
+                    Color("ColorTransparentBlack").edgesIgnoringSafeArea(.all)
+                    
+                    // MODAL
+                    VStack(spacing: 0) {
+                        // TITLE
+                        
+                        
+                        Text("사진이 등록 완료")
+                            .font(Font.custom(FONT, size: 20))
+                            .fontWeight(.heavy)
+                            .padding()
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                            .background(APP_THEME_COLOR)
+                            .foregroundColor(Color.white)
+                        
+                        Spacer()
+                        
+                        VStack(spacing: 16) {
+                            
+                            HStack{
+                                Text("이제 투표를 시작해보세요")
+                                    .font(Font.custom(FONT, size: 15))
+                                    .lineLimit(2)
+                                    .multilineTextAlignment(.center)
+                                    .foregroundColor(Color.gray)
+                                    .layoutPriority(1)
+                                
+                                Button(action: {
+                                }) {
+                                    
+                                    Image("Gleem_3D").resizable().frame(width: 30, height: 30).foregroundColor(Color("sleep"))
+                                }.buttonStyle(PlainButtonStyle())
+                            }
+                            
+                            
+                            HStack{
+                                Spacer()
+                                Button(action: {
+                                    
+                                    withAnimation(){
+                                        self.uploadComplete = false
+                                        self.animatingModal = false
+                                        
+                                    }
+                                    
+                                    
+                                }) {
+                                    Text(CONFIRM.uppercased())
+                                        .font(Font.custom(FONT, size: 15))
+                                        .fontWeight(.semibold)
+                                        .accentColor(APP_THEME_COLOR)
+                                        .padding(.horizontal, 55)
+                                        .padding(.vertical, 15)
+                                        .frame(minWidth: 100)
+                                        .background(
+                                            Capsule()
+                                                .strokeBorder(lineWidth: 1.75)
+                                                .foregroundColor(APP_THEME_COLOR)
+                                    )
+                                }
+                                Spacer()
+                            }
+                        }
+                        
+                        
+                        Spacer()
+                        
+                    }
+                    .frame(minWidth: 260, idealWidth: 260, maxWidth: 300, minHeight: 140, idealHeight: 160, maxHeight: 200, alignment: .center)
+                    .background(Color.white)
+                    .cornerRadius(20)
+                    .shadow(color: Color("ColorTransparentBlack"), radius: 6, x: 0, y: 8)
+                    .opacity(self.$animatingModal.wrappedValue ? 1 : 0)
+                    .offset(y: self.$animatingModal.wrappedValue ? 0 : -100)
+                    .animation(Animation.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0))
+                    .onAppear(perform: {
+                        self.animatingModal = true
+                    })
+                        .padding(.vertical, 5)
+                }
+                
+                
+                
+            }
             
         }.onAppear{
         }
         
-             
+        
     }
     
     
