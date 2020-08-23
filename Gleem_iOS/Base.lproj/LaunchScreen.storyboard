@@ -31,7 +31,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Gleem 3D Icon Type Black Transparent_resized" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wCG-HM-z3m">
-                                <rect key="frame" x="0.0" y="285" width="414" height="142"/>
+                                <rect key="frame" x="-13" y="302" width="414" height="142"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="142" id="4rs-eZ-UHZ"/>
                                 </constraints>
@@ -48,14 +48,14 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="wCG-HM-z3m" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5IZ-Jx-zFT"/>
+                            <constraint firstItem="wCG-HM-z3m" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="-13" id="5IZ-Jx-zFT"/>
                             <constraint firstItem="SO1-rf-20r" firstAttribute="trailing" secondItem="yFN-bO-S4g" secondAttribute="trailing" id="8OX-VS-g0h"/>
-                            <constraint firstItem="SO1-rf-20r" firstAttribute="top" secondItem="wCG-HM-z3m" secondAttribute="bottom" constant="25" id="M0z-lF-4HY"/>
-                            <constraint firstItem="wCG-HM-z3m" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="241" id="MsN-BT-RN4"/>
-                            <constraint firstItem="wCG-HM-z3m" firstAttribute="leading" secondItem="SO1-rf-20r" secondAttribute="leading" id="bAz-as-UQG"/>
+                            <constraint firstItem="SO1-rf-20r" firstAttribute="top" secondItem="wCG-HM-z3m" secondAttribute="bottom" constant="8" id="M0z-lF-4HY"/>
+                            <constraint firstItem="wCG-HM-z3m" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="258" id="MsN-BT-RN4"/>
+                            <constraint firstItem="wCG-HM-z3m" firstAttribute="leading" secondItem="SO1-rf-20r" secondAttribute="leading" constant="-13" id="bAz-as-UQG"/>
                             <constraint firstItem="SO1-rf-20r" firstAttribute="leading" secondItem="yFN-bO-S4g" secondAttribute="leading" id="hY2-Kq-ccv"/>
-                            <constraint firstItem="wCG-HM-z3m" firstAttribute="trailing" secondItem="SO1-rf-20r" secondAttribute="trailing" id="jhq-14-vh0"/>
-                            <constraint firstItem="wCG-HM-z3m" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="p6n-gI-ZAi"/>
+                            <constraint firstItem="wCG-HM-z3m" firstAttribute="trailing" secondItem="SO1-rf-20r" secondAttribute="trailing" constant="-13" id="jhq-14-vh0"/>
+                            <constraint firstItem="wCG-HM-z3m" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="-13" id="p6n-gI-ZAi"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="yFN-bO-S4g" secondAttribute="bottom" constant="25" id="xBh-9j-lpa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

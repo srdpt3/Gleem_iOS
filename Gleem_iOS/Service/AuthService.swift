@@ -29,7 +29,16 @@ class AuthService {
             firestoreUserId.getDocument { (document, error) in
                 if let dict = document?.data() {
                     guard let decoderUser = try? User.init(_dictionary: dict as NSDictionary) else {return}
+                    
+                    
+                    
+                    
+//                    guard let decoderUser2 = try? UserProfile.init(_dictionary: dict as NSDictionary) else {return}
+
+            
                     saveUserLocally(mUserDictionary: dict as NSDictionary)
+                    
+                    
                     onSuccess(decoderUser)
                 }
             }

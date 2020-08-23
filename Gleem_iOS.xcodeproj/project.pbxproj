@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1101C1AB24F1794500F7C792 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1101C1AA24F1794500F7C792 /* LocationManager.swift */; };
+		1101C1AD24F1D1CC00F7C792 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1101C1AC24F1D1CC00F7C792 /* UserProfile.swift */; };
 		11143D2824C242330082E48F /* heart.json in Resources */ = {isa = PBXBuildFile; fileRef = 11143D2624C242320082E48F /* heart.json */; };
 		11143D2924C242330082E48F /* heart2.json in Resources */ = {isa = PBXBuildFile; fileRef = 11143D2724C242320082E48F /* heart2.json */; };
 		11143D3324C25ED60082E48F /* radar.json in Resources */ = {isa = PBXBuildFile; fileRef = 11143D3224C25ED50082E48F /* radar.json */; };
@@ -149,6 +151,8 @@
 
 /* Begin PBXFileReference section */
 		0A0B1D9AD08185C3F68EA576 /* Pods_Gleem_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gleem_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1101C1AA24F1794500F7C792 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		1101C1AC24F1D1CC00F7C792 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		11143D2624C242320082E48F /* heart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heart.json; sourceTree = "<group>"; };
 		11143D2724C242320082E48F /* heart2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heart2.json; sourceTree = "<group>"; };
 		11143D3224C25ED50082E48F /* radar.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = radar.json; sourceTree = "<group>"; };
@@ -467,6 +471,7 @@
 				1181FF4124E235D600ED5865 /* Reachabilty.swift */,
 				1181FF4324E38B8A00ED5865 /* BannerAdView.swift */,
 				1189A19A24E621CE0042FE8D /* LocalNotificationManager.swift */,
+				1101C1AA24F1794500F7C792 /* LocationManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -485,6 +490,7 @@
 				11B5ED0424BD02E70055700B /* Notification.swift */,
 				11B5ED2D24BEAC170055700B /* Flag.swift */,
 				11143D3A24C4AEC70082E48F /* Match.swift */,
+				1101C1AC24F1D1CC00F7C792 /* UserProfile.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -947,6 +953,7 @@
 				11783ED124B53D1A00EEFE80 /* ExpandView.swift in Sources */,
 				1153A79324B9679200CE3574 /* SignupButton.swift in Sources */,
 				11B5ED0724BD17EC0055700B /* ActivityApi.swift in Sources */,
+				1101C1AD24F1D1CC00F7C792 /* UserProfile.swift in Sources */,
 				1153A7AF24BA9BD800CE3574 /* ActiveVote.swift in Sources */,
 				1153A79024B9679200CE3574 /* SigninButton.swift in Sources */,
 				11B5ECFB24BB9A2C0055700B /* ChatViewModel.swift in Sources */,
@@ -955,6 +962,7 @@
 				11783ED224B53D1A00EEFE80 /* SettingView.swift in Sources */,
 				11783EC724B53D1A00EEFE80 /* SafariView.swift in Sources */,
 				11B5ECE324BB7D920055700B /* Chat.swift in Sources */,
+				1101C1AB24F1794500F7C792 /* LocationManager.swift in Sources */,
 				11B5ED3024BEAE2E0055700B /* FlagApi.swift in Sources */,
 				11783EE824B53DD900EEFE80 /* Modifier.swift in Sources */,
 				11B5ECF924BB9A150055700B /* ChatView.swift in Sources */,
@@ -1147,7 +1155,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.31;
+				MARKETING_VERSION = 1.35;
 				PRODUCT_BUNDLE_IDENTIFIER = gleem.dating;
 				PRODUCT_NAME = "Gleem 데이팅";
 				SWIFT_VERSION = 5.0;
@@ -1169,7 +1177,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.31;
+				MARKETING_VERSION = 1.35;
 				PRODUCT_BUNDLE_IDENTIFIER = gleem.dating;
 				PRODUCT_NAME = "Gleem 데이팅";
 				SWIFT_VERSION = 5.0;

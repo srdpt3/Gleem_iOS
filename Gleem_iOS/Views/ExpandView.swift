@@ -202,7 +202,7 @@ struct ExpandView: View {
                                     
                                     HStack(alignment: .center, spacing: 2) {
                                         //                                        Image("event").resizable().frame(width: 18, height: 18).foregroundColor(Color.gray)
-                                        Text(String(" / 20대 중반")).font(.custom(FONT, size: CGFloat(UIScreen.main.bounds.height < 896.0 ? 15: 18)))
+                                        Text(String(self.user.age)).font(.custom(FONT, size: CGFloat(UIScreen.main.bounds.height < 896.0 ? 15: 18)))
                                             
                                             .foregroundColor(APP_THEME_COLOR)
                                     }

@@ -10,7 +10,10 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct ProfileView: View {
+    
     @Binding var profile_show : Bool
+    
+  
     var body: some View {
         
         
@@ -28,10 +31,8 @@ struct ProfileView: View {
 struct Profile : View {
     @ObservedObject var voteViewModel = VoteViewModel()
     @ObservedObject var matchingViewModel = MatchingViewModel()
-
     @Binding var profile_show : Bool
-    
-    
+
     
     var body : some View{
         
@@ -99,7 +100,7 @@ struct Profile : View {
                                 
                                 Image("map").resizable().frame(width: 15, height: 20)
                                 
-                                Text("대한민국")
+                                Text(User.currentUserProfile()!.location).font(Font.custom(FONT, size: 20))
                                 
                             }.padding(8)
                                 .background(Color.black.opacity(0.1))
@@ -182,7 +183,7 @@ struct Profile : View {
         }.onAppear{
             self.voteViewModel.getNumVoted()
             self.matchingViewModel.getNumMatched()
-
+            
         }
         
     }

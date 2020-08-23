@@ -349,8 +349,8 @@ struct CardListview: View {
                         // TITLE
                         
                         
-                        Text("사진이 등록 완료")
-                            .font(Font.custom(FONT, size: 20))
+                        Text("사진 등록 완료")
+                            .font(Font.custom(FONT, size: 18))
                             .fontWeight(.heavy)
                             .padding()
                             .frame(minWidth: 0, maxWidth: .infinity)
@@ -362,8 +362,8 @@ struct CardListview: View {
                         VStack(spacing: 16) {
                             
                             HStack{
-                                Text("이제 투표를 시작해보세요")
-                                    .font(Font.custom(FONT, size: 15))
+                                Text("\(User.currentUser()!.username) 님도 투표를 시작해보세요")
+                                    .font(Font.custom(FONT, size: 14))
                                     .lineLimit(2)
                                     .multilineTextAlignment(.center)
                                     .foregroundColor(Color.gray)
@@ -372,7 +372,7 @@ struct CardListview: View {
                                 Button(action: {
                                 }) {
                                     
-                                    Image("Gleem_3D").resizable().frame(width: 30, height: 30).foregroundColor(Color("sleep"))
+                                    Image("Gleem_3D").resizable().frame(width: 35, height: 35)
                                 }.buttonStyle(PlainButtonStyle())
                             }
                             

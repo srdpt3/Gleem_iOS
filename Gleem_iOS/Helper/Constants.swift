@@ -116,13 +116,13 @@ public var data = ["혐오성 음란한사진","개인정보 노출","욕설이 
 public let VOTE_SUBMIT_BUTTON = "투표 결과 확인하기"
 public let RATING_TEXT = "이미지 호감도"
 public let USER_RESULT = " 님의 실시간 첫인상투표 결과"
-public let NOVOTEIMAGE = "내 첫인상 투표사진을 올려야 남들이 \n나를 볼 수 있어요~ \n또는 이성과 연결이 되고 싶다면 평가 사진 올리기를 먼저 해주세요~"
+public let NOVOTEIMAGE = "내 첫인상 투표사진을 올려야 남들이 \n나를 볼 수 있어요~ \n또는 이성과 연결이 되고 싶다면 \n평가 사진 올리기를 먼저 해주세요~"
 public let PLEASE_UPLOAD_PIC = "투표 사진을 먼저 등록해주세요"
 
 
 
 //RatingDetailView
-public let VOTENUM = "투표수:"
+public let VOTENUM = "투표수: "
 public let VOTE_TIMESTAMP = "업로드된 날짜: "
 public let GENDER = "성별:"
 
@@ -231,6 +231,12 @@ class Ref {
     static var FIRESTORE_COLLECTION_USERS = FIRESTORE_ROOT.collection("users")
     static func FIRESTORE_DOCUMENT_USERID(userId: String) -> DocumentReference {
         return FIRESTORE_COLLECTION_USERS.document(userId)
+    }
+    
+    // Firestore - Location
+    static var FIRESTORE_COLLECTION_USERS_LOCATION = FIRESTORE_ROOT.collection("user_location")
+    static func FIRESTORE_DOCUMENT_USER_LOCATION(userId: String) -> DocumentReference {
+        return FIRESTORE_COLLECTION_USERS_LOCATION.document(userId)
     }
     
     

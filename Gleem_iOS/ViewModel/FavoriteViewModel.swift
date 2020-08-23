@@ -33,8 +33,8 @@ class FavoriteViewModel: ObservableObject {
         if User.currentUser()!.id != user.id {
             
             //            let someoneLikeId = Ref.FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID(userId: user.id).collection("liked").document().documentID
-   
-
+            
+            
             let someoneLikeObject = Activity(activityId: User.currentUser()!.id, type: "like", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: User.currentUser()!.profileImageUrl, message: "", date: Date().timeIntervalSince1970, read: false)
             guard let activityDict = try? someoneLikeObject.toDictionary() else { return }
             
@@ -144,12 +144,12 @@ class FavoriteViewModel: ObservableObject {
             }
             self.isLoading = false
             while (self.favoriteUsers.count < 12){
-                let activeUser = ActiveVote(attr1: 0, attr2: 0, attr3: 0, attr4: 0, attr5: 0, attrNames: [], numVote: 0, createdDate: 0, lastModifiedDate: 0, id: "", email: "", imageLocation: "", username: "", age: "", sex: "")
+                let activeUser = ActiveVote(attr1: 0, attr2: 0, attr3: 0, attr4: 0, attr5: 0, attrNames: [], numVote: 0, createdDate: 0, lastModifiedDate: 0, id: "", email: "", imageLocation: "", username: "", age: "", sex: "",location: "", occupation: "", description: "")
                 self.favoriteUsers.append(activeUser)
             }
             
             while (self.favoriteUsers.count % 3 != 0){
-                let activeUser = ActiveVote(attr1: 0, attr2: 0, attr3: 0, attr4: 0, attr5: 0, attrNames: [], numVote: 0, createdDate: 0, lastModifiedDate: 0, id: "", email: "", imageLocation: "", username: "", age: "", sex: "")
+                let activeUser = ActiveVote(attr1: 0, attr2: 0, attr3: 0, attr4: 0, attr5: 0, attrNames: [], numVote: 0, createdDate: 0, lastModifiedDate: 0, id: "", email: "", imageLocation: "", username: "", age: "", sex: "", location: "", occupation: "", description: "")
                 self.favoriteUsers.append(activeUser)
                 
             }
@@ -191,13 +191,13 @@ class FavoriteViewModel: ObservableObject {
                     
                     if (self.favoriteUsers.isEmpty){
                         while (self.favoriteUsers.count < 12){
-                            let activeUser = ActiveVote(attr1: 0, attr2: 0, attr3: 0, attr4: 0, attr5: 0, attrNames: [], numVote: 0, createdDate: 0, lastModifiedDate: 0, id: "", email: "", imageLocation: "", username: "", age: "", sex: "")
+                            let activeUser = ActiveVote(attr1: 0, attr2: 0, attr3: 0, attr4: 0, attr5: 0, attrNames: [], numVote: 0, createdDate: 0, lastModifiedDate: 0, id: "", email: "", imageLocation: "", username: "", age: "", sex: "", location: "",occupation: "", description: "")
                             self.favoriteUsers.append(activeUser)
                         }
                         
                     }else{
                         while (self.favoriteUsers.count % 3 != 0){
-                            let activeUser = ActiveVote(attr1: 0, attr2: 0, attr3: 0, attr4: 0, attr5: 0, attrNames: [], numVote: 0, createdDate: 0, lastModifiedDate: 0, id: "", email: "", imageLocation: "", username: "", age: "", sex: "")
+                            let activeUser = ActiveVote(attr1: 0, attr2: 0, attr3: 0, attr4: 0, attr5: 0, attrNames: [], numVote: 0, createdDate: 0, lastModifiedDate: 0, id: "", email: "", imageLocation: "", username: "", age: "", sex: "", location:"",occupation: "", description: "")
                             self.favoriteUsers.append(activeUser)
                         }
                     }

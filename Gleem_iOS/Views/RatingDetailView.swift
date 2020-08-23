@@ -12,7 +12,7 @@ struct RatingDetailView: View {
     
     //    var recipe: Recipe
     var card:  ActiveVote
-    
+
     var body: some View {
         HStack(alignment: .center, spacing: 10) {
             HStack(alignment: .center, spacing: 2) {
@@ -24,8 +24,9 @@ struct RatingDetailView: View {
                 Text(VOTE_TIMESTAMP + timeAgoSinceDate(Date(timeIntervalSince1970: self.card.createdDate ), currentDate: Date(), numericDates: true))
             }
             HStack(alignment: .center, spacing: 2) {
-                Image(systemName: "map")
-                Text("대한민국 ")
+                Image(systemName: "mappin.circle")
+                
+                Text(self.card.location)
             }
 //            HStack(alignment: .center, spacing: 2) {
 //

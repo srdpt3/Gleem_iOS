@@ -51,17 +51,31 @@ struct User: Encodable, Decodable ,Identifiable{
         
         if Auth.auth().currentUser != nil {
             if let dictionary = UserDefaults.standard.object(forKey: "currentUser") {
-//                print(User.init(_dictionary: dictionary as! NSDictionary))
+                //                print(User.init(_dictionary: dictionary as! NSDictionary))
                 
                 return User.init(_dictionary: dictionary as! NSDictionary)
             }
         }
         
-//        
-//        return User(id: "63gIkD569ywBbqfuqEx4", email: "test@gmail.com", profileImageUrl: "https://www.thesprucepets.com/thmb/mERLXPcXz4U9G702HlsORXJqZrU=/4231x2380/smart/filters:no_upscale()/adorable-white-pomeranian-puppy-spitz-921029690-5c8be25d46e0fb000172effe.jpg", username: "test", age: "29", sex: "male", createdDate: 0, point_avail: 0)
+        //
+        //        return User(id: "63gIkD569ywBbqfuqEx4", email: "test@gmail.com", profileImageUrl: "https://www.thesprucepets.com/thmb/mERLXPcXz4U9G702HlsORXJqZrU=/4231x2380/smart/filters:no_upscale()/adorable-white-pomeranian-puppy-spitz-921029690-5c8be25d46e0fb000172effe.jpg", username: "test", age: "29", sex: "male", createdDate: 0, point_avail: 0)
         return nil
     }
     
+    
+    static func currentUserProfile() -> UserProfile? {
+        
+        if Auth.auth().currentUser != nil {
+            if let dictionary = UserDefaults.standard.object(forKey: "currentUserProfile") {
+                return UserProfile.init(_dictionary: dictionary as! NSDictionary)
+                
+            }
+            
+            
+        }
+        return nil
+        
+    }
     
     
 }

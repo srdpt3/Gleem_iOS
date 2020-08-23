@@ -50,14 +50,21 @@ class UserViewModel: ObservableObject {
 }
 
 func saveUserLocally(mUserDictionary: NSDictionary) {
-    print("SAved Locally")
+    print("Saved Locally")
     UserDefaults.standard.set(mUserDictionary, forKey: "currentUser")
     UserDefaults.standard.synchronize()
 }
 
 
+func saveUserLocationLocally(mUserDictionary: NSDictionary) {
+    print("Saved User Profile Locally")
+    UserDefaults.standard.set(mUserDictionary, forKey: "currentUserProfile")
+    UserDefaults.standard.synchronize()
+}
+
+
 func signInFirstTime(mUserDictionary: NSDictionary) {
-    print("SAved signInFirstTime")
+    print("Saved signInFirstTime")
     UserDefaults.standard.set(mUserDictionary, forKey: "signedIn")
     UserDefaults.standard.synchronize()
 }

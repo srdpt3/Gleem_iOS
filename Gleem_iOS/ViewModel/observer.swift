@@ -36,9 +36,14 @@ class observer : ObservableObject{
     
     @Published var votedCards = [String]()
     @Published var updateVoteImage : Bool = false
+    @ObservedObject var lm = LocationManager()
     
     var handle: AuthStateDidChangeListenerHandle?
+    var latitude: String  { return("\(lm.location?.latitude ?? 0)") }
+    var longitude: String { return("\(lm.location?.longitude ?? 0)") }
+    var placemark: String { return("\(lm.placemark?.locality ?? "대한민국")") }
     
+    //    var status: String    { return("\(lm.status)") }
     func getNewCards(){
         self.isVoteLoading = true
         
@@ -59,6 +64,9 @@ class observer : ObservableObject{
             print("voted count \(self.votedCards)")
             self.isVoteLoading = false
             
+            //            print(self.placemark)
+            //            print(self.latitude)
+            //            print(self.longitude)
             
             print("vote finished")
             self.reload()
@@ -87,26 +95,39 @@ class observer : ObservableObject{
                 let firestoreUserId = Ref.FIRESTORE_DOCUMENT_USERID(userId: user.uid)
                 firestoreUserId.getDocument { (document, error) in
                     if let dict = document?.data() {
-
+                        
                         //                        guard let decoderUser = try? User.init(fromDictionary: dict) else {return}
                         guard let decoderUser = try? User.init(_dictionary: dict as NSDictionary) else {return}
-                        saveUserLocally(mUserDictionary: dict as NSDictionary)
-                        self.checkUserUploadVote()
+                        guard let dictUser = try? decoderUser.toDictionary() else {return}
 
+                        saveUserLocally(mUserDictionary: dictUser as NSDictionary)
+                        
+                        self.checkUserUploadVote()
+                        
                         self.loadActivities()
                         self.getNewCards()
                         
+                        let batch = Ref.FIRESTORE_ROOT.batch()
+
                         
+                        let userLocationRef = Ref.FIRESTORE_DOCUMENT_USER_LOCATION(userId: decoderUser.id)
+                        let userProfile = UserProfile.init(id: decoderUser.id, email: decoderUser.email, profileImageUrl: decoderUser.profileImageUrl, username: decoderUser.username, age: decoderUser.age, sex: decoderUser.sex, createdDate:  Date().timeIntervalSince1970, point_avail: INITIAL_POINT, location: self.placemark, occupation: "",  longitude: self.longitude, latitude: self.latitude)
+                         guard let dict2 = try? userProfile.toDictionary() else {return}
                         
+                        saveUserLocationLocally(mUserDictionary: dict2 as NSDictionary)
+                        batch.setData(dict2, forDocument: userLocationRef)
+
+                        batch.commit() { err in
+                               if let err = err {
+                                   print("Error writing batch \(err)")
+                               } else {
+                                   print("Batch persistMatching write succeeded.")
+                                   
+                               }
+                           }
+                           
                     }
                 }
-                
-                
-                
-                //                if(!self.isVoteLoading && !self.votedCards.isEmpty){
-                //                    print("vote finished")
-                //                    self.reload()
-                //                }
                 
                 self.isLoggedIn = true
             } else {
@@ -191,7 +212,7 @@ class observer : ObservableObject{
     
     var listener: ListenerRegistration!
     
-
+    
     func createCardView(){
         self.cardViews.removeAll()
         
