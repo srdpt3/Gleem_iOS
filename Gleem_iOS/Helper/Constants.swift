@@ -82,7 +82,7 @@ let CONFIRM_EMAIL = "이메일을 확인해주세요"
 
 //LOGIN and SIGNUP ERROR
 let MiMATCH_PASSWORD_ERROR = MiMATCH_PASSWORD + "\n다시 한번확인해주세요"
-let NO_ACCOUNT = "계정이 존재하지 않거나 삭제된 이메일 계정입니다. \n다시 한번확인해주세요"
+let NO_ACCOUNT = "계정이 존재하지 않거나 \n삭제된 이메일 계정입니다. \n다시 한번확인해주세요"
 
 
 let IMAGE_LOGO = "logo"
@@ -177,9 +177,10 @@ public let END_CHAT =  "이랑 대화를 종료합니다"
 //Favorite
 public let SOMEONE_LIKED = "나에게 끌림을 준 카드"
 public let I_LIKED = "내가 끌림을 준 카드"
-public let MATCHING_CHECK_CURRENT_POINT = "상대방에게 채팅요청시 10포인트가 소모됩니다. \n현재 가진 포인트: "
+public let MATCHING_CHECK_CURRENT_POINT = "상대방에게 채팅요청시 10포인트가 소모됩니다"
 public let NOT_ENOUGH_POINT = "가지고계신 포인트가 부족합니다. \n필요한 포인트: " + String(POINT_USE) + "\n현재 가진 포인트: "
 public let INFO_FAVORITE = "내가 끌림을 준 카드나, 끌림을 받은 \n카드들은 일주일간 보관됩니다"
+//public let CURRENT_PLACE = "상대방 거주지: "
 
 
 

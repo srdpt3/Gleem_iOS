@@ -413,11 +413,11 @@
 		11783EAB24B53CEB00EEFE80 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				11B5ED0624BD17EC0055700B /* ActivityApi.swift */,
 				11783EA124B53CEB00EEFE80 /* UserApi.swift */,
 				11783EAC24B53CEB00EEFE80 /* AuthService.swift */,
 				11B5ECF024BB8A320055700B /* Api.swift */,
 				11B5ECF224BB8A6F0055700B /* ChatApi.swift */,
-				11B5ED0624BD17EC0055700B /* ActivityApi.swift */,
 				11B5ED2F24BEAE2E0055700B /* FlagApi.swift */,
 				11143D3824C4AE380082E48F /* MatchingApi.swift */,
 			);

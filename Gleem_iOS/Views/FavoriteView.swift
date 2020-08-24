@@ -220,12 +220,41 @@ struct FavoriteHome : View {
                                         
                                         
                                     }
-                                    Text(MATCHING_CHECK_CURRENT_POINT + String(User.currentUser()!.point_avail))
+                                    
+                                    Text(MATCHING_CHECK_CURRENT_POINT)
                                         .font(Font.custom(FONT, size: 14))
                                         .lineLimit(2)
                                         .multilineTextAlignment(.center)
                                         .foregroundColor(Color.gray)
                                         .layoutPriority(1)
+                                    Text("현재 가진 포인트: " + String(User.currentUser()!.point_avail))
+                                        .font(Font.custom(FONT, size: 14))
+                                        .lineLimit(2)
+                                        .multilineTextAlignment(.center)
+                                        .foregroundColor(Color.gray)
+                                        .layoutPriority(1)
+                                    //
+                                    //                                    VStack(alignment: .leading, spacing: 15){
+                                    //                                        Text(String(User.currentUserProfile()!.age) + "," + String(User.currentUserProfile()!.location))
+                                    //                                                                                      .font(Font.custom(FONT, size: 14))
+                                    //                                                                                      .lineLimit(2)
+                                    //                                                                                      .multilineTextAlignment(.center)
+                                    //                                                                                      .foregroundColor(Color.gray)
+                                    //                                                                                      .layoutPriority(1)
+//                                        Text(String(User.currentUserProfile()!.age) + "," + String(User.currentUserProfile()!.location))
+//                                                                                                    .font(Font.custom(FONT, size: 14))
+//                                                                                                    .lineLimit(2)
+//                                                                                                    .multilineTextAlignment(.center)
+//                                                                                                    .foregroundColor(Color.gray)
+//                                                                                                    .layoutPriority(1)
+//                                    }
+                                    
+                                    Text(String(User.currentUserProfile()!.age) + "," + String(User.currentUserProfile()!.location))
+                                                                        .font(Font.custom(FONT, size: 14))
+                                                                        .lineLimit(2)
+                                                                        .multilineTextAlignment(.center)
+                                                                        .foregroundColor(Color.gray)
+                                                                        .layoutPriority(1)
                                     
                                 }else{
                                     Text(NOT_ENOUGH_POINT + String(User.currentUser()!.point_avail))
@@ -238,11 +267,19 @@ struct FavoriteHome : View {
                                 
                                 
                                 VStack(spacing: 5){
-                                    TextField("간단한 인삿말을 입력해주세요", text: self.$textBindingManager.text).font(Font.custom(FONT, size: 15))
+                                    Divider().foregroundColor(Color.gray)
+                                    HStack{
+                                        Image(systemName: "text.bubble")
+                                            .resizable().frame(width: 15, height: 15).foregroundColor(Color.gray)
+                                          
                                         
-                                        .multilineTextAlignment(.center)
-                                        .foregroundColor(Color.gray)
-                                        .layoutPriority(1)
+                                        TextField("간단한 인삿말을 입력해주세요", text: self.$textBindingManager.text).font(Font.custom(FONT, size: 15))
+                                            
+                                            .multilineTextAlignment(.center)
+                                            .foregroundColor(Color.gray)
+                                            .layoutPriority(1)
+                                    }
+                                    
                                     Text(String(self.textBindingManager.text.count) + " / 25" ) .foregroundColor(Color.gray).font(Font.custom(FONT, size: 10)).padding(.horizontal,20).padding(.top,5)
                                     
                                     
@@ -305,7 +342,7 @@ struct FavoriteHome : View {
                             Spacer()
                             
                         }
-                        .frame(minWidth: 280, idealWidth: 280, maxWidth: 320, minHeight: 280, idealHeight: 300, maxHeight: 340, alignment: .center)
+                        .frame(minWidth: 280, idealWidth: 280, maxWidth: 320, minHeight: 320, idealHeight: 340, maxHeight: 380, alignment: .center)
                         .background(Color.white)
                         .cornerRadius(20)
                         .shadow(color: Color("ColorTransparentBlack"), radius: 6, x: 0, y: 8)

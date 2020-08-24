@@ -83,6 +83,8 @@ class observer : ObservableObject{
         Ref.FIRESTORE_COLLECTION_ACTIVE_VOTE_USERID(userId: User.currentUser()!.id).getDocument { (document, error) in
             if let document = document, document.exists {
                 self.updateVoteImage = true
+            }else{
+                self.updateVoteImage = false
             }
         }
     }
@@ -111,7 +113,7 @@ class observer : ObservableObject{
 
                         
                         let userLocationRef = Ref.FIRESTORE_DOCUMENT_USER_LOCATION(userId: decoderUser.id)
-                        let userProfile = UserProfile.init(id: decoderUser.id, email: decoderUser.email, profileImageUrl: decoderUser.profileImageUrl, username: decoderUser.username, age: decoderUser.age, sex: decoderUser.sex, createdDate:  Date().timeIntervalSince1970, point_avail: INITIAL_POINT, location: self.placemark, occupation: "",  longitude: self.longitude, latitude: self.latitude)
+                        let userProfile = UserProfile.init(id: decoderUser.id, email: decoderUser.email, profileImageUrl: decoderUser.profileImageUrl, username: decoderUser.username, age: decoderUser.age, sex: decoderUser.sex, createdDate:  Date().timeIntervalSince1970, point_avail: INITIAL_POINT, location: self.placemark, occupation: "",  longitude: self.longitude, latitude: self.latitude, description: "")
                          guard let dict2 = try? userProfile.toDictionary() else {return}
                         
                         saveUserLocationLocally(mUserDictionary: dict2 as NSDictionary)

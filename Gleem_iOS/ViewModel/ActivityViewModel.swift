@@ -70,7 +70,7 @@ class ActivityViewModel: ObservableObject {
 //            }
             
             while (self.someOneLiked.count < 6){
-                let activeUser = Activity(activityId: "", type: "", username: "", userId: "", userAvatar: "", message: "", date: 0.0, read: true)
+                let activeUser = Activity(activityId: "", type: "", username: "", userId: "", userAvatar: "", message: "", date: 0.0, read: true, age: "", location: "",occupation: "", description: "")
                 self.someOneLiked.append(activeUser)
             }
             

@@ -222,11 +222,11 @@ struct CardListview: View {
                                         self.reloading.toggle()
                                 }
                                 .animation(Animation.spring(response: 0.7, dampingFraction: 1.0, blendDuration: 1.0).repeatForever(autoreverses: true))
-                                
-                                if(self.obs.users.isEmpty){
-                                    Text(NO_NEW_CARD)
-                                        .font(.custom(FONT, size: CGFloat(15))).foregroundColor(APP_THEME_COLOR).multilineTextAlignment(.center).lineLimit(2).padding(.horizontal)
-                                }
+//                                
+//                                if(self.obs.users.isEmpty){
+//                                    Text(NO_NEW_CARD)
+//                                        .font(.custom(FONT, size: CGFloat(15))).foregroundColor(APP_THEME_COLOR).multilineTextAlignment(.center).lineLimit(2).padding(.horizontal)
+//                                }
                                 
                                 Spacer()
                                 //                                         LoadingView(isLoading: self.obs.isLoading, error: self.obs.error) {

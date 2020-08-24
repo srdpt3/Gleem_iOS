@@ -11,7 +11,6 @@ import SwiftUI
 struct ChatView: View {
     
     @ObservedObject var chatViewModel = ChatViewModel()
-    @EnvironmentObject var obs : observer
     @Environment(\.presentationMode) var presentationMode
     //    @Binding var showChatView: Bool
     var recipientId = ""
@@ -65,13 +64,15 @@ struct ChatView: View {
             VStack(spacing: 0){
                 
                 chatTopview(recipientAvatarUrl: recipientAvatarUrl, recipientUsername: recipientUsername, chatArray: self.$chatViewModel.chatArray)
-                //                Text(CHAT_LIMIT_NOTIFICATION).foregroundColor(Color.white).font(Font.custom(FONT, size: 13)).frame(width: 180)
-                
+
                 GeometryReader{_ in
-                    
+                                 
                     ScrollView(.vertical, showsIndicators: false) {
-                        
+
                         if !self.chatViewModel.chatArray.isEmpty {
+                            Text(CHAT_LIMIT_NOTIFICATION).foregroundColor(APP_THEME_COLOR).font(Font.custom(FONT, size: 13)).padding(.top, 10)
+                            
+                            Divider().foregroundColor(APP_THEME_COLOR)
                             ForEach(self.chatViewModel.chatArray, id: \.messageId) { chat in
                                 VStack(alignment: .leading) {
                                     if chat.isPhoto {
@@ -170,21 +171,21 @@ struct TextMessageRow: View {
                     .background(APP_THEME_COLOR)
                     
                     .clipShape(msgTail(mymsg: false))
-                    .foregroundColor(.white).padding(.trailing, 10)     .font(.system(size: 15))
+                    .foregroundColor(.white).padding(.trailing, 5)     .font(.system(size: 15))
                 
                 
             } else {
                 Text(chat.textMessage).multilineTextAlignment(.leading).lineLimit(3)
                     .padding()
                     .background(Color(red: 237/255, green: 237/255, blue: 237/255))
-                    .clipShape(msgTail(mymsg: true)).padding(.leading, 10)     .font(.system(size: 15))
+                    .clipShape(msgTail(mymsg: true)).padding(.leading, 5)     .font(.system(size: 15))
                 Spacer(minLength: 50)
                 
                 
             }
             
         }
-        .padding(chat.isCurrentUser ? .leading : .trailing, 15)
+        .padding(chat.isCurrentUser ? .leading : .trailing, 10)
         .padding(.vertical,5)
     }
 }
@@ -260,7 +261,7 @@ struct chatTopview : View {
                 
                 AnimatedImage(url: URL(string: recipientAvatarUrl)).resizable().frame(width: 40, height: 40).clipShape(Circle())
                 
-                Text(recipientUsername).font(Font.custom(FONT, size: 16)).multilineTextAlignment(.leading).lineLimit(1)
+                Text(recipientUsername).font(Font.custom(FONT, size: 15)).multilineTextAlignment(.leading).lineLimit(1)
                 //                   Text(CHAT_LIMIT_NOTIFICATION).foregroundColor(Color.white).font(Font.custom(FONT, size: 13)).frame(width: 150).padding(.horizontal)
                 
             }

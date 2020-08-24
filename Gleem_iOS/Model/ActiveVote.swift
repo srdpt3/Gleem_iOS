@@ -29,7 +29,7 @@ struct ActiveVote:  Encodable, Decodable ,Identifiable{
     var occupation: String
     var description: String
     
-    
+
     init(attr1: Int, attr2: Int, attr3: Int, attr4: Int, attr5: Int,attrNames: [String], numVote: Int, createdDate: Double, lastModifiedDate: Double,id: String, email: String, imageLocation: String, username: String,
          age: String, sex:String , location: String, occupation:String, description:String  ) {
         self.attr1 = attr1

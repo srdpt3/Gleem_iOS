@@ -146,7 +146,7 @@ class StorageService {
         
         
         let activityId = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: userId).collection("activity").document().documentID
-        let activityObject = Activity(activityId: activityId, type: "intro", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: "", message: "", date: Date().timeIntervalSince1970, read: true)
+        let activityObject = Activity(activityId: activityId, type: "intro", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: "", message: "", date: Date().timeIntervalSince1970, read: true, age: User.currentUserProfile()!.age, location: User.currentUserProfile()!.location,occupation: "", description: "")
         guard let activityDict = try? activityObject.toDictionary() else { return }
         
         
@@ -200,7 +200,7 @@ class StorageService {
                     
                     
                     let activityId = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: userId).collection("activity").document().documentID
-                    let activityObject = Activity(activityId: activityId, type: "intro", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: metaImageUrl, message: "", date: Date().timeIntervalSince1970, read: false)
+                    let activityObject = Activity(activityId: activityId, type: "intro", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: metaImageUrl, message: "", date: Date().timeIntervalSince1970, read: false, age: User.currentUserProfile()!.age, location: User.currentUserProfile()!.location,occupation: "", description: "")
                     guard let activityDict = try? activityObject.toDictionary() else { return }
                     
                     

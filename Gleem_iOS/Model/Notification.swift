@@ -19,7 +19,11 @@ struct Activity: Encodable, Decodable {
     var message: String
     var date: Double
     var read: Bool
-
+    var age : String
+    var location: String
+    var occupation: String
+    var description: String
+    
     var typeDescription: String {
         var output = ""
         switch type {

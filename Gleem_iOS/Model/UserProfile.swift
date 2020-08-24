@@ -24,9 +24,10 @@ struct UserProfile: Encodable, Decodable ,Identifiable{
     var occupation : String
     var longitude : String
     var latitude : String
+    var description : String
 
 
-    init(id: String, email: String, profileImageUrl: String, username: String, age: String, sex:String, createdDate : Double, point_avail: Int, location: String, occupation: String, longitude: String, latitude : String) {
+    init(id: String, email: String, profileImageUrl: String, username: String, age: String, sex:String, createdDate : Double, point_avail: Int, location: String, occupation: String, longitude: String, latitude : String, description: String) {
         self.id = id
         self.email = email
         self.profileImageUrl = profileImageUrl
@@ -39,6 +40,7 @@ struct UserProfile: Encodable, Decodable ,Identifiable{
         self.occupation = occupation
         self.longitude = longitude
         self.latitude = latitude
+        self.description = description
 
     }
     init(_dictionary: NSDictionary) {
@@ -54,6 +56,7 @@ struct UserProfile: Encodable, Decodable ,Identifiable{
         occupation = _dictionary["occupation"] as! String
         longitude = _dictionary["longitude"] as! String
         latitude = _dictionary["latitude"] as! String
+        description = _dictionary["description"] as! String
 
         
     }
