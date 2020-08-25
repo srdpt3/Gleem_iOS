@@ -18,11 +18,10 @@ struct ChatView: View {
 //    var recipientId = ""
 //    var recipientAvatarUrl = ""
 //    var recipientUsername = ""
-    
     @State var leftRoom : Bool = false
     @State var numChat : Int = 0
-    
-    
+    @State var profile_ : String = ""
+
     func sendTextMessage() {
         //        self.hide_keyboard()
         if(self.chatViewModel.chatArray.count < 30){
@@ -73,11 +72,11 @@ struct ChatView: View {
                         
                         if !self.chatViewModel.chatArray.isEmpty {
                             VStack(alignment: .center, spacing: 4){
-                                Text(CHAT_LIMIT_NOTIFICATION).foregroundColor(APP_THEME_COLOR).font(Font.custom(FONT, size: 13)).padding(.top, 10)
+                                Text(CHAT_LIMIT_NOTIFICATION).foregroundColor(Color("sleep")).font(Font.custom(FONT, size: 13)).padding(.top, 10)
                                 
-                                Text(CONGRAT_MATCHED).foregroundColor(APP_THEME_COLOR).font(Font.custom(FONT, size: 12))
-                                Text(self.recipient.username + "님은 지금 현재" + self.recipient.location + "에 사는 ").foregroundColor(Color.gray).font(Font.custom(FONT, size: 12)).padding(.top, 5)
-                                Text(self.recipient.age + "입니다").foregroundColor(Color.gray).font(Font.custom(FONT, size: 12))
+                                Text(CONGRAT_MATCHED).foregroundColor(Color.gray).font(Font.custom(FONT, size: 13)).padding(.top, 5)
+                                Text(self.profile_).foregroundColor(Color.gray).font(Font.custom(FONT, size: 12))
+//                                Text(self.recipient.age + "입니다").foregroundColor(Color.gray).font(Font.custom(FONT, size: 12))
 
 //                                    + self.recipient.age + "입니다")
 //
@@ -151,7 +150,9 @@ struct ChatView: View {
             self.chatViewModel.recipientId = self.recipient.userId
             self.chatViewModel.loadChatMessages()
             self.numChat = self.chatViewModel.chatArray.count
-            
+
+            self.profile_ = self.recipient.username + "님은 " + self.recipient.location + "에 사는 " + self.recipient.age + "입니다"
+
         }
         .onDisappear {
             
