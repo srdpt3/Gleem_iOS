@@ -47,10 +47,14 @@ struct FavoriteHome : View {
         
         self.chatViewModel.composedMessage = self.textBindingManager.text != "" ?  self.textBindingManager.text : SEND_LIKE_MESSAGE
         print(self.chatViewModel.composedMessage)
-        self.chatViewModel.sendTextMessage(recipientId: self.selectedUser!.userId, recipientAvatarUrl: self.selectedUser!.userAvatar, recipientUsername: self.selectedUser!.username, completed: {
+        
+        let recipient = InboxMessage.init(id: UUID(), lastMessage: "", username: self.selectedUser!.username, type: "", date:  Date().timeIntervalSince1970, userId: self.selectedUser!.userId, avatarUrl: self.selectedUser!.userAvatar, age: self.selectedUser!.age, location: self.selectedUser!.location, occupation: self.selectedUser!.occupation, description: self.selectedUser!.description)
+        
+        
+        self.chatViewModel.sendTextMessage(recipient: recipient, completed: {
             self.chatViewModel.composedMessage = ""
             self.sendMessage = false
-            
+
         }) { (error) in
             print(error)
         }

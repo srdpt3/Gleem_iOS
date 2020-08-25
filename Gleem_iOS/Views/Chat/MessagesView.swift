@@ -54,8 +54,8 @@ struct MessageSubView: View {
                     
                     ForEach(messageViewModel.inboxMessages, id: \.id) { inboxMessage in
                         
-                        
-                        NavigationLink(destination:ChatView( recipientId: inboxMessage.userId, recipientAvatarUrl: inboxMessage.avatarUrl, recipientUsername: inboxMessage.username))  {
+//                         recipientId: inboxMessage.userId, recipientAvatarUrl: inboxMessage.avatarUrl, recipientUsername: inboxMessage.username
+                        NavigationLink(destination:ChatView(recipient: inboxMessage))  {
                             HStack {
                                 AnimatedImage(url: URL(string: inboxMessage.avatarUrl)!)
                                     .resizable()

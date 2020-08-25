@@ -138,6 +138,7 @@ struct CardListview: View {
                                 .offset(x: self.isTopCard(cardView: cardView) ?  self.dragState.translation.width : 0, y: self.isTopCard(cardView: cardView) ?  self.dragState.translation.height : 0)
                                 .scaleEffect(self.dragState.isDragging && self.isTopCard(cardView: cardView) ? 0.85 : 1.0)
                                 .rotationEffect(Angle(degrees: self.isTopCard(cardView: cardView) ? Double(self.dragState.translation.width / 12) : 0))
+                            .animation(Animation.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0))
                             //                                .animation(.interpolatingSpring(stiffness: 150, damping: 130))
                             //                              .animation(Animation.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0))
                             //                                .animation(.easeInOut(duration: 3))

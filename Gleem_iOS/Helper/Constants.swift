@@ -163,6 +163,7 @@ public let LIKED_MESSAGE = "님이 끌림을 주셧습니다"
 public let MATCHED_MESSAGE = "축하해요~. \n채팅창에서 서로 인사해보세요 ^^"
 public let NOTIFICATION_HEADER = "최근 일주일 이내 내역이 보관됩니다"
 public let CHAT_LIMIT_NOTIFICATION = "메세지 수는 30번으로 제한되있습니다"
+public let CONGRAT_MATCHED = "축하합니다~ 반갑게 인사로 대화를 이어가보세요"
 
 public let WELCOME_GLEEM = "가입을 축하드려요!. \n사진을 올려서 내 첫인상을 실시간으로 확인해보세요"
 

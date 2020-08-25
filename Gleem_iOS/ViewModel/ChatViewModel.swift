@@ -55,9 +55,9 @@ class ChatViewModel: ObservableObject {
     }
     
     
-    func sendTextMessage(recipientId: String, recipientAvatarUrl: String, recipientUsername: String, completed: @escaping() -> Void,  onError: @escaping(_ errorMessage: String) -> Void) {
+    func sendTextMessage(recipient: InboxMessage, completed: @escaping() -> Void,  onError: @escaping(_ errorMessage: String) -> Void) {
         if !composedMessage.isEmpty {
-            Api.Chat.sendMessages(message: composedMessage, recipientId: recipientId, recipientAvatarUrl: recipientAvatarUrl, recipientUsername: recipientUsername, onSuccess: completed, onError: onError)
+            Api.Chat.sendMessages(message: composedMessage, recipient: recipient, onSuccess: completed, onError: onError)
         } else {
             showAlert = true
             errorString = "Please fill in all fields"
@@ -65,9 +65,9 @@ class ChatViewModel: ObservableObject {
         return
     }
     
-    func sendPhotoMessage(recipientId: String, recipientAvatarUrl: String, recipientUsername: String, completed: @escaping() -> Void,  onError: @escaping(_ errorMessage: String) -> Void) {
+    func sendPhotoMessage(recipient: InboxMessage, completed: @escaping() -> Void,  onError: @escaping(_ errorMessage: String) -> Void) {
         if !imageData.isEmpty {
-            Api.Chat.sendPhotoMessages(recipientId: recipientId, recipientAvatarUrl: recipientAvatarUrl, recipientUsername: recipientUsername, imageData: imageData, onSuccess: completed, onError: onError)
+            Api.Chat.sendPhotoMessages(recipient: recipient, imageData: imageData, onSuccess: completed, onError: onError)
             
         } else {
             showAlert = true

@@ -17,9 +17,9 @@ struct InboxMessage: Encodable, Decodable, Identifiable {
     var userId: String
     var avatarUrl: String
     
-//    var age : String
-//    var location: String
-//    var occupation: String
-//    var description: String
+    var age : String
+    var location: String
+    var occupation: String
+    var description: String
     
 }

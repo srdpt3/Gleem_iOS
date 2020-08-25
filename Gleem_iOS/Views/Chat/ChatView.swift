@@ -13,9 +13,11 @@ struct ChatView: View {
     @ObservedObject var chatViewModel = ChatViewModel()
     @Environment(\.presentationMode) var presentationMode
     //    @Binding var showChatView: Bool
-    var recipientId = ""
-    var recipientAvatarUrl = ""
-    var recipientUsername = ""
+    
+    var recipient : InboxMessage
+//    var recipientId = ""
+//    var recipientAvatarUrl = ""
+//    var recipientUsername = ""
     
     @State var leftRoom : Bool = false
     @State var numChat : Int = 0
@@ -25,7 +27,7 @@ struct ChatView: View {
         //        self.hide_keyboard()
         if(self.chatViewModel.chatArray.count < 30){
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-            chatViewModel.sendTextMessage(recipientId: recipientId, recipientAvatarUrl: recipientAvatarUrl, recipientUsername: recipientUsername, completed: {
+            chatViewModel.sendTextMessage(recipient : recipient, completed: {
                 self.clean()
             }) { (errorMessage) in
                 self.chatViewModel.showAlert = true
@@ -37,7 +39,7 @@ struct ChatView: View {
     }
     
     func sendPhoto() {
-        chatViewModel.sendPhotoMessage(recipientId: recipientId, recipientAvatarUrl: recipientAvatarUrl, recipientUsername: recipientUsername, completed: {
+        chatViewModel.sendPhotoMessage(recipient : recipient, completed: {
             
         }) { (errorMessage) in
             self.chatViewModel.showAlert = true
@@ -63,14 +65,25 @@ struct ChatView: View {
             //            Spacer(minLength: 100)
             VStack(spacing: 0){
                 
-                chatTopview(recipientAvatarUrl: recipientAvatarUrl, recipientUsername: recipientUsername, chatArray: self.$chatViewModel.chatArray)
+                chatTopview(recipientAvatarUrl: recipient.avatarUrl, recipientUsername: recipient.username, chatArray: self.$chatViewModel.chatArray)
 
                 GeometryReader{_ in
                                  
                     ScrollView(.vertical, showsIndicators: false) {
-
+                        
                         if !self.chatViewModel.chatArray.isEmpty {
-                            Text(CHAT_LIMIT_NOTIFICATION).foregroundColor(APP_THEME_COLOR).font(Font.custom(FONT, size: 13)).padding(.top, 10)
+                            VStack(alignment: .center, spacing: 4){
+                                Text(CHAT_LIMIT_NOTIFICATION).foregroundColor(APP_THEME_COLOR).font(Font.custom(FONT, size: 13)).padding(.top, 10)
+                                
+                                Text(CONGRAT_MATCHED).foregroundColor(APP_THEME_COLOR).font(Font.custom(FONT, size: 12))
+                                Text(self.recipient.username + "님은 지금 현재" + self.recipient.location + "에 사는 ").foregroundColor(Color.gray).font(Font.custom(FONT, size: 12)).padding(.top, 5)
+                                Text(self.recipient.age + "입니다").foregroundColor(Color.gray).font(Font.custom(FONT, size: 12))
+
+//                                    + self.recipient.age + "입니다")
+//
+
+                            }
+                            
                             
                             Divider().foregroundColor(APP_THEME_COLOR)
                             ForEach(self.chatViewModel.chatArray, id: \.messageId) { chat in
@@ -135,7 +148,7 @@ struct ChatView: View {
             
         }
         .onAppear {
-            self.chatViewModel.recipientId = self.recipientId
+            self.chatViewModel.recipientId = self.recipient.userId
             self.chatViewModel.loadChatMessages()
             self.numChat = self.chatViewModel.chatArray.count
             

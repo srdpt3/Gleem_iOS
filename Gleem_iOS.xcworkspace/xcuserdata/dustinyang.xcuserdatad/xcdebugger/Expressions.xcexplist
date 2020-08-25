@@ -356,6 +356,22 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #1 in closure #1 in ChatView.body.getter:ChatView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "recipient">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #1 in closure #1 in ChatView.body.getter:ChatView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.chatViewModel.chatArray">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in closure #2 in closure #1 in ExpandView.body.getter:ExpandView.swift">
          <PersistentStrings>
             <PersistentString
