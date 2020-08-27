@@ -210,6 +210,7 @@ struct MyStaticView: View , Equatable {
                     .padding(.leading, 10)
                     Spacer()
                     
+                    
                 }
                 .background(Color.white.edgesIgnoringSafeArea(.top))
                 .cornerRadius(10)
@@ -223,8 +224,9 @@ struct MyStaticView: View , Equatable {
                     
                     
                     
-                    
                 }
+                
+                
                 
                 
                 
@@ -624,7 +626,7 @@ struct MyStaticView: View , Equatable {
                 
             .sheet(isPresented: self.$showView) {
                 if(self.index == 0) {
-                    UploadView(vote: self.vote!, noVotePic: self.$noVotePic,uploadComplete: self.$uploadComplete)
+                    UploadView(vote: self.vote!, noVotePic: self.$noVotePic,uploadComplete: self.$uploadComplete).environmentObject(self.obs)
                     
                 }else{
                     HistoryView()

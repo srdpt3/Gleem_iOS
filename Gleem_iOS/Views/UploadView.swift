@@ -10,7 +10,8 @@ struct UploadView: View {
     
     // intializing Four Image cards...
     @Environment(\.presentationMode) var presentationMode
-    
+    @EnvironmentObject  var obs : observer
+
     var vote : Vote
     let characterLimit = 10
     
@@ -300,7 +301,7 @@ struct UploadView: View {
     func uploadPicture(){
         uploadViewModel.uploadVote(buttonPressed: buttonPressed, buttonTitle: self.buttonTitle, imageData: self.images[0])
         self.uploadComplete = true
-
+        self.obs.updateVoteImage = true
         self.clean()
         self.presentationMode.wrappedValue.dismiss()
         //

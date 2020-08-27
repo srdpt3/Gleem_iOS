@@ -14,13 +14,13 @@
          contextName = "closure #1 in observer.getNewCards():observer.swift">
          <PersistentStrings>
             <PersistentString
+               value = "self.isVoteLoading">
+            </PersistentString>
+            <PersistentString
                value = "self.votedCards.isEmpty">
             </PersistentString>
             <PersistentString
                value = "self.updateVoteImage">
-            </PersistentString>
-            <PersistentString
-               value = "self.isVoteLoading">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -129,7 +129,7 @@
          contextName = "closure #1 in FavoriteViewModel.loadFavoriteUsers():FavoriteViewModel.swift">
          <PersistentStrings>
             <PersistentString
-               value = " ActiveVote.init(fromDictionary: dict)">
+               value = "self.lastDoc ">
             </PersistentString>
             <PersistentString
                value = "lastDoc ">
@@ -144,10 +144,10 @@
                value = "dict">
             </PersistentString>
             <PersistentString
-               value = "snapshot!.documents.last">
+               value = " ActiveVote.init(fromDictionary: dict)">
             </PersistentString>
             <PersistentString
-               value = "self.lastDoc ">
+               value = "snapshot!.documents.last">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -198,10 +198,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in closure #1 in voteButtonView.body.getter:FooterView.swift">
+         contextName = "FavoriteViewModel.addToMyList(user:):FavoriteViewModel.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.obs.updateVoteImage">
+               value = "User.currentUser()!.id">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -222,18 +222,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in closure #1 in observer.loadActivities():observer.swift">
+         contextName = "closure #1 in closure #1 in voteButtonView.body.getter:FooterView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "decoderActivity.activityId">
+               value = "self.obs.updateVoteImage">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "FavoriteViewModel.addToMyList(user:):FavoriteViewModel.swift">
+         contextName = "closure #1 in closure #1 in observer.loadActivities():observer.swift">
          <PersistentStrings>
             <PersistentString
-               value = "User.currentUser()!.id">
+               value = "decoderActivity.activityId">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -276,10 +276,10 @@
          contextName = "ExpandView.persist():ExpandView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.buttonPressed">
+               value = "self.user.attrNames">
             </PersistentString>
             <PersistentString
-               value = "self.user.attrNames">
+               value = "self.buttonPressed">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -348,10 +348,10 @@
                value = "self.uploadComplete">
             </PersistentString>
             <PersistentString
-               value = "uploadComplete">
+               value = "self.$uploadComplete">
             </PersistentString>
             <PersistentString
-               value = "self.$uploadComplete">
+               value = "uploadComplete">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -445,6 +445,20 @@
          <PersistentStrings>
             <PersistentString
                value = " Auth.auth().currentUser?.uid">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "UploadView.uploadPicture():UploadView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.obs">
+            </PersistentString>
+            <PersistentString
+               value = "self.obs.updateVoteImage">
+            </PersistentString>
+            <PersistentString
+               value = "obs.updateVoteImage">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
