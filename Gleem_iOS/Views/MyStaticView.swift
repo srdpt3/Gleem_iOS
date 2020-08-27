@@ -323,7 +323,7 @@ struct MyStaticView: View , Equatable {
                         //                                    Spacer(minLength: 0)
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack() {
-                                Image("person").resizable().aspectRatio(contentMode: .fill).frame(width: 60, height: 60).cornerRadius(60 / 2).padding(.leading, -15)
+                                Image("Gleem_3D").resizable().aspectRatio(contentMode: .fill).frame(width: 60, height: 60).cornerRadius(60 / 2).padding(.leading, -15)
                             }.padding(.leading, 15)
                             
                             
@@ -735,7 +735,7 @@ struct SomeoneVotedView: View {
             
             
             if(user.userAvatar == ""){
-                Image("person").resizable().aspectRatio(contentMode: .fill).frame(width: height, height: height).cornerRadius(height / 2).padding(.leading, -15)
+                Image("Gleem_3D").resizable().aspectRatio(contentMode: .fit).frame(width: height, height: height).cornerRadius(height / 2).padding(.leading, -15)
                     .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
             }else{
                 AnimatedImage(url: URL(string:user.userAvatar)).resizable().aspectRatio(contentMode: .fill).frame(width: height, height: height).cornerRadius(height / 2).padding(.leading, -15)
