@@ -158,8 +158,8 @@
             filePath = "Gleem_iOS/ViewModel/VoteViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
             landmarkName = "persist(id:buttonPressed:buttonTitle:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -174,8 +174,8 @@
             filePath = "Gleem_iOS/ViewModel/VoteViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "persist(id:buttonPressed:buttonTitle:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -558,8 +558,8 @@
             filePath = "Gleem_iOS/ViewModel/VoteViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
             landmarkName = "persist(id:buttonPressed:buttonTitle:)"
             landmarkType = "7">
          </BreakpointContent>

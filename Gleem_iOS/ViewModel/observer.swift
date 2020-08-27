@@ -267,7 +267,7 @@ class observer : ObservableObject{
                 
                 if err != nil{
                     print((err?.localizedDescription)!)
-                    self.error = (err?.localizedDescription as! NSError)
+                    self.error = (err! as NSError)
                     return
                 }
                 

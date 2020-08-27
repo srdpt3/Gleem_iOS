@@ -20,7 +20,7 @@ class  AttributeViewModel: ObservableObject {
             self.buttonAttributes.removeAll()
             guard let snap = snapshot else {
                 print("Error fetching data")
-                self.error = (error as! NSError)
+                self.error = (error! as NSError)
                 return
             }
             for i in snap.documents {

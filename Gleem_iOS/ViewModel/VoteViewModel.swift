@@ -124,6 +124,25 @@ class VoteViewModel: ObservableObject {
         
         //batch writing. vote multiple entries
         let batch = Ref.FIRESTORE_ROOT.batch()
+        let currentUser = User.currentUser()!
+        //Update User Point
+        
+        let updated_point = currentUser.point_avail + POINT_USE
+        let user = User.init(id: currentUser.id, email: currentUser.email, profileImageUrl: currentUser.profileImageUrl, username: currentUser.username, age: currentUser.age, sex: currentUser.sex, createdDate:  currentUser.createdDate, point_avail: updated_point)
+        guard let userDict = try? user.toDictionary() else {return}
+
+        
+        saveUserLocally(mUserDictionary: userDict as NSDictionary)
+        
+        
+        let firestoreUserId = Ref.FIRESTORE_DOCUMENT_USERID(userId: User.currentUser()!.id)
+        batch.updateData(["point_avail" : updated_point], forDocument: firestoreUserId)
+
+        
+        
+        
+        
+        
         let voteRef = Ref.FIRESTORE_COLLECTION_ACTIVE_VOTE.document(id)
         for (index, button) in buttonPressed.enumerated() {
             if (button){
