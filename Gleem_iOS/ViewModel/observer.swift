@@ -220,21 +220,21 @@ class observer : ObservableObject{
     func createCardView(){
         self.cardViews.removeAll()
         
-        //Filtering
-        //        if(!votedCards.isEmpty && !users.isEmpty){
-        //
-        //            for index in (0..<users.count).reversed() {
-        //                let u = users[index]
-        //                if votedCards.contains(u.id){
-        //                    users.remove(at: index)
-        //                    print("contained  \(u.id)")
-        //                }
-        //
-        //            }
-        //
-        //            print("filtered User : \(users.count)")
-        //
-        //        }
+//        Filtering
+//                if(!votedCards.isEmpty && !users.isEmpty){
+//        
+//                    for index in (0..<users.count).reversed() {
+//                        let u = users[index]
+//                        if votedCards.contains(u.id){
+//                            users.remove(at: index)
+//                            print("contained  \(u.id)")
+//                        }
+//        
+//                    }
+//        
+//                    print("filtered User : \(users.count)")
+//        
+//                }
         
         if(!users.isEmpty){
             var indexRange = 0
