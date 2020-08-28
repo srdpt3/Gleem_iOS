@@ -122,7 +122,7 @@ class StorageService {
         }
     }
     
-    static func saveUser(userId: String, username: String, email: String, age: String, storageAvatarRef: StorageReference, gender: String,  onSuccess: @escaping(_ user: User) -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+    static func saveUser(userId: String, username: String, email: String, age: String, storageAvatarRef: StorageReference, gender: String,  location: String, occupation:String,  longitude: String, latitude: String, description: String, onSuccess: @escaping(_ user: User) -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
         
         let batch = Ref.FIRESTORE_ROOT.batch()
         
@@ -130,6 +130,13 @@ class StorageService {
         
         guard let dict = try? user.toDictionary() else {return}
         saveUserLocally(mUserDictionary: dict as NSDictionary)
+        
+        let userProfile = UserProfile.init(id: userId, email: email, profileImageUrl: "", username: username, age: age, sex: gender, createdDate:  Date().timeIntervalSince1970, point_avail: INITIAL_POINT, location: location, occupation: occupation,  longitude: longitude, latitude: latitude, description: description)
+        guard let dict2 = try? userProfile.toDictionary() else {return}
+        
+        
+        saveUserLocationLocally(mUserDictionary: dict2 as NSDictionary)
+
         
         if let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest() {
             changeRequest.displayName = username
@@ -141,8 +148,11 @@ class StorageService {
             }
         }
         let firestoreUserId = Ref.FIRESTORE_DOCUMENT_USERID(userId: userId)
-        
         batch.setData(dict, forDocument: firestoreUserId)
+        
+        let userLocationRef = Ref.FIRESTORE_DOCUMENT_USER_LOCATION(userId: userId)
+        batch.setData(dict2, forDocument: userLocationRef)
+        
         
         
         let activityId = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: userId).collection("activity").document().documentID

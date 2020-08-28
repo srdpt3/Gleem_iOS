@@ -1155,7 +1155,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.35;
+				MARKETING_VERSION = 1.36;
 				PRODUCT_BUNDLE_IDENTIFIER = gleem.dating;
 				PRODUCT_NAME = "Gleem 데이팅";
 				SWIFT_VERSION = 5.0;
@@ -1177,7 +1177,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.35;
+				MARKETING_VERSION = 1.36;
 				PRODUCT_BUNDLE_IDENTIFIER = gleem.dating;
 				PRODUCT_NAME = "Gleem 데이팅";
 				SWIFT_VERSION = 5.0;

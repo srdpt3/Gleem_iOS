@@ -59,7 +59,7 @@ class AuthService {
         }
     }
     
-    static func signupUser(username: String, email: String, password: String, age: String, gender: String, onSuccess: @escaping(_ user: User) -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+    static func signupUser(username: String, email: String, password: String, age: String, gender: String, location: String, occupation:String,  longitude: String, latitude: String, description: String, onSuccess: @escaping(_ user: User) -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
         //Firebase.createAccount(username: username, email: email, password: password, imageData: imageData)
         resetDefaults()
         URLCache.shared.removeAllCachedResponses()
@@ -77,13 +77,21 @@ class AuthService {
             guard let dict = try? user.toDictionary() else {return}
             saveUserLocally(mUserDictionary: dict as NSDictionary)
             
+
+            let userProfile = UserProfile.init(id: userId, email: email, profileImageUrl: "", username: username, age: age, sex: gender, createdDate:  Date().timeIntervalSince1970, point_avail: INITIAL_POINT, location: location, occupation: occupation,  longitude: longitude, latitude: latitude, description: description)
+            guard let dict2 = try? userProfile.toDictionary() else {return}
+            
+            
+            saveUserLocationLocally(mUserDictionary: dict2 as NSDictionary)
+            
+            
             let storageAvatarUserId = Ref.STORAGE_AVATAR_USERID(userId: userId)
             let metadata = StorageMetadata()
             metadata.contentType = "image/jpg"
             
             
             
-            StorageService.saveUser(userId: userId, username: username, email: email, age: age, storageAvatarRef: storageAvatarUserId, gender : gender, onSuccess: onSuccess, onError: onError)
+            StorageService.saveUser(userId: userId, username: username, email: email, age: age, storageAvatarRef: storageAvatarUserId, gender : gender,location: location, occupation: occupation,  longitude: longitude, latitude: latitude, description: description,  onSuccess: onSuccess, onError: onError)
             
         }
     }

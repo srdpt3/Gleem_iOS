@@ -41,7 +41,7 @@ class observer : ObservableObject{
     var handle: AuthStateDidChangeListenerHandle?
     var latitude: String  { return("\(lm.location?.latitude ?? 0)") }
     var longitude: String { return("\(lm.location?.longitude ?? 0)") }
-    var placemark: String { return("\(lm.placemark?.locality ?? "대한민국")") }
+    var placemark: String { return("\(lm.placemark?.locality ?? DEFAULT_LOCATION)") }
     
     //    var status: String    { return("\(lm.status)") }
     func getNewCards(){
@@ -90,6 +90,8 @@ class observer : ObservableObject{
     }
     
     func listenAuthenticationState() {
+        resetDefaults()
+            URLCache.shared.removeAllCachedResponses()
         handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
             if let user = user {
                 
@@ -127,11 +129,11 @@ class observer : ObservableObject{
                                    
                                }
                            }
-                           
+                           self.isLoggedIn = true
+
                     }
                 }
                 
-                self.isLoggedIn = true
             } else {
                 print("isLoogedIn is false")
                 self.isLoggedIn = false
@@ -160,7 +162,7 @@ class observer : ObservableObject{
                 print("reload")
                 
                 self.getNewCards()
-                self.index = 2
+//                self.index = 2
             }else{
                 
                 let u = self.users[self.index % self.users.count]

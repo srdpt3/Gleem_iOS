@@ -106,7 +106,7 @@ struct voteButtonView : View {
             
         .sheet(isPresented: self.$showUploadView) {
             
-            UploadView(vote: Vote(attr1: 0, attr2 : 0 , attr3 : 0 , attr4: 0, attr5: 0,attrNames:["없음", "없음","없음", "없음", "없음"], numVote: 0, createdDate: Date().timeIntervalSince1970, lastModifiedDate: Date().timeIntervalSince1970, imageLocation: ""), noVotePic: self.$noVotePic,uploadComplete: self.$uploadComplete)
+            UploadView(vote: Vote(attr1: 0, attr2 : 0 , attr3 : 0 , attr4: 0, attr5: 0,attrNames:["없음", "없음","없음", "없음", "없음"], numVote: 0, createdDate: Date().timeIntervalSince1970, lastModifiedDate: Date().timeIntervalSince1970, imageLocation: ""), noVotePic: self.$noVotePic,uploadComplete: self.$uploadComplete).environmentObject(self.obs)
             
         }
         
@@ -161,7 +161,7 @@ struct ArrowView : View {
             
         }  .sheet(isPresented: self.$showUploadView) {
             
-            UploadView(vote: Vote(attr1: 0, attr2 : 0 , attr3 : 0 , attr4: 0, attr5: 0,attrNames:["없음", "없음","없음", "없음", "없음"], numVote: 0, createdDate: Date().timeIntervalSince1970, lastModifiedDate: Date().timeIntervalSince1970, imageLocation: ""), noVotePic: self.$noVotePic,uploadComplete: self.$uploadComplete)
+            UploadView(vote: Vote(attr1: 0, attr2 : 0 , attr3 : 0 , attr4: 0, attr5: 0,attrNames:["없음", "없음","없음", "없음", "없음"], numVote: 0, createdDate: Date().timeIntervalSince1970, lastModifiedDate: Date().timeIntervalSince1970, imageLocation: ""), noVotePic: self.$noVotePic,uploadComplete: self.$uploadComplete).environmentObject(self.obs)
             
         }
         .alert(isPresented: self.$error) {

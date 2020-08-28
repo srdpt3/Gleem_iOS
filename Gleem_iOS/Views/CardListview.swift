@@ -96,7 +96,7 @@ struct CardListview: View {
                 ZStack{
                     
                     
-                    if(!self.obs.users.isEmpty){
+                    if(!self.obs.cardViews.isEmpty){
                         ForEach(self.obs.cardViews) { cardView in
                             cardView.zIndex(self.isTopCard(cardView: cardView) ? 1 : 0).onTapGesture {
                                 print("asdfasd")
@@ -138,7 +138,7 @@ struct CardListview: View {
                                 .offset(x: self.isTopCard(cardView: cardView) ?  self.dragState.translation.width : 0, y: self.isTopCard(cardView: cardView) ?  self.dragState.translation.height : 0)
                                 .scaleEffect(self.dragState.isDragging && self.isTopCard(cardView: cardView) ? 0.85 : 1.0)
                                 .rotationEffect(Angle(degrees: self.isTopCard(cardView: cardView) ? Double(self.dragState.translation.width / 12) : 0))
-                            .animation(Animation.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0))
+//                            .animation(Animation.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0))
                             //                                .animation(.interpolatingSpring(stiffness: 150, damping: 130))
                             //                              .animation(Animation.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0))
                             //                                .animation(.easeInOut(duration: 3))
@@ -279,7 +279,7 @@ struct CardListview: View {
                         //                    .frame(width: self.show ? nil : 0, height: self.show ? nil : 0)
                 }
                 Spacer()
-                if(!self.obs.users.isEmpty){
+                if(!self.obs.cardViews.isEmpty){
                     FooterView(isVoted: $isVoted, showVotingScreen: $showVotingScreen, uploadComplete: self.$uploadComplete)
                         .opacity(dragState.isDragging ? 0.0 : 1.0)
                         .animation(.easeInOut).opacity(self.obs.isLoading == true ? 0 : 1)

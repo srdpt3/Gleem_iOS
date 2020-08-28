@@ -33,10 +33,10 @@ class SignupViewModel: ObservableObject {
     
     //    @Binding var showLoader:
     //
-    func signup(username: String, email: String, password: String, age: String, gender: String, completed: @escaping(_ user: User) -> Void,  onError: @escaping(_ errorMessage: String) -> Void) {
+    func signup(username: String, email: String, password: String, age: String, gender: String, location: String, occupation:String,  longitude: String, latitude: String, description: String, completed: @escaping(_ user: User) -> Void,  onError: @escaping(_ errorMessage: String) -> Void) {
         if !username.isEmpty && !email.isEmpty && !password.isEmpty && !age.isEmpty {
             //            self.showLoader()
-            AuthService.signupUser(username: username, email: email, password: password, age: age, gender: gender, onSuccess: completed, onError: onError)
+            AuthService.signupUser(username: username, email: email, password: password, age: age, gender: gender,location: location, occupation: occupation,  longitude: longitude, latitude: latitude, description: description, onSuccess: completed, onError: onError)
         }
         
         

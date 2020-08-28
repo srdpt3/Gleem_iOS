@@ -14,13 +14,13 @@
          contextName = "closure #1 in observer.getNewCards():observer.swift">
          <PersistentStrings>
             <PersistentString
+               value = "self.updateVoteImage">
+            </PersistentString>
+            <PersistentString
                value = "self.isVoteLoading">
             </PersistentString>
             <PersistentString
                value = "self.votedCards.isEmpty">
-            </PersistentString>
-            <PersistentString
-               value = "self.updateVoteImage">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -87,6 +87,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "ChartViewModel.loadSomeoneVoted():ChartViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "User.currentUser()!.id">
+            </PersistentString>
+            <PersistentString
+               value = "User.currentUser()!">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in ChartViewModel.loadChartData(userId:onSuccess:):ChartViewModel.swift">
          <PersistentStrings>
             <PersistentString
@@ -129,7 +140,7 @@
          contextName = "closure #1 in FavoriteViewModel.loadFavoriteUsers():FavoriteViewModel.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.lastDoc ">
+               value = "snapshot!.documents.last">
             </PersistentString>
             <PersistentString
                value = "lastDoc ">
@@ -141,13 +152,13 @@
                value = "snapshot!.documents">
             </PersistentString>
             <PersistentString
+               value = "self.lastDoc ">
+            </PersistentString>
+            <PersistentString
                value = "dict">
             </PersistentString>
             <PersistentString
                value = " ActiveVote.init(fromDictionary: dict)">
-            </PersistentString>
-            <PersistentString
-               value = "snapshot!.documents.last">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -182,10 +193,38 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "observer.moveCards():observer.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.cardViews">
+            </PersistentString>
+            <PersistentString
+               value = "self.index % self.users.count">
+            </PersistentString>
+            <PersistentString
+               value = "self.users.count">
+            </PersistentString>
+            <PersistentString
+               value = "self.last ">
+            </PersistentString>
+            <PersistentString
+               value = "index">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in FavoriteViewModel.updateFavoriteUsers():FavoriteViewModel.swift">
          <PersistentStrings>
             <PersistentString
                value = "self.lastDoc">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "static StorageService.saveUser(userId:username:email:age:storageAvatarRef:gender:onSuccess:onError:):StorageService.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "User.currentUserProfile()">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -200,6 +239,9 @@
       <ContextState
          contextName = "FavoriteViewModel.addToMyList(user:):FavoriteViewModel.swift">
          <PersistentStrings>
+            <PersistentString
+               value = "user.id">
+            </PersistentString>
             <PersistentString
                value = "User.currentUser()!.id">
             </PersistentString>
@@ -276,10 +318,10 @@
          contextName = "ExpandView.persist():ExpandView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.user.attrNames">
+               value = "self.buttonPressed">
             </PersistentString>
             <PersistentString
-               value = "self.buttonPressed">
+               value = "self.user.attrNames">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -348,10 +390,10 @@
                value = "self.uploadComplete">
             </PersistentString>
             <PersistentString
-               value = "self.$uploadComplete">
+               value = "uploadComplete">
             </PersistentString>
             <PersistentString
-               value = "uploadComplete">
+               value = "self.$uploadComplete">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

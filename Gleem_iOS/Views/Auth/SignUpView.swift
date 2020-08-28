@@ -29,7 +29,10 @@ struct SignUpView: View {
     @State private var activeAlert: ActiveAlert = .first
     //    @State var misMatchPassword : Bool = false
     //    @State var filloutError : Bool = false
-    
+    @ObservedObject var lm = LocationManager()
+    var latitude: String  { return("\(lm.location?.latitude ?? 0)") }
+    var longitude: String { return("\(lm.location?.longitude ?? 0)") }
+    var placemark: String { return("\(lm.placemark?.locality ?? DEFAULT_LOCATION)") }
     func signUp() {
         //        self.showLoader.toggle()
         //        if signupViewModel.imageData.isEmpty {
@@ -65,7 +68,7 @@ struct SignUpView: View {
         
         
         
-        signupViewModel.signup(username: signupViewModel.username, email: signupViewModel.email, password: signupViewModel.password, age: signupViewModel.age, gender: self.gender,  completed: { (user) in
+        signupViewModel.signup(username: signupViewModel.username, email: signupViewModel.email, password: signupViewModel.password, age: signupViewModel.age, gender: self.gender,   location: self.placemark, occupation: "",  longitude: self.longitude, latitude: self.latitude, description: "",  completed: { (user) in
             print("SignUp \(user.email)")
             //            self.showLoader.toggle()
             self.finishSignUp = true
