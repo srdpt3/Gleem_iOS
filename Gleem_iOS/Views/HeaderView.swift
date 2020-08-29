@@ -41,14 +41,14 @@ struct HeaderView: View {
             //                        InfoView()
             //                    }
             
-            Spacer()
+            Spacer(minLength: 70)
             
             Image(APP_LOGO)
                 .resizable()
                 .scaledToFit()
                 .frame(height: 40).padding(.leading, 40)
             
-            Spacer(minLength: 20)
+            Spacer(minLength: 0)
             
             
             LottieView(filename: "noti").frame(width: 50, height: 50).onTapGesture {
@@ -84,8 +84,8 @@ struct HeaderView: View {
                     
                 }
             }) {
-                Image("menu").resizable().frame(width: 20, height: 20)
-                    .font(.system(size: 24, weight: .regular)).foregroundColor(APP_THEME_COLOR)
+                   Image(systemName: "person")
+                               .font(.system(size: 24, weight: .regular)).foregroundColor(APP_THEME_COLOR)
             }.buttonStyle(PlainButtonStyle())
             
             

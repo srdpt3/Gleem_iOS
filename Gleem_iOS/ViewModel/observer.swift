@@ -222,18 +222,18 @@ class observer : ObservableObject{
         
 //        Filtering
 //                if(!votedCards.isEmpty && !users.isEmpty){
-//        
+//
 //                    for index in (0..<users.count).reversed() {
 //                        let u = users[index]
 //                        if votedCards.contains(u.id){
 //                            users.remove(at: index)
 //                            print("contained  \(u.id)")
 //                        }
-//        
+//
 //                    }
-//        
+//
 //                    print("filtered User : \(users.count)")
-//        
+//
 //                }
         
         if(!users.isEmpty){
@@ -322,7 +322,8 @@ class observer : ObservableObject{
                             //                        self.send()
                             self.setNotification(msg:"누군가 나에게 끌림을 주었습니다")
                             self.updateRead(docId: decoderActivity.activityId)
-                            print("liked")
+                             print("added liked notification")
+
                             
                         }else if(decoderActivity.type == "match"){
                             //                        self.send()
@@ -335,9 +336,7 @@ class observer : ObservableObject{
                     }
                     
                     print(decoderActivity.activityId)
-                    
-                    
-                    
+                                        
                     self.activityArray.append(decoderActivity)
                 case .modified:
                     print("type: modified")
@@ -349,7 +348,7 @@ class observer : ObservableObject{
                             //                        self.send()
                             self.setNotification(msg:"누군가 나에게 끌림을 주었습니다")
                             self.updateRead(docId: decoderActivity.activityId)
-                            print("liked")
+                            print("modified liked notification")
                             
                         }else if(decoderActivity.type == "match"){
                             //                        self.send()
