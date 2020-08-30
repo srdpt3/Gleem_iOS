@@ -28,13 +28,14 @@ struct subMainView : View {
             if self.index == 0{
                 CardListview()
             }
+        
             else if self.index == 1{
-                MyStaticView()
-                //                         .environmentObject(self.obs)
-            }
-            else if self.index == 2{
                 FavoriteView()
             }
+                else if self.index == 2{
+                            MyStaticView()
+                            //                         .environmentObject(self.obs)
+                        }
             else if self.index == 3{
                 MessagesView()
             }
@@ -95,6 +96,9 @@ struct CircleTab : View {
             
             Spacer(minLength: 10)
             
+
+            
+            
             Button(action: {
                 
                 self.index = 1
@@ -104,38 +108,6 @@ struct CircleTab : View {
                 VStack{
                     
                     if self.index != 1{
-                        
-                        Image("Statistics").resizable().frame(width: 19, height: 19).foregroundColor(Color.black.opacity(0.2)).font(.caption).foregroundColor(.gray)
-                    }
-                    else{
-                        
-                        Image("Statistics")
-                            .resizable()
-                            .frame(width: 15 , height: 15)
-                            .foregroundColor(.white)
-                            .padding()
-                            .background(APP_THEME_COLOR)
-                            .clipShape(Circle())
-                            .offset(y: -15)
-                            .padding(.bottom, -20)
-                        
-                        Text(index2).font(.custom(FONT, size: CGFloat(TABBAR_FONT_SIZE))).foregroundColor(Color.black.opacity(0.7)).font(.caption).foregroundColor(.gray)
-                    }
-                }
-            }
-            
-            Spacer(minLength: 10)
-            
-            
-            Button(action: {
-                
-                self.index = 2
-                
-            }) {
-                
-                VStack{
-                    
-                    if self.index != 2{
                         
                         Image("fav").resizable().frame(width: 19, height: 19).foregroundColor(Color.black.opacity(0.2))
                     }
@@ -151,13 +123,42 @@ struct CircleTab : View {
                             .offset(y: -15)
                             .padding(.bottom, -20)
                         
+                        Text(index2).font(.custom(FONT, size: CGFloat(TABBAR_FONT_SIZE))).foregroundColor(Color.black.opacity(0.7)).font(.caption).foregroundColor(.gray)
+                    }
+                }
+            }
+            
+            Spacer(minLength: 10)
+            Button(action: {
+                
+                self.index = 2
+                
+            }) {
+                
+                VStack{
+                    
+                    if self.index != 2{
+                        
+                        Image("Statistics").resizable().frame(width: 19, height: 19).foregroundColor(Color.black.opacity(0.2)).font(.caption).foregroundColor(.gray)
+                    }
+                    else{
+                        
+                        Image("Statistics")
+                            .resizable()
+                            .frame(width: 15 , height: 15)
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(APP_THEME_COLOR)
+                            .clipShape(Circle())
+                            .offset(y: -15)
+                            .padding(.bottom, -20)
+                        
                         Text(index3).font(.custom(FONT, size: CGFloat(TABBAR_FONT_SIZE))).foregroundColor(Color.black.opacity(0.7)).font(.caption).foregroundColor(.gray)
                     }
                 }
             }
             
             Spacer(minLength: 10)
-            
             Button(action: {
                 
                 self.index = 3

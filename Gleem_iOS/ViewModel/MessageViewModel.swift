@@ -127,9 +127,9 @@ class MessageViewModel: ObservableObject {
             }
             
         }
-        ZStack {
-            LoadingView2(filename: "break-heart")
-        }
+//        ZStack {
+//            LoadingView2(filename: "break-heart")
+//        }
         //
         
     }

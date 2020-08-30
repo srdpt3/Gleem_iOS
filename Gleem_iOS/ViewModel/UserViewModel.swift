@@ -60,6 +60,7 @@ func saveUserLocationLocally(mUserDictionary: NSDictionary) {
     print("Saved User Profile Locally")
     UserDefaults.standard.set(mUserDictionary, forKey: "currentUserProfile")
     UserDefaults.standard.synchronize()
+    
 }
 
 

@@ -26,8 +26,8 @@ public let BANNER_UNIT_ID = "ca-app-pub-1790336833303238/5428347738"
 
 // Tabbar
 public let index1 = "카드"
-public let index2 = "내 이미지"
-public let index3 = "호감"
+public let index3 = "내 이미지"
+public let index2 = "호감"
 public let index4 = "채팅"
 public let TABBAR_FONT_SIZE = 13
 

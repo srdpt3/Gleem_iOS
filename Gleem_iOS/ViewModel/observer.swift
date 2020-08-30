@@ -35,6 +35,8 @@ class observer : ObservableObject{
     @Published var isLoggedIn = false
     
     @Published var votedCards = [String]()
+    @Published var readActivity = [String]()
+    
     @Published var updateVoteImage : Bool = false
     @ObservedObject var lm = LocationManager()
     
@@ -91,10 +93,10 @@ class observer : ObservableObject{
     
     func listenAuthenticationState() {
         resetDefaults()
-            URLCache.shared.removeAllCachedResponses()
+        URLCache.shared.removeAllCachedResponses()
         handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
             if let user = user {
-                
+                self.isLoggedIn = true
                 print("listenAuthenticationState \(user.uid)")
                 let firestoreUserId = Ref.FIRESTORE_DOCUMENT_USERID(userId: user.uid)
                 firestoreUserId.getDocument { (document, error) in
@@ -103,34 +105,36 @@ class observer : ObservableObject{
                         //                        guard let decoderUser = try? User.init(fromDictionary: dict) else {return}
                         guard let decoderUser = try? User.init(_dictionary: dict as NSDictionary) else {return}
                         guard let dictUser = try? decoderUser.toDictionary() else {return}
-
+                        
                         saveUserLocally(mUserDictionary: dictUser as NSDictionary)
                         
                         self.checkUserUploadVote()
                         
-                        self.loadActivities()
                         self.getNewCards()
                         
                         let batch = Ref.FIRESTORE_ROOT.batch()
-
+                        
                         
                         let userLocationRef = Ref.FIRESTORE_DOCUMENT_USER_LOCATION(userId: decoderUser.id)
                         let userProfile = UserProfile.init(id: decoderUser.id, email: decoderUser.email, profileImageUrl: decoderUser.profileImageUrl, username: decoderUser.username, age: decoderUser.age, sex: decoderUser.sex, createdDate:  Date().timeIntervalSince1970, point_avail: INITIAL_POINT, location: self.placemark, occupation: "",  longitude: self.longitude, latitude: self.latitude, description: "")
-                         guard let dict2 = try? userProfile.toDictionary() else {return}
+                        guard let dict2 = try? userProfile.toDictionary() else {return}
                         
                         saveUserLocationLocally(mUserDictionary: dict2 as NSDictionary)
+                        
+                        
                         batch.setData(dict2, forDocument: userLocationRef)
-
+                        
                         batch.commit() { err in
-                               if let err = err {
-                                   print("Error writing batch \(err)")
-                               } else {
-                                   print("Batch persistMatching write succeeded.")
-                                   
-                               }
-                           }
-                           self.isLoggedIn = true
+                            if let err = err {
+                                print("Error writing batch \(err)")
+                            } else {
+                                print("Batch persistMatching write succeeded.")
+                                self.loadActivities()
 
+                            }
+                        }
+                        
+                        
                     }
                 }
                 
@@ -162,7 +166,7 @@ class observer : ObservableObject{
                 print("reload")
                 
                 self.getNewCards()
-//                self.index = 2
+                //                self.index = 2
             }else{
                 
                 let u = self.users[self.index % self.users.count]
@@ -220,21 +224,21 @@ class observer : ObservableObject{
     func createCardView(){
         self.cardViews.removeAll()
         
-//        Filtering
-//                if(!votedCards.isEmpty && !users.isEmpty){
-//
-//                    for index in (0..<users.count).reversed() {
-//                        let u = users[index]
-//                        if votedCards.contains(u.id){
-//                            users.remove(at: index)
-//                            print("contained  \(u.id)")
-//                        }
-//
-//                    }
-//
-//                    print("filtered User : \(users.count)")
-//
-//                }
+        //        Filtering
+        //                if(!votedCards.isEmpty && !users.isEmpty){
+        //
+        //                    for index in (0..<users.count).reversed() {
+        //                        let u = users[index]
+        //                        if votedCards.contains(u.id){
+        //                            users.remove(at: index)
+        //                            print("contained  \(u.id)")
+        //                        }
+        //
+        //                    }
+        //
+        //                    print("filtered User : \(users.count)")
+        //
+        //                }
         
         if(!users.isEmpty){
             var indexRange = 0
@@ -300,13 +304,16 @@ class observer : ObservableObject{
     
     func loadActivities() {
         //        isLoading = true
+        //        var matched: Bool = false
+        //        var liked : Bool = false
+        //
         
         listener = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: User.currentUser()!.id).collection("activity").order(by: "date", descending: true).addSnapshotListener({ (querySnapshot, error) in
             guard let snapshot = querySnapshot else {
                 return
             }
             self.activityArray.removeAll()
-            
+            self.readActivity.removeAll()
             snapshot.documentChanges.forEach { (documentChange) in
                 switch documentChange.type {
                 case .added:
@@ -319,24 +326,30 @@ class observer : ObservableObject{
                     
                     if(!decoderActivity.read) {
                         if(decoderActivity.type == "like"){
-                            //                        self.send()
-                            self.setNotification(msg:"누군가 나에게 끌림을 주었습니다")
-                            self.updateRead(docId: decoderActivity.activityId)
-                             print("added liked notification")
-
+                            if(!self.readActivity.contains(decoderActivity.activityId)){
+                                self.setNotification(msg:"누군가 나에게 끌림을 주었습니다")
+                                self.updateRead(docId: decoderActivity.activityId)
+                                print("liked liked notification")
+                                self.readActivity.append(decoderActivity.activityId)
+                            }
+                            
                             
                         }else if(decoderActivity.type == "match"){
-                            //                        self.send()
-                            self.setNotification(msg:"축하해요! 이성과 연결이 되었습니다.")
-                            print("matched")
-                            self.updateRead(docId: decoderActivity.activityId)
+                            if(!self.readActivity.contains(decoderActivity.activityId)){
+                                self.setNotification(msg:"축하해요! 이성과 연결이 되었습니다.")
+                                print("added matched notification")
+                                self.updateRead(docId: decoderActivity.activityId)
+                                self.readActivity.append(decoderActivity.activityId)
+                                
+                            }
+                            
                             
                         }
                         
                     }
                     
                     print(decoderActivity.activityId)
-                                        
+                    
                     self.activityArray.append(decoderActivity)
                 case .modified:
                     print("type: modified")
@@ -345,16 +358,23 @@ class observer : ObservableObject{
                     
                     if(!decoderActivity.read) {
                         if(decoderActivity.type == "like"){
-                            //                        self.send()
-                            self.setNotification(msg:"누군가 나에게 끌림을 주었습니다")
-                            self.updateRead(docId: decoderActivity.activityId)
-                            print("modified liked notification")
+                            if(!self.readActivity.contains(decoderActivity.activityId)){
+                                self.setNotification(msg:"누군가 나에게 끌림을 주었습니다")
+                                self.updateRead(docId: decoderActivity.activityId)
+                                print("modified liked notification")
+                                self.readActivity.append(decoderActivity.activityId)
+                            }
+                            
                             
                         }else if(decoderActivity.type == "match"){
-                            //                        self.send()
-                            self.setNotification(msg:"축하해요! 이성과 연결이 되었습니다.")
-                            print("matched")
-                            self.updateRead(docId: decoderActivity.activityId)
+                            if(!self.readActivity.contains(decoderActivity.activityId)){
+                                self.setNotification(msg:"축하해요! 이성과 연결이 되었습니다.")
+                                print("matched")
+                                self.updateRead(docId: decoderActivity.activityId)
+                                self.readActivity.append(decoderActivity.activityId)
+                                
+                            }
+                            
                             
                         }
                         
@@ -364,6 +384,23 @@ class observer : ObservableObject{
                 }
                 
             }
+            //
+            //            if(liked){
+            //
+            //                self.setNotification(msg:"누군가 나에게 끌림을 주었습니다")
+            //                print("liked notification")
+            //                liked = false
+            //
+            //
+            //            }
+            //            if(matched){
+            //                //                        self.send()
+            //                self.setNotification(msg:"축하해요! 이성과 연결이 되었습니다.")
+            //                print("matched notification")
+            //                matched = false
+            //
+            //            }
+            
             
         })
         
@@ -379,6 +416,19 @@ class observer : ObservableObject{
     
     func  updateRead(docId : String){
         let firestoreUserId = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: User.currentUser()!.id).collection("activity").document(docId)
+        firestoreUserId.updateData([
+            "read": true
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+    }
+    
+    func  updateReadAll(){
+        let firestoreUserId = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: User.currentUser()!.id).collection("activity").document()
         firestoreUserId.updateData([
             "read": true
         ]) { err in
