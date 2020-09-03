@@ -29,6 +29,7 @@
 		1153A79A24B97F6400CE3574 /* InitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153A79924B97F6400CE3574 /* InitialView.swift */; };
 		1153A7A924BA023F00CE3574 /* CustomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153A7A824BA023F00CE3574 /* CustomController.swift */; };
 		1153A7AF24BA9BD800CE3574 /* ActiveVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153A7AE24BA9BD800CE3574 /* ActiveVote.swift */; };
+		11607FBD24FF02BD00A243D0 /* ChatFlagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11607FBC24FF02BD00A243D0 /* ChatFlagView.swift */; };
 		11783E6C24B53BA500EEFE80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783E6B24B53BA500EEFE80 /* AppDelegate.swift */; };
 		11783E6E24B53BA500EEFE80 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783E6D24B53BA500EEFE80 /* SceneDelegate.swift */; };
 		11783E7124B53BA500EEFE80 /* Gleem_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11783E6F24B53BA500EEFE80 /* Gleem_iOS.xcdatamodeld */; };
@@ -173,6 +174,7 @@
 		1153A79924B97F6400CE3574 /* InitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialView.swift; sourceTree = "<group>"; };
 		1153A7A824BA023F00CE3574 /* CustomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomController.swift; sourceTree = "<group>"; };
 		1153A7AE24BA9BD800CE3574 /* ActiveVote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveVote.swift; sourceTree = "<group>"; };
+		11607FBC24FF02BD00A243D0 /* ChatFlagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatFlagView.swift; sourceTree = "<group>"; };
 		11783E6824B53BA500EEFE80 /* Gleem 데이팅.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gleem 데이팅.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11783E6B24B53BA500EEFE80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11783E6D24B53BA500EEFE80 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -548,6 +550,7 @@
 		11B5ECFC24BB9F480055700B /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				11607FBC24FF02BD00A243D0 /* ChatFlagView.swift */,
 				11B5ECF824BB9A150055700B /* ChatView.swift */,
 				11B5ECF424BB99C90055700B /* MessagesView.swift */,
 				11B5ECFE24BBAC700055700B /* CustomScrollView.swift */,
@@ -940,6 +943,7 @@
 				1189A19B24E621CE0042FE8D /* LocalNotificationManager.swift in Sources */,
 				11B5ED0924BD180A0055700B /* ActivityViewModel.swift in Sources */,
 				11B5ED2A24BE20F20055700B /* FlagView.swift in Sources */,
+				11607FBD24FF02BD00A243D0 /* ChatFlagView.swift in Sources */,
 				11B5ED2124BE08560055700B /* InfoView.swift in Sources */,
 				11783EB024B53CEC00EEFE80 /* StorageService.swift in Sources */,
 				1153A78824B966AE00CE3574 /* SigninViewModel.swift in Sources */,
@@ -1146,6 +1150,7 @@
 			baseConfigurationReference = 9FDF73EAA4ABFE54AE780B03 /* Pods-Gleem_iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Gleem_iOS/Preview Content\"";
 				DEVELOPMENT_TEAM = CSE9343A58;
@@ -1155,9 +1160,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.44;
+				MARKETING_VERSION = 1.51;
 				PRODUCT_BUNDLE_IDENTIFIER = gleem.dating;
 				PRODUCT_NAME = "Gleem 데이팅";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1168,6 +1174,7 @@
 			baseConfigurationReference = 8384F3EAD0379C150E4654DB /* Pods-Gleem_iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Gleem_iOS/Preview Content\"";
 				DEVELOPMENT_TEAM = CSE9343A58;
@@ -1177,9 +1184,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.44;
+				MARKETING_VERSION = 1.51;
 				PRODUCT_BUNDLE_IDENTIFIER = gleem.dating;
 				PRODUCT_NAME = "Gleem 데이팅";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

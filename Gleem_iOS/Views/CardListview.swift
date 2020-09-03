@@ -99,9 +99,7 @@ struct CardListview: View {
                     if(!self.obs.cardViews.isEmpty){
                         ForEach(self.obs.cardViews) { cardView in
                             cardView.zIndex(self.isTopCard(cardView: cardView) ? 1 : 0).onTapGesture {
-                                print("asdfasd")
                                 //                                self.showVotingScreen.toggle()
-                                
                                 if(self.obs.updateVoteImage){
                                     
                                     self.haptics.notificationOccurred(.success)

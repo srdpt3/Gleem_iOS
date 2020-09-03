@@ -34,17 +34,21 @@ struct HomeView : View {
 struct MessageSubView: View {
     @ObservedObject var messageViewModel = MessageViewModel()
     @State var doneChatting : Bool = false
+    @State var reportUser : Bool = false
+    
     @State var indexSet : IndexSet = IndexSet()
     @State  var showMessageView: Bool = false
     @State  var animatingModal: Bool = false
     @State var showFavoriteView : Bool = false
     @State var userID : String = ""
     @State var userNickName : String = ""
+    @State var rowNum : Int = 0
+    
     @EnvironmentObject  var obs : observer
     
     init(){
         self.messageViewModel.loadInboxMessages()
-
+        
     }
     var body: some View{
         ZStack{
@@ -52,10 +56,11 @@ struct MessageSubView: View {
             List {
                 if !messageViewModel.inboxMessages.isEmpty  {
                     
-                    ForEach(messageViewModel.inboxMessages, id: \.id) { inboxMessage in
+                    //                    ForEach(messageViewModel.inboxMessages, id: \.id) { inboxMessage in
+                    ForEach(Array(self.messageViewModel.inboxMessages.enumerated()), id: \.offset) { index, inboxMessage in
                         
-//                         recipientId: inboxMessage.userId, recipientAvatarUrl: inboxMessage.avatarUrl, recipientUsername: inboxMessage.username
-                        NavigationLink(destination:ChatView(recipient: inboxMessage))  {
+                        //                         recipientId: inboxMessage.userId, recipientAvatarUrl: inboxMessage.avatarUrl, recipientUsername: inboxMessage.username
+                        NavigationLink(destination:ChatView(recipient: inboxMessage,reportUser: self.$reportUser ,rowNum: self.$rowNum, id: index))  {
                             HStack {
                                 AnimatedImage(url: URL(string: inboxMessage.avatarUrl)!)
                                     .resizable()
@@ -76,7 +81,13 @@ struct MessageSubView: View {
                             }.padding(10)
                         }
                         
-                    }.onDelete(perform: delete)
+                    }
+                    .onDelete(perform: delete).onAppear{
+                        if(self.reportUser){
+                            self.removeUser(rowNum: self.rowNum)
+                            
+                        }
+                    }
                 } else{
                     
                     ZStack{
@@ -84,16 +95,18 @@ struct MessageSubView: View {
                     }
                     
                 }
-//                BannerAdView(bannerId: BANNER_UNIT_ID).frame(width: UIScreen.main.bounds.width, height: 60)
-
+                //                BannerAdView(bannerId: BANNER_UNIT_ID).frame(width: UIScreen.main.bounds.width, height: 60)
+                
             }.onDisappear {
                 
                 
             }.onAppear(){
-//                self.messageViewModel.loadInboxMessages()
-
+                //                self.messageViewModel.loadInboxMessages()
+                
             }
             .blur(radius: self.$doneChatting.wrappedValue ? 5 : 0, opaque: false)
+            
+            
             
             if self.doneChatting {
                 ZStack {
@@ -184,7 +197,7 @@ struct MessageSubView: View {
                         }
                         
                         Spacer()
-
+                        
                     }
                     .frame(minWidth: 260, idealWidth: 260, maxWidth: 300, minHeight: 140, idealHeight: 160, maxHeight: 200, alignment: .center)
                     .background(Color.white)
@@ -198,23 +211,34 @@ struct MessageSubView: View {
                     })
                 }
             }
-        
-          
-
+            
+            
+            
         }.navigationBarTitle("").navigationBarHidden(true)
- 
         
-    }
-    private func delete(with indexSet: IndexSet) {
-        let index = indexSet[indexSet.startIndex]
-        self.userNickName =   messageViewModel.inboxMessages[index].username
-        self.userID =   messageViewModel.inboxMessages[index].userId
-        
-        self.doneChatting = true
-        self.indexSet = indexSet
         
     }
     
+    
+    
+    private func delete(with indexSet: IndexSet) {
+        let index = indexSet[indexSet.startIndex]
+        self.userNickName = messageViewModel.inboxMessages[index].username
+        self.userID =   messageViewModel.inboxMessages[index].userId
+        self.doneChatting = true
+        self.indexSet = indexSet
+        
+        
+    }
+    
+    private func removeUser(rowNum:Int){
+        self.userID = self.messageViewModel.inboxMessages[rowNum].userId
+        print("reported user \(self.userID)")
+        self.reportUser  = false
+        self.messageViewModel.inboxMessages.remove(at: rowNum)
+       self.messageViewModel.leaveRoom(recipientId: self.userID)
+        
+    }
 }
 
 struct topView : View {
@@ -224,32 +248,32 @@ struct topView : View {
         VStack(alignment: .center){
             Spacer()
             Image("gleem_Face")
-                         .resizable()
-                         .scaledToFit()
-                         .frame(height: 40)
-//            HStack(spacing: 15){
-//                
-//                Text(MESSAGEVIEW_TITLE).fontWeight(.heavy).font(.system(size: 23))
-//                
-//                Spacer()
-//                //
-//                //                                Button(action: {
-//                //
-//                //                                }) {
-//                //
-//                //                                    Image(systemName: "magnifyingglass").resizable().frame(width: 20, height: 20)
-//                //                                }
-//                //
-//                //                                Button(action: {
-//                //
-//                //                                }) {
-//                //
-//                //                                    Image("menu").resizable().frame(width: 20, height: 20)
-//                //                                }
-//                
-//            }
-//            .foregroundColor(Color.white)
-//            .padding()
+                .resizable()
+                .scaledToFit()
+                .frame(height: 40)
+            //            HStack(spacing: 15){
+            //
+            //                Text(MESSAGEVIEW_TITLE).fontWeight(.heavy).font(.system(size: 23))
+            //
+            //                Spacer()
+            //                //
+            //                //                                Button(action: {
+            //                //
+            //                //                                }) {
+            //                //
+            //                //                                    Image(systemName: "magnifyingglass").resizable().frame(width: 20, height: 20)
+            //                //                                }
+            //                //
+            //                //                                Button(action: {
+            //                //
+            //                //                                }) {
+            //                //
+            //                //                                    Image("menu").resizable().frame(width: 20, height: 20)
+            //                //                                }
+            //
+            //            }
+            //            .foregroundColor(Color.white)
+            //            .padding()
             Text(NOTIFICATION_HEADER).font(Font.custom(FONT, size: 13)).foregroundColor(Color.white)
             
             GeometryReader{_ in

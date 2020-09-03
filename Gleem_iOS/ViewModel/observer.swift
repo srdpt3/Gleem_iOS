@@ -225,20 +225,20 @@ class observer : ObservableObject{
         self.cardViews.removeAll()
         
         //        Filtering
-        //                if(!votedCards.isEmpty && !users.isEmpty){
-        //
-        //                    for index in (0..<users.count).reversed() {
-        //                        let u = users[index]
-        //                        if votedCards.contains(u.id){
-        //                            users.remove(at: index)
-        //                            print("contained  \(u.id)")
-        //                        }
-        //
-        //                    }
-        //
-        //                    print("filtered User : \(users.count)")
-        //
-        //                }
+                        if(!votedCards.isEmpty && !users.isEmpty){
+        
+                            for index in (0..<users.count).reversed() {
+                                let u = users[index]
+                                if votedCards.contains(u.id){
+                                    users.remove(at: index)
+                                    print("contained  \(u.id)")
+                                }
+        
+                            }
+        
+                            print("filtered User : \(users.count)")
+        
+                        }
         
         if(!users.isEmpty){
             var indexRange = 0
@@ -309,12 +309,14 @@ class observer : ObservableObject{
         //
         
         listener = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: User.currentUser()!.id).collection("activity").order(by: "date", descending: true).addSnapshotListener({ (querySnapshot, error) in
+            self.activityArray.removeAll()
+                       self.readActivity.removeAll()
             guard let snapshot = querySnapshot else {
                 return
             }
-            self.activityArray.removeAll()
-            self.readActivity.removeAll()
+
             snapshot.documentChanges.forEach { (documentChange) in
+           
                 switch documentChange.type {
                 case .added:
                     //                    var activityArray = [Activity]()
@@ -347,38 +349,39 @@ class observer : ObservableObject{
                         }
                         
                     }
-                    
+                    self.updateRead(docId: decoderActivity.activityId)
+
                     print(decoderActivity.activityId)
-                    
+                    self.readActivity.append(decoderActivity.activityId)
                     self.activityArray.append(decoderActivity)
                 case .modified:
                     print("type: modified")
-                    let dict = documentChange.document.data()
-                    guard let decoderActivity = try? Activity.init(fromDictionary: dict) else {return}
-                    
-                    if(!decoderActivity.read) {
-                        if(decoderActivity.type == "like"){
-                            if(!self.readActivity.contains(decoderActivity.activityId)){
-                                self.setNotification(msg:"누군가 나에게 끌림을 주었습니다")
-                                self.updateRead(docId: decoderActivity.activityId)
-                                print("modified liked notification")
-                                self.readActivity.append(decoderActivity.activityId)
-                            }
-                            
-                            
-                        }else if(decoderActivity.type == "match"){
-                            if(!self.readActivity.contains(decoderActivity.activityId)){
-                                self.setNotification(msg:"축하해요! 이성과 연결이 되었습니다.")
-                                print("matched")
-                                self.updateRead(docId: decoderActivity.activityId)
-                                self.readActivity.append(decoderActivity.activityId)
-                                
-                            }
-                            
-                            
-                        }
-                        
-                    }
+//                    let dict = documentChange.document.data()
+//                    guard let decoderActivity = try? Activity.init(fromDictionary: dict) else {return}
+//
+//                    if(!decoderActivity.read) {
+//                        if(decoderActivity.type == "like"){
+//                            if(!self.readActivity.contains(decoderActivity.activityId)){
+//                                self.setNotification(msg:"누군가 나에게 끌림을 주었습니다")
+//                                self.updateRead(docId: decoderActivity.activityId)
+//                                print("modified liked notification")
+//                                self.readActivity.append(decoderActivity.activityId)
+//                            }
+//
+//
+//                        }else if(decoderActivity.type == "match"){
+//                            if(!self.readActivity.contains(decoderActivity.activityId)){
+//                                self.setNotification(msg:"축하해요! 이성과 연결이 되었습니다.")
+//                                print("matched")
+//                                self.updateRead(docId: decoderActivity.activityId)
+//                                self.readActivity.append(decoderActivity.activityId)
+//
+//                            }
+//
+//
+//                        }
+//
+//                    }
                 case .removed:
                     print("type: removed")
                 }
@@ -422,7 +425,7 @@ class observer : ObservableObject{
             if let err = err {
                 print("Error updating document: \(err)")
             } else {
-                print("Document successfully updated")
+                print("updateRead successfully updated")
             }
         }
     }

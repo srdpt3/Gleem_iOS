@@ -23,15 +23,15 @@ class FavoriteViewModel: ObservableObject {
     //    var splitted: [[User]] = []
     
     func addToMyList(user: ActiveVote) {
-        
+        self.isSucess = false
         guard let dict = try? user.toDictionary() else {return}
         let batch = Ref.FIRESTORE_ROOT.batch()
         
-        let likeRef = Ref.FIRESTORE_COLLECTION_LIKED_USERID(userId: User.currentUser()!.id,  userId2: user.id)
-        batch.setData(dict, forDocument: likeRef)
-        
+    
         if User.currentUser()!.id != user.id {
-            
+            let likeRef = Ref.FIRESTORE_COLLECTION_LIKED_USERID(userId: User.currentUser()!.id,  userId2: user.id)
+                batch.setData(dict, forDocument: likeRef)
+                
             //            let someoneLikeId = Ref.FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID(userId: user.id).collection("liked").document().documentID
             
             
@@ -57,19 +57,20 @@ class FavoriteViewModel: ObservableObject {
             
             
             print("Batch FIRESTORE_COLLECTION_ACTIVITY_USERID.")
-            
+            batch.commit() { err in
+                    if let err = err {
+                        print("Error writing batch \(err)")
+                    } else {
+                        print("Batch addToMyList write succeeded.")
+                        self.isSucess = true
+                        self.liked = true
+                    }
+                }
         }
         
+  
         
-        
-        batch.commit() { err in
-            if let err = err {
-                print("Error writing batch \(err)")
-            } else {
-                print("Batch addToMyList write succeeded.")
-                self.isSucess = true
-            }
-        }
+  
         
         
         

@@ -29,7 +29,7 @@ class MatchingApi{
         //        let activityId = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: user.userId).collection("activity").document().documentID
         let activityObject = Activity(activityId: User.currentUser()!.id+"match", type: "match", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: User.currentUser()!.profileImageUrl, message: "", date: Date().timeIntervalSince1970, read: false, age: user.age, location: user.location,occupation: user.occupation, description: user.description)
         guard let activityDict = try? activityObject.toDictionary() else { return }
-        let activityRef  = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: user.userId).collection("activity").document( User.currentUser()!.id+"_match")
+        let activityRef  = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: user.userId).collection("activity").document( User.currentUser()!.id+"match")
         batch.setData(activityDict, forDocument: activityRef)
         
         

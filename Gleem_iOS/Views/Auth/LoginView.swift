@@ -133,7 +133,7 @@ struct LoginView: View {
                         
                         
                         SigninButton(action: signIn, label: TEXT_SIGN_IN).alert(isPresented: $signinViewModel.showAlert) {
-                            Alert(title: Text("에러"), message: Text(self.signinViewModel.errorString), dismissButton: .default(Text(CONFIRM), action: {
+                            Alert(title: Text(ERROR), message: Text(self.signinViewModel.errorString), dismissButton: .default(Text(CONFIRM), action: {
                                 
                             }))
                             

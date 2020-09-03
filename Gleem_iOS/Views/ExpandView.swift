@@ -96,14 +96,19 @@ struct ExpandView: View {
         if(User.currentUser() != nil){
             if(self.favoriteViewModel.liked){
                 self.favoriteViewModel.removeFromList(id: user.id)
+                 self.favoriteViewModel.liked = false
             }else{
                 
                 // Add to the list
                 if(self.updateVoteImage){
                     self.favoriteViewModel.addToMyList(user: user)
+                        self.favoriteViewModel.liked = true
+                    
+                    
+                     
                 }
             }
-            self.favoriteViewModel.liked.toggle()
+          
             
         }
     }
