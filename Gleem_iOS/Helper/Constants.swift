@@ -19,7 +19,7 @@ let APP_LOGO = "gleem_resized"
 let COLOR_LIGHT_GRAY = Color(red: 0, green: 0, blue: 0, opacity: 0.15)
 let APP_THEME_COLOR = Color("Color2")
 
-let INITIAL_POINT = 500
+let INITIAL_POINT = 2000
 let POINT_USE = 10
 let DEFAULT_LOCATION = "대한민국"
 public let BANNER_UNIT_ID = "ca-app-pub-1790336833303238/5428347738"
@@ -107,6 +107,7 @@ let IMAGE_PHOTO = "plus.circle"
 //CARD VIEW
 
 public let NO_NEW_CARD = "새로운 카드가 없습니다. \n잠시 후에 다시 접속해주세요"
+public let NO_CONNECTION = "인터넷 접속이 원활하지 않습니다"
 
 
 // FOOTER VIEW
