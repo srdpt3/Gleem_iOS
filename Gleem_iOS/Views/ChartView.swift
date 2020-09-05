@@ -187,7 +187,7 @@ struct ChartView: UIViewRepresentable {
             .dataLabelsFontWeight(AAChartFontWeightType.bold)
             //            .marginRight(5)
             //            .marginLeft(5)
-            .marginBottom(50)
+            .margin(top: 0, right: 0, bottom: 50, left: 0)
             .backgroundColor(Color.black.opacity(0.06))
             //            .titleFontWeight(AAChartFontWeightType)
             .series([
@@ -195,9 +195,7 @@ struct ChartView: UIViewRepresentable {
                     .data([data[0],data[1],data[2],data[3],data[4]]),
                 
                 
-            ])
-            .yAxisMax(Float(totalNum))
-            .yAxisVisible(true)
+            ]) .yAxisMax(Double(totalNum)).yAxisVisible(true).touchEventEnabled(true)
         
         
         aaChartView.aa_drawChartWithChartModel(aaChartModel)

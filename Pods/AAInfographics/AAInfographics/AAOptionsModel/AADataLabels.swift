@@ -37,6 +37,7 @@ public class AADataLabels: AAObject {
     public var align: String?
     public var style: AAStyle?
     public var format: String?
+    public var formatter: String?
     public var rotation: Float?
     public var allowOverlap: Bool?
     public var useHTML: Bool?
@@ -75,6 +76,14 @@ public class AADataLabels: AAObject {
     @discardableResult
     public func format(_ prop: String?) -> AADataLabels {
         format = prop
+        return self
+    }
+    
+    @discardableResult
+    public func formatter(_ prop: String?) -> AADataLabels {
+        if prop != nil {
+            formatter = prop!.aa_toPureJSString()
+        }
         return self
     }
     
@@ -175,7 +184,7 @@ public class AADataLabels: AAObject {
     }
     
     public override init() {
-        
+        enabled = true
     }
 }
 
@@ -213,5 +222,27 @@ public class AAStyle: AAObject {
     
     public override init() {
         
+    }
+}
+
+public extension AAStyle {
+    convenience init(color : String?) {
+        self.init(color: color, fontSize: nil)
+    }
+    
+    convenience init(color : String?, fontSize: Float?) {
+        self.init(color: color, fontSize: fontSize,weight: nil)
+    }
+    
+    convenience init(color : String?, fontSize: Float?, weight: AAChartFontWeightType?) {
+      self.init(color: color, fontSize: fontSize,weight: weight, outline: nil)
+    }
+    
+    convenience init(color : String?, fontSize: Float?, weight: AAChartFontWeightType?, outline: String?) {
+        self.init()
+        self.color(color)
+        .fontSize(fontSize)
+        .fontWeight(weight)
+        .textOutline(outline)
     }
 }

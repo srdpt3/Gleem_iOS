@@ -1161,7 +1161,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.52;
+				MARKETING_VERSION = 1.57;
 				PRODUCT_BUNDLE_IDENTIFIER = gleem.dating;
 				PRODUCT_NAME = "Gleem 데이팅";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1186,7 +1186,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.52;
+				MARKETING_VERSION = 1.57;
 				PRODUCT_BUNDLE_IDENTIFIER = gleem.dating;
 				PRODUCT_NAME = "Gleem 데이팅";
 				PROVISIONING_PROFILE_SPECIFIER = "";

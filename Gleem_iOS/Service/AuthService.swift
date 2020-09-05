@@ -52,7 +52,7 @@ class AuthService {
         let firestoreUserId = Ref.FIRESTORE_DOCUMENT_USERID(userId: userId)
         firestoreUserId.getDocument { (document, error) in
             if let dict = document?.data() {
-                guard let decoderUser = try? User.init(_dictionary: dict as NSDictionary) else {return}
+//                guard let decoderUser = try? User.init(_dictionary: dict as NSDictionary) else {return}
                 saveUserLocally(mUserDictionary: dict as NSDictionary)
                 print("Save Locally")
             }
