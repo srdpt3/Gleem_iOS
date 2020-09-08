@@ -38,8 +38,13 @@ struct FavoriteHome : View {
     let haptics = UINotificationFeedbackGenerator()
     
     init() {
-        self.favoriteViewModel.loadFavoriteUsers()
-        self.activityViewModel.loadSomeOneLike()
+        if(Reachabilty.HasConnection()){
+            
+                  self.favoriteViewModel.loadFavoriteUsers()
+                  self.activityViewModel.loadSomeOneLike()
+        }
+
+      
     }
     
     

@@ -227,20 +227,20 @@ class observer : ObservableObject{
         self.cardViews.removeAll()
         
         //        Filtering
-        if(!votedCards.isEmpty && !users.isEmpty){
-            
-            for index in (0..<users.count).reversed() {
-                let u = users[index]
-                if votedCards.contains(u.id){
-                   users.remove(at: index)
-                    print("contained  \(u.id)")
-                }
-                
-            }
-            
-            print("filtered User : \(users.count)")
-            
-        }
+//        if(!votedCards.isEmpty && !users.isEmpty){
+//            
+//            for index in (0..<users.count).reversed() {
+//                let u = users[index]
+//                if votedCards.contains(u.id){
+//                   users.remove(at: index)
+//                    print("contained  \(u.id)")
+//                }
+//                
+//            }
+//            
+//            print("filtered User : \(users.count)")
+//            
+//        }
         
         if(!users.isEmpty){
             var indexRange = 0
@@ -269,7 +269,7 @@ class observer : ObservableObject{
         let whereField = User.currentUser()!.sex == "female" ? "male" : "female"
         
         Ref.FIRESTORE_COLLECTION_ACTIVE_VOTE.whereField("sex", isEqualTo: whereField )
-            .limit(to: 30)
+            .limit(to: 30).whereField("approved",isEqualTo: true)
             //            .order(by: "createdDate",descending: true)
             .getDocuments { (snap, err) in
                 self.users.removeAll()

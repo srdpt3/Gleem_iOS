@@ -309,9 +309,9 @@ struct chatTopview : View {
                 }) {
                     
                     Image(systemName: "control").font(.title).rotationEffect(.init(degrees: -90)).padding()
-                }.padding(.leading,15)
+                }.padding(.leading,5)
                 
-                Spacer(minLength:  80)
+                Spacer(minLength: 100)
                 
                 VStack(alignment: .center,  spacing: 5){
                     
@@ -324,7 +324,7 @@ struct chatTopview : View {
                     
                 }.padding(.bottom,5)
                 
-                Spacer(minLength:  55)
+                Spacer(minLength:  35)
                 
                 HStack(alignment: .center, spacing: 10){
                     

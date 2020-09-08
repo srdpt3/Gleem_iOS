@@ -52,62 +52,67 @@ struct MessageSubView: View {
     }
     var body: some View{
         ZStack{
+       
+   
+            if(Reachabilty.HasConnection()){
+                List {
+                     if !messageViewModel.inboxMessages.isEmpty  {
+                         
+                         //                    ForEach(messageViewModel.inboxMessages, id: \.id) { inboxMessage in
+                         ForEach(Array(self.messageViewModel.inboxMessages.enumerated()), id: \.offset) { index, inboxMessage in
+                             
+                             //                         recipientId: inboxMessage.userId, recipientAvatarUrl: inboxMessage.avatarUrl, recipientUsername: inboxMessage.username
+                             NavigationLink(destination:ChatView(recipient: inboxMessage,reportUser: self.$reportUser ,rowNum: self.$rowNum, id: index))  {
+                                 HStack {
+                                     AnimatedImage(url: URL(string: inboxMessage.avatarUrl)!)
+                                         .resizable()
+                                         .aspectRatio(contentMode: .fill)
+                                         .clipShape(Circle())
+                                         .frame(width: 50, height: 50)
+                                     VStack(alignment: .leading, spacing: 5) {
+                                         Text(inboxMessage.username).font(.headline).bold()
+                                         Text(inboxMessage.lastMessage).font(.custom(FONT, size: 13)).foregroundColor(Color.black.opacity(0.7)).lineLimit(2)
+                                     }
+                                     Spacer()
+                                     VStack(spacing: 5) {
+                                         Text(timeAgoSinceDate(Date(timeIntervalSince1970: inboxMessage.date), currentDate: Date(), numericDates: true)).font(.caption).padding(.leading, 15)
+                                     }
+                                     
+                                     
+                                     
+                                 }.padding(10)
+                             }
+                             
+                         }
+                         .onDelete(perform: delete).onAppear{
+                             if(self.reportUser){
+                                 self.removeUser(rowNum: self.rowNum)
+                                 
+                             }
+                         }
+                     } else{
+                         
+                         ZStack{
+                             EmptyChattingView()
+                         }
+                         
+                     }
+                     //                BannerAdView(bannerId: BANNER_UNIT_ID).frame(width: UIScreen.main.bounds.width, height: 60)
+                     
+                 }.onAppear(){
+                     //                self.messageViewModel.loadInboxMessages()
+                 }
+                 .blur(radius: self.$doneChatting.wrappedValue ? 5 : 0, opaque: false)
+                 
             
-            List {
-                if !messageViewModel.inboxMessages.isEmpty  {
-                    
-                    //                    ForEach(messageViewModel.inboxMessages, id: \.id) { inboxMessage in
-                    ForEach(Array(self.messageViewModel.inboxMessages.enumerated()), id: \.offset) { index, inboxMessage in
-                        
-                        //                         recipientId: inboxMessage.userId, recipientAvatarUrl: inboxMessage.avatarUrl, recipientUsername: inboxMessage.username
-                        NavigationLink(destination:ChatView(recipient: inboxMessage,reportUser: self.$reportUser ,rowNum: self.$rowNum, id: index))  {
-                            HStack {
-                                AnimatedImage(url: URL(string: inboxMessage.avatarUrl)!)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .clipShape(Circle())
-                                    .frame(width: 50, height: 50)
-                                VStack(alignment: .leading, spacing: 5) {
-                                    Text(inboxMessage.username).font(.headline).bold()
-                                    Text(inboxMessage.lastMessage).font(.custom(FONT, size: 13)).foregroundColor(Color.black.opacity(0.7)).lineLimit(2)
-                                }
-                                Spacer()
-                                VStack(spacing: 5) {
-                                    Text(timeAgoSinceDate(Date(timeIntervalSince1970: inboxMessage.date), currentDate: Date(), numericDates: true)).font(.caption).padding(.leading, 15)
-                                }
-                                
-                                
-                                
-                            }.padding(10)
-                        }
-                        
-                    }
-                    .onDelete(perform: delete).onAppear{
-                        if(self.reportUser){
-                            self.removeUser(rowNum: self.rowNum)
-                            
-                        }
-                    }
-                } else{
-                    
-                    ZStack{
-                        EmptyChattingView()
-                    }
-                    
-                }
-                //                BannerAdView(bannerId: BANNER_UNIT_ID).frame(width: UIScreen.main.bounds.width, height: 60)
                 
-            }.onDisappear {
-                
-                
-            }.onAppear(){
-                //                self.messageViewModel.loadInboxMessages()
-                
+            }else{
+                ZStack{
+                                           EmptyChattingView()
+                                       }
             }
-            .blur(radius: self.$doneChatting.wrappedValue ? 5 : 0, opaque: false)
-            
-            
-            
+ 
+      
             if self.doneChatting {
                 ZStack {
                     

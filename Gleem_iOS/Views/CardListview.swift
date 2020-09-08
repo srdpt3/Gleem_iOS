@@ -94,151 +94,181 @@ struct CardListview: View {
                 //                Spacer()
                 ZStack{
                     if(Reachabilty.HasConnection()){
-                        if(!self.obs.cardViews.isEmpty){
-                            ForEach(self.obs.cardViews) { cardView in
-                                cardView.zIndex(self.isTopCard(cardView: cardView) ? 1 : 0).onTapGesture {
-                                    //                                self.showVotingScreen.toggle()
-                                    if(self.obs.updateVoteImage){
-                                        
-                                        self.haptics.notificationOccurred(.success)
-                                        
-                                        //                self.fireworkController.addFirework(sparks: 10)
-                                        withAnimation{
-                                            self.showVotingScreen.toggle()
+                        
+                        if(!self.obs.isVoteLoading){
+                            if(!self.obs.cardViews.isEmpty){
+                                ForEach(self.obs.cardViews) { cardView in
+                                    cardView.zIndex(self.isTopCard(cardView: cardView) ? 1 : 0).onTapGesture {
+                                        //                                self.showVotingScreen.toggle()
+                                        if(self.obs.updateVoteImage){
+                                            
+                                            self.haptics.notificationOccurred(.success)
+                                            
+                                            //                self.fireworkController.addFirework(sparks: 10)
+                                            withAnimation{
+                                                self.showVotingScreen.toggle()
+                                            }
                                         }
+                                        
+                                        
                                     }
+                                        //                                .overlay(
+                                        //                                    ZStack {
+                                        //                                        // X-MARK SYMBOL
+                                        //                                        //                              Image(systemName: "x.circle")
+                                        //                                        //                                .modifier(SymbolModifier())
+                                        //                                        //                                .opacity(self.dragState.translation.width < -self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
+                                        //                                        //
+                                        //                                        // HEART SYMBOL
+                                        //
+                                        //                                        if(self.isVoted){
+                                        //                                            Image(systemName: "heart.circle")
+                                        //                                                .modifier(SymbolModifier())
+                                        //                                                .opacity(self.dragState.translation.width > self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
+                                        //                                        }else{
+                                        //                                            Text("사진 첫인상 투표를 \n먼저해주세요 ㅠㅠ").foregroundColor(Color.white)
+                                        //                                                .font(.custom(FONT, size: CGFloat(25)))
+                                        //                                                .opacity(self.dragState.translation.width > self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
+                                        //                                        }
+                                        //
+                                        //                                    }
+                                        //                            )
+                                        .offset(x: self.isTopCard(cardView: cardView) ?  self.dragState.translation.width : 0, y: self.isTopCard(cardView: cardView) ?  self.dragState.translation.height : 0)
+                                        .scaleEffect(self.dragState.isDragging && self.isTopCard(cardView: cardView) ? 0.85 : 1.0)
+                                        .rotationEffect(Angle(degrees: self.isTopCard(cardView: cardView) ? Double(self.dragState.translation.width / 12) : 0))
+                                        .animation(Animation.spring(response: 0.7, dampingFraction: 1.0, blendDuration: 1.0))
+                                    //                                .animation(.interpolatingSpring(stiffness: 150, damping: 130))
+                                    //                              .animation(Animation.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0))
+                                    //                                .animation(.easeInOut(duration: 3))
                                     
-                                    
-                                }
-                                    //                                .overlay(
-                                    //                                    ZStack {
-                                    //                                        // X-MARK SYMBOL
-                                    //                                        //                              Image(systemName: "x.circle")
-                                    //                                        //                                .modifier(SymbolModifier())
-                                    //                                        //                                .opacity(self.dragState.translation.width < -self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
-                                    //                                        //
-                                    //                                        // HEART SYMBOL
-                                    //
-                                    //                                        if(self.isVoted){
-                                    //                                            Image(systemName: "heart.circle")
-                                    //                                                .modifier(SymbolModifier())
-                                    //                                                .opacity(self.dragState.translation.width > self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
-                                    //                                        }else{
-                                    //                                            Text("사진 첫인상 투표를 \n먼저해주세요 ㅠㅠ").foregroundColor(Color.white)
-                                    //                                                .font(.custom(FONT, size: CGFloat(25)))
-                                    //                                                .opacity(self.dragState.translation.width > self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
+                                    //                                .gesture(LongPressGesture(minimumDuration: 0.01)
+                                    //                                    .sequenced(before: DragGesture())
+                                    //                                    .updating(self.$dragState, body: { (value, state, transaction) in
+                                    //                                        switch value {
+                                    //                                        case .first(true):
+                                    //                                            state = .pressing
+                                    //                                        case .second(true, let drag):
+                                    //                                            state = .dragging(translation: drag?.translation ?? .zero)
+                                    //                                        default:
+                                    //                                            break
+                                    //                                        }
+                                    //                                    })
+                                    //                                    .onChanged({ (value) in
+                                    //                                        guard case .second(true, let drag?) = value else {
+                                    //                                            return
                                     //                                        }
                                     //
-                                    //                                    }
+                                    //                                        if drag.translation.width < -self.dragAreaThreshold {
+                                    //                                            self.cardRemovalTransition = .leadingBottom
+                                    //                                        }
+                                    //
+                                    //                                        if drag.translation.width > self.dragAreaThreshold {
+                                    //                                            self.cardRemovalTransition = .trailingBottom
+                                    //                                        }
+                                    //                                    })
+                                    //                                    .onEnded({ (value) in
+                                    //                                        guard case .second(true, let drag?) = value else {
+                                    //                                            return
+                                    //                                        }
+                                    //                                        if drag.translation.width > self.dragAreaThreshold {
+                                    //                                            //                                if drag.translation.width < -self.dragAreaThreshold || drag.translation.width > self.dragAreaThreshold {
+                                    //                                            //                                playSound(sound: "sound-rise", type: "mp3")
+                                    //                                            //                                self.moveCards()
+                                    //                                            if(self.isVoted){
+                                    //                                                self.obs.moveCards()
+                                    //                                                self.isVoted = false
+                                    //
+                                    //
+                                    //                                            }
+                                    //                                        }
+                                    //                                    })
                                     //                            )
-                                    .offset(x: self.isTopCard(cardView: cardView) ?  self.dragState.translation.width : 0, y: self.isTopCard(cardView: cardView) ?  self.dragState.translation.height : 0)
-                                    .scaleEffect(self.dragState.isDragging && self.isTopCard(cardView: cardView) ? 0.85 : 1.0)
-                                    .rotationEffect(Angle(degrees: self.isTopCard(cardView: cardView) ? Double(self.dragState.translation.width / 12) : 0))
-                                    .animation(Animation.spring(response: 0.7, dampingFraction: 1.0, blendDuration: 1.0))
-                                //                                .animation(.interpolatingSpring(stiffness: 150, damping: 130))
-                                //                              .animation(Animation.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0))
-                                //                                .animation(.easeInOut(duration: 3))
-                                
-                                //                                .gesture(LongPressGesture(minimumDuration: 0.01)
-                                //                                    .sequenced(before: DragGesture())
-                                //                                    .updating(self.$dragState, body: { (value, state, transaction) in
-                                //                                        switch value {
-                                //                                        case .first(true):
-                                //                                            state = .pressing
-                                //                                        case .second(true, let drag):
-                                //                                            state = .dragging(translation: drag?.translation ?? .zero)
-                                //                                        default:
-                                //                                            break
-                                //                                        }
-                                //                                    })
-                                //                                    .onChanged({ (value) in
-                                //                                        guard case .second(true, let drag?) = value else {
-                                //                                            return
-                                //                                        }
-                                //
-                                //                                        if drag.translation.width < -self.dragAreaThreshold {
-                                //                                            self.cardRemovalTransition = .leadingBottom
-                                //                                        }
-                                //
-                                //                                        if drag.translation.width > self.dragAreaThreshold {
-                                //                                            self.cardRemovalTransition = .trailingBottom
-                                //                                        }
-                                //                                    })
-                                //                                    .onEnded({ (value) in
-                                //                                        guard case .second(true, let drag?) = value else {
-                                //                                            return
-                                //                                        }
-                                //                                        if drag.translation.width > self.dragAreaThreshold {
-                                //                                            //                                if drag.translation.width < -self.dragAreaThreshold || drag.translation.width > self.dragAreaThreshold {
-                                //                                            //                                playSound(sound: "sound-rise", type: "mp3")
-                                //                                            //                                self.moveCards()
-                                //                                            if(self.isVoted){
-                                //                                                self.obs.moveCards()
-                                //                                                self.isVoted = false
-                                //
-                                //
-                                //                                            }
-                                //                                        }
-                                //                                    })
-                                //                            )
-                            }
-                            .overlay(
-                                HStack {
-                                    Spacer()
-                                    VStack {
-                                        Button(action: {
-                                            // ACTION
-                                            //                                            self.presentationMode.wrappedValue.dismiss()
-                                            self.showFlag.toggle()
+                                }
+                                .overlay(
+                                    HStack {
+                                        Spacer()
+                                        VStack {
+                                            Button(action: {
+                                                // ACTION
+                                                //                                            self.presentationMode.wrappedValue.dismiss()
+                                                self.showFlag.toggle()
+                                                
+                                            }, label: {
+                                                Image(systemName: "flag.circle.fill")
+                                                    .font(.title)
+                                                    .foregroundColor(Color.white)
+                                                    .shadow(radius: 5)
+                                                    //                                            .opacity(self.pulsate ? 1 : 0.6)
+                                                    .scaleEffect(1.2, anchor: .center)
+                                                //                                            .animation(Animation.easeOut(duration: 1.5).repeatForever(autoreverses: true))
+                                            })
+                                                .padding(.trailing, 10)
+                                                .padding(.top, 24)
                                             
-                                        }, label: {
-                                            Image(systemName: "flag.circle.fill")
-                                                .font(.title)
-                                                .foregroundColor(Color.white)
-                                                .shadow(radius: 5)
-                                                //                                            .opacity(self.pulsate ? 1 : 0.6)
-                                                .scaleEffect(1.2, anchor: .center)
-                                            //                                            .animation(Animation.easeOut(duration: 1.5).repeatForever(autoreverses: true))
-                                        })
-                                            .padding(.trailing, 10)
-                                            .padding(.top, 24)
+                                            Spacer()
+                                        }
+                                    }
+                                )
+                            }else{
+                                
+                                if(!self.obs.isReloading){
+                                    VStack{
+                                        Spacer()
+                                        
+                                        
+                                        Image("Gleem_3D").resizable().scaledToFit().frame(width: UIScreen.main.bounds.width / 3 , height: UIScreen.main.bounds.height / 3)
+                                            .scaleEffect(self.reloading ? 1.1 : 1, anchor: .center).onAppear{
+                                                self.reloading.toggle()
+                                        }
+                                        .animation(Animation.spring(response: 0.7, dampingFraction: 1.0, blendDuration: 1.0).repeatForever(autoreverses: true)).onTapGesture {
+                                            self.obs.getNewCards()
+                                        }
+                                        
+                                        //                                    Button(action: {
+                                        //
+                                        //                                    }) {
+                                        //
+                                        //                                        Image("refresh").resizable().frame(width: 50, height: 50)
+                                        //                                    }.buttonStyle(PlainButtonStyle())
+                                        //
+                                        //                                if(self.obs.users.isEmpty){
+                                        //                                    Text(NO_NEW_CARD)
+                                        //                                        .font(.custom(FONT, size: CGFloat(15))).foregroundColor(APP_THEME_COLOR).multilineTextAlignment(.center).lineLimit(2).padding(.horizontal)
+                                        //                                }
                                         
                                         Spacer()
+                                        //                                         LoadingView(isLoading: self.obs.isLoading, error: self.obs.error) {
+                                        //                                             self.obs.getNewCards()
+                                        //                                         }
+                                        
+                                    }.animation(.default).onAppear{
+                                        //                                self.obs.getNewCards()
                                     }
                                 }
-                            )
-                        }else{
-                            
-                            if(!self.obs.isReloading){
-                                VStack{
-                                    Spacer()
-                                    
-                                    
-                                    Image("Gleem_3D").resizable().scaledToFit().frame(width: UIScreen.main.bounds.width / 3 , height: UIScreen.main.bounds.height / 3)
-                                        .scaleEffect(self.reloading ? 1.1 : 1, anchor: .center).onAppear{
-                                            self.reloading.toggle()
-                                    }
-                                    .animation(Animation.spring(response: 0.7, dampingFraction: 1.0, blendDuration: 1.0).repeatForever(autoreverses: true))
-                                    //
-                                    //                                if(self.obs.users.isEmpty){
-                                    //                                    Text(NO_NEW_CARD)
-                                    //                                        .font(.custom(FONT, size: CGFloat(15))).foregroundColor(APP_THEME_COLOR).multilineTextAlignment(.center).lineLimit(2).padding(.horizontal)
-                                    //                                }
-                                    
-                                    Spacer()
-                                    //                                         LoadingView(isLoading: self.obs.isLoading, error: self.obs.error) {
-                                    //                                             self.obs.getNewCards()
-                                    //                                         }
-                                    
-                                }.animation(.default).onAppear{
-                                    //                                self.obs.getNewCards()
-                                }
+                                
+                                
+                                
+                                
                             }
-                            
-                            
-                            
+                        }else{
+                            VStack{
+                                Spacer()
+                                
+                                Button(action: {
+                                                        
+                                                    }) {
+                                                        
+                                                        Image("refresh").resizable().frame(width: 50, height: 50)
+                                                    }.buttonStyle(PlainButtonStyle())
+                                Spacer()
+                            }
+                    
                             
                         }
+                        
+                        
+                        
+                        
                     }
                     else{
                         VStack{
@@ -297,10 +327,13 @@ struct CardListview: View {
                 }
                 Spacer()
                 if(!self.obs.cardViews.isEmpty){
-                    FooterView(isVoted: $isVoted, showVotingScreen: $showVotingScreen, uploadComplete: self.$uploadComplete)
-                        .opacity(dragState.isDragging ? 0.0 : 1.0)
-                        //                        .animation(.easeInOut)
-                        .animation(Animation.spring(response: 0.7, dampingFraction: 1.0, blendDuration: 1.0)).opacity(self.obs.isLoading == true ? 0 : 1)
+                    if(Reachabilty.HasConnection()){
+                        FooterView(isVoted: $isVoted, showVotingScreen: $showVotingScreen, uploadComplete: self.$uploadComplete)
+                            .opacity(dragState.isDragging ? 0.0 : 1.0)
+                            //                        .animation(.easeInOut)
+                            .animation(Animation.spring(response: 0.7, dampingFraction: 1.0, blendDuration: 1.0)).opacity(self.obs.isLoading == true ? 0 : 1)
+                    }
+                    
                     
                 }
                 

@@ -53,7 +53,10 @@ struct MyStaticView: View , Equatable {
     
     init(){
         //        self.loadChartData()
-        self.chartViewModel.loadSomeoneVoted()
+        if(Reachabilty.HasConnection()){
+            self.chartViewModel.loadSomeoneVoted()
+            
+        }
     }
     
     
@@ -169,6 +172,8 @@ struct MyStaticView: View , Equatable {
                                 .offset(x: 5)
                         }.padding(.trailing, 4)
                         
+                        
+                        
                         VStack(alignment: .leading, spacing: 5){
                             
                             Text(timeAgoSinceDate(Date(timeIntervalSince1970: self.date ), currentDate: Date(), numericDates: true) + "에 참여하였습니다.").font(Font.custom(FONT, size: 13)).multilineTextAlignment(.leading).lineLimit(2)
@@ -185,14 +190,6 @@ struct MyStaticView: View , Equatable {
                         }.padding(.top, 15)
                         
                         Spacer()
-                        
-                        //                        NavigationLink(destination: FavoriteView()) {
-                        //                                                                    //                                            EmptyView()
-                        //                                                                    CommentActivityRow(activity: activity)
-                        //
-                        //                            }
-                        
-                        
                         Button(action: {
                             // ACTION
                             //        playSound(sound: "sound-click", type: "mp3")
@@ -204,7 +201,6 @@ struct MyStaticView: View , Equatable {
                                 .frame(width: 30, height: 30)
                                 .font(.system(size: 24, weight: .regular))
                         }.onTapGesture {
-                            //                            self.showInfoView = true
                         }.accentColor(APP_THEME_COLOR).buttonStyle(PlainButtonStyle()).padding(.trailing,10)
                     }
                     .padding(.leading, 10)
@@ -261,9 +257,15 @@ struct MyStaticView: View , Equatable {
                         
                         if(!self.obs.updateVoteImage){
                             VStack(alignment: .leading, spacing: 15){
+                                if(Reachabilty.HasConnection()){
+                                    Text(self.uploadMsg).font(Font.custom(FONT, size: 14.5)).multilineTextAlignment(.leading).lineLimit(2)
+                                        .foregroundColor(Color("sleep"))
+                                    
+                                }else{
+                                    Text(NO_CONNECTION).font(Font.custom(FONT, size: 14.5)).multilineTextAlignment(.leading).lineLimit(2)
+                                        .foregroundColor(Color("sleep"))
+                                }
                                 
-                                Text(self.uploadMsg).font(Font.custom(FONT, size: 14.5)).multilineTextAlignment(.leading).lineLimit(2)
-                                    .foregroundColor(Color("sleep"))
                                 Spacer(minLength: 0)
                                 
                             }.padding(.top, 15)
@@ -456,7 +458,11 @@ struct MyStaticView: View , Equatable {
                             }
                             else {
                                 LoadingView(isLoading: self.chartViewModel.isLoading, error: self.chartViewModel.error) {
-                                    self.loadChartData()
+                                    if(Reachabilty.HasConnection()){
+                                        self.loadChartData()
+
+                                    }
+                                    
                                     
                                 }
                             }
@@ -620,7 +626,10 @@ struct MyStaticView: View , Equatable {
                 
                 print(UIScreen.main.bounds.width)
                 print(UIScreen.main.bounds.height)
-                self.loadChartData()
+                if(Reachabilty.HasConnection()){
+                    self.loadChartData()
+                    
+                }
             }
                 
                 

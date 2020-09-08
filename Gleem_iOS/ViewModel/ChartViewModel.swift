@@ -115,7 +115,7 @@ class ChartViewModel: ObservableObject {
         isLoading = true
         self.someOneVoted.removeAll()
         
-    
+  
         
         Ref.FIRESTORE_COLLECTION_WHO_VOTED.document(User.currentUser()!.id).collection("voted").order(by: "date", descending: true).limit(to: 6).addSnapshotListener({ (querySnapshot, error) in
             guard let snapshot = querySnapshot else {
