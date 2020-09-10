@@ -17,7 +17,8 @@ struct MyStaticView: View , Equatable {
     
     @State var totalNum : Int = 0
     @State var voteData:[Double] = [0,0,0,0,0]
-    @State var voteNum:[Int] = [0,0,0,0,0]
+    @State var voteBarData:[Double] = [0,0,0,0,0]
+
     let numberIVoted = 30
     @State var buttonTitle : [String] = ["없음", "없음","없음", "없음", "없음"]
     @State var date : Double = 0
@@ -67,6 +68,9 @@ struct MyStaticView: View , Equatable {
             if vote.attrNames.count == 0 {
                 self.noVotePic = true
                 self.voteData = [0,0,0,0,0]
+                self.voteBarData = [0,0,0,0,0]
+
+                
                 self.totalNum = 0
                 self.obs.updateVoteImage = false
                 self.uploadMsg = NEW_UPLOAD2
@@ -77,10 +81,12 @@ struct MyStaticView: View , Equatable {
                 self.noVotePic = false
                 self.obs.updateVoteImage = true
                 self.voteData.removeAll()
-                self.voteNum.removeAll()
+                self.voteBarData.removeAll()
                 self.buttonTitle.removeAll()
                 if(vote.numVote == 0){
                     self.voteData = [0,0,0,0,0]
+                    self.voteBarData = [0,0,0,0,0]
+
                     self.totalNum = 0
                 }else{
                     let attr1 = (Double(vote.attr1) / Double(vote.numVote) * 100).roundToDecimal(0)
@@ -90,6 +96,14 @@ struct MyStaticView: View , Equatable {
                     let attr5 = (Double(vote.attr5) / Double(vote.numVote) * 100).roundToDecimal(0)
                     
                     self.voteData = [attr1, attr2, attr3, attr4, attr5]
+                    let maxNum =  100 - (self.voteData.max()!)
+                    print(maxNum)
+                    self.voteBarData = [attr1 > 0.0 ? attr1 + maxNum : attr1 ,
+                                        attr2 > 0.0 ? attr2 + maxNum : attr2 ,
+                                        attr3 > 0.0 ? attr3 + maxNum : attr3 ,
+                                        attr4 > 0.0 ? attr4 + maxNum : attr4 ,
+                                        attr5 > 0.0 ? attr5 + maxNum : attr5]
+
                     
                     if(attr1 > 80 ||  attr2 > 80  || attr3 > 80  || attr4 > 80  || attr5 > 80 ){
                         self.ymax  = 100
@@ -117,13 +131,7 @@ struct MyStaticView: View , Equatable {
                     //                                        }
                     
                 }
-                
-                self.voteNum.append(vote.attr1)
-                self.voteNum.append(vote.attr2)
-                self.voteNum.append(vote.attr3)
-                self.voteNum.append(vote.attr4)
-                self.voteNum.append(vote.attr5)
-                
+
                 self.totalNum = vote.numVote
                 //                self.totalNum = 100
                 //                print(self.voteData)
@@ -395,7 +403,7 @@ struct MyStaticView: View , Equatable {
                         //                            }
                         //                            .padding().padding(.top, -20)
                         
-                        ForEach(Array(self.voteData.enumerated()), id: \.offset) { index, work in
+                        ForEach(Array(self.voteBarData.enumerated()), id: \.offset) { index, work in
                             VStack{
                                 if(work == 0){
                                     VStack{
@@ -553,7 +561,7 @@ struct MyStaticView: View , Equatable {
                     
                     
                     HStack(alignment: .top,spacing: 5){
-                        ForEach(Array(self.voteData.enumerated()), id: \.offset) { index, work in
+                        ForEach(Array(self.voteBarData.enumerated()), id: \.offset) { index, work in
                             VStack{
                                 if(work == 0){
                                     VStack{

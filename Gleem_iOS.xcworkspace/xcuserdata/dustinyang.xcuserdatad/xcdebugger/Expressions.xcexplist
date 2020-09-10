@@ -65,6 +65,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "observer.placemark.getter:observer.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "lm.location">
+            </PersistentString>
+            <PersistentString
+               value = "lm.placemark?.locality">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #4 in closure #1 in closure #1 in SignUpView.body.getter:SignUpView.swift">
          <PersistentStrings>
             <PersistentString
@@ -367,7 +378,7 @@
          contextName = "closure #1 in FavoriteViewModel.loadFavoriteUsers():FavoriteViewModel.swift">
          <PersistentStrings>
             <PersistentString
-               value = " ActiveVote.init(fromDictionary: dict)">
+               value = "dict">
             </PersistentString>
             <PersistentString
                value = "lastDoc ">
@@ -379,13 +390,13 @@
                value = "snapshot!.documents">
             </PersistentString>
             <PersistentString
+               value = "snapshot!.documents.last">
+            </PersistentString>
+            <PersistentString
                value = "self.lastDoc ">
             </PersistentString>
             <PersistentString
-               value = "dict">
-            </PersistentString>
-            <PersistentString
-               value = "snapshot!.documents.last">
+               value = " ActiveVote.init(fromDictionary: dict)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -524,6 +535,23 @@
          <PersistentStrings>
             <PersistentString
                value = "(Double(vote.attr1) / Double(vote.numVote) * 100)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in LocationManager.geocode():LocationManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.placemark.addressDictionary?[&quot;Thoroughfare&quot;]">
+            </PersistentString>
+            <PersistentString
+               value = "self.placemark.addressDictionary?[&quot;Name&quot;]">
+            </PersistentString>
+            <PersistentString
+               value = "self.placemark?.addressDictionary">
+            </PersistentString>
+            <PersistentString
+               value = "places?[0]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

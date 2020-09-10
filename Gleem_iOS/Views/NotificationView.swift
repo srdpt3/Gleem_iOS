@@ -42,22 +42,27 @@ struct NotificationView: View {
                                         ZStack {
                                             NavigationLink(destination: FavoriteView()) {
                                                 //                                            EmptyView()
-                                                CommentActivityRow(activity: activity)
+                                                CommentActivityRow(notification: activity)
                                                 
                                             }
                                         }
                                         
                                     }else if activity.type == "match"{
-                                        MatchedActivityRow(activity: activity)
+                                        MatchedActivityRow(notification: activity)
                                         
                                         
                                         
                                     }else if activity.type == "intro"{
-                                        WelcomeActivityRow(activity: activity)
+                                        WelcomeActivityRow(notification: activity)
+                                        
                                         
                                         
                                     }
-                                    
+                                    else if activity.type == "reject"{
+                                        RejectActivityRow(notification: activity)
+                                        
+                                        
+                                    }
                                     
                                     
                                 }.padding(8)
@@ -97,27 +102,27 @@ struct NotificationView: View {
 
 
 struct CommentActivityRow: View {
-    var activity: Activity
+    var notification: UserNotification
     var body: some View {
         HStack {
-            AnimatedImage(url: URL(string: activity.userAvatar))
+            AnimatedImage(url: URL(string: notification.userAvatar))
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .clipShape(Circle()).frame(width: 40, height: 40)
             
             VStack(alignment: .leading, spacing: 5) {
-                Text(activity.username).font(.subheadline).bold()
-                Text(activity.typeDescription).font(.caption).font(Font.custom(FONT, size: 15))
+                Text(notification.username).font(.subheadline).bold()
+                Text(notification.typeDescription).font(.caption).font(Font.custom(FONT, size: 15))
             }
             Spacer()
-            Text(timeAgoSinceDate(Date(timeIntervalSince1970: activity.date), currentDate: Date(), numericDates: true)).font(.caption).foregroundColor(.gray)
+            Text(timeAgoSinceDate(Date(timeIntervalSince1970: notification.date), currentDate: Date(), numericDates: true)).font(.caption).foregroundColor(.gray)
         }
     }
 }
 
 
 struct MatchedActivityRow: View {
-    var activity: Activity
+    var notification: UserNotification
     var body: some View {
         HStack {
 //            
@@ -126,24 +131,24 @@ struct MatchedActivityRow: View {
 //                .aspectRatio(contentMode: .fill)
 //                .clipShape(Circle()).frame(width: 40, height: 40)
             
-            AnimatedImage(url: URL(string: activity.userAvatar))
+            AnimatedImage(url: URL(string: notification.userAvatar))
                  .resizable()
                  .aspectRatio(contentMode: .fill)
                  .clipShape(Circle()).frame(width: 40, height: 40)
             
             VStack(alignment: .leading, spacing: 5) {
-                Text(activity.username + "[연결됨]").font(.subheadline).bold()
-                Text(activity.typeDescription).font(.caption).font(Font.custom(FONT, size: 15))
+                Text(notification.username + "[연결됨]").font(.subheadline).bold()
+                Text(notification.typeDescription).font(.caption).font(Font.custom(FONT, size: 15))
             }
             Spacer()
-            Text(timeAgoSinceDate(Date(timeIntervalSince1970: activity.date), currentDate: Date(), numericDates: true)).font(.caption).foregroundColor(.gray)
+            Text(timeAgoSinceDate(Date(timeIntervalSince1970: notification.date), currentDate: Date(), numericDates: true)).font(.caption).foregroundColor(.gray)
         }
     }
 }
 
 
 struct  WelcomeActivityRow: View {
-    var activity: Activity
+    var notification: UserNotification
     var body: some View {
         HStack {
             
@@ -157,10 +162,30 @@ struct  WelcomeActivityRow: View {
 //            }
             VStack(alignment: .leading, spacing: 5) {
                 Text("Welcome").font(.subheadline).bold()
-                Text(activity.typeDescription).font(.caption).font(Font.custom(FONT, size: 13))
+                Text(notification.typeDescription).font(.caption).font(Font.custom(FONT, size: 13))
             }
             Spacer()
-            Text(timeAgoSinceDate(Date(timeIntervalSince1970: activity.date), currentDate: Date(), numericDates: true)).font(.caption).foregroundColor(.gray)
+            Text(timeAgoSinceDate(Date(timeIntervalSince1970: notification.date), currentDate: Date(), numericDates: true)).font(.caption).foregroundColor(.gray)
+        }
+    }
+}
+
+
+struct  RejectActivityRow: View {
+    var notification: UserNotification
+    var body: some View {
+        HStack {
+            
+            Image("fail")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .clipShape(Circle()).frame(width: 40, height: 40)
+
+            VStack(alignment: .leading, spacing: 5) {
+                Text(notification.typeDescription).font(.caption).font(Font.custom(FONT, size: 13))
+            }
+            Spacer()
+            Text(timeAgoSinceDate(Date(timeIntervalSince1970: notification.date), currentDate: Date(), numericDates: true)).font(.caption).foregroundColor(.gray)
         }
     }
 }

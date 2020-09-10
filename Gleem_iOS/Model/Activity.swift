@@ -1,15 +1,14 @@
 //
-//  Notification.swift
+//  Activity.swift
 //  Gleem_iOS
 //
-//  Created by Dustin yang on 7/13/20.
+//  Created by Dustin yang on 9/9/20.
 //  Copyright © 2020 Dustin yang. All rights reserved.
 //
-
 import Foundation
 import FirebaseAuth
 
-struct UserNotification: Encodable, Decodable {
+struct Activity: Encodable, Decodable {
     
     var activityId: String
     var type: String
@@ -19,7 +18,10 @@ struct UserNotification: Encodable, Decodable {
     var message: String
     var date: Double
     var read: Bool
+    var age : String
     var location: String
+    var occupation: String
+    var description: String
     
     var typeDescription: String {
         var output = ""

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08CF942323008CFCD2A1F2C8 /* Pods_Gleem_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13D581F1EBB48085BFB33E92 /* Pods_Gleem_iOSTests.framework */; };
 		1101C1AB24F1794500F7C792 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1101C1AA24F1794500F7C792 /* LocationManager.swift */; };
 		1101C1AD24F1D1CC00F7C792 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1101C1AC24F1D1CC00F7C792 /* UserProfile.swift */; };
 		11143D2824C242330082E48F /* heart.json in Resources */ = {isa = PBXBuildFile; fileRef = 11143D2624C242320082E48F /* heart.json */; };
@@ -30,6 +31,8 @@
 		1153A7A924BA023F00CE3574 /* CustomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153A7A824BA023F00CE3574 /* CustomController.swift */; };
 		1153A7AF24BA9BD800CE3574 /* ActiveVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153A7AE24BA9BD800CE3574 /* ActiveVote.swift */; };
 		11607FBD24FF02BD00A243D0 /* ChatFlagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11607FBC24FF02BD00A243D0 /* ChatFlagView.swift */; };
+		116AB5CA250895D1003D1D47 /* ActiveVote_NEW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116AB5C9250895D0003D1D47 /* ActiveVote_NEW.swift */; };
+		116AB5CC25094497003D1D47 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116AB5CB25094497003D1D47 /* Activity.swift */; };
 		11783E6C24B53BA500EEFE80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783E6B24B53BA500EEFE80 /* AppDelegate.swift */; };
 		11783E6E24B53BA500EEFE80 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11783E6D24B53BA500EEFE80 /* SceneDelegate.swift */; };
 		11783E7124B53BA500EEFE80 /* Gleem_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11783E6F24B53BA500EEFE80 /* Gleem_iOS.xcdatamodeld */; };
@@ -128,9 +131,8 @@
 		11FA745424B7FAF5008009A1 /* TitleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FA745124B7FAF4008009A1 /* TitleModifier.swift */; };
 		11FA745524B7FAF5008009A1 /* ButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FA745224B7FAF4008009A1 /* ButtonModifier.swift */; };
 		11FA745624B7FAF5008009A1 /* SymbolModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FA745324B7FAF4008009A1 /* SymbolModifier.swift */; };
-		28E76019A755C8F2BF309D57 /* Pods_Gleem_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F27CDF74682B80047DF9F3 /* Pods_Gleem_iOSTests.framework */; };
-		CE95CEDC2A97CE0020A8EAEA /* Pods_Gleem_iOS_Gleem_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384F216AF9BC57E82C872F4E /* Pods_Gleem_iOS_Gleem_iOSUITests.framework */; };
-		E910A2D4916BB043FCCE1EDE /* Pods_Gleem_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A0B1D9AD08185C3F68EA576 /* Pods_Gleem_iOS.framework */; };
+		479C31DFEC18D199D28D10CF /* Pods_Gleem_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71926438D528741D2605F13F /* Pods_Gleem_iOS.framework */; };
+		4E1A5804F030D814B756C651 /* Pods_Gleem_iOS_Gleem_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 642E4AD276EFB745B826A59E /* Pods_Gleem_iOS_Gleem_iOSUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,7 +153,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0A0B1D9AD08185C3F68EA576 /* Pods_Gleem_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gleem_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1101C1AA24F1794500F7C792 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		1101C1AC24F1D1CC00F7C792 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		11143D2624C242320082E48F /* heart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heart.json; sourceTree = "<group>"; };
@@ -175,6 +176,8 @@
 		1153A7A824BA023F00CE3574 /* CustomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomController.swift; sourceTree = "<group>"; };
 		1153A7AE24BA9BD800CE3574 /* ActiveVote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveVote.swift; sourceTree = "<group>"; };
 		11607FBC24FF02BD00A243D0 /* ChatFlagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatFlagView.swift; sourceTree = "<group>"; };
+		116AB5C9250895D0003D1D47 /* ActiveVote_NEW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveVote_NEW.swift; sourceTree = "<group>"; };
+		116AB5CB25094497003D1D47 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		11783E6824B53BA500EEFE80 /* Gleem 데이팅.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gleem 데이팅.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11783E6B24B53BA500EEFE80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11783E6D24B53BA500EEFE80 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -280,14 +283,15 @@
 		11FA745124B7FAF4008009A1 /* TitleModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleModifier.swift; sourceTree = "<group>"; };
 		11FA745224B7FAF4008009A1 /* ButtonModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonModifier.swift; sourceTree = "<group>"; };
 		11FA745324B7FAF4008009A1 /* SymbolModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymbolModifier.swift; sourceTree = "<group>"; };
-		384F216AF9BC57E82C872F4E /* Pods_Gleem_iOS_Gleem_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gleem_iOS_Gleem_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		65CCF6235610865614AA7773 /* Pods-Gleem_iOS-Gleem_iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gleem_iOS-Gleem_iOSUITests.debug.xcconfig"; path = "Target Support Files/Pods-Gleem_iOS-Gleem_iOSUITests/Pods-Gleem_iOS-Gleem_iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		8384F3EAD0379C150E4654DB /* Pods-Gleem_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gleem_iOS.release.xcconfig"; path = "Target Support Files/Pods-Gleem_iOS/Pods-Gleem_iOS.release.xcconfig"; sourceTree = "<group>"; };
-		988E2D43CC2F16ADCBDC95D5 /* Pods-Gleem_iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gleem_iOSTests.release.xcconfig"; path = "Target Support Files/Pods-Gleem_iOSTests/Pods-Gleem_iOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		9FDF73EAA4ABFE54AE780B03 /* Pods-Gleem_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gleem_iOS.debug.xcconfig"; path = "Target Support Files/Pods-Gleem_iOS/Pods-Gleem_iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		A6667BBD839ED893A5E1CE4E /* Pods-Gleem_iOS-Gleem_iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gleem_iOS-Gleem_iOSUITests.release.xcconfig"; path = "Target Support Files/Pods-Gleem_iOS-Gleem_iOSUITests/Pods-Gleem_iOS-Gleem_iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
-		AB6873FBC7DCF3F3808F701E /* Pods-Gleem_iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gleem_iOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Gleem_iOSTests/Pods-Gleem_iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		F2F27CDF74682B80047DF9F3 /* Pods_Gleem_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gleem_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		13D581F1EBB48085BFB33E92 /* Pods_Gleem_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gleem_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37E974150556C476F44ADAEE /* Pods-Gleem_iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gleem_iOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Gleem_iOSTests/Pods-Gleem_iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		642E4AD276EFB745B826A59E /* Pods_Gleem_iOS_Gleem_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gleem_iOS_Gleem_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		65130D1DFFE2C0DF99EF3327 /* Pods-Gleem_iOS-Gleem_iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gleem_iOS-Gleem_iOSUITests.debug.xcconfig"; path = "Target Support Files/Pods-Gleem_iOS-Gleem_iOSUITests/Pods-Gleem_iOS-Gleem_iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		71926438D528741D2605F13F /* Pods_Gleem_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gleem_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BFFE5EFFB2C85D1F4A0E8DC /* Pods-Gleem_iOS-Gleem_iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gleem_iOS-Gleem_iOSUITests.release.xcconfig"; path = "Target Support Files/Pods-Gleem_iOS-Gleem_iOSUITests/Pods-Gleem_iOS-Gleem_iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
+		A3A5A02540E265FA2316B592 /* Pods-Gleem_iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gleem_iOSTests.release.xcconfig"; path = "Target Support Files/Pods-Gleem_iOSTests/Pods-Gleem_iOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		B3F2457DFCF21F207F37E863 /* Pods-Gleem_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gleem_iOS.debug.xcconfig"; path = "Target Support Files/Pods-Gleem_iOS/Pods-Gleem_iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		C0B454CFC04CA0A6EC33835B /* Pods-Gleem_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gleem_iOS.release.xcconfig"; path = "Target Support Files/Pods-Gleem_iOS/Pods-Gleem_iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,7 +299,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E910A2D4916BB043FCCE1EDE /* Pods_Gleem_iOS.framework in Frameworks */,
+				479C31DFEC18D199D28D10CF /* Pods_Gleem_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,7 +307,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28E76019A755C8F2BF309D57 /* Pods_Gleem_iOSTests.framework in Frameworks */,
+				08CF942323008CFCD2A1F2C8 /* Pods_Gleem_iOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,7 +315,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE95CEDC2A97CE0020A8EAEA /* Pods_Gleem_iOS_Gleem_iOSUITests.framework in Frameworks */,
+				4E1A5804F030D814B756C651 /* Pods_Gleem_iOS_Gleem_iOSUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,7 +330,7 @@
 				11783E8F24B53BA900EEFE80 /* Gleem_iOSUITests */,
 				11783E6924B53BA500EEFE80 /* Products */,
 				16F37E861AA445E94CE5E3D7 /* Pods */,
-				91EEE9D7E0C9178ED8ABCA3C /* Frameworks */,
+				BEC01A12ADFBF16F5EEA21FE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -493,6 +497,8 @@
 				11B5ED2D24BEAC170055700B /* Flag.swift */,
 				11143D3A24C4AEC70082E48F /* Match.swift */,
 				1101C1AC24F1D1CC00F7C792 /* UserProfile.swift */,
+				116AB5C9250895D0003D1D47 /* ActiveVote_NEW.swift */,
+				116AB5CB25094497003D1D47 /* Activity.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -610,22 +616,22 @@
 		16F37E861AA445E94CE5E3D7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9FDF73EAA4ABFE54AE780B03 /* Pods-Gleem_iOS.debug.xcconfig */,
-				8384F3EAD0379C150E4654DB /* Pods-Gleem_iOS.release.xcconfig */,
-				65CCF6235610865614AA7773 /* Pods-Gleem_iOS-Gleem_iOSUITests.debug.xcconfig */,
-				A6667BBD839ED893A5E1CE4E /* Pods-Gleem_iOS-Gleem_iOSUITests.release.xcconfig */,
-				AB6873FBC7DCF3F3808F701E /* Pods-Gleem_iOSTests.debug.xcconfig */,
-				988E2D43CC2F16ADCBDC95D5 /* Pods-Gleem_iOSTests.release.xcconfig */,
+				B3F2457DFCF21F207F37E863 /* Pods-Gleem_iOS.debug.xcconfig */,
+				C0B454CFC04CA0A6EC33835B /* Pods-Gleem_iOS.release.xcconfig */,
+				65130D1DFFE2C0DF99EF3327 /* Pods-Gleem_iOS-Gleem_iOSUITests.debug.xcconfig */,
+				8BFFE5EFFB2C85D1F4A0E8DC /* Pods-Gleem_iOS-Gleem_iOSUITests.release.xcconfig */,
+				37E974150556C476F44ADAEE /* Pods-Gleem_iOSTests.debug.xcconfig */,
+				A3A5A02540E265FA2316B592 /* Pods-Gleem_iOSTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		91EEE9D7E0C9178ED8ABCA3C /* Frameworks */ = {
+		BEC01A12ADFBF16F5EEA21FE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0A0B1D9AD08185C3F68EA576 /* Pods_Gleem_iOS.framework */,
-				384F216AF9BC57E82C872F4E /* Pods_Gleem_iOS_Gleem_iOSUITests.framework */,
-				F2F27CDF74682B80047DF9F3 /* Pods_Gleem_iOSTests.framework */,
+				71926438D528741D2605F13F /* Pods_Gleem_iOS.framework */,
+				642E4AD276EFB745B826A59E /* Pods_Gleem_iOS_Gleem_iOSUITests.framework */,
+				13D581F1EBB48085BFB33E92 /* Pods_Gleem_iOSTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -637,11 +643,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 11783E9524B53BA900EEFE80 /* Build configuration list for PBXNativeTarget "Gleem_iOS" */;
 			buildPhases = (
-				980FBCBCF692A46D691ABE91 /* [CP] Check Pods Manifest.lock */,
+				577B8BF9441C889F162B799B /* [CP] Check Pods Manifest.lock */,
 				11783E6424B53BA500EEFE80 /* Sources */,
 				11783E6524B53BA500EEFE80 /* Frameworks */,
 				11783E6624B53BA500EEFE80 /* Resources */,
-				4C1726A76D53226BC4AA1592 /* [CP] Embed Pods Frameworks */,
+				B77596ECF9D95CAF325CC84C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -656,7 +662,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 11783E9824B53BA900EEFE80 /* Build configuration list for PBXNativeTarget "Gleem_iOSTests" */;
 			buildPhases = (
-				954D00C29606C843A5AF69B1 /* [CP] Check Pods Manifest.lock */,
+				BD4DB6B8885888DD91FBDF9F /* [CP] Check Pods Manifest.lock */,
 				11783E7D24B53BA900EEFE80 /* Sources */,
 				11783E7E24B53BA900EEFE80 /* Frameworks */,
 				11783E7F24B53BA900EEFE80 /* Resources */,
@@ -675,11 +681,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 11783E9B24B53BA900EEFE80 /* Build configuration list for PBXNativeTarget "Gleem_iOSUITests" */;
 			buildPhases = (
-				952D5139FCB4FC62C2E50292 /* [CP] Check Pods Manifest.lock */,
+				01D4D0699E9AF068BD34D10F /* [CP] Check Pods Manifest.lock */,
 				11783E8824B53BA900EEFE80 /* Sources */,
 				11783E8924B53BA900EEFE80 /* Frameworks */,
 				11783E8A24B53BA900EEFE80 /* Resources */,
-				BBA1BFCA347349039340C4FE /* [CP] Embed Pods Frameworks */,
+				F2BF49D28462E73E69B425FD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -777,24 +783,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4C1726A76D53226BC4AA1592 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Gleem_iOS/Pods-Gleem_iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Gleem_iOS/Pods-Gleem_iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Gleem_iOS/Pods-Gleem_iOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		952D5139FCB4FC62C2E50292 /* [CP] Check Pods Manifest.lock */ = {
+		01D4D0699E9AF068BD34D10F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -816,29 +805,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		954D00C29606C843A5AF69B1 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Gleem_iOSTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		980FBCBCF692A46D691ABE91 /* [CP] Check Pods Manifest.lock */ = {
+		577B8BF9441C889F162B799B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -860,7 +827,46 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BBA1BFCA347349039340C4FE /* [CP] Embed Pods Frameworks */ = {
+		B77596ECF9D95CAF325CC84C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Gleem_iOS/Pods-Gleem_iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Gleem_iOS/Pods-Gleem_iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Gleem_iOS/Pods-Gleem_iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BD4DB6B8885888DD91FBDF9F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Gleem_iOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F2BF49D28462E73E69B425FD /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -902,8 +908,10 @@
 				11783EE024B53DD900EEFE80 /* Constants.swift in Sources */,
 				11783E7124B53BA500EEFE80 /* Gleem_iOS.xcdatamodeld in Sources */,
 				1181FF3124DCE2DF00ED5865 /* MultilineTextField.swift in Sources */,
+				116AB5CC25094497003D1D47 /* Activity.swift in Sources */,
 				1153A78724B966AE00CE3574 /* SignupViewModel.swift in Sources */,
 				11982E7024CFA60C00DC57E2 /* CreditCard.swift in Sources */,
+				116AB5CA250895D1003D1D47 /* ActiveVote_NEW.swift in Sources */,
 				11783EB124B53CEC00EEFE80 /* UploadViewModel.swift in Sources */,
 				11B5ED0324BCC3690055700B /* ProfileView.swift in Sources */,
 				11783EFE24B6293A00EEFE80 /* BlurView.swift in Sources */,
@@ -1147,7 +1155,7 @@
 		};
 		11783E9624B53BA900EEFE80 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9FDF73EAA4ABFE54AE780B03 /* Pods-Gleem_iOS.debug.xcconfig */;
+			baseConfigurationReference = B3F2457DFCF21F207F37E863 /* Pods-Gleem_iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1172,7 +1180,7 @@
 		};
 		11783E9724B53BA900EEFE80 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8384F3EAD0379C150E4654DB /* Pods-Gleem_iOS.release.xcconfig */;
+			baseConfigurationReference = C0B454CFC04CA0A6EC33835B /* Pods-Gleem_iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1197,7 +1205,7 @@
 		};
 		11783E9924B53BA900EEFE80 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AB6873FBC7DCF3F3808F701E /* Pods-Gleem_iOSTests.debug.xcconfig */;
+			baseConfigurationReference = 37E974150556C476F44ADAEE /* Pods-Gleem_iOSTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1220,7 +1228,7 @@
 		};
 		11783E9A24B53BA900EEFE80 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 988E2D43CC2F16ADCBDC95D5 /* Pods-Gleem_iOSTests.release.xcconfig */;
+			baseConfigurationReference = A3A5A02540E265FA2316B592 /* Pods-Gleem_iOSTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1243,7 +1251,7 @@
 		};
 		11783E9C24B53BA900EEFE80 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 65CCF6235610865614AA7773 /* Pods-Gleem_iOS-Gleem_iOSUITests.debug.xcconfig */;
+			baseConfigurationReference = 65130D1DFFE2C0DF99EF3327 /* Pods-Gleem_iOS-Gleem_iOSUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1264,7 +1272,7 @@
 		};
 		11783E9D24B53BA900EEFE80 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6667BBD839ED893A5E1CE4E /* Pods-Gleem_iOS-Gleem_iOSUITests.release.xcconfig */;
+			baseConfigurationReference = 8BFFE5EFFB2C85D1F4A0E8DC /* Pods-Gleem_iOS-Gleem_iOSUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

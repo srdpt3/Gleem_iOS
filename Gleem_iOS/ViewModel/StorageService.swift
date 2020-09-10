@@ -87,7 +87,7 @@ class StorageService {
                     guard let dict = try? user_update.toDictionary() else {return}
                     saveUserLocally(mUserDictionary: dict as NSDictionary)
                     
-                    
+//                    let data2 = ActiveVote_NEW(attr1: myVote.attr1, attr2: myVote.attr1, attr3: myVote.attr1, attr4: myVote.attr1, attr5: myVote.attr1, attrNames: myVote.attrNames, numVote: myVote.numVote, createdDate: myVote.createdDate, lastModifiedDate: myVote.lastModifiedDate, id: userId, email: user.email, imageLocation: metaImageUrl, username: user.username, age: user.age, sex: user.sex, location: GeoPoint(latitude: 1, longitude: 2), occupation: userProfile.occupation, description: "")
                     
                     //                    let user =  User(id: userId, email: "test@gmail.com", profileImageUrl:  metaImageUrl, username: "test", age: "30", sex:"male",    swipe:0, degree: 0)
                     let data = ActiveVote(attr1: myVote.attr1, attr2: myVote.attr1, attr3: myVote.attr1, attr4: myVote.attr1, attr5: myVote.attr1, attrNames: myVote.attrNames, numVote: myVote.numVote, createdDate: myVote.createdDate, lastModifiedDate: myVote.lastModifiedDate, id: userId, email: user.email, imageLocation: metaImageUrl, username: user.username, age: user.age, sex: user.sex, location: userProfile.location, occupation: userProfile.occupation, description: "")
@@ -156,7 +156,7 @@ class StorageService {
         
         
         let activityId = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: userId).collection("activity").document().documentID
-        let activityObject = Activity(activityId: activityId, type: "intro", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: "", message: "", date: Date().timeIntervalSince1970, read: true, age: User.currentUserProfile()!.age, location: User.currentUserProfile()!.location,occupation: "", description: "")
+        let activityObject = UserNotification(activityId: activityId, type: "intro", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: "", message: "", date: Date().timeIntervalSince1970, read: true,  location: User.currentUserProfile()!.location)
         guard let activityDict = try? activityObject.toDictionary() else { return }
         
         
@@ -210,7 +210,7 @@ class StorageService {
                     
                     
                     let activityId = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: userId).collection("activity").document().documentID
-                    let activityObject = Activity(activityId: activityId, type: "intro", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: metaImageUrl, message: "", date: Date().timeIntervalSince1970, read: false, age: User.currentUserProfile()!.age, location: User.currentUserProfile()!.location,occupation: "", description: "")
+                    let activityObject = UserNotification(activityId: activityId, type: "intro", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: metaImageUrl, message: "", date: Date().timeIntervalSince1970, read: false,  location: User.currentUserProfile()!.location)
                     guard let activityDict = try? activityObject.toDictionary() else { return }
                     
                     

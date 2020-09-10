@@ -244,13 +244,7 @@ struct UploadView: View {
                     Spacer()
                 }
                 
-                //                else{
-                //
-                //                    LoadingView(isLoading: self.attributeViewModel.isLoading, error: self.attributeViewModel.error) {
-                //                        self.attributeViewModel.loadAttributes()
-                //                    }
-                //
-                //                }
+          
                 
             }
             

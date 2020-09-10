@@ -49,7 +49,7 @@ class FavoriteViewModel: ObservableObject {
             
 //            let activityId = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: user.id).collection("activity").document().documentID
 //            //            let activityId = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: user.id).collection("activity").document().documentID
-            let activityObject = Activity(activityId: User.currentUser()!.id, type: "like", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: User.currentUser()!.profileImageUrl, message: "", date: Date().timeIntervalSince1970, read: false, age: User.currentUserProfile()!.age, location: User.currentUserProfile()!.location,occupation: "", description: "")
+            let activityObject =  UserNotification(activityId: User.currentUser()!.id, type: "like", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: User.currentUser()!.profileImageUrl, message: "", date: Date().timeIntervalSince1970, read: false, location: User.currentUserProfile()!.location)
             guard let activityDict2 = try? activityObject.toDictionary() else { return }
             let activityRef  = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: user.id).collection("activity").document(User.currentUser()!.id)
             batch.setData(activityDict2, forDocument: activityRef)

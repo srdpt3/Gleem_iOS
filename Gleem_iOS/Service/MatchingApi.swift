@@ -26,28 +26,26 @@ class MatchingApi{
         
         
         // Activity
-        //        let activityId = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: user.userId).collection("activity").document().documentID
-        let activityObject = Activity(activityId: User.currentUser()!.id+"match", type: "match", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: User.currentUser()!.profileImageUrl, message: "", date: Date().timeIntervalSince1970, read: false, age: user.age, location: user.location,occupation: user.occupation, description: user.description)
+        let activityId = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: user.userId).collection("activity").document().documentID
+        let activityObject = UserNotification(activityId: activityId, type: "match", username: User.currentUser()!.username, userId: User.currentUser()!.id, userAvatar: User.currentUser()!.profileImageUrl, message: "", date: Date().timeIntervalSince1970, read: false, location:user.location)
         guard let activityDict = try? activityObject.toDictionary() else { return }
-        let activityRef  = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: user.userId).collection("activity").document( User.currentUser()!.id+"match")
+        let activityRef  = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: user.userId).collection("activity").document( activityId)
         batch.setData(activityDict, forDocument: activityRef)
-        
-        
-        
-        let activityId2 = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: User.currentUser()!.id).collection("activity").document().documentID + "_match_request"
-        let activityObject2 = Activity(activityId: activityId2, type: "match_request", username: user.username, userId: user.userId, userAvatar: user.userAvatar, message: "", date: Date().timeIntervalSince1970, read: true,  age: User.currentUserProfile()!.age, location: User.currentUserProfile()!.location,occupation: User.currentUserProfile()!.occupation, description: User.currentUserProfile()!.description)
+
+
+
+        let activityId2 = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: User.currentUser()!.id).collection("activity").document().documentID
+        let activityObject2 = UserNotification(activityId: activityId2, type: "match_request", username: user.username, userId: user.userId, userAvatar: user.userAvatar, message: "", date: Date().timeIntervalSince1970, read: true, location: User.currentUserProfile()!.location)
         guard let activityDict2 = try? activityObject2.toDictionary() else { return }
-        
-        
         let activityRef2  = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: User.currentUser()!.id).collection("activity").document(activityId2)
         batch.setData(activityDict2, forDocument: activityRef2)
         print("Batch FIRESTORE_COLLECTION_ACTIVITY_USERID.")
         
         let someOnelikedRef =  Ref.FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID(userId:User.currentUser()!.id).collection("liked").document(user.userId)
-        
+
         batch.deleteDocument(someOnelikedRef)
         let someOnelikedRef2 =  Ref.FIRESTORE_COLLECTION_SOMEOME_LIKED_USERID(userId:user.userId).collection("liked").document(User.currentUser()!.id)
-        
+
         batch.deleteDocument(someOnelikedRef2)
         
         

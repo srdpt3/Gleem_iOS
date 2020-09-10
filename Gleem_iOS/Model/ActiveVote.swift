@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-
+import GeoFire
 import Foundation
 struct ActiveVote:  Encodable, Decodable ,Identifiable{ 
     var attr1 : Int

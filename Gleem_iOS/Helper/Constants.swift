@@ -196,7 +196,9 @@ public let NOTIFICATION_HEADER = "최근 일주일 이내 내역이 보관됩니
 public let CHAT_LIMIT_NOTIFICATION = "메세지 수는 30번으로 제한되어 있습니다"
 public let CONGRAT_MATCHED = "축하합니다~ 반갑게 인사로 대화를 이어가보세요"
 
-public let WELCOME_GLEEM = "가입을 축하드려요! \n사진을 올려서 내 첫인상을 실시간으로 확인해보세요"
+public let WELCOME_GLEEM = "가입을 축하드려요 \n사진을 올려서 내 첫인상을 실시간으로 확인해보세요"
+public let REJECT_VOTE_IMAGE = "올리신 투표사진이\n승인에 실패하였습니다."
+
 
 //Chat View
 

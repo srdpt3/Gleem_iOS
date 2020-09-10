@@ -133,10 +133,10 @@ struct CardListview: View {
                                         //
                                         //                                    }
                                         //                            )
-                                        .offset(x: self.isTopCard(cardView: cardView) ?  self.dragState.translation.width : 0, y: self.isTopCard(cardView: cardView) ?  self.dragState.translation.height : 0)
-                                        .scaleEffect(self.dragState.isDragging && self.isTopCard(cardView: cardView) ? 0.85 : 1.0)
-                                        .rotationEffect(Angle(degrees: self.isTopCard(cardView: cardView) ? Double(self.dragState.translation.width / 12) : 0))
-                                        .animation(Animation.spring(response: 0.7, dampingFraction: 1.0, blendDuration: 1.0))
+//                                        .offset(x: self.isTopCard(cardView: cardView) ?  self.dragState.translation.width : 0, y: self.isTopCard(cardView: cardView) ?  self.dragState.translation.height : 0)
+//                                        .scaleEffect(self.dragState.isDragging && self.isTopCard(cardView: cardView) ? 0.85 : 1.0)
+//                                        .rotationEffect(Angle(degrees: self.isTopCard(cardView: cardView) ? Double(self.dragState.translation.width / 12) : 0))
+//                                        .animation(Animation.spring(response: 0.7, dampingFraction: 1.0, blendDuration: 1.0))
                                     //                                .animation(.interpolatingSpring(stiffness: 150, damping: 130))
                                     //                              .animation(Animation.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0))
                                     //                                .animation(.easeInOut(duration: 3))
@@ -212,38 +212,81 @@ struct CardListview: View {
                             }else{
                                 
                                 if(!self.obs.isReloading){
-                                    VStack{
-                                        Spacer()
-                                        
-                                        
-                                        Image("Gleem_3D").resizable().scaledToFit().frame(width: UIScreen.main.bounds.width / 3 , height: UIScreen.main.bounds.height / 3)
-                                            .scaleEffect(self.reloading ? 1.1 : 1, anchor: .center).onAppear{
-                                                self.reloading.toggle()
-                                        }
-                                        .animation(Animation.spring(response: 0.7, dampingFraction: 1.0, blendDuration: 1.0).repeatForever(autoreverses: true)).onTapGesture {
-                                            self.obs.getNewCards()
-                                        }
-                                        
-                                        //                                    Button(action: {
-                                        //
-                                        //                                    }) {
-                                        //
-                                        //                                        Image("refresh").resizable().frame(width: 50, height: 50)
-                                        //                                    }.buttonStyle(PlainButtonStyle())
-                                        //
-                                        //                                if(self.obs.users.isEmpty){
-                                        //                                    Text(NO_NEW_CARD)
-                                        //                                        .font(.custom(FONT, size: CGFloat(15))).foregroundColor(APP_THEME_COLOR).multilineTextAlignment(.center).lineLimit(2).padding(.horizontal)
-                                        //                                }
-                                        
-                                        Spacer()
-                                        //                                         LoadingView(isLoading: self.obs.isLoading, error: self.obs.error) {
-                                        //                                             self.obs.getNewCards()
-                                        //                                         }
-                                        
-                                    }.animation(.default).onAppear{
-                                        //                                self.obs.getNewCards()
-                                    }
+                                    
+                                    Image("no_card")
+                                        //        .resizable().frame(height: UIScreen.main.bounds.height / 1.7)
+                                        .resizable().aspectRatio(contentMode: .fit)
+                                        .frame(width: UIScreen.main.bounds.width - 10 , height:  UIScreen.main.bounds.height * 0.66)
+//                                        .scaledToFill()
+                                        .clipped()
+                                        .cornerRadius(24)
+                                        //      .scaledToFit()
+                                        .frame(minWidth: 0, maxWidth: .infinity)  .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 5)
+                                        .overlay(
+                                            VStack(alignment: .center, spacing: 12) {
+                                                Spacer()
+                                                Text(NO_NEW_CARD).font(Font.custom(FONT_BOLD, size: 13))
+                                                    .foregroundColor(APP_THEME_COLOR)
+                                                    //                .font(.title)
+                                                    .fontWeight(.bold)
+                                                    .shadow(radius: 1)
+                                                    .padding(.horizontal, 18)
+                                                    .padding(.vertical, 4)
+                                                //            .overlay(
+                                                //              Rectangle()
+                                                //                .fill(Color.white)
+                                                //                .frame(height: 1),
+                                                //              alignment: .bottom
+                                                //          )
+                                                //            Text(user.age.uppercased())
+                                                //            .foregroundColor(Color.black)
+                                                //            .font(.footnote)
+                                                //            .fontWeight(.bold)
+                                                //            .frame(minWidth: 85)
+                                                //            .padding(.horizontal, 10)
+                                                //            .padding(.vertical, 5)
+                                                //            .background(
+                                                //              Capsule().fill(Color.white)
+                                                //            )
+                                            }
+                                                //        .frame(width: UIScreen.main.bounds.height < 896.0 ?  300 : 311)
+                                                .padding(.bottom, 20),
+                                            alignment: .bottom
+                                    )
+                                    
+                                    
+//                                    VStack{
+//                                        Spacer()
+//
+//
+//                                        Image("no_card").resizable().scaledToFit().frame(width: UIScreen.main.bounds.width / 3 , height: UIScreen.main.bounds.height / 3)
+//                                            .scaleEffect(self.reloading ? 1.1 : 1, anchor: .center).onAppear{
+//                                                self.reloading.toggle()
+//                                        }
+//                                        .animation(Animation.spring(response: 0.7, dampingFraction: 1.0, blendDuration: 1.0).repeatForever(autoreverses: true)).onTapGesture {
+//                                            self.obs.getNewCards()
+//                                        }
+//
+//                                        //                                    Button(action: {
+//                                        //
+//                                        //                                    }) {
+//                                        //
+//                                        //                                        Image("refresh").resizable().frame(width: 50, height: 50)
+//                                        //                                    }.buttonStyle(PlainButtonStyle())
+//                                        //
+//                                        //                                if(self.obs.users.isEmpty){
+//                                        //                                    Text(NO_NEW_CARD)
+//                                        //                                        .font(.custom(FONT, size: CGFloat(15))).foregroundColor(APP_THEME_COLOR).multilineTextAlignment(.center).lineLimit(2).padding(.horizontal)
+//                                        //                                }
+//
+//                                        Spacer()
+//                                        //                                         LoadingView(isLoading: self.obs.isLoading, error: self.obs.error) {
+//                                        //                                             self.obs.getNewCards()
+//                                        //                                         }
+//
+//                                    }.animation(.default).onAppear{
+//                                        //                                self.obs.getNewCards()
+//                                    }
                                 }
                                 
                                 
@@ -255,14 +298,14 @@ struct CardListview: View {
                                 Spacer()
                                 
                                 Button(action: {
-                                                        
-                                                    }) {
-                                                        
-                                                        Image("refresh").resizable().frame(width: 50, height: 50)
-                                                    }.buttonStyle(PlainButtonStyle())
+                                    
+                                }) {
+                                    
+                                    Image("refresh").resizable().frame(width: 50, height: 50)
+                                }.buttonStyle(PlainButtonStyle())
                                 Spacer()
                             }
-                    
+                            
                             
                         }
                         

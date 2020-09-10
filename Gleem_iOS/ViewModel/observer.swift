@@ -24,7 +24,7 @@ class observer : ObservableObject{
     @Published var isVoteLoading = false
     @Published var isReloading = false
     
-    @Published var activityArray = [Activity]()
+    @Published var activityArray = [UserNotification]()
     
     
     
@@ -43,7 +43,7 @@ class observer : ObservableObject{
     var handle: AuthStateDidChangeListenerHandle?
     var latitude: String  { return("\(lm.location?.latitude ?? 0)") }
     var longitude: String { return("\(lm.location?.longitude ?? 0)") }
-    var placemark: String { return("\(lm.placemark?.locality ?? DEFAULT_LOCATION)") }
+    var placemark: String { return("\(lm.placemark?.administrativeArea ?? DEFAULT_LOCATION)") }
     
     //    var status: String    { return("\(lm.status)") }
     func getNewCards(){
@@ -114,7 +114,7 @@ class observer : ObservableObject{
                         
                         let batch = Ref.FIRESTORE_ROOT.batch()
                         
-                        
+                        print(self.placemark)
                         let userLocationRef = Ref.FIRESTORE_DOCUMENT_USER_LOCATION(userId: decoderUser.id)
                         let userProfile = UserProfile.init(id: decoderUser.id, email: decoderUser.email, profileImageUrl: decoderUser.profileImageUrl, username: decoderUser.username, age: decoderUser.age, sex: decoderUser.sex, createdDate:  Date().timeIntervalSince1970, point_avail: INITIAL_POINT, location: self.placemark, occupation: "",  longitude: self.longitude, latitude: self.latitude, description: "")
                         guard let dict2 = try? userProfile.toDictionary() else {return}
@@ -227,20 +227,20 @@ class observer : ObservableObject{
         self.cardViews.removeAll()
         
         //        Filtering
-//        if(!votedCards.isEmpty && !users.isEmpty){
-//            
-//            for index in (0..<users.count).reversed() {
-//                let u = users[index]
-//                if votedCards.contains(u.id){
-//                   users.remove(at: index)
-//                    print("contained  \(u.id)")
-//                }
-//                
-//            }
-//            
-//            print("filtered User : \(users.count)")
-//            
-//        }
+        if(!votedCards.isEmpty && !users.isEmpty){
+
+            for index in (0..<users.count).reversed() {
+                let u = users[index]
+                if votedCards.contains(u.id){
+                   users.remove(at: index)
+                    print("contained  \(u.id)")
+                }
+
+            }
+
+            print("filtered User : \(users.count)")
+            
+        }
         
         if(!users.isEmpty){
             var indexRange = 0
@@ -267,9 +267,11 @@ class observer : ObservableObject{
         //        DispatchQueue.main.async {
         self.isReloading = true
         let whereField = User.currentUser()!.sex == "female" ? "male" : "female"
-        
+        let lesserGeopoint = GeoPoint(latitude: 0.5, longitude: 1)
+
         Ref.FIRESTORE_COLLECTION_ACTIVE_VOTE.whereField("sex", isEqualTo: whereField )
             .limit(to: 30).whereField("approved",isEqualTo: true)
+//            .whereField("geoLocation",isGreaterThan: lesserGeopoint)
             //            .order(by: "createdDate",descending: true)
             .getDocuments { (snap, err) in
                 self.users.removeAll()
@@ -327,7 +329,7 @@ class observer : ObservableObject{
                     //                    self.send()
                     
                     let dict = documentChange.document.data()
-                    guard let decoderActivity = try? Activity.init(fromDictionary: dict) else {return}
+                    guard let decoderActivity = try? UserNotification.init(fromDictionary: dict) else {return}
                     
                     if(!decoderActivity.read) {
                         if(decoderActivity.type == "like"){

@@ -14,7 +14,6 @@ class LocationManager: NSObject, ObservableObject {
     private let locationManager = CLLocationManager()
     let objectWillChange = PassthroughSubject<Void, Never>()
     private let geocoder = CLGeocoder()
-    
     @Published var status: CLAuthorizationStatus? {
         willSet { objectWillChange.send() }
     }
@@ -45,8 +44,39 @@ class LocationManager: NSObject, ObservableObject {
         guard let location = self.location else { return }
         geocoder.reverseGeocodeLocation(location, completionHandler: { (places, error) in
             if error == nil {
+//                var address: String = ""
+
                 self.placemark = places?[0]
                 self.locationName = self.placemark?.location
+//                // Location name
+//                      if let locationName = self.placemark?.addressDictionary?["Name"] as? String {
+//                          address += locationName + ", "
+//                      }
+//
+//                      // Street address
+//                      if let street = self.placemark?.addressDictionary?["Thoroughfare"] as? String {
+//                          address += street + ", "
+//                      }
+//
+//                      // City
+//                      if let city = self.placemark?.addressDictionary?["City"] as? String {
+//                          address += city + ", "
+//                      }
+//
+//                      // Zip code
+//                      if let zip = self.placemark?.addressDictionary?["ZIP"] as? String {
+//                          address += zip + ", "
+//                      }
+//
+//                      // Country
+//                      if let country = self.placemark?.addressDictionary?["Country"] as? String {
+//                          address += country
+//                      }
+//
+//                print(address)
+//
+//
+//                print(self.locationName)
             } else {
                 self.placemark = nil
             }
