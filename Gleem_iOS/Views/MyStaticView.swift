@@ -376,12 +376,13 @@ struct MyStaticView: View , Equatable {
                             if !self.voteData.isEmpty {
                                 
                                 ChartView_BAR(data: self.$voteData, numVote: self.$numVoteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height/4).background(Color.clear)
-                                
+                                .padding(.top, UIScreen.main.bounds.height < 896.0 ? -10 : -10)
+
                                 Spacer()
                                 
                                 //                                    LottieView(filename: "fireworks")
                                 ChartView(data: self.$voteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width - 10 , height: UIScreen.main.bounds.height/CGFloat(radar_graph_ratio)).background(Color.clear)
-                                    .padding(.top, UIScreen.main.bounds.height < 896.0 ? -20 : -20)
+                                    .padding(.top, UIScreen.main.bounds.height < 896.0 ? -5 : -5)
                                 
                                 //                                    LottieView(filename: "radar-motion").frame(width: 300  , height: 300)
                                 //                                        .padding(.bottom, 50)

@@ -133,7 +133,7 @@ struct  TabBar : View {
                 .onTapGesture {
                     self.index = 3
             }
-        }.padding(.top, 3).frame(width: UIScreen.main.bounds.width).background(Color.white)
+        }.frame(width: UIScreen.main.bounds.width).background(Color.white)
             
             
             .animation(.default)

@@ -814,8 +814,8 @@
             filePath = "Gleem_iOS/Views/MyStaticView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "573"
-            endingLineNumber = "573"
+            startingLineNumber = "574"
+            endingLineNumber = "574"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -830,8 +830,8 @@
             filePath = "Gleem_iOS/Views/MyStaticView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "572"
-            endingLineNumber = "572"
+            startingLineNumber = "573"
+            endingLineNumber = "573"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -1761,6 +1761,22 @@
             startingLineNumber = "76"
             endingLineNumber = "76"
             landmarkName = "geocode()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "82413439-17C0-480A-9875-641F26861A6B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Gleem_iOS/Views/ChartView_bar.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "makeUIView(context:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

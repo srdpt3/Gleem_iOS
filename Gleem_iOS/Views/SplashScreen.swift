@@ -49,8 +49,16 @@ struct SplashScreen: View {
   
   var body: some View {
     VStack {
+        
+        Image("landing_top").resizable().frame(height: 120, alignment: .center)
+
         Spacer()
-        Image("Gleem 3D Icon Type Black Transparent_resized").resizable().frame(width: 250  ,height: 150, alignment: .center).scaledToFit()
+        Image("landing_center").resizable().frame(width: 250  ,height: 150, alignment: .center).scaledToFit()
+        
+        Spacer()
+
+        Image("landing_bottom").resizable().frame(height: 120)
+
 //            .resizable(resizingMode: )
 //        .opacity(textAlpha)
 //        .scaleEffect(textScale)
@@ -107,7 +115,6 @@ struct SplashScreen: View {
 //               alignment: .center)
 //        .offset(x: 0, y: -22)
 //
-      Spacer()
     }
     .background(Color.white)
     .edgesIgnoringSafeArea(.all)
@@ -123,9 +130,9 @@ extension SplashScreen {
   var fadeAnimationDuration: Double { return 0.4 }
   
   func handleAnimations() {
-    runAnimationPart1()
-    runAnimationPart2()
-    runAnimationPart3()
+//    runAnimationPart1()
+//    runAnimationPart2()
+//    runAnimationPart3()
     if SplashScreen.shouldAnimate {
       restartAnimation()
     }
