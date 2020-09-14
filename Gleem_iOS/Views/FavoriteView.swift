@@ -75,8 +75,8 @@ struct FavoriteHome : View {
 
                     if !self.activityViewModel.someOneLiked.isEmpty {
                         HStack{
-                            Text(SOMEONE_LIKED).fontWeight(.heavy).font(Font.custom(FONT, size: 20))
-                                .foregroundColor(APP_THEME_COLOR)
+                            Text(SOMEONE_LIKED).fontWeight(.heavy).font(Font.custom(FONT, size: 17))
+                                .foregroundColor(Color("Color11"))
                                 .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 5)
                             //                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
                             Spacer()
@@ -99,7 +99,7 @@ struct FavoriteHome : View {
                             //                            })
                             //                             Spacer()
                         }
-                        .padding(.horizontal).padding(.top, 5)
+                        .padding(.horizontal).padding(.top, 10)
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 10) {
                                 
@@ -147,15 +147,7 @@ struct FavoriteHome : View {
                             MainSubViewFavorite(title: "Favorite Votes", users: self.favoriteViewModel.favoriteUsers, mutualLikedUsers: self.activityViewModel.someOneLiked_id)
                                 .frame( height: geo.size.height / 1.5 )
                         }
-//                        else {
-//                            Spacer()
-//
-//                            LoadingView(isLoading: self.favoriteViewModel.isLoading, error: self.favoriteViewModel.error) {
-//                                self.favoriteViewModel.loadFavoriteUsers()
-//                            }
-//                            Spacer()
-//
-//                        }
+
                     }
                     //                    .padding(.bottom, 60)
                     
@@ -474,7 +466,7 @@ struct MainSubViewFavorite: View{
             ScrollView(.vertical, showsIndicators: false) {
                  
                  HStack{
-                     Text(I_LIKED).fontWeight(.heavy).font(Font.custom(FONT, size: 20)).foregroundColor(APP_THEME_COLOR)
+                     Text(I_LIKED).fontWeight(.heavy).font(Font.custom(FONT, size: 17)).foregroundColor(Color("Color11"))
                          .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 5)
                      //                    .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
                      Spacer()
@@ -519,7 +511,8 @@ struct MainSubViewFavorite: View{
              }.sheet(isPresented: self.$showExpandView){
                  ExpandView(user: self.selectedUser!, updateVoteImage: true, show: self.$show, isVoted:self.$isVoted, buttonPressed : self.buttonPressed, needMoveCard: false)
                            
-            }.padding(.bottom, 60)
+            }
+            .padding(.bottom, 20)
             
         }
  
@@ -541,7 +534,7 @@ struct FavoriteCard: View {
                 if(self.user.imageLocation != ""){
                     AnimatedImage(url: URL(string:self.user.imageLocation))
                         .resizable().aspectRatio(contentMode: .fill).frame(width: (UIScreen.main.bounds.width  ) / 3.1, height: (UIScreen.main.bounds.height ) / 6).cornerRadius(15)
-                        .background(Color("Color-2"))
+                        .background(Color("Color10"))
                         .cornerRadius(15)
                         .shadow(color: Color.black.opacity(0.3), radius: 1, x: 1, y: 1)
                         .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
@@ -574,7 +567,7 @@ struct FavoriteCard: View {
                 else{
                     Image("")
                         .resizable().aspectRatio(contentMode: .fill).frame(width: (UIScreen.main.bounds.width  ) / 3.2, height: (UIScreen.main.bounds.height ) / 6).cornerRadius(15)
-                        .background(Color("Color-2"))
+                        .background(Color("Color10"))
                         .cornerRadius(15)
                         .shadow(color: Color.black.opacity(0.3), radius: 1, x: 1, y: 1)
                         .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
@@ -589,7 +582,7 @@ struct FavoriteCard: View {
             
         .padding(.all, 8)
         .frame(width: (UIScreen.main.bounds.width  - 35 ) / 3, height: (UIScreen.main.bounds.height ) / 5.8)
-        .background(Color("Color-2"))
+        .background(Color("Color10"))
         .cornerRadius(15)
         .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
         //            .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
@@ -618,7 +611,7 @@ struct SectionView2: View {
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: width)
-                        .background(Color("Color-2"))
+                        .background(Color("Color10"))
                         .shadow(color: Color.black.opacity(0.3), radius: 1, x: 1, y: 1)
                         .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
 //                    Text("현재 끌림을준 \n유저가 없습니다").font(Font.custom(FONT, size: 13))

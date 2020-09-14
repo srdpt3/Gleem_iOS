@@ -245,8 +245,8 @@ public class AAGradientColor  {
         ) -> [String : Any] {
         return linearGradient(
             direction: direction,
-            startColor: "#B066FE",
-            endColor: "#63E2FF"
+            startColor: "#63E2FF",
+            endColor: "#B066FE"
         )
     }
     

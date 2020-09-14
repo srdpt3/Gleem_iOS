@@ -14,7 +14,7 @@ struct ChartView: UIViewRepresentable {
     @Binding var data : [Double]
     @Binding var totalNum : Int
     var categories : [String]
-    let hexColor = "#757AF9"
+    let hexColor = "#7579ff"
     //        "#A3ADF9"
     let areaType = AAChartType.area
     let aaChartView = AAChartView()
@@ -161,45 +161,95 @@ struct ChartView: UIViewRepresentable {
     
     func makeUIView(context: Context) -> AAChartView {
         
+//        let aaChartModel = AAChartModel()
+//            .chartType(areaType)
+//            .title("")
+//            .legendEnabled(false)
+//            .dataLabelsEnabled(true)
+//
+//            //            .xAxisVisible(true)
+//            .animationType(animationType)
+//            .colorsTheme([hexColor])
+//            //            .colorsTheme(gradientColorArr as [Any])
+//            .touchEventEnabled(true)
+//
+//
+//            .markerRadius(1)
+//            .borderRadius(10)
+//            .polar(true)
+//            .axesTextColor(AAColor.rgbaColor(117, 122, 249, 1))
+//
+//            //            .axesTextColor("Red")
+//            //            .xAxisGridLineWidth(30)
+//
+//            .yAxisGridLineWidth(4)
+//            .categories(categories).dataLabelsFontSize(12)
+//            .dataLabelsFontWeight(AAChartFontWeightType.bold)
+//            //            .marginRight(5)
+//            //            .marginLeft(5)
+//            .margin(top: 0, right: 0, bottom: 50, left: 0)
+//            .backgroundColor(Color.black.opacity(0.06))
+//            //            .titleFontWeight(AAChartFontWeightType)
+//            .series([
+//                AASeriesElement().name(SERIES_TITLE)
+//                    .data([data[0],data[1],data[2],data[3],data[4]]),
+//
+//
+//            ]) .yAxisMax(Double(totalNum)).yAxisVisible(true).touchEventEnabled(true)
+//
+//
+//        aaChartView.aa_drawChartWithChartModel(aaChartModel)
+        
         let aaChartModel = AAChartModel()
-            .chartType(areaType)
-            .title("")
-            .legendEnabled(false)
-            .dataLabelsEnabled(true)
-            
-            //            .xAxisVisible(true)
-            .animationType(animationType)
-            .colorsTheme([hexColor])
-            //            .colorsTheme(gradientColorArr as [Any])
-            .touchEventEnabled(true)
-            
-            
-            .markerRadius(1)
-            .borderRadius(10)
-            .polar(true)
-            .axesTextColor(AAColor.rgbaColor(117, 122, 249, 1))
-            
-            //            .axesTextColor("Red")
-            //            .xAxisGridLineWidth(30)
-            
-            .yAxisGridLineWidth(4)
-            .categories(categories).dataLabelsFontSize(12)
-            .dataLabelsFontWeight(AAChartFontWeightType.bold)
-            //            .marginRight(5)
-            //            .marginLeft(5)
+                 .colorsTheme([hexColor])
+                 .chartType(.area)
+                 .dataLabelsEnabled(true)
+                 .xAxisVisible(true)
+                 .yAxisVisible(true)
+                 .yAxisLabelsEnabled(true)
+                 .polar(true)
+                 .markerRadius(2)
+                 .markerSymbol(.circle)
+                 .markerSymbolStyle(.borderBlank)
+                 .legendEnabled(false)
+                 .touchEventEnabled(false).dataLabelsFontSize(12)
             .margin(top: 0, right: 0, bottom: 50, left: 0)
-            .backgroundColor(Color.black.opacity(0.06))
-            //            .titleFontWeight(AAChartFontWeightType)
-            .series([
-                AASeriesElement().name(SERIES_TITLE)
-                    .data([data[0],data[1],data[2],data[3],data[4]]),
-                
-                
-            ]) .yAxisMax(Double(totalNum)).yAxisVisible(true).touchEventEnabled(true)
+                 .series([
+                  AASeriesElement().name(SERIES_TITLE)
+                                         .data([data[0],data[1],data[2],data[3],data[4]]),
+                 ])
+             .yAxisMax(Double(totalNum)).yAxisVisible(true).touchEventEnabled(true).dataLabelsFontSize(12)
+             let aaOptions = AAOptionsConstructor.configureChartOptions(aaChartModel)
+             
+//             let categories = ["智力感", "距离感", "成熟感"]
+             let categoryJSArrStr = categories.aa_toJSArray()
+             
+             let xAxisLabelsFormatter = """
+             function () {
+             return \(categoryJSArrStr)[this.value];
+             }
+             """
+             
+             aaOptions.yAxis?
+//                 .tickPositions([0, 25, 50, 75, 100])
+                 .gridLineColor("#E0E3DA")
+                 .gridLineWidth(2.0)
+                 .gridLineDashStyle(.dash)
+             
+             aaOptions.xAxis?
+                 .lineColor(hexColor)
+                 .lineWidth(4)
+                 .gridLineColor("#E0E3DA")
+                 .gridLineWidth(2)
+                 .gridLineDashStyle(.longDashDotDot)
+//                 .tickPositions([0,1,2,0])
+             
+             aaOptions.xAxis?.labels?
+                 .formatter(xAxisLabelsFormatter)
         
-        
-        aaChartView.aa_drawChartWithChartModel(aaChartModel)
-        
+//        let aaOptions = chartConfiguration as! AAOptions
+                aaOptions.touchEventEnabled = true
+                aaChartView.aa_drawChartWithChartOptions(aaOptions)
         return aaChartView
     }
 }

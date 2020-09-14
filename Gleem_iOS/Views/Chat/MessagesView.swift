@@ -252,7 +252,7 @@ struct topView : View {
         
         VStack(alignment: .center){
             Spacer()
-            Image("gleem_Face")
+            Image("gleem_logo_all_white")
                 .resizable()
                 .scaledToFit()
                 .frame(height: 40)

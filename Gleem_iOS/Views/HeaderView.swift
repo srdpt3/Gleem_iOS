@@ -18,7 +18,7 @@ struct HeaderView: View {
     let haptics = UINotificationFeedbackGenerator()
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject  var obs : observer
-
+    
     var body: some View {
         HStack(alignment: .center){
             Button(action: {
@@ -34,12 +34,8 @@ struct HeaderView: View {
             }
             .sheet(isPresented: self.$showInfoView, content: {
                 InfoView()
-            })
-                .accentColor(Color.primary)
-            //          .sheet(isPresented: $showInfoView) {
-            //
-            //                        InfoView()
-            //                    }
+            }) .accentColor(Color.primary)
+            
             
             Spacer(minLength: 70)
             
@@ -51,23 +47,60 @@ struct HeaderView: View {
             Spacer(minLength: 0)
             
             
-            LottieView(filename: "noti").frame(width: 50, height: 50).onTapGesture {
+            //            LottieView(filename: "noti").frame(width: 50, height: 50).onTapGesture {
+            //                self.haptics.notificationOccurred(.success)
+            //                self.showNotification.toggle()
+            //            }
+            
+            Button(action: {
+                // ACTION
+                //        playSound(sound: "sound-click", type: "mp3")
+                
                 self.haptics.notificationOccurred(.success)
                 self.showNotification.toggle()
-            }
+                self.obs.newNotification = false
+            }) {
+                Image(systemName:  "bell.fill")
+                    
+                    .font(.system(size: 24, weight: .regular))
+            }.overlay(
+                HStack {
+                    Spacer()
+                    VStack {
+                        Button(action: {
+                            self.obs.newNotification = false
+                            
+                        }, label: {
+                           
+                                Circle().fill(Color("sleep")).frame(width: 12, height: 12).offset(x: 8,y : 5).opacity(self.obs.newNotification ?  1 : 0)
+                                
+                           
+                            //                            Image(systemName: "plus")
+                            //                                .resizable()
+                            //                                .frame(width: 5, height: 5)
+                            //                                .padding(6)
+                            //                                .background(Color("background2"))
+                            //                                .clipShape(Circle()).foregroundColor(Color.white)
+                            //                                .offset(x: 5)
+                            //                                            .foregroundColor(Color.white)
+                            //                                            .shadow(radius: 3)
+                            //                                            .opacity(self.pulsate ? 1 : 0.6)
+                            //                                            .scaleEffect(self.pulsate ? 1.3 : 0.9, anchor: .center)
+                            //                                            .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
+                        })
+                            .padding(.trailing, 8)
+                            .padding(.top, 8)
+                            .buttonStyle(PlainButtonStyle())
+                        Spacer()
+                    }
+                }
+            )
+                .accentColor(APP_THEME_COLOR)
                 
-                //            Button(action: {
-                //                // ACTION
-                //                //        playSound(sound: "sound-click", type: "mp3")
-                //
-                //                self.haptics.notificationOccurred(.success)
-                //                self.showNotification.toggle()
-                //            }) {
-                //                Image(systemName:  BELL)
-                //
-                //                    .font(.system(size: 24, weight: .regular))
-                //            }
-                //            .accentColor(Color("bell"))
+                
+                
+                
+                
                 .sheet(isPresented: $showNotification) {
                     //        GuideView()
                     NotificationView().environmentObject(self.obs)
@@ -84,8 +117,8 @@ struct HeaderView: View {
                     
                 }
             }) {
-                   Image(systemName: "person")
-                               .font(.system(size: 24, weight: .regular)).foregroundColor(APP_THEME_COLOR)
+                Image(systemName: "person")
+                    .font(.system(size: 24, weight: .regular)).foregroundColor(APP_THEME_COLOR)
             }.buttonStyle(PlainButtonStyle())
             
             

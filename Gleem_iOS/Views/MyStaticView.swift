@@ -14,9 +14,11 @@ struct MyStaticView: View , Equatable {
     //    @ObservedObject private var VoteViewModel = VoteViewModel()
     
     @State var vote : Vote?
-    
+    var radar_graph_ratio =  UIScreen.main.bounds.height < 896.0 ? 3.0 : 2.7
     @State var totalNum : Int = 0
     @State var voteData:[Double] = [0,0,0,0,0]
+    @State var numVoteData:[Int] = [0,0,0,0,0]
+
     @State var voteBarData:[Double] = [0,0,0,0,0]
 
     let numberIVoted = 30
@@ -68,6 +70,8 @@ struct MyStaticView: View , Equatable {
             if vote.attrNames.count == 0 {
                 self.noVotePic = true
                 self.voteData = [0,0,0,0,0]
+                self.numVoteData = [0,0,0,0,0]
+
                 self.voteBarData = [0,0,0,0,0]
 
                 
@@ -85,6 +89,8 @@ struct MyStaticView: View , Equatable {
                 self.buttonTitle.removeAll()
                 if(vote.numVote == 0){
                     self.voteData = [0,0,0,0,0]
+                    self.numVoteData = [0,0,0,0,0]
+
                     self.voteBarData = [0,0,0,0,0]
 
                     self.totalNum = 0
@@ -96,6 +102,8 @@ struct MyStaticView: View , Equatable {
                     let attr5 = (Double(vote.attr5) / Double(vote.numVote) * 100).roundToDecimal(0)
                     
                     self.voteData = [attr1, attr2, attr3, attr4, attr5]
+                    self.numVoteData = [Int(vote.attr1), Int(vote.attr2) ,Int(vote.attr3), Int(vote.attr4), Int(vote.attr5)]
+
                     let maxNum =  100 - (self.voteData.max()!)
                     print(maxNum)
                     self.voteBarData = [attr1 > 0.0 ? attr1 + maxNum : attr1 ,
@@ -185,7 +193,7 @@ struct MyStaticView: View , Equatable {
                         VStack(alignment: .leading, spacing: 5){
                             
                             Text(timeAgoSinceDate(Date(timeIntervalSince1970: self.date ), currentDate: Date(), numericDates: true) + "에 참여하였습니다.").font(Font.custom(FONT, size: 13)).multilineTextAlignment(.leading).lineLimit(2)
-                                .foregroundColor(.gray)
+                                .foregroundColor(Color("Color11"))
                             Text(self.uploadMsg).font(Font.custom(FONT, size: 13)).multilineTextAlignment(.leading).lineLimit(2)
                                 .foregroundColor(.gray)
                             if(self.totalNum == 0){
@@ -298,14 +306,13 @@ struct MyStaticView: View , Equatable {
                 
             }
             //            // GET  a List of users who voted me
-            
             VStack{
                 
                 
                 if !self.chartViewModel.someOneVoted.isEmpty {
                     VStack(alignment: .leading){
                         
-                        Text(RECENT_VOTE).fontWeight(.heavy).font(Font.custom(FONT, size: 18)).foregroundColor(APP_THEME_COLOR)
+                        Text(RECENT_VOTE).fontWeight(.heavy).font(Font.custom(FONT, size: 17)).foregroundColor(Color("Color11"))
                             .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5).padding(.bottom, 5)
                         //                                    Spacer(minLength: 0)
                         ScrollView(.horizontal, showsIndicators: false) {
@@ -317,7 +324,8 @@ struct MyStaticView: View , Equatable {
                                         .animation(Animation.easeIn(duration: 1.5))
                                 }
                                 
-                            }.padding(.leading, 15)
+                            }
+                            .padding(.leading, 15)
                             
                             
                         }
@@ -328,7 +336,7 @@ struct MyStaticView: View , Equatable {
                 }else{
                     VStack(alignment: .leading){
                         
-                        Text(RECENT_VOTE).fontWeight(.heavy).font(Font.custom(FONT, size: 18)).foregroundColor(APP_THEME_COLOR)
+                        Text(RECENT_VOTE).fontWeight(.heavy).font(Font.custom(FONT, size: 17)).foregroundColor(Color("Color11"))
                             .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5).padding(.bottom, 5)
                         //                                    Spacer(minLength: 0)
                         ScrollView(.horizontal, showsIndicators: false) {
@@ -346,134 +354,52 @@ struct MyStaticView: View , Equatable {
                 }
                 
                 
-            } .padding(.top,5).padding(.horizontal).padding(.vertical, 5)
-            
+            } .padding(.top,3).padding(.horizontal).padding(.vertical, 3)
+//            Divider()
+
             ScrollView(.vertical, showsIndicators: true) {
                 
                 if self.obs.updateVoteImage && self.votePiclocation != "" {
                     HStack{
-                        
-                        Text(MY_STAT_RADAR).fontWeight(.heavy).font(Font.custom(FONT, size: 18)).foregroundColor(APP_THEME_COLOR)
+
+                        Text(MY_STAT_RADAR).fontWeight(.heavy).font(Font.custom(FONT, size: 17)).foregroundColor(Color("Color11"))
                             .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
-                        
+
                         Spacer(minLength: 0)
-                    } .padding(.horizontal).padding(.vertical,8)
+                    } .padding(.horizontal).padding(.top,5)
                     
                     
-                    HStack(alignment: .top,spacing: 5){
-                        
-                        VStack{
-                            Spacer()
-                            
-                            VStack(alignment: .center, spacing: 5) {
-                                
-                                
-                                
-                                Spacer()
-                                Text(VOTENUM_SOFAR).fontWeight(.heavy).font(Font.custom(FONT, size: 15)).foregroundColor(Color.white)
-                                    .shadow(color: Color.black.opacity(0.1), radius: 5, x: 5, y: 5)
-                                Text(String(self.totalNum)).fontWeight(.heavy).font(Font.custom(FONT, size: 15)).foregroundColor(Color.white)
-                                    .shadow(color: Color.black.opacity(0.1), radius: 5, x: 5, y: 5)
-                                
-                                //                                    ZStack{
-                                //                                        //                                        LoadingView2(filename: "heart")
-                                //                                        LottieView(filename: "heart")
-                                //                                            .frame(width: 80, height: 100)
-                                //                                    }
-                                Spacer()
-                                
-                            }
-                            .padding(.vertical)
-                            .frame(width: (UIScreen.main.bounds.width / 3) - 30, height: 100 )
-                            .background(Color("Color2"))
-                            .cornerRadius(12).padding(.leading, 10).padding(.bottom, 15)
-                            .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 2)
-                            .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
-                            
-                            Text("").fontWeight(.heavy).font(Font.custom(FONT, size:12)).foregroundColor(.gray).multilineTextAlignment(.leading).lineLimit(2)
-                            Spacer()
-                            
-                        }
-                        .frame(height: UIScreen.main.bounds.width / 2.55).padding(.bottom, 2).padding(.horizontal, 2)
-                        .padding(.top, UIScreen.main.bounds.height < 896.0 ? 0 : 3)
-                        
-                        
-                        
-                        
-                        //                            }
-                        //                            .padding().padding(.top, -20)
-                        
-                        ForEach(Array(self.voteBarData.enumerated()), id: \.offset) { index, work in
-                            VStack{
-                                if(work == 0){
-                                    VStack{
-                                        
-                                        Spacer(minLength: 0)
-                                        
-                                        
-                                        RoundedShape()
-                                            .fill(LinearGradient(gradient: .init(colors:  self.empty_color), startPoint: .top, endPoint: .bottom))
-                                            // max height = 200
-                                            .frame(height:  100 ).animation(.linear)
-                                        //                                                .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 2)
-                                        //                                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
-                                    }
-                                    .frame(height: UIScreen.main.bounds.width / 3.5).padding(.bottom, 5).padding(.horizontal, 2)
-                                }else{
-                                    VStack{
-                                        
-                                        Spacer(minLength: 0)
-                                        
-                                        
-                                        RoundedShape()
-                                            .fill(LinearGradient(gradient: .init(colors:  self.colors[index]), startPoint: .top, endPoint: .bottom))
-                                            // max height = 200
-                                            .frame(height:  self.getHeight(value: CGFloat(work)))
-                                            
-                                            .animation(.linear)
-                                        //                                            .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 2)
-                                        //                                            .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
-                                    }
-                                    .frame(height: UIScreen.main.bounds.width / 3.5).padding(.bottom, 5).padding(.horizontal, 2)
-                                }
-                                
-                                
-                                Text(self.buttonTitle[index]).fontWeight(.heavy).font(Font.custom(FONT, size: 12)).foregroundColor(.gray).multilineTextAlignment(.leading).lineLimit(1)
-                                Spacer()
-                            }
-                        }
-                        Spacer()
-                        
-                    }.padding(.horizontal,5)
                     Group{
                         
                         VStack{
                             
                             if !self.voteData.isEmpty {
                                 
+                                ChartView_BAR(data: self.$voteData, numVote: self.$numVoteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height/4).background(Color.clear)
                                 
-                                ZStack{
-                                    
-                                    //                                    LottieView(filename: "fireworks")
-                                    ChartView(data: self.$voteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width - 10 , height: UIScreen.main.bounds.height/2.8).background(Color.clear).padding(.bottom, 20).padding(.top, UIScreen.main.bounds.height < 896.0 ? -60 : -10)
-                                    
-                                    LottieView(filename: "radar-motion").frame(width: 300  , height: 300)
-                                        .padding(.bottom, 50)
-                                    
-                                }
+                                Spacer()
+                                
+                                //                                    LottieView(filename: "fireworks")
+                                ChartView(data: self.$voteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width - 10 , height: UIScreen.main.bounds.height/CGFloat(radar_graph_ratio)).background(Color.clear)
+                                    .padding(.top, UIScreen.main.bounds.height < 896.0 ? -20 : -20)
+                                
+                                //                                    LottieView(filename: "radar-motion").frame(width: 300  , height: 300)
+                                //                                        .padding(.bottom, 50)
+                                
+                                
                                 
                                 
                             }
-                            else {
-                                LoadingView(isLoading: self.chartViewModel.isLoading, error: self.chartViewModel.error) {
-                                    if(Reachabilty.HasConnection()){
-                                        self.loadChartData()
-
-                                    }
-                                    
-                                    
-                                }
-                            }
+                            //                            else {
+                            //                                LoadingView(isLoading: self.chartViewModel.isLoading, error: self.chartViewModel.error) {
+                            //                                    if(Reachabilty.HasConnection()){
+//                                        self.loadChartData()
+//
+//                                    }
+//
+//
+//                                }
+//                            }
                         }
                     }
                     //                    VStack(spacing: 32){
@@ -548,59 +474,60 @@ struct MyStaticView: View , Equatable {
                 }
                 else{
                     
-                    HStack{
-                        
-                        Text(MY_STAT_RADAR).fontWeight(.heavy).font(Font.custom(FONT, size: 18)).foregroundColor(APP_THEME_COLOR)
-                            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
-                        
-                        //                            Text(" - " + VOTENUM_SOFAR +  String(self.totalNum)).fontWeight(.heavy).font(Font.custom(FONT, size: 17)).foregroundColor(APP_THEME_COLOR)
-                        //                                .shadow(color: Color.black.opacity(0.3), radius: 5, x: 5, y: 5)
-                        //                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
-                        Spacer(minLength: 0)
-                    } .padding(.horizontal).padding(.vertical,10)
-                    
-                    
-                    HStack(alignment: .top,spacing: 5){
-                        ForEach(Array(self.voteBarData.enumerated()), id: \.offset) { index, work in
-                            VStack{
-                                if(work == 0){
-                                    VStack{
-                                        
-                                        Spacer(minLength: 0)
-                                        
-                                        
-                                        RoundedShape()
-                                            .fill(LinearGradient(gradient: .init(colors:  self.empty_color), startPoint: .top, endPoint: .bottom))
-                                            // max height = 200
-                                            .frame(height:  100 ).animation(.linear)
-                                        //                                                .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 2)
-                                        //                                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
-                                    }
-                                    .frame(height: UIScreen.main.bounds.width / 3.5).padding(.bottom, 5).padding(.horizontal, 2)
-                                    
-                                }
-                                
-                                Text(self.buttonTitle[index]).fontWeight(.heavy).font(Font.custom(FONT, size: 12)).foregroundColor(.gray).multilineTextAlignment(.leading).lineLimit(1)
-                                Spacer()
-                            }
-                        }
-                        Spacer()
-                    }.padding(.horizontal,5)
+//                    HStack{
+//
+//                        Text(MY_STAT_RADAR).fontWeight(.heavy).font(Font.custom(FONT, size: 18)).foregroundColor(APP_THEME_COLOR)
+//                            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
+//
+//                        //                            Text(" - " + VOTENUM_SOFAR +  String(self.totalNum)).fontWeight(.heavy).font(Font.custom(FONT, size: 17)).foregroundColor(APP_THEME_COLOR)
+//                        //                                .shadow(color: Color.black.opacity(0.3), radius: 5, x: 5, y: 5)
+//                        //                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+//                        Spacer(minLength: 0)
+//                    } .padding(.horizontal).padding(.vertical,10)
+//                        ChartView_BAR(data: self.$voteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height/3.4).background(Color.clear).padding(.bottom, 10)
+//
+//                    HStack(alignment: .top,spacing: 5){
+//                        ForEach(Array(self.voteBarData.enumerated()), id: \.offset) { index, work in
+//                            VStack{
+//                                if(work == 0){
+//                                    VStack{
+//
+//                                        Spacer(minLength: 0)
+//
+//
+//                                        RoundedShape()
+//                                            .fill(LinearGradient(gradient: .init(colors:  self.empty_color), startPoint: .top, endPoint: .bottom))
+//                                            // max height = 200
+//                                            .frame(height:  100 ).animation(.linear)
+//                                        //                                                .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 2)
+//                                        //                                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+//                                    }
+//                                    .frame(height: UIScreen.main.bounds.width / 3.5).padding(.bottom, 5).padding(.horizontal, 2)
+//
+//                                }
+//
+//                                Text(self.buttonTitle[index]).fontWeight(.heavy).font(Font.custom(FONT, size: 12)).foregroundColor(.gray).multilineTextAlignment(.leading).lineLimit(1)
+//                                Spacer()
+//                            }
+//                        }
+//                        Spacer()
+//                    }.padding(.horizontal,5)
                     Group{
                         
                         VStack{
-                            
+                            ChartView_BAR(data: self.$voteData, numVote: self.$numVoteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height/3.4).background(Color.clear).padding(.bottom, 10)
                             
                             
                             ZStack{
                                 
                                 //                                    LottieView(filename: "fireworks")
-                                ChartView(data: self.$voteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width - 10 , height: UIScreen.main.bounds.height/2.8).background(Color.clear).padding(.bottom, 20).padding(.top, -60)
+                                ChartView(data: self.$voteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width - 10 , height: UIScreen.main.bounds.height/CGFloat(radar_graph_ratio)).background(Color.clear).padding(.bottom, 30)
+                                                                   .padding(.top, UIScreen.main.bounds.height < 896.0 ? -60 : -60)
                                 //                                        .zIndex(1)
                                 
                                 
-                                LottieView(filename: "radar-motion").frame(width: 300  , height: 300)
-                                    .padding(.bottom, 50)
+//                                LottieView(filename: "radar-motion").frame(width: 300  , height: 300)
+//                                    .padding(.bottom, 50)
                                 
                             }
                             

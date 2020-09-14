@@ -22,8 +22,8 @@ struct FooterView: View {
             
             //            if UIScreen.main.bounds.height < 896.0{
             Spacer()
-            VStack { voteButtonView(isVoted: self.$isVoted, showVotingScreen: self.$showVotingScreen, height: UIScreen.main.bounds.height < 896.0 ? 50 : 60, uploadComplete: self.$uploadComplete).offset(y: -10)}
-            VStack { ArrowView(height: UIScreen.main.bounds.height < 896.0 ? 50 : 60, uploadComplete: self.$uploadComplete).offset(y: -10) }
+            VStack { voteButtonView(isVoted: self.$isVoted, showVotingScreen: self.$showVotingScreen, height: UIScreen.main.bounds.height < 896.0 ? 50 : 60, uploadComplete: self.$uploadComplete)}
+            VStack { ArrowView(height: UIScreen.main.bounds.height < 896.0 ? 50 : 60, uploadComplete: self.$uploadComplete) }
             Spacer()
             
             

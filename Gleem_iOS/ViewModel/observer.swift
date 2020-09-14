@@ -18,12 +18,13 @@ class observer : ObservableObject{
     @Published var gender : String = ""
     
     @Published var last = 0
-    @Published var isLoading = false
-    @Published var isInBoxLoading = false
+    @Published var isLoading : Bool = false
+    @Published var isInBoxLoading : Bool = false
     
-    @Published var isVoteLoading = false
-    @Published var isReloading = false
-    
+    @Published var isVoteLoading : Bool = false
+    @Published var isReloading : Bool = false
+    @Published var newNotification : Bool = false
+
     @Published var activityArray = [UserNotification]()
     
     
@@ -308,11 +309,6 @@ class observer : ObservableObject{
     }
     
     func loadActivities() {
-        //        isLoading = true
-        //        var matched: Bool = false
-        //        var liked : Bool = false
-        //
-        
         listener = Ref.FIRESTORE_COLLECTION_ACTIVITY_USERID(userId: User.currentUser()!.id).collection("activity").order(by: "date", descending: true).addSnapshotListener({ (querySnapshot, error) in
             self.activityArray.removeAll()
             self.readActivity.removeAll()
@@ -332,6 +328,7 @@ class observer : ObservableObject{
                     guard let decoderActivity = try? UserNotification.init(fromDictionary: dict) else {return}
                     
                     if(!decoderActivity.read) {
+                        self.newNotification = true
                         if(decoderActivity.type == "like"){
                             if(!self.readActivity.contains(decoderActivity.activityId)){
                                 self.setNotification(msg:"누군가 나에게 끌림을 주었습니다")
@@ -431,6 +428,7 @@ class observer : ObservableObject{
                 print("Error updating document: \(err)")
             } else {
                 print("updateRead successfully updated")
+                self.newNotification = false
             }
         }
     }
@@ -444,6 +442,8 @@ class observer : ObservableObject{
                 print("Error updating document: \(err)")
             } else {
                 print("Document successfully updated")
+                self.newNotification = false
+
             }
         }
     }

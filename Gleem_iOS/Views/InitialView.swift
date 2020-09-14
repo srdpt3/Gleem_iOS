@@ -17,6 +17,7 @@ struct InitialView: View {
 //    @EnvironmentObject var session: SessionStore
     @EnvironmentObject var obs : observer
     @State var noConnection : Bool = false
+    @State var showSplash = true
 
     func listen() {
         //        self.obs.reload()
@@ -33,27 +34,46 @@ struct InitialView: View {
     
     var body: some View {
         NavigationView{
-            Group {
-                if(obs.isLoggedIn && Reachabilty.HasConnection()){
-                    ContentView()
-                } else {
-                    LoginView()
+            ZStack{
+                
+                if(!SplashScreen.shouldAnimate){
+                    
+                    if(self.obs.isLoggedIn){
+                        ContentView()
+                    }else{
+                        LoginView()
+                    }
+                    
+                    
                 }
                 
+                SplashScreen()
+                    .opacity(showSplash ? 1 : 0)
+                    .onAppear {
+                        self.listen()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                            SplashScreen.shouldAnimate = false
+                            withAnimation() {
+                                self.showSplash = false
+                            }
+                        }
+                }
             }
         }
-            
-            
-        .onAppear(perform: listen).alert(isPresented: $noConnection) {
-            Alert(
-                title: Text(ERROR),
-                message: Text(NO_CONNECTION),
-                dismissButton: .default(Text(CONFIRM)))
-            
-            
-            
-            
-        }
+        
+        
+        
+        //
+        //        .onAppear(perform: listen).alert(isPresented: $noConnection) {
+        //            Alert(
+//                title: Text(ERROR),
+//                message: Text(NO_CONNECTION),
+//                dismissButton: .default(Text(CONFIRM)))
+//
+//
+//
+//
+//        }
     }
 }
 

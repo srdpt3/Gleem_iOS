@@ -22,7 +22,7 @@ struct MainCardView: View, Identifiable {
         AnimatedImage(url: URL(string:self.user.imageLocation))
             //        .resizable().frame(height: UIScreen.main.bounds.height / 1.7)
             .resizable().aspectRatio(contentMode: .fill)
-            .frame(width: UIScreen.main.bounds.width - 10 , height:  UIScreen.main.bounds.height * 0.66)
+            .frame(width: UIScreen.main.bounds.width - 10 , height:  UIScreen.main.bounds.height * 0.68)
             .scaledToFill()
             .clipped()
             .cornerRadius(24)

@@ -22,7 +22,14 @@ let APP_THEME_COLOR = Color("Color2")
 let INITIAL_POINT = 2000
 let POINT_USE = 10
 let DEFAULT_LOCATION = "대한민국"
-public let BANNER_UNIT_ID = "ca-app-pub-1790336833303238/5428347738"
+//public let BANNER_UNIT_ID = "ca-app-pub-1790336833303238/5428347738"
+
+//TEST BANNER UNIT ID
+public let BANNER_UNIT_ID = "ca-app-pub-3940256099942544/2934735716"
+//
+//GADApplicationIdentifier : ca-app-pub-1790336833303238~5310295210
+//TEST  GADApplicationIdentifier : ca-app-pub-1790336833303238~5310295210
+
 
 // Tabbar
 public let index1 = "카드"

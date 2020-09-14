@@ -99,6 +99,8 @@
 		118BAC2C24CCC02B00989F47 /* femaie.json in Resources */ = {isa = PBXBuildFile; fileRef = 118BAC2B24CCC02500989F47 /* femaie.json */; };
 		11982E7024CFA60C00DC57E2 /* CreditCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11982E6F24CFA60C00DC57E2 /* CreditCard.swift */; };
 		11982E7224CFA63600DC57E2 /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11982E7124CFA63600DC57E2 /* PaymentView.swift */; };
+		11ABF8BA250DB725007B3DB6 /* ChartView_bar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ABF8B9250DB725007B3DB6 /* ChartView_bar.swift */; };
+		11B3192D250AFD4C00AE634B /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B3192C250AFD4C00AE634B /* SplashScreen.swift */; };
 		11B5ECE324BB7D920055700B /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5ECE224BB7D920055700B /* Chat.swift */; };
 		11B5ECE524BB7DA50055700B /* InboxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5ECE424BB7DA50055700B /* InboxMessage.swift */; };
 		11B5ECEF24BB802E0055700B /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5ECEE24BB802D0055700B /* UserViewModel.swift */; };
@@ -250,6 +252,8 @@
 		118BAC2B24CCC02500989F47 /* femaie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = femaie.json; sourceTree = "<group>"; };
 		11982E6F24CFA60C00DC57E2 /* CreditCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCard.swift; sourceTree = "<group>"; };
 		11982E7124CFA63600DC57E2 /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
+		11ABF8B9250DB725007B3DB6 /* ChartView_bar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView_bar.swift; sourceTree = "<group>"; };
+		11B3192C250AFD4C00AE634B /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		11B5ECE224BB7D920055700B /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		11B5ECE424BB7DA50055700B /* InboxMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessage.swift; sourceTree = "<group>"; };
 		11B5ECEE24BB802D0055700B /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
@@ -454,6 +458,8 @@
 				11B5ED0A24BD35C50055700B /* NotificationView.swift */,
 				11B5ED2924BE20F20055700B /* FlagView.swift */,
 				1153A79924B97F6400CE3574 /* InitialView.swift */,
+				11B3192C250AFD4C00AE634B /* SplashScreen.swift */,
+				11ABF8B9250DB725007B3DB6 /* ChartView_bar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -902,6 +908,7 @@
 				11B5ECF324BB8A6F0055700B /* ChatApi.swift in Sources */,
 				11143D3B24C4AEC70082E48F /* Match.swift in Sources */,
 				11783E9F24B53BF400EEFE80 /* observer.swift in Sources */,
+				11ABF8BA250DB725007B3DB6 /* ChartView_bar.swift in Sources */,
 				11B5ECF724BB99F80055700B /* MessageViewModel.swift in Sources */,
 				1153A79A24B97F6400CE3574 /* InitialView.swift in Sources */,
 				1153A7A924BA023F00CE3574 /* CustomController.swift in Sources */,
@@ -962,6 +969,7 @@
 				11B5ED2324BE086D0055700B /* FooterView.swift in Sources */,
 				11B5ED0524BD02E70055700B /* Notification.swift in Sources */,
 				118BAC1E24CB7D1B00989F47 /* KeyboardObserving.swift in Sources */,
+				11B3192D250AFD4C00AE634B /* SplashScreen.swift in Sources */,
 				11783ED124B53D1A00EEFE80 /* ExpandView.swift in Sources */,
 				1153A79324B9679200CE3574 /* SignupButton.swift in Sources */,
 				11B5ED0724BD17EC0055700B /* ActivityApi.swift in Sources */,
@@ -1160,16 +1168,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Gleem_iOS/Preview Content\"";
 				DEVELOPMENT_TEAM = CSE9343A58;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Gleem_iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.58;
+				MARKETING_VERSION = 1.59;
 				PRODUCT_BUNDLE_IDENTIFIER = gleem.dating;
 				PRODUCT_NAME = "Gleem 데이팅";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1185,16 +1194,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Gleem_iOS/Preview Content\"";
 				DEVELOPMENT_TEAM = CSE9343A58;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Gleem_iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.58;
+				MARKETING_VERSION = 1.59;
 				PRODUCT_BUNDLE_IDENTIFIER = gleem.dating;
 				PRODUCT_NAME = "Gleem 데이팅";
 				PROVISIONING_PROFILE_SPECIFIER = "";
