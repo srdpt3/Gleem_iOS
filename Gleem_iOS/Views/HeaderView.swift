@@ -73,20 +73,7 @@ struct HeaderView: View {
                         }, label: {
                            
                                 Circle().fill(Color("sleep")).frame(width: 12, height: 12).offset(x: 8,y : 5).opacity(self.obs.newNotification ?  1 : 0)
-                                
-                           
-                            //                            Image(systemName: "plus")
-                            //                                .resizable()
-                            //                                .frame(width: 5, height: 5)
-                            //                                .padding(6)
-                            //                                .background(Color("background2"))
-                            //                                .clipShape(Circle()).foregroundColor(Color.white)
-                            //                                .offset(x: 5)
-                            //                                            .foregroundColor(Color.white)
-                            //                                            .shadow(radius: 3)
-                            //                                            .opacity(self.pulsate ? 1 : 0.6)
-                            //                                            .scaleEffect(self.pulsate ? 1.3 : 0.9, anchor: .center)
-                            //                                            .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
+     
                         })
                             .padding(.trailing, 8)
                             .padding(.top, 8)

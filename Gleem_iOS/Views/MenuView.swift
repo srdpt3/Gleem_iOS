@@ -55,7 +55,7 @@ struct MenuView: View {
                     if(User.currentUser()!.profileImageUrl == ""){
                         
                         Image("Gleem_3D").resizable()
-                            .aspectRatio(contentMode: .fill)
+                            .aspectRatio(contentMode: .fit)
                             .frame(width: 60, height: 60)
                             .clipShape(Circle())
                             .offset(y: -150)

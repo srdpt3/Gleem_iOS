@@ -506,13 +506,13 @@ struct MainSubViewFavorite: View{
                      }
                      
                      
-                 }
+                 }.padding(.bottom, UIScreen.main.bounds.height < 896.0 ? 50 : 30)
                  
              }.sheet(isPresented: self.$showExpandView){
                  ExpandView(user: self.selectedUser!, updateVoteImage: true, show: self.$show, isVoted:self.$isVoted, buttonPressed : self.buttonPressed, needMoveCard: false)
                            
             }
-            .padding(.bottom, 40)
+
             
         }
  

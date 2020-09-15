@@ -49,11 +49,11 @@ struct InitialView: View {
                 }
                 
                 SplashScreen()
-                    .opacity(showSplash ? 1 : 0).animation(.easeInOut(duration: 1))
+                    .opacity(showSplash ? 1 : 0).animation(.easeIn(duration: 1))
 
                     .onAppear {
                         self.listen()
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
                             SplashScreen.shouldAnimate = false
                             withAnimation() {
                                 self.showSplash = false

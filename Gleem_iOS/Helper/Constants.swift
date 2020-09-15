@@ -233,6 +233,7 @@ public let REJECT_VOTE_IMAGE = "올리신 투표사진이\n승인에 실패하�
 public let TYPE_MESSAGE = "메세지를 입력해주세요"
 public let LEAVE_ROOM =  "채팅방 나가기"
 public let END_CHAT =  "님과의 대화를 종료합니다"
+public let NO_MATCHED_USER = "연결된 상대방이 없습니다"
 
 //Favorite
 

@@ -322,7 +322,7 @@ struct chatTopview : View {
                     //                    Text(recipientUsername).font(Font.custom(FONT, size: 15)).multilineTextAlignment(.leading).lineLimit(1)
                     //                   Text(CHAT_LIMIT_NOTIFICATION).foregroundColor(Color.white).font(Font.custom(FONT, size: 13)).frame(width: 150).padding(.horizontal)
                     
-                }.padding(.bottom,5)
+                }.padding(.bottom,5).offset(x: UIScreen.main.bounds.height < 896.0 ? -10 : 0)
                 
                 Spacer(minLength:  35)
                 

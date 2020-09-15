@@ -9,28 +9,26 @@
 import SwiftUI
 
 struct EmptyChattingView: View {
-    //    init(){
-    //
-    //    }
+
     var body: some View{
-            
-            
+        
+        
         VStack(alignment: .center){
             Spacer(minLength: 100)
             
             HStack{
                 Spacer()
                 
-                Text("연결된 상대방이 없습니다").foregroundColor(Color("Color2")).font(.custom(FONT, size: 18)).padding()
-                
-                //                        .animation(.easeIn(duration: 2))
+                Text(NO_MATCHED_USER).foregroundColor(Color("Color2")).font(.custom(FONT, size: 18)).padding()
+                    .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 5)
                 Spacer()
             }
-            HStack{
+            HStack(alignment: .center){
                 
                 Spacer()
                 
-                LottieView(filename: "no-chat2").frame(width: 200, height: 200).onTapGesture {
+                LottieView(filename: "no-chat2").frame(width: 200, height: 200)
+                .onTapGesture {
                     print("lottie")
                 }
                 
@@ -41,19 +39,14 @@ struct EmptyChattingView: View {
                 
                 
             .padding(.top, 10)
-
+            
             
         }.background(Color.white).padding(.horizontal, 10)
             .onDisappear(){
-                //               UITableView.appearance().separatorColor = .lightGray
-                
                 
         }
         .onAppear{
-            //           UITableView.appearance().separatorColor = .clear
         }
-        //
-        //                .padding()
         
         
     }

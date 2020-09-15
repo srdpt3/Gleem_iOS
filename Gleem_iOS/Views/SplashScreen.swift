@@ -41,30 +41,35 @@ struct SplashScreen: View {
   @State var uScale: CGFloat = 1
   @State var squareColor = Color.white
   @State var squareScale: CGFloat = 1
-  @State var lineScale: CGFloat = 1
-  @State var textAlpha = 0.0
-  @State var textScale: CGFloat = 1
-  @State var coverCircleScale: CGFloat = 1
-  @State var coverCircleAlpha = 0.0
-  
-  var body: some View {
-    VStack {
-        
-        Image("landing_top").resizable().frame(height: 120, alignment: .center)
+    @State var lineScale: CGFloat = 1
+    @State var textAlpha = 0.0
+    @State var textScale: CGFloat = 1
+    @State var coverCircleScale: CGFloat = 1
+    @State var coverCircleAlpha = 0.0
+    @State var reloading : Bool = false
 
-        Spacer()
-        Image("landing_center").resizable().frame(width: 250  ,height: 150, alignment: .center).scaledToFit()
-        
-        Spacer()
-
-        Image("landing_bottom").resizable().frame(height: 120)
-
-//            .resizable(resizingMode: )
-//        .opacity(textAlpha)
-//        .scaleEffect(textScale)
-//
-//      Circle()
-//        .fill(fuberBlue)
+    var body: some View {
+        VStack {
+            
+            Image("landing_top").resizable().frame(height: 120, alignment: .center)
+            
+            Spacer()
+            Image("landing_center").resizable().frame(width: 250  ,height: 150, alignment: .center).scaledToFit()
+//                .scaleEffect(self.reloading ? 1.1 : 1, anchor: .center)
+//                .onAppear{
+//                    self.reloading.toggle()
+//            }
+//            .animation(Animation.spring(response: 0.7, dampingFraction: 1.0, blendDuration: 1.0).repeatForever(autoreverses: true))
+            Spacer()
+            
+            Image("landing_bottom").resizable().frame(height: 120)
+            
+            //            .resizable(resizingMode: )
+            //        .opacity(textAlpha)
+            //        .scaleEffect(textScale)
+            //
+            //      Circle()
+            //        .fill(fuberBlue)
 //        .frame(width: 1, height: 1,
 //               alignment: .center)
 //        .scaleEffect(coverCircleScale)

@@ -198,7 +198,6 @@ struct CardListview: View {
                                                     .font(.title)
                                                     .foregroundColor(Color.white)
                                                     .shadow(radius: 5)
-                                                    //                                            .opacity(self.pulsate ? 1 : 0.6)
                                                     .scaleEffect(1.2, anchor: .center)
                                                 //                                            .animation(Animation.easeOut(duration: 1.5).repeatForever(autoreverses: true))
                                             })
@@ -233,7 +232,7 @@ struct CardListview: View {
                                                     .foregroundColor(APP_THEME_COLOR)
                                                     //                .font(.title)
                                                     .fontWeight(.bold)
-                                                    .shadow(radius: 1)
+                                                       .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 5)
                                                     .padding(.horizontal, 18)
                                                     .padding(.vertical, 4)
                                                 //            .overlay(
