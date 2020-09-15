@@ -14,6 +14,26 @@ import FirebaseStorage
 
 let screen = UIScreen.main.bounds
 let APP_LOGO = "gleem_resized"
+let APP_NAME = "Gleem 데이팅"
+let NAME_ = "앱이름"
+
+
+
+// Information
+let APP_VERSION = "1.2.0"
+let APP_INFO = "어플리케이션 정보"
+let APP_CREDIT = "크레딧"
+
+let APP_PLATFORM = "플랫폼"
+let COMPANY = "회사"
+let HOMEPAGE = "회사 홈페이지"
+let VERSION = "앱버젼"
+let MIN_REQUIREMENT = "iPhone X 기종 이상 - iOS 13 이상"
+let COMPANY_NAME = "FrontYard Tech"
+let COMPANY_HOMEPAGE = "FrontYardTech.com"
+let DEVELOPER = "앞마당테크"
+let DEVELOPER_ = "개발자"
+
 
 
 let COLOR_LIGHT_GRAY = Color(red: 0, green: 0, blue: 0, opacity: 0.15)
@@ -59,6 +79,7 @@ public let CONFIRM =  "확인"
 public let CANCEL =  "취소"
 public let ERROR =  "에러"
 public let COMPLETE =  "완료"
+public let CONTINUE =  "계속"
 
 
 // Sign in and Sign up pages

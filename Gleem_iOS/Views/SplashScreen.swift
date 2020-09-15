@@ -130,9 +130,9 @@ extension SplashScreen {
   var fadeAnimationDuration: Double { return 0.4 }
   
   func handleAnimations() {
-//    runAnimationPart1()
-//    runAnimationPart2()
-//    runAnimationPart3()
+    runAnimationPart1()
+    runAnimationPart2()
+    runAnimationPart3()
     if SplashScreen.shouldAnimate {
       restartAnimation()
     }

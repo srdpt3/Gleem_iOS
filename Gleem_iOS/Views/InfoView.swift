@@ -11,13 +11,13 @@ struct InfoView: View {
         
         Spacer(minLength: 10)
         
-        Text("어플리케이션 정보")
+        Text(APP_INFO)
           .fontWeight(.black)
           .modifier(TitleModifier())
         
         AppInfoView()
         
-        Text("크레딧")
+        Text(APP_CREDIT)
           .fontWeight(.black)
           .modifier(TitleModifier())
         
@@ -30,7 +30,7 @@ struct InfoView: View {
           // print("A button was tapped.")
           self.presentationMode.wrappedValue.dismiss()
         }) {
-          Text("계속".uppercased()).font(Font.custom(FONT, size: 20))
+          Text(CONTINUE.uppercased()).font(Font.custom(FONT, size: 20))
             .modifier(ButtonModifier())
         }
       }
@@ -51,12 +51,12 @@ struct InfoView_Previews: PreviewProvider {
 struct AppInfoView: View {
   var body: some View {
     VStack(alignment: .leading, spacing: 10) {
-      RowAppInfoView(ItemOne: "앱 정보", ItemTwo: "Gleem")
-      RowAppInfoView(ItemOne: "플랫폼", ItemTwo: "iPhone X 기종 이상 - iOS 13 이상")
-      RowAppInfoView(ItemOne: "회사", ItemTwo: "FrontYard Tech")
+      RowAppInfoView(ItemOne: NAME_, ItemTwo: APP_NAME)
+      RowAppInfoView(ItemOne: APP_PLATFORM, ItemTwo: MIN_REQUIREMENT)
+      RowAppInfoView(ItemOne: COMPANY, ItemTwo: COMPANY_NAME )
 //      RowAppInfoView(ItemOne: "", ItemTwo: "Dustin Yang")
-      RowAppInfoView(ItemOne: "회사 홈페이지", ItemTwo: "FrontYardTech.com")
-      RowAppInfoView(ItemOne: "버젼", ItemTwo: "1.0.0")
+      RowAppInfoView(ItemOne: HOMEPAGE, ItemTwo: COMPANY_HOMEPAGE)
+      RowAppInfoView(ItemOne: VERSION, ItemTwo: APP_VERSION)
         
     }
   }
@@ -83,9 +83,9 @@ struct CreditsView: View {
   var body: some View {
     VStack(alignment: .leading, spacing: 10) {
       HStack {
-        Text("개발자").foregroundColor(Color.gray).font(Font.custom(FONT, size: 16))
+        Text(DEVELOPER_).foregroundColor(Color.gray).font(Font.custom(FONT, size: 16))
         Spacer()
-        Text("앞마당테크").font(Font.custom(FONT, size: 16))
+        Text(DEVELOPER).font(Font.custom(FONT, size: 16))
       }
       
       Divider()

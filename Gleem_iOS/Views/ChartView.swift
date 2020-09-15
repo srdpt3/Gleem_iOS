@@ -213,7 +213,7 @@ struct ChartView: UIViewRepresentable {
                  .markerSymbolStyle(.borderBlank)
                  .legendEnabled(false)
                  .touchEventEnabled(false).dataLabelsFontSize(12)
-            .margin(top: 0, right: 0, bottom: 50, left: 0)
+            .margin(top: 0, right: 0, bottom: 30, left: 0)
                  .series([
                   AASeriesElement().name(SERIES_TITLE)
                                          .data([data[0],data[1],data[2],data[3],data[4]]),

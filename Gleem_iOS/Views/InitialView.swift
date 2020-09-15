@@ -40,6 +40,7 @@ struct InitialView: View {
                     
                     if(self.obs.isLoggedIn){
                         ContentView()
+                            
                     }else{
                         LoginView()
                     }
@@ -48,7 +49,8 @@ struct InitialView: View {
                 }
                 
                 SplashScreen()
-                    .opacity(showSplash ? 1 : 0)
+                    .opacity(showSplash ? 1 : 0).animation(.easeInOut(duration: 1))
+
                     .onAppear {
                         self.listen()
                         DispatchQueue.main.asyncAfter(deadline: .now() + 4) {

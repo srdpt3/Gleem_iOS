@@ -208,6 +208,10 @@ struct CardListview: View {
                                             Spacer()
                                         }
                                     }
+                                    
+                                    
+                                    
+                                    
                                 )
                             }else{
                                 

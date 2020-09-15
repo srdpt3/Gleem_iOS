@@ -14,13 +14,15 @@ struct MyStaticView: View , Equatable {
     //    @ObservedObject private var VoteViewModel = VoteViewModel()
     
     @State var vote : Vote?
-    var radar_graph_ratio =  UIScreen.main.bounds.height < 896.0 ? 3.0 : 2.7
+    let radar_graph_ratio =  UIScreen.main.bounds.height < 896.0 ? 2.7 : 2.6
+    let bar_graph_ratio =  UIScreen.main.bounds.height < 896.0 ? 4.3 : 4.0
+    
     @State var totalNum : Int = 0
     @State var voteData:[Double] = [0,0,0,0,0]
     @State var numVoteData:[Int] = [0,0,0,0,0]
-
+    
     @State var voteBarData:[Double] = [0,0,0,0,0]
-
+    
     let numberIVoted = 30
     @State var buttonTitle : [String] = ["없음", "없음","없음", "없음", "없음"]
     @State var date : Double = 0
@@ -71,9 +73,9 @@ struct MyStaticView: View , Equatable {
                 self.noVotePic = true
                 self.voteData = [0,0,0,0,0]
                 self.numVoteData = [0,0,0,0,0]
-
+                
                 self.voteBarData = [0,0,0,0,0]
-
+                
                 
                 self.totalNum = 0
                 self.obs.updateVoteImage = false
@@ -90,9 +92,9 @@ struct MyStaticView: View , Equatable {
                 if(vote.numVote == 0){
                     self.voteData = [0,0,0,0,0]
                     self.numVoteData = [0,0,0,0,0]
-
+                    
                     self.voteBarData = [0,0,0,0,0]
-
+                    
                     self.totalNum = 0
                 }else{
                     let attr1 = (Double(vote.attr1) / Double(vote.numVote) * 100).roundToDecimal(0)
@@ -103,7 +105,7 @@ struct MyStaticView: View , Equatable {
                     
                     self.voteData = [attr1, attr2, attr3, attr4, attr5]
                     self.numVoteData = [Int(vote.attr1), Int(vote.attr2) ,Int(vote.attr3), Int(vote.attr4), Int(vote.attr5)]
-
+                    
                     let maxNum =  100 - (self.voteData.max()!)
                     print(maxNum)
                     self.voteBarData = [attr1 > 0.0 ? attr1 + maxNum : attr1 ,
@@ -111,7 +113,7 @@ struct MyStaticView: View , Equatable {
                                         attr3 > 0.0 ? attr3 + maxNum : attr3 ,
                                         attr4 > 0.0 ? attr4 + maxNum : attr4 ,
                                         attr5 > 0.0 ? attr5 + maxNum : attr5]
-
+                    
                     
                     if(attr1 > 80 ||  attr2 > 80  || attr3 > 80  || attr4 > 80  || attr5 > 80 ){
                         self.ymax  = 100
@@ -139,7 +141,7 @@ struct MyStaticView: View , Equatable {
                     //                                        }
                     
                 }
-
+                
                 self.totalNum = vote.numVote
                 //                self.totalNum = 100
                 //                print(self.voteData)
@@ -329,14 +331,14 @@ struct MyStaticView: View , Equatable {
                             
                             
                         }
-                    }
+                    }.padding(.top, -5)
                     
                     
                     
                 }else{
                     VStack(alignment: .leading){
                         
-                        Text(RECENT_VOTE).fontWeight(.heavy).font(Font.custom(FONT, size: 17)).foregroundColor(Color("Color11"))
+                        Text(RECENT_VOTE).fontWeight(.heavy).font(Font.custom(FONT, size: 15)).foregroundColor(Color("Color11"))
                             .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5).padding(.bottom, 5)
                         //                                    Spacer(minLength: 0)
                         ScrollView(.horizontal, showsIndicators: false) {
@@ -354,55 +356,51 @@ struct MyStaticView: View , Equatable {
                 }
                 
                 
-            } .padding(.top,3).padding(.horizontal).padding(.vertical, 3)
-//            Divider()
-
+            } .padding(.top,3).padding(.horizontal)
+            Divider().padding(.horizontal, 15)
+            
             ScrollView(.vertical, showsIndicators: true) {
                 
                 if self.obs.updateVoteImage && self.votePiclocation != "" {
-                    HStack{
-
-                        Text(MY_STAT_RADAR).fontWeight(.heavy).font(Font.custom(FONT, size: 17)).foregroundColor(Color("Color11"))
-                            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
-
-                        Spacer(minLength: 0)
-                    } .padding(.horizontal).padding(.top,5)
+                    //                    HStack{
+                    ////
+                    ////                        Text(MY_STAT_RADAR).fontWeight(.heavy).font(Font.custom(FONT, size: 15)).foregroundColor(Color("Color11"))
+                    ////                            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
+                    //
+                    ////                        Spacer(minLength: 0)
+                    //                    } .padding(.horizontal).padding(.top,5)
                     
                     
-                    Group{
+                    VStack(spacing: 5){
                         
-                        VStack{
+                        if !self.voteData.isEmpty {
                             
-                            if !self.voteData.isEmpty {
-                                
-                                ChartView_BAR(data: self.$voteData, numVote: self.$numVoteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height/4).background(Color.clear)
-                                .padding(.top, UIScreen.main.bounds.height < 896.0 ? -10 : -10)
-
-                                Spacer()
-                                
-                                //                                    LottieView(filename: "fireworks")
-                                ChartView(data: self.$voteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width - 10 , height: UIScreen.main.bounds.height/CGFloat(radar_graph_ratio)).background(Color.clear)
-                                    .padding(.top, UIScreen.main.bounds.height < 896.0 ? -5 : -5)
-                                
-                                //                                    LottieView(filename: "radar-motion").frame(width: 300  , height: 300)
-                                //                                        .padding(.bottom, 50)
-                                
-                                
-                                
-                                
-                            }
-                            //                            else {
-                            //                                LoadingView(isLoading: self.chartViewModel.isLoading, error: self.chartViewModel.error) {
-                            //                                    if(Reachabilty.HasConnection()){
-//                                        self.loadChartData()
-//
-//                                    }
-//
-//
-//                                }
-//                            }
+                            ChartView_BAR(data: self.$voteData, numVote: self.$numVoteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width   , height: UIScreen.main.bounds.height/3.9)
+                                .offset(y : -15)
+                            
+                            //                                    LottieView(filename: "fireworks")
+                            ChartView(data: self.$voteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width - 5 , height: UIScreen.main.bounds.height/CGFloat(radar_graph_ratio)).background(Color.clear)
+                                .offset(y: 5) .padding(.top, -10)
+                            
+                            //                                    LottieView(filename: "radar-motion").frame(width: 300  , height: 300)
+                            //                                        .padding(.bottom, 50)
+                            
+                            
+                            
+                            
                         }
+                        //                            else {
+                        //                                LoadingView(isLoading: self.chartViewModel.isLoading, error: self.chartViewModel.error) {
+                        //                                    if(Reachabilty.HasConnection()){
+                        //                                        self.loadChartData()
+                        //
+                        //                                    }
+                        //
+                        //
+                        //                                }
+                        //                            }
                     }
+                    
                     //                    VStack(spacing: 32){
                     //
                     //
@@ -475,67 +473,50 @@ struct MyStaticView: View , Equatable {
                 }
                 else{
                     
-//                    HStack{
-//
-//                        Text(MY_STAT_RADAR).fontWeight(.heavy).font(Font.custom(FONT, size: 18)).foregroundColor(APP_THEME_COLOR)
-//                            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
-//
-//                        //                            Text(" - " + VOTENUM_SOFAR +  String(self.totalNum)).fontWeight(.heavy).font(Font.custom(FONT, size: 17)).foregroundColor(APP_THEME_COLOR)
-//                        //                                .shadow(color: Color.black.opacity(0.3), radius: 5, x: 5, y: 5)
-//                        //                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
-//                        Spacer(minLength: 0)
-//                    } .padding(.horizontal).padding(.vertical,10)
-//                        ChartView_BAR(data: self.$voteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height/3.4).background(Color.clear).padding(.bottom, 10)
-//
-//                    HStack(alignment: .top,spacing: 5){
-//                        ForEach(Array(self.voteBarData.enumerated()), id: \.offset) { index, work in
-//                            VStack{
-//                                if(work == 0){
-//                                    VStack{
-//
-//                                        Spacer(minLength: 0)
-//
-//
-//                                        RoundedShape()
-//                                            .fill(LinearGradient(gradient: .init(colors:  self.empty_color), startPoint: .top, endPoint: .bottom))
-//                                            // max height = 200
-//                                            .frame(height:  100 ).animation(.linear)
-//                                        //                                                .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 2)
-//                                        //                                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
-//                                    }
-//                                    .frame(height: UIScreen.main.bounds.width / 3.5).padding(.bottom, 5).padding(.horizontal, 2)
-//
-//                                }
-//
-//                                Text(self.buttonTitle[index]).fontWeight(.heavy).font(Font.custom(FONT, size: 12)).foregroundColor(.gray).multilineTextAlignment(.leading).lineLimit(1)
-//                                Spacer()
-//                            }
-//                        }
-//                        Spacer()
-//                    }.padding(.horizontal,5)
-                    Group{
-                        
-                        VStack{
-                            ChartView_BAR(data: self.$voteData, numVote: self.$numVoteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height/3.4).background(Color.clear).padding(.bottom, 10)
-                            
-                            
-                            ZStack{
-                                
-                                //                                    LottieView(filename: "fireworks")
-                                ChartView(data: self.$voteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width - 10 , height: UIScreen.main.bounds.height/CGFloat(radar_graph_ratio)).background(Color.clear).padding(.bottom, 30)
-                                                                   .padding(.top, UIScreen.main.bounds.height < 896.0 ? -60 : -60)
-                                //                                        .zIndex(1)
-                                
-                                
-//                                LottieView(filename: "radar-motion").frame(width: 300  , height: 300)
-//                                    .padding(.bottom, 50)
-                                
-                            }
-                            
-                            
-                            
-                        }
-                    }
+                    //                    HStack{
+                    //
+                    //                        Text(MY_STAT_RADAR).fontWeight(.heavy).font(Font.custom(FONT, size: 18)).foregroundColor(APP_THEME_COLOR)
+                    //                            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
+                    //
+                    //                        //                            Text(" - " + VOTENUM_SOFAR +  String(self.totalNum)).fontWeight(.heavy).font(Font.custom(FONT, size: 17)).foregroundColor(APP_THEME_COLOR)
+                    //                        //                                .shadow(color: Color.black.opacity(0.3), radius: 5, x: 5, y: 5)
+                    //                        //                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+                    //                        Spacer(minLength: 0)
+                    //                    } .padding(.horizontal).padding(.vertical,10)
+                    //                        ChartView_BAR(data: self.$voteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height/3.4).background(Color.clear).padding(.bottom, 10)
+                    //
+                    //                    HStack(alignment: .top,spacing: 5){
+                    //                        ForEach(Array(self.voteBarData.enumerated()), id: \.offset) { index, work in
+                    //                            VStack{
+                    //                                if(work == 0){
+                    //                                    VStack{
+                    //
+                    //                                        Spacer(minLength: 0)
+                    //
+                    //
+                    //                                        RoundedShape()
+                    //                                            .fill(LinearGradient(gradient: .init(colors:  self.empty_color), startPoint: .top, endPoint: .bottom))
+                    //                                            // max height = 200
+                    //                                            .frame(height:  100 ).animation(.linear)
+                    //                                        //                                                .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 2)
+                    //                                        //                                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+                    //                                    }
+                    //                                    .frame(height: UIScreen.main.bounds.width / 3.5).padding(.bottom, 5).padding(.horizontal, 2)
+                    //
+                    //                                }
+                    //
+                    //                                Text(self.buttonTitle[index]).fontWeight(.heavy).font(Font.custom(FONT, size: 12)).foregroundColor(.gray).multilineTextAlignment(.leading).lineLimit(1)
+                    //                                Spacer()
+                    //                            }
+                    //                        }
+                    //                        Spacer()
+                    //                    }.padding(.horizontal,5)
+                    ChartView_BAR(data: self.$voteData, numVote: self.$numVoteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width   , height: UIScreen.main.bounds.height/3.9)
+                        .offset(y : -15)
+                    
+                    //                                    LottieView(filename: "fireworks")
+                    ChartView(data: self.$voteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width - 5 , height: UIScreen.main.bounds.height/CGFloat(radar_graph_ratio)).background(Color.clear)
+                        .offset(y: 5) .padding(.top, -10)
                     
                     
                     

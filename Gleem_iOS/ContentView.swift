@@ -24,12 +24,13 @@ struct subMainView : View {
     var body: some View {
         
         VStack{
-
+            
             ZStack{
+                
                 if self.index == 0{
                     CardListview()
                 }
-
+                    
                 else if self.index == 1{
                     FavoriteView()
                 }
@@ -41,47 +42,47 @@ struct subMainView : View {
                     MessagesView()
                 }
             }
-
-
-            Divider()
-
-            TabBar(index: self.$index)
+            
+            
+            
+            
+            TabBar(index: self.$index).overlay(Rectangle().frame(width: nil, height: 1, alignment: .top).foregroundColor(Color("Color-2")), alignment: .top)
                 .background(Color.white.edgesIgnoringSafeArea(.bottom))
-.opacity(self.obs.isLoading == true ? 0 : 1)
-.opacity(self.obs.showTab == true  ? 0 : 1)
+                .opacity(self.obs.isLoading == true ? 0 : 1)
+                .opacity(self.obs.showTab == true  ? 0 : 1)
         }
         
         
-//                VStack(spacing: 0){
-//
-//            if self.index == 0{
-//                CardListview()
-//            }
-//
-//            else if self.index == 1{
-//                FavoriteView()
-//            }
-//                else if self.index == 2{
-//                            MyStaticView()
-//                            //                         .environmentObject(self.obs)
-//                        }
-//            else if self.index == 3{
-//                MessagesView()
-//            }
-//            //                Spacer()
-//            CircleTab(index: self.$index)
-//                .background(Color.white.edgesIgnoringSafeArea(.bottom))
-//                .opacity(self.obs.isLoading == true ? 0 : 1)
-//                .opacity(self.obs.showTab == true  ? 0 : 1)
-//
-//
-//
-//            //                        .offset(y:self.obs.showTab == true ? 50 : 0 )
-//
-//
-//
-//
-//        }
+        //                VStack(spacing: 0){
+        //
+        //            if self.index == 0{
+        //                CardListview()
+        //            }
+        //
+        //            else if self.index == 1{
+        //                FavoriteView()
+        //            }
+        //                else if self.index == 2{
+        //                            MyStaticView()
+        //                            //                         .environmentObject(self.obs)
+        //                        }
+        //            else if self.index == 3{
+        //                MessagesView()
+        //            }
+        //            //                Spacer()
+        //            CircleTab(index: self.$index)
+        //                .background(Color.white.edgesIgnoringSafeArea(.bottom))
+        //                .opacity(self.obs.isLoading == true ? 0 : 1)
+        //                .opacity(self.obs.showTab == true  ? 0 : 1)
+        //
+        //
+        //
+        //            //                        .offset(y:self.obs.showTab == true ? 50 : 0 )
+        //
+        //
+        //
+        //
+        //        }
         
         
     }
@@ -92,11 +93,10 @@ struct  TabBar : View {
     @Binding var index : Int
     
     var body: some View{
-        
         HStack(spacing: 25){
             
             HStack{
-                Image(systemName:"rectangle.stack.person.crop").resizable().frame(width: 25, height: 20).foregroundColor(self.index == 0 ?  Color.white: Color("Color10"))
+                Image(systemName:"rectangle.stack.person.crop").resizable().frame(width: 25, height: 20).foregroundColor(self.index == 0 ?  Color.white: Color("Color11"))
                 Text(self.index == 0 ? index1 : "").font(.custom(FONT, size: CGFloat(12))).foregroundColor(self.index == 0 ?  Color.white: Color.black.opacity(0.2))
                 
             }.padding(15).background(self.index == 0 ? APP_THEME_COLOR : Color.white)
@@ -105,7 +105,7 @@ struct  TabBar : View {
                     self.index = 0
             }
             HStack{
-                Image(systemName:"suit.heart").resizable().frame(width: 25, height: 20).foregroundColor(self.index == 1 ?  Color.white: Color("Color10"))
+                Image(systemName:"suit.heart").resizable().frame(width: 25, height: 20).foregroundColor(self.index == 1 ?  Color.white: Color("Color11")).accentColor(self.index == 1 ?  Color.white: Color("Color11"))
                 Text(self.index == 1 ? index2 : "").font(.custom(FONT, size: CGFloat(12))).foregroundColor(self.index == 1 ?  Color.white: Color.black.opacity(0.2))
                 
             }.padding(15).background(self.index == 1 ? APP_THEME_COLOR : Color.white)
@@ -114,7 +114,7 @@ struct  TabBar : View {
                     self.index = 1
             }
             HStack{
-                Image("graph").resizable().frame(width: 25, height: 20).foregroundColor(Color.black.opacity(0.2)).foregroundColor(self.index == 2 ?  Color.white: Color("Color10"))
+                Image(self.index == 2 ?  "graph-white" : "graph").resizable().frame(width: 25, height: 20).foregroundColor(Color.black.opacity(0.2)).foregroundColor(self.index == 2 ?  Color.white: Color("Color11"))
                 Text(self.index == 2 ? index3 : "").font(.custom(FONT, size: CGFloat(12))).foregroundColor(self.index == 2 ?  Color.white: Color.black.opacity(0.2))
                 
             }.padding(15).background(self.index == 2 ? APP_THEME_COLOR : Color.white)
@@ -124,8 +124,7 @@ struct  TabBar : View {
             }
             
             HStack{
-                Image(systemName: "bubble.left.and.bubble.right").resizable().frame(width: 25, height: 20).foregroundColor(Color.black.opacity(0.2)).foregroundColor(self.index == 3 ?
-                    Color.white: Color("Color10"))
+                Image(systemName: "bubble.left.and.bubble.right").resizable().frame(width: 25, height: 20).foregroundColor(self.index == 3 ? Color.white: Color("Color11"))
                 Text(self.index == 3 ? index4 : "").font(.custom(FONT, size: CGFloat(12))).foregroundColor(self.index == 3 ?  Color.white: Color.black.opacity(0.2))
                 
             }.padding(15).background(self.index == 3 ? APP_THEME_COLOR : Color.white)
@@ -134,7 +133,7 @@ struct  TabBar : View {
                     self.index = 3
             }
         }.frame(width: UIScreen.main.bounds.width).background(Color.white)
-            
+            .offset(y: 10)
             
             .animation(.default)
     }
@@ -177,7 +176,7 @@ struct CircleTab : View {
             
             Spacer(minLength: 10)
             
-
+            
             
             
             Button(action: {

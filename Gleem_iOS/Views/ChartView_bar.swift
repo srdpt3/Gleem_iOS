@@ -34,10 +34,10 @@ struct ChartView_BAR: UIViewRepresentable {
         ] as [String : AnyObject]
     
     let gradientColorDic1 = AAGradientColor.linearGradient(
-           direction: .toTop,
-           startColor: "#f093fb",
-           endColor: "#f5576c"//颜色字符串设置支持十六进制类型和 rgba 类型
-       )
+        direction: .toTop,
+        startColor: "#f093fb",
+        endColor: "#f5576c"//颜色字符串设置支持十六进制类型和 rgba 类型
+    )
     let gradientColorArr = [
         AAGradientColor.oceanBlue,
         AAGradientColor.sanguine,
@@ -63,13 +63,13 @@ struct ChartView_BAR: UIViewRepresentable {
         AAGradientColor.eveningDelight,
     ]
     
- 
+    
     
     func updateUIView(_ uiView: AAChartView, context:  UIViewRepresentableContext<Self>) {
         
         
         uiView.aa_onlyRefreshTheChartDataWithChartModelSeries([
-            AASeriesElement().name(SERIES_TITLE)
+            AASeriesElement().name(SERIES_TITLE).colorByPoint(true)
                 .dataSorting(AADataSorting()
                     .enabled(true).matchByName(true))
                 .data(randomDataArray())
@@ -82,7 +82,7 @@ struct ChartView_BAR: UIViewRepresentable {
             //            .data([numVote[0],numVote[1],numVote[2],numVote[3],numVote[4]]).color(AAGradientColor.mysticMauve)
             //            .data([numVote[0], numVote[1], numVote[2], numVote[3], numVote[4]])
         ])
-        //        uiView.aa_onlyRefreshTheChartDataWithChartModelSeries([["data": [data[0],data[1],data[2],data[3],data[4]] as AnyObject]])
+        
         
     }
     
@@ -94,45 +94,21 @@ struct ChartView_BAR: UIViewRepresentable {
         ////            .dataSorting(AADataSorting()
         ////             .enabled(true).matchByName(true))
         //             .data([numVote[0],numVote[1],numVote[2],numVote[3],numVote[4]]).color(AAGradientColor.mysticMauve)
-        //
-        //
-        //        let aaChartModel = AAChartModel()
-        //            .chartType(.bar)
-        //            .title("").titleFontColor(AAColor.rgbaColor(86, 98, 112, 1)).titleFontSize(17)
-        //            //            .subtitle("gradient color bar")
-        //            .yAxisGridLineWidth(0)
-        //            .borderRadius(5)
-        //            .categories(categories)
-        //            .xAxisReversed(true)
-        //
-        //
-        //
-        //            .series([
-        //                AASeriesElement().name(SERIES_TITLE)
-        //                    .dataSorting(AADataSorting()
-        //                .enabled(true).matchByName(true))
-        ////                    .data([data[0],data[1],data[2],data[3],data[4]])
-        //                      .data(randomDataArray())
-        //                    .color(gradientColorDic),
-        //
-        ////             element3
-        //
-        //            ])
-        //
+        
         let colorArr = [
-           gradientColorDic1,
+            gradientColorDic1,
             gradientColorDic1,
             gradientColorDic1,
             gradientColorDic1,
             gradientColorDic1
-         ]
+        ]
         let aaOptions = AAOptions()
             .colors(colorArr)
-            .chart(AAChart().marginBottom(20)
+            .chart(AAChart()
                 .type(AAChartType.bar)
         )
-        .title(AATitle()
-                    .text(""))
+            .title(AATitle()
+                .text(""))
             .xAxis(AAXAxis()
                 .visible(true)
                 .reversed(true)
@@ -149,12 +125,12 @@ struct ChartView_BAR: UIViewRepresentable {
                 .align(.center)
                 .layout(.vertical)
                 .verticalAlign(.top)
-                .y(2)
+                .y(10)
         )
             .tooltip(AATooltip()
                 .enabled(true)
         )
-                    
+            
             .plotOptions(AAPlotOptions()
                 .series(AASeries()
                     .dataLabels(AADataLabels()
@@ -163,12 +139,12 @@ struct ChartView_BAR: UIViewRepresentable {
                         .style(AAStyle()
                             .color(AAColor.white)
                             .fontWeight(.bold)
-                            .fontSize(11)
+                            .fontSize(10)
                             .textOutline("none")//文字轮廓描边
                     ))
             ))
             .series([
-                AASeriesElement()   .name(SERIES_TITLE)
+                AASeriesElement().name(MY_STAT_RADAR)
                     .colorByPoint(true)
                     .dataSorting(AADataSorting()
                         .enabled(true)
@@ -187,7 +163,7 @@ struct ChartView_BAR: UIViewRepresentable {
             aaOptions.plotOptions?
                 .bar(AABar().borderRadius(5)
                     .pointPadding(0)
-                    .groupPadding(0.2))
+                    .groupPadding(0.18))
                 .series?
                 .dataLabels?
                 .align(.left)//DataLabels水平对齐位置
@@ -197,15 +173,15 @@ struct ChartView_BAR: UIViewRepresentable {
                     .radius(15))
                 .dataLabels?.verticalAlign(.middle)
         }
-//        aaChartView.aa_drawChartWithChartModel(aaChartModel)
+        //        aaChartView.aa_drawChartWithChartModel(aaChartModel)
         aaOptions.touchEventEnabled = true
-                      aaChartView.aa_drawChartWithChartOptions(aaOptions)
+        aaChartView.aa_drawChartWithChartOptions(aaOptions)
         
         return aaChartView
     }
     
     private func randomDataArray() -> [Any] {
- 
+        
         
         let dataArr = NSMutableArray()
         for  (index, element) in categories.enumerated() {

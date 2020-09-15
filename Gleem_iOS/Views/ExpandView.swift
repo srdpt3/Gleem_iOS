@@ -175,7 +175,7 @@ struct ExpandView: View {
                                         //                                            .font(.system(size: 20, weight: .bold))
                                         .font(.custom(FONT, size: CGFloat(UIScreen.main.bounds.height < 896.0 ? 15: 18)))
                                         
-                                        .foregroundColor(APP_THEME_COLOR)
+                                        .foregroundColor(Color("Color11"))
                                     
                                     
                                     
@@ -209,7 +209,7 @@ struct ExpandView: View {
                                         //                                        Image("event").resizable().frame(width: 18, height: 18).foregroundColor(Color.gray)
                                         Text(String(self.user.age)).font(.custom(FONT, size: CGFloat(UIScreen.main.bounds.height < 896.0 ? 15: 18)))
                                             
-                                            .foregroundColor(APP_THEME_COLOR)
+                                            .foregroundColor(Color("Color11"))
                                     }
                                     
                                     Spacer()
@@ -342,7 +342,7 @@ struct ExpandView: View {
                                     }.zIndex(1)
                                     
                                     ChartView(data: self.$voteData, totalNum: self.$ymax, categories: self.user.attrNames)
-                                        .frame(height: (UIScreen.main.bounds.height) / 3)
+                                        .frame(height: (UIScreen.main.bounds.height) / 2.8).offset(y: 10)
                                     
                                 } else {
                                     LoadingView(isLoading: self.chartViewModel.isLoading, error: self.chartViewModel.error) {
@@ -404,9 +404,7 @@ struct ExpandView: View {
                                         }
             
                                     }
-                                        
-                                        
-                                    .buttonStyle(PlainButtonStyle()).padding(.trailing, 30).padding(.top, UIScreen.main.bounds.height / 3.7)
+                                    .buttonStyle(PlainButtonStyle()).padding(.trailing, 25).padding(.top, UIScreen.main.bounds.height / 3.7)
                                     .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
                                     
                                     

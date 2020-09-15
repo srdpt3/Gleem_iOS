@@ -512,7 +512,7 @@ struct MainSubViewFavorite: View{
                  ExpandView(user: self.selectedUser!, updateVoteImage: true, show: self.$show, isVoted:self.$isVoted, buttonPressed : self.buttonPressed, needMoveCard: false)
                            
             }
-            .padding(.bottom, 20)
+            .padding(.bottom, 40)
             
         }
  
@@ -598,7 +598,7 @@ struct SectionView2: View {
     var user: Activity
     var mutualLike: Bool
     
-    var width: CGFloat = UIScreen.main.bounds.height  / 5.5
+    var width: CGFloat = UIScreen.main.bounds.height  / 5.8
     //    var height: CGFloat = 180
     
     var body: some View {

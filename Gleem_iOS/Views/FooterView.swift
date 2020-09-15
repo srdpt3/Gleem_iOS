@@ -22,8 +22,8 @@ struct FooterView: View {
             
             //            if UIScreen.main.bounds.height < 896.0{
             Spacer()
-            VStack { voteButtonView(isVoted: self.$isVoted, showVotingScreen: self.$showVotingScreen, height: UIScreen.main.bounds.height < 896.0 ? 50 : 60, uploadComplete: self.$uploadComplete)}
-            VStack { ArrowView(height: UIScreen.main.bounds.height < 896.0 ? 50 : 60, uploadComplete: self.$uploadComplete) }
+            VStack { voteButtonView(isVoted: self.$isVoted, showVotingScreen: self.$showVotingScreen, height: UIScreen.main.bounds.height < 896.0 ? 50 : 60, uploadComplete: self.$uploadComplete)}.offset(y: 5)
+            VStack { ArrowView(height: UIScreen.main.bounds.height < 896.0 ? 50 : 60, uploadComplete: self.$uploadComplete) }.offset(y: 5)
             Spacer()
             
             
@@ -54,8 +54,6 @@ struct voteButtonView : View {
                     self.error = true
                 }else{
                     self.haptics.notificationOccurred(.success)
-                    
-                    //                self.fireworkController.addFirework(sparks: 10)
                     withAnimation{
                         self.showVotingScreen.toggle()
                     }
@@ -64,26 +62,32 @@ struct voteButtonView : View {
                 
                 
             }) {
-                Text(BUTTONNAME)
-                    //                    .font(.custom("CookieRun Regular", size: 18))
-                    .font(.custom(FONT, size: CGFloat(UIScreen.main.bounds.height < 896.0 ? BUTTON_TITLE_FONT_SIZE : 20)))
-                    .font(.system(.subheadline, design: .rounded))
-                    .fontWeight(.heavy)
-                    .padding(self.height / 2)
-                    //                        .padding(.vertical, 15)
+                
+                HStack(alignment: .center, spacing:5) {
+                    Spacer()
+                    Image(systemName: "suit.heart")
+                        .font(.custom(FONT, size: CGFloat(UIScreen.main.bounds.height < 896.0 ? BUTTON_TITLE_FONT_SIZE : 20)))
                     .accentColor(APP_THEME_COLOR)
+
+                    Text(BUTTONNAME)
+                        //                    .font(.custom("CookieRun Regular", size: 18))
+                        .font(.custom(FONT, size: CGFloat(UIScreen.main.bounds.height < 896.0 ? BUTTON_TITLE_FONT_SIZE : 20)))
+//                        .font(.system(.subheadline, design: .rounded))
+                        .fontWeight(.heavy)
+                       
+                        //                        .padding(.vertical, 15)
+                        .accentColor(APP_THEME_COLOR)
+                    Spacer()
+
+                } .padding(.vertical, self.height / 2)
+                
+                
                 
             } .background(Color("Color-3")).frame(height: self.height)
                 .animation(.spring())
-                .background(Color.white)
-                .cornerRadius(15)
+//                .background(Color.black.opacity(0.02))
+                .cornerRadius(25)
                 .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 5)
-                
-                //                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
-                //
-                //                .frame(maxWidth: .infinity,
-                //                       maxHeight: .infinity)
-                
                 .sheet(isPresented: self.$showVotingScreen) {
                     ExpandView(user: self.obs.users[self.obs.last], updateVoteImage: self.obs.updateVoteImage, show: self.$showVotingScreen, isVoted:self.$isVoted)
                         .environmentObject(self.obs)
