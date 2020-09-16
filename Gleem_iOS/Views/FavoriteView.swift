@@ -33,18 +33,18 @@ struct FavoriteHome : View {
     @State private var animatingModal: Bool = false
     @State  private var selectedUser: Activity?
     @State private var showInfoView : Bool = false
-//    @State private var isVoted : Bool = true
+    //    @State private var isVoted : Bool = true
     
     let haptics = UINotificationFeedbackGenerator()
     
     init() {
         if(Reachabilty.HasConnection()){
             
-                  self.favoriteViewModel.loadFavoriteUsers()
-                  self.activityViewModel.loadSomeOneLike()
+            self.favoriteViewModel.loadFavoriteUsers()
+            self.activityViewModel.loadSomeOneLike()
         }
-
-      
+        
+        
     }
     
     
@@ -59,7 +59,7 @@ struct FavoriteHome : View {
         self.chatViewModel.sendTextMessage(recipient: recipient, completed: {
             self.chatViewModel.composedMessage = ""
             self.sendMessage = false
-
+            
         }) { (error) in
             print(error)
         }
@@ -72,13 +72,12 @@ struct FavoriteHome : View {
             
             GeometryReader{geo in
                 VStack{
-
+                    
                     if !self.activityViewModel.someOneLiked.isEmpty {
                         HStack{
                             Text(SOMEONE_LIKED).fontWeight(.heavy).font(Font.custom(FONT, size: 17))
                                 .foregroundColor(Color("Color11"))
                                 .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 5)
-                            //                                .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
                             Spacer()
                             Button(action: {
                                 // ACTION
@@ -92,12 +91,6 @@ struct FavoriteHome : View {
                                 self.showInfoView = true
                             }.accentColor(APP_THEME_COLOR)
                             
-                            
-                            //                            .sheet(isPresented: self.$showInfoView, content: {
-                            //                                //                                InfoView()
-                            //                                print("")
-                            //                            })
-                            //                             Spacer()
                         }
                         .padding(.horizontal).padding(.top, 10)
                         ScrollView(.horizontal, showsIndicators: false) {
@@ -117,55 +110,29 @@ struct FavoriteHome : View {
                                                     self.selectedUser = user
                                                 }
                                         }
-                                        
                                     }
                                     .frame(width: geo.size.height / 5 , height: geo.size.height / 5)
                                 }
                             }.padding(.horizontal).padding(.vertical, 6)
-                            
-                            //                    .padding(.bottom, 30)
                         }.background(Color.white)
                     }
                     
-                    //                    else {
-                    //                        VStack{
-                    //
-                    //                            //                        EmptyView()
-                    //                            LoadingView(isLoading: self.activityViewModel.isLoading, error: self.activityViewModel.error) {
-                    //                                self.activityViewModel.loadSomeOneLike()
-                    //                                //                        }
-                    //
-                    //                            }
-                    //                        }
-                    //
-                    //                    }
                     BannerAdView(bannerId: BANNER_UNIT_ID).frame(width: UIScreen.main.bounds.width, height: 60)
-
+                    
                     
                     VStack(spacing: 10){
                         if !self.favoriteViewModel.favoriteUsers.isEmpty {
                             MainSubViewFavorite(title: "Favorite Votes", users: self.favoriteViewModel.favoriteUsers, mutualLikedUsers: self.activityViewModel.someOneLiked_id)
                                 .frame( height: geo.size.height / 1.5 )
                         }
-
                     }
-                    //                    .padding(.bottom, 60)
+                    
                     
                     
                     
                 }
                 .blur(radius: self.$showingModal.wrappedValue ? 5 : 0, opaque: false)
                 
-                // MARK: - POPUP
-                //                       .sheet(isPresented: self.$showMessageView) {
-                //
-                //                                ZStack {
-                //
-                //                                    LoadingView2(filename: "heart2")
-                //
-                //                                }
-                //                             ChatView( recipientId: self.selectedUser!.userId, recipientAvatarUrl: self.selectedUser!.userAvatar, recipientUsername: self.selectedUser!.username)
-                //                    }
                 
                 if(self.showMessageView){
                     ZStack {
@@ -226,59 +193,47 @@ struct FavoriteHome : View {
                                         .font(Font.custom(FONT, size: 14))
                                         .lineLimit(2)
                                         .multilineTextAlignment(.center)
-                                        .foregroundColor(Color.gray)
+                                        .foregroundColor(Color("Color11"))
                                         .layoutPriority(1)
                                     Text("현재 가진 포인트: " + String(User.currentUser()!.point_avail))
                                         .font(Font.custom(FONT, size: 14))
                                         .lineLimit(2)
                                         .multilineTextAlignment(.center)
-                                        .foregroundColor(Color.gray)
+                                        .foregroundColor(Color("Color11"))
                                         .layoutPriority(1)
-                                    //
-                                    //                                    VStack(alignment: .leading, spacing: 15){
-                                    //                                        Text(String(User.currentUserProfile()!.age) + "," + String(User.currentUserProfile()!.location))
-                                    //                                                                                      .font(Font.custom(FONT, size: 14))
-                                    //                                                                                      .lineLimit(2)
-                                    //                                                                                      .multilineTextAlignment(.center)
-                                    //                                                                                      .foregroundColor(Color.gray)
-                                    //                                                                                      .layoutPriority(1)
-//                                        Text(String(User.currentUserProfile()!.age) + "," + String(User.currentUserProfile()!.location))
-//                                                                                                    .font(Font.custom(FONT, size: 14))
-//                                                                                                    .lineLimit(2)
-//                                                                                                    .multilineTextAlignment(.center)
-//                                                                                                    .foregroundColor(Color.gray)
-//                                                                                                    .layoutPriority(1)
-//                                    }
+                                    
                                     
                                     Text(String(User.currentUserProfile()!.age) + "," + String(User.currentUserProfile()!.location))
-                                                                        .font(Font.custom(FONT, size: 14))
-                                                                        .lineLimit(2)
-                                                                        .multilineTextAlignment(.center)
-                                                                        .foregroundColor(Color.gray)
-                                                                        .layoutPriority(1)
+                                        .font(Font.custom(FONT, size: 14))
+                                        .lineLimit(2)
+                                        .multilineTextAlignment(.center)
+                                        .foregroundColor(Color("Color11"))
+                                        .layoutPriority(1)
                                     
                                 }else{
                                     Text(NOT_ENOUGH_POINT + String(User.currentUser()!.point_avail))
                                         .font(Font.custom(FONT, size: 14))
                                         .lineLimit(3)
                                         .multilineTextAlignment(.center)
-                                        .foregroundColor(Color.gray)
+                                        .foregroundColor(Color("Color11"))
                                         .layoutPriority(1)
                                 }
                                 
                                 
                                 VStack(spacing: 5){
                                     Divider().foregroundColor(Color.gray)
-                                    HStack{
+                                    HStack(alignment: .center, spacing: 5){
+                                        Spacer()
                                         Image(systemName: "text.bubble")
                                             .resizable().frame(width: 15, height: 15).foregroundColor(Color.gray)
-                                          
+                                        
                                         
                                         TextField("간단한 인삿말을 입력해주세요", text: self.$textBindingManager.text).font(Font.custom(FONT, size: 15))
-                                            
                                             .multilineTextAlignment(.center)
                                             .foregroundColor(Color.gray)
                                             .layoutPriority(1)
+                                        Spacer()
+                                        
                                     }
                                     
                                     Text(String(self.textBindingManager.text.count) + " / 25" ) .foregroundColor(Color.gray).font(Font.custom(FONT, size: 10)).padding(.horizontal,20).padding(.top,5)
@@ -292,17 +247,17 @@ struct FavoriteHome : View {
                                         //                                         self.presentationMode.wrappedValue.dismiss()
                                         self.textBindingManager.text = ""
                                     }) {
-                                        Text("취소".uppercased())
+                                        Text(CANCEL.uppercased())
                                             .font(Font.custom(FONT, size: 15))
                                             .fontWeight(.semibold)
-                                            .accentColor(Color.gray)
+                                            .accentColor(Color("Color11"))
                                             .padding(.horizontal, 55)
                                             .padding(.vertical, 15)
                                             .frame(minWidth: 100)
                                             .background(
                                                 Capsule()
                                                     .strokeBorder(lineWidth: 1.75)
-                                                    .foregroundColor(Color.gray)
+                                                    .foregroundColor(Color("Color11"))
                                         )
                                     }
                                     Button(action: {
@@ -323,7 +278,7 @@ struct FavoriteHome : View {
                                         
                                         
                                     }) {
-                                        Text("확인".uppercased())
+                                        Text(CONFIRM.uppercased())
                                             .font(Font.custom(FONT, size: 15))
                                             .fontWeight(.semibold)
                                             .accentColor(APP_THEME_COLOR)
@@ -378,14 +333,14 @@ struct FavoriteHome : View {
                                     .foregroundColor(Color.gray)
                                     .layoutPriority(1) .padding(.horizontal)
                                 
-                       
+                                
                                 Button(action: {
                                     
                                     self.showInfoView = false
                                     self.animatingModal = false
                                     
                                 }) {
-                                    Text("확인".uppercased())
+                                    Text(CONFIRM.uppercased())
                                         .font(Font.custom(FONT, size: 15))
                                         .fontWeight(.semibold)
                                         .accentColor(APP_THEME_COLOR)
@@ -415,7 +370,7 @@ struct FavoriteHome : View {
                         .onAppear(perform: {
                             self.animatingModal = true
                         })
-                        .padding(.vertical, 5)
+                            .padding(.vertical, 5)
                     }
                     
                     
@@ -423,7 +378,7 @@ struct FavoriteHome : View {
                 }
                 
             }   .alert(isPresented: self.$showMessageView) {
-                Alert(title: Text("연결!!!"), message: Text("축하해요 채팅으로 가서 대화를 나눠보세요~"),  dismissButton: .default(Text("OK"), action: {
+                Alert(title: Text("연결!!!"), message: Text("축하해요 채팅으로 가서 대화를 나눠보세요~"),  dismissButton: .default(Text(CONFIRM), action: {
                     //                        self.presentationMode.wrappedValue.dismiss()
                     //
                     
@@ -459,63 +414,63 @@ struct MainSubViewFavorite: View{
     @State var isVoted : Bool  = true
     @State  var selectedUser : ActiveVote?
     @State var buttonPressed = [true,true,true,true,true]
-
+    
     var body : some View{
         
-         GeometryReader { g in
+        GeometryReader { g in
             ScrollView(.vertical, showsIndicators: false) {
-                 
-                 HStack{
-                     Text(I_LIKED).fontWeight(.heavy).font(Font.custom(FONT, size: 17)).foregroundColor(Color("Color11"))
-                         .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 5)
-                     //                    .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
-                     Spacer()
-                     
-                 }
-                 .padding(.horizontal).padding(.top, 10)
-                 
-                 
-                 VStack(spacing: 5){
+                
+                HStack{
+                    Text(I_LIKED).fontWeight(.heavy).font(Font.custom(FONT, size: 17)).foregroundColor(Color("Color11"))
+                        .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 5)
+                    //                    .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+                    Spacer()
+                    
+                }
+                .padding(.horizontal).padding(.top, 10)
+                
+                
+                VStack(spacing: 5){
                     ForEach(0..<self.users.chunked(3).count){index in
-                         
-                         HStack(spacing: 8){
-                             ForEach(self.users.chunked(3)[index]){i in
-                                 
-                                 
-                                 if(i.imageLocation != ""){
-                                     //                                NavigationLink(destination:   ExpandView(user: i, show: self.$show, isVoted: self.$isVoted)) {
-                                     FavoriteCard(user: i, mutualLike: self.mutualLikedUsers.contains(i.id) ? true : false).onTapGesture {
-                                         withAnimation{
-                                             self.showExpandView.toggle()
-                                             self.selectedUser = i
-
-                                         }
-                                         
-                                     }
-                                     
-                                 }else{
-                                     FavoriteCard(user: i, mutualLike: false)
-                                 }
-                                 
-                                 
-                             }
-                             
-                         }
-                         .padding(.horizontal, 5)
-                         
-                     }
-                     
-                     
-                 }.padding(.bottom, UIScreen.main.bounds.height < 896.0 ? 50 : 30)
-                 
-             }.sheet(isPresented: self.$showExpandView){
-                 ExpandView(user: self.selectedUser!, updateVoteImage: true, show: self.$show, isVoted:self.$isVoted, buttonPressed : self.buttonPressed, needMoveCard: false)
-                           
+                        
+                        HStack(spacing: 8){
+                            ForEach(self.users.chunked(3)[index]){i in
+                                
+                                
+                                if(i.imageLocation != ""){
+                                    //                                NavigationLink(destination:   ExpandView(user: i, show: self.$show, isVoted: self.$isVoted)) {
+                                    FavoriteCard(user: i, mutualLike: self.mutualLikedUsers.contains(i.id) ? true : false).onTapGesture {
+                                        withAnimation{
+                                            self.showExpandView.toggle()
+                                            self.selectedUser = i
+                                            
+                                        }
+                                        
+                                    }
+                                    
+                                }else{
+                                    FavoriteCard(user: i, mutualLike: false)
+                                }
+                                
+                                
+                            }
+                            
+                        }
+                        .padding(.horizontal, 5)
+                        
+                    }
+                    
+                    
+                }.padding(.bottom, UIScreen.main.bounds.height < 896.0 ? 40 : 30)
+                
+            }.sheet(isPresented: self.$showExpandView){
+                ExpandView(user: self.selectedUser!, updateVoteImage: true, show: self.$show, isVoted:self.$isVoted, buttonPressed : self.buttonPressed, needMoveCard: false)
+                
             }
-
+            
             
         }
- 
+        
     }
 }
 
@@ -606,18 +561,18 @@ struct SectionView2: View {
             
             
             if(self.user.userAvatar == "" ){
-//                VStack{
-                    Image("")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: width)
-                        .background(Color("Color10"))
-                        .shadow(color: Color.black.opacity(0.3), radius: 1, x: 1, y: 1)
-                        .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
-//                    Text("현재 끌림을준 \n유저가 없습니다").font(Font.custom(FONT, size: 13))
-//                        .foregroundColor(Color.gray)
-                    
-//                }
+                //                VStack{
+                Image("")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: width)
+                    .background(Color("Color10"))
+                    .shadow(color: Color.black.opacity(0.3), radius: 1, x: 1, y: 1)
+                    .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+                //                    Text("현재 끌림을준 \n유저가 없습니다").font(Font.custom(FONT, size: 13))
+                //                        .foregroundColor(Color.gray)
+                
+                //                }
                 
                 
             }else{
@@ -636,11 +591,7 @@ struct SectionView2: View {
                                     
                                 }, label: {
                                     Image(mutualLike ? "full-heart" : "").resizable().frame(width: 25, height: 25)
-                                    //                                            .foregroundColor(Color.white)
-                                    //                                            .shadow(radius: 3)
-                                    //                                            .opacity(self.pulsate ? 1 : 0.6)
-                                    //                                            .scaleEffect(self.pulsate ? 1.3 : 0.9, anchor: .center)
-                                    //                                            .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
+          
                                 })
                                     .padding(.trailing, 8)
                                     .padding(.top, 8)

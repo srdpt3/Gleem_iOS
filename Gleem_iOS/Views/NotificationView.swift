@@ -40,11 +40,11 @@ struct NotificationView: View {
                                     if activity.type == "like" {
                                         
                                         ZStack {
-                                            NavigationLink(destination: FavoriteView()) {
-                                                //                                            EmptyView()
+                                            //Disable to navigate
+//                                            NavigationLink(destination: FavoriteView()) {
                                                 CommentActivityRow(notification: activity)
                                                 
-                                            }
+//                                            }
                                         }
                                         
                                     }else if activity.type == "match"{

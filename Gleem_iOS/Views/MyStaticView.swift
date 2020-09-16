@@ -14,8 +14,8 @@ struct MyStaticView: View , Equatable {
     //    @ObservedObject private var VoteViewModel = VoteViewModel()
     
     @State var vote : Vote?
-    let radar_graph_ratio =  UIScreen.main.bounds.height < 896.0 ? 2.7 : 2.6
-    let bar_graph_ratio =  UIScreen.main.bounds.height < 896.0 ? 4.3 : 4.0
+    let radar_graph_ratio =  UIScreen.main.bounds.height < 896.0 ? 2.73 : 2.62
+    let bar_graph_ratio =  UIScreen.main.bounds.height < 896.0 ? 4.0 : 3.95
     
     @State var totalNum : Int = 0
     @State var voteData:[Double] = [0,0,0,0,0]
@@ -375,12 +375,12 @@ struct MyStaticView: View , Equatable {
                         
                         if !self.voteData.isEmpty {
                             
-                            ChartView_BAR(data: self.$voteData, numVote: self.$numVoteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width   , height: UIScreen.main.bounds.height/3.9)
+                            ChartView_BAR(data: self.$voteData, numVote: self.$numVoteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width   , height: UIScreen.main.bounds.height/CGFloat(bar_graph_ratio))
                                 .offset(y : -15)
                             
                             //                                    LottieView(filename: "fireworks")
                             ChartView(data: self.$voteData, totalNum: self.$ymax, categories: self.buttonTitle).frame(width: UIScreen.main.bounds.width - 5 , height: UIScreen.main.bounds.height/CGFloat(radar_graph_ratio)).background(Color.clear)
-                                .offset(y: 5) .padding(.top, -10)
+                                .offset(y: UIScreen.main.bounds.height < 896.0 ? -20 : -15)
                             
                             //                                    LottieView(filename: "radar-motion").frame(width: 300  , height: 300)
                             //                                        .padding(.bottom, 50)

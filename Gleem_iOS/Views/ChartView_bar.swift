@@ -144,8 +144,8 @@ struct ChartView_BAR: UIViewRepresentable {
                     ))
             ))
             .series([
-                AASeriesElement().name(MY_STAT_RADAR)
-                    .colorByPoint(true)
+                AASeriesElement().name(MY_STAT_RADAR).color(Color("Color11"))
+//                    .colorByPoint(true)
                     .dataSorting(AADataSorting()
                         .enabled(true)
                         .matchByName(true))

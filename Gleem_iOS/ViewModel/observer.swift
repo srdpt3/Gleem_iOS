@@ -24,7 +24,7 @@ class observer : ObservableObject{
     @Published var isVoteLoading : Bool = false
     @Published var isReloading : Bool = false
     @Published var newNotification : Bool = false
-
+    
     @Published var activityArray = [UserNotification]()
     
     
@@ -154,16 +154,16 @@ class observer : ObservableObject{
         
         if(self.users.count == 1 &&  index == 1){
             self.getNewCards()
-            
+            print("getNewcCard")
         }
         
-        if(self.users.count == 2 &&  index == 2){
+        if(self.users.count == 2 &&  index == 1){
             self.index += 1
             self.last += 1
             
         }else{
             
-            if(self.index > self.users.count ){
+            if(self.index >= self.users.count ){
                 print("reload")
                 
                 self.getNewCards()
@@ -173,10 +173,10 @@ class observer : ObservableObject{
                     let u = self.users[self.index % self.users.count]
                     let newCardView = MainCardView(user: u)
                     self.cardViews.append(newCardView)
-                  
+                    
                 }
                 self.index += 1
-                                  self.last += 1
+                self.last += 1
                 
                 
             }
@@ -228,36 +228,34 @@ class observer : ObservableObject{
         self.cardViews.removeAll()
         
         //        Filtering
-        if(!votedCards.isEmpty && !users.isEmpty){
-
-            for index in (0..<users.count).reversed() {
-                let u = users[index]
-                if votedCards.contains(u.id){
-                   users.remove(at: index)
-                    print("contained  \(u.id)")
+                if(!votedCards.isEmpty && !users.isEmpty){
+        
+                    for index in (0..<users.count).reversed() {
+                        let u = users[index]
+                        if votedCards.contains(u.id){
+                           users.remove(at: index)
+                            print("contained  \(u.id)")
+                        }
+        
+                    }
+        
+                    print("filtered User : \(users.count)")
+        
                 }
-
-            }
-
-            print("filtered User : \(users.count)")
-            
-        }
         
         if(!users.isEmpty){
             var indexRange = 0
             
-            if(self.users.count <= 2 && self.users.count > 0){
-                indexRange = self.users.count
-            }else if self.users.count > 2 {
-                indexRange = 2
-            }
-            
-            for index in 0..<indexRange {
-                
-                cardViews.append(MainCardView(user: users[index]))
+//            if(self.users.count <= 2 && self.users.count > 0){
+//                indexRange = self.users.count
+//            }else if self.users.count > 2 {
+//                indexRange = 2
+//            }
+//
+            for index in 0..<1 {
+               cardViews.append(MainCardView(user: users[index]))
             }
             self.index = self.cardViews.count
-            
             print("reload \( self.index )")
         }
         
@@ -269,10 +267,10 @@ class observer : ObservableObject{
         self.isReloading = true
         let whereField = User.currentUser()!.sex == "female" ? "male" : "female"
         let lesserGeopoint = GeoPoint(latitude: 0.5, longitude: 1)
-
+        
         Ref.FIRESTORE_COLLECTION_ACTIVE_VOTE.whereField("sex", isEqualTo: whereField )
             .limit(to: 30).whereField("approved",isEqualTo: true)
-//            .whereField("geoLocation",isGreaterThan: lesserGeopoint)
+            //            .whereField("geoLocation",isGreaterThan: lesserGeopoint)
             //            .order(by: "createdDate",descending: true)
             .getDocuments { (snap, err) in
                 self.users.removeAll()
@@ -389,22 +387,7 @@ class observer : ObservableObject{
                 }
                 
             }
-            //
-            //            if(liked){
-            //
-            //                self.setNotification(msg:"누군가 나에게 끌림을 주었습니다")
-            //                print("liked notification")
-            //                liked = false
-            //
-            //
-            //            }
-            //            if(matched){
-            //                //                        self.send()
-            //                self.setNotification(msg:"축하해요! 이성과 연결이 되었습니다.")
-            //                print("matched notification")
-            //                matched = false
-            //
-            //            }
+
             
             
         })
@@ -443,7 +426,7 @@ class observer : ObservableObject{
             } else {
                 print("Document successfully updated")
                 self.newNotification = false
-
+                
             }
         }
     }

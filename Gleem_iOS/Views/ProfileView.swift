@@ -49,10 +49,7 @@ struct Profile : View {
                         Image("Gleem_3D").resizable().scaledToFit().frame(width: UIScreen.main.bounds.width / 2 , height: UIScreen.main.bounds.height/3, alignment: .center).edgesIgnoringSafeArea(.all)
                         
                     }
-                    
-                    
-                    
-                    
+
                 }
             }
             
@@ -60,14 +57,7 @@ struct Profile : View {
             VStack{
                 
                 HStack{
-                    
-                    //                    Button(action: {
-                    //
-                    //                    }) {
-                    //
-                    //                        Image("menu").renderingMode(.original).resizable().frame(width: 20, height: 20)
-                    //                    }
-                    
+
                     Spacer()
                     
                     Button(action: {
@@ -209,10 +199,7 @@ struct BottomShape : Shape {
 struct Blurview : UIViewRepresentable {
     
     func makeUIView(context: UIViewRepresentableContext<Blurview>) -> UIVisualEffectView {
-        
-        
         let view = UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterialLight))
-        
         return view
     }
     

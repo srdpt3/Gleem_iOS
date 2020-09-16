@@ -18,7 +18,7 @@ class MessageViewModel: ObservableObject {
     
     @Published var inboxMessages = [InboxMessage]()
     // let objectWillChange = ObservableObjectPublisher()
-    @Published var isLoading : Bool = false
+    @Published var isInboxLoading : Bool = false
     @Published var finished : String = ""
     
     var listener: ListenerRegistration!
@@ -29,12 +29,14 @@ class MessageViewModel: ObservableObject {
     }
     
     func loadInboxMessages() {
-        self.isLoading = true
+        self.isInboxLoading = true
         self.inboxMessages = []
         
         Api.Chat.getInboxMessages(onSuccess: { (inboxMessages) in
             if self.inboxMessages.isEmpty {
                 self.inboxMessages = inboxMessages
+                self.isInboxLoading = false
+
             }
         }, onError: { (errorMessage) in
             
@@ -43,6 +45,7 @@ class MessageViewModel: ObservableObject {
                 self.inboxMessages.append(inboxMessage)
                 
             }
+            self.isInboxLoading = false
             
         })
         { (listener) in

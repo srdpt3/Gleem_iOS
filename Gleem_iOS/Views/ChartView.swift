@@ -203,6 +203,7 @@ struct ChartView: UIViewRepresentable {
         let aaChartModel = AAChartModel()
                  .colorsTheme([hexColor])
                  .chartType(.area)
+                .axesTextColor(AAColor.rgbaColor(86, 98, 112, 1))
                  .dataLabelsEnabled(true)
                  .xAxisVisible(true)
                  .yAxisVisible(true)
@@ -213,7 +214,7 @@ struct ChartView: UIViewRepresentable {
                  .markerSymbolStyle(.borderBlank)
                  .legendEnabled(false)
                  .touchEventEnabled(false).dataLabelsFontSize(12)
-            .margin(top: 0, right: 0, bottom: 30, left: 0)
+                .margin(top: 10, right: 10, bottom: 10, left: 10)
                  .series([
                   AASeriesElement().name(SERIES_TITLE)
                                          .data([data[0],data[1],data[2],data[3],data[4]]),

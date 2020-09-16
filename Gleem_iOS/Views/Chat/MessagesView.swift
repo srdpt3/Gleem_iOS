@@ -91,10 +91,12 @@ struct MessageSubView: View {
                              }
                          }
                      } else{
-                         
-                         ZStack{
-                             EmptyChattingView()
-                         }
+                        if(!self.messageViewModel.isInboxLoading){
+                            ZStack{
+                                EmptyChattingView()
+                              }
+                        }
+                        
                          
                      }
                      //                BannerAdView(bannerId: BANNER_UNIT_ID).frame(width: UIScreen.main.bounds.width, height: 60)
